@@ -12,7 +12,7 @@ namespace SearchAlgorithmsLib
         {
             private static HashSet<T> pool = new HashSet<T>();
 
-            public static ref State<T> getState(T state)
+            public static ref State<T> getState(ref T  state)
             {
                 if (pool.Contains(state))
                 {
@@ -22,6 +22,9 @@ namespace SearchAlgorithmsLib
                     State<T> s = new State<T>(state);
                     pool.Add(s);
                     return ref s;
+
+
+
                 }
             }
         }
