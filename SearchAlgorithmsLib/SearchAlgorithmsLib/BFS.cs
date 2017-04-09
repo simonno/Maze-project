@@ -32,7 +32,14 @@ namespace SearchAlgorithmsLib
                     }
                     else if (openList.Contains(s))
                     {
-                        return null;
+                        if ((s <= n)==s)
+                        {
+                            pushOpenList(s);
+                        }
+                        else
+                        {
+                            updatePlaceInOpen(s);
+                        }
                     }
                 }
             }
@@ -46,6 +53,10 @@ namespace SearchAlgorithmsLib
                 solution.Add(n);
                 n = n.cameFrom;
             } 
+        }
+        public void updatePlaceInOpen(State<T> s)
+        {
+            s.cost.SetCost(
         }
     }
 }

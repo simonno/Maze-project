@@ -8,7 +8,8 @@ namespace SearchAlgorithmsLib
 {
     public class State<T>
     {
-        public Cost cost; // cost to reach this state (set by a setter)
+        public Cost cost; // cost to reach this state (set by a setter)
+
         public static class StatePool
         {
             private static HashSet<State<T>> pool = new HashSet<State<T>>();
@@ -57,6 +58,26 @@ namespace SearchAlgorithmsLib
         public interface Cost : IComparable<Cost>
         {
             void AddCost(Cost c);
+
+            void SetCost(Cost c);
+
+
+        }
+        public static Cost operator <=(State<T> a, State<T>  b)
+        {
+            if (a.cost.CompareTo(b.cost)<=0)
+            {
+                return a.cost;
+            }
+            return b.cost;
+        }
+        public static Cost operator >=(State<T> a, State<T> b)
+        {
+            if (b.cost.CompareTo(a.cost) <= 0)
+            {
+                return a.cost;
+            }
+            return b.cost;
         }
     }
 }
