@@ -7,13 +7,18 @@ using Priority_Queue;
 
 namespace SearchAlgorithmsLib
 {
-    public abstract class Searcher<T, TPriority> : ISearcher<T> where TPriority : IComparable<TPriority>
+    public abstract class Searcher<T> : ISearcher<T> where T : IComparable<T>
+
+        // public abstract class Searcher<T, TPriority> : ISearcher<T> where TPriority : IComparable<TPriority>
     {
-        private SimplePriorityQueue<State<T>, PriorityComparator<T>> openList;
+        //private SimplePriorityQueue<State<T>, PriorityComparator<T>> openList;
+        private  MyPriorityQueue<State<T>> openList;
         private int evaluatedNodes;
         public Searcher()
         {
-            openList = new SimplePriorityQueue<State<T>, PriorityComparator<T>>();
+            //  openList = new SimplePriorityQueue<State<T>, PriorityComparator<T>>();
+            openList = new SimplePriorityQueue<State<T>>();
+
             evaluatedNodes = 0;
         }
 
@@ -38,6 +43,8 @@ namespace SearchAlgorithmsLib
             return evaluatedNodes;
         }
         public abstract Solution search(ISearchable<T> searchable);
+
+
 
     }
 }
