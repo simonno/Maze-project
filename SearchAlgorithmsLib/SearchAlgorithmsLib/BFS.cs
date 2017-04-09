@@ -8,7 +8,6 @@ namespace SearchAlgorithmsLib
 {
     // public class BFS<TPriority> : Searcher<T,TPriority> where TPriority : IComparable<TPriority>
     public class BFS<T> : Searcher<T>  where T : IComparable<T>
-
     {
         public override Solution search(ISearchable<T> searchable)
         {//TO DO *missing a  return value solution  type?****
@@ -24,12 +23,12 @@ namespace SearchAlgorithmsLib
                 List<State<T>> succerssors = searchable.getAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
-                    if (!closed.Contains(s) && !openContaines(s))
+                    if (!closed.Contains(s) && !openList.Contains(s))
                     {
-                        // s.setCameFrom(n); // already done by getSuccessors
+                        s.cameFrom = n;
                         pushOpenList(s);
                     }
-                    else
+                    else if (openList.Contains(s))
                     {
                         return null;
                     }

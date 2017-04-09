@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class State<T>
+    public class State<T> : IComparable<State<T>> where T : IComparable<T>
     {
         public static class StatePool
         {
-            private static HashSet<T> pool = new HashSet<T>();
+            private static HashSet<State<T>> pool = new HashSet<State<T>>();
 
             public static ref State<T> getState(ref T  state)
             {
-                if (pool.Contains(state))
+                if (pool.(state.GetHashCode())
                 {
-                    return ref pool(state);
+                    return ref pool.;
                 } else
                 {
                     State<T> s = new State<T>(state);
                     pool.Add(s);
                     return ref s;
-
-
-
+               
                 }
             }
         }
@@ -34,9 +32,12 @@ namespace SearchAlgorithmsLib
            get { return state; }
            set { state = value; }
         }
-            // the state represented by a string
-        private double cost; // cost to reach this state (set by a setter)
-        private State<T> cameFrom; // the state we came from to this state (setter)
+        public State<T> cameFrom
+        {
+            set { cameFrom = value; }
+            get { return cameFrom; }
+        }
+
         private State(T state) // CTOR
         {
             this.state = state;
@@ -60,6 +61,11 @@ namespace SearchAlgorithmsLib
         public override int GetHashCode()
         {
             return state.GetHashCode();
+        }
+
+        public int CompareTo(State<T> other)
+        {
+            return state.CompareTo(other.state);
         }
     }
 }
