@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class DFS<T> : ISearcher<T> where T : IComparable<T>
+    public class DFS<T> : ISearcher<T>
     {
         public int getNumberOfNodesEvaluated()
         {

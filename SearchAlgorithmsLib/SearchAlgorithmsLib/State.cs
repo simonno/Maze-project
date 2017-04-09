@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class State<T> : IComparable<State<T>> where T : IComparable<T>
+    public class State<T>
     {
+        public Cost cost; // cost to reach this state (set by a setter)
         public static class StatePool
         {
             private static HashSet<State<T>> pool = new HashSet<State<T>>();
@@ -48,24 +49,14 @@ namespace SearchAlgorithmsLib
             return state.Equals(s.state);
         }
 
-        public static bool operator ==(State<T> s1, State<T> s2) // we overload Object's Equals method
-        {
-            return s1.Equals(s2);
-        }
-
-        public static bool operator !=(State<T> s1, State<T> s2) // we overload Object's Equals method
-        {
-            return !s1.Equals(s2);
-        }
-
         public override int GetHashCode()
         {
             return state.GetHashCode();
         }
 
-        public int CompareTo(State<T> other)
+        public interface Cost : IComparable<Cost>
         {
-            return state.CompareTo(other.state);
+            void AddCost(Cost c);
         }
     }
 }
