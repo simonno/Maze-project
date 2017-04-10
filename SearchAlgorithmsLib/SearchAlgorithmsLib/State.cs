@@ -6,64 +6,61 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class State<T>
+    public class State<S, C>
     {
-        public Cost cost; // cost to reach this state (set by a setter)
+        public ICost<C> cost; // cost to reach this StateValue (set by a setter)
 
         public static class StatePool
         {
-            private static HashSet<State<T>> pool = new HashSet<State<T>>();
+            private static HashSet<State<S, C>> pool = new HashSet<State<S, C>>();
 
-            public static ref State<T> getState(ref T  state)
+            public static State<S, C> getState(S  state)
             {
                 if (pool.(state.GetHashCode())
                 {
-                    return ref pool.;
+                    return pool.;
                 } else
                 {
-                    State<T> s = new State<T>(state);
+                    State<S, C> s = new State<S, C>(state);
                     pool.Add(s);
-                    return ref s;
+                    return  s;
                
                 }
             }
         }
-
-        private T state
+        public S StateValue
         {
-           get { return state; }
-           set { state = value; }
+           get { return StateValue; }
+           set { StateValue = value; }
         }
-        public State<T> cameFrom
+        public State<S, C> CameFrom
         {
-            set { cameFrom = value; }
-            get { return cameFrom; }
-        }
-
-        private State(T state) // CTOR
-        {
-            this.state = state;
+            set { CameFrom = value; }
+            get { return CameFrom; }
         }
 
-        public bool Equals(State<T> s) // we overload Object's Equals method
+        private State(S state) // CTOR
         {
-            return state.Equals(s.state);
+            this.StateValue = state;
+        }
+
+        public bool Equals(State<S, C> s) // we overload Object's Equals method
+        {
+            return StateValue.Equals(s.StateValue);
         }
 
         public override int GetHashCode()
         {
-            return state.GetHashCode();
+            return StateValue.GetHashCode();
         }
 
-        public interface Cost : IComparable<Cost>
+        public interface ICost<V>: IComparable<ICost<V>>
         {
-            void AddCost(Cost c);
+            V Value { get; set; }
 
-            void SetCost(Cost c);
-
-
+            void AddCost(ICost<V> c);
         }
-        public static Cost operator <=(State<T> a, State<T>  b)
+       /* public static Cost operator <=(State<T> a, State<T>  b)
         {
             if (a.cost.CompareTo(b.cost)<=0)
             {
@@ -78,6 +75,6 @@ namespace SearchAlgorithmsLib
                 return a.cost;
             }
             return b.cost;
-        }
+        }*/
     }
 }

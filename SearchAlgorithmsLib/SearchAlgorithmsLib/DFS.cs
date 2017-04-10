@@ -18,20 +18,20 @@ namespace SearchAlgorithmsLib
             State<T> s;
             //For DFS use stack
             Stack<State<T>> stack = new Stack<State<T>>();
-            stack.Push(searchable.getInitialState());
+            stack.Push(searchable.GetInitialState());
 
             while (stack.Count != 0)
             {
                 s = stack.Pop();
 
-                if (s == searchable.getGoalState())
+                if (s == searchable.GetGoalState())
                     return backTrace();
 
-                foreach (State<T> i in searchable.getAllPossibleStates(s))
+                foreach (State<T> i in searchable.GetAllPossibleStates(s))
                 {
-                    if (i.cameFrom == null)
+                    if (i.CameFrom == null)
                     {
-                        i.cameFrom = s;
+                        i.CameFrom = s;
                         stack.Push(i);
                     }
                 }

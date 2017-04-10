@@ -11,34 +11,35 @@ namespace SearchAlgorithmsLib
     {
         public override Solution search(ISearchable<T> searchable)
         {//TO DO *missing a  return value solution  type?****
-            State<T> start = searchable.getInitialState();
-            start.cameFrom = null;
+            State<T> start = searchable.GetInitialState();
+            start.CameFrom = null;
             pushOpenList(start); // inherited from Searcher
             HashSet<State<T>> closed = new HashSet<State<T>>();
             while (OpenListSize > 0)
             {
-                State<T> n = popOpenList(); // inherited from Searcher, removes the best state
+                State<T> n = popFirst(); // inherited from Searcher, removes the best StateValue
                 closed.Add(n);
-                if (n == searchable.getGoalState())
+                if (n == searchable.GetGoalState())
                     return backTrace(n); // private method, back traces through the parents
                                         // calling the delegated method, returns a list of states with n as a parent
-                List<State<T>> succerssors = searchable.getAllPossibleStates(n);
+                List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
                     if (!closed.Contains(s) && !openList.Contains(s))
                     {
-                        s.cameFrom = n;
+                        s.CameFrom = n;
                         pushOpenList(s);
                     }
-                    else if (openList.Contains(s))
+                    else if (searchable.BetterDirection(n, s))
                     {
-                        if ((s <= n)==s)
+                        if (!openList.Contains(s))
                         {
+                            s.CameFrom = n;
                             pushOpenList(s);
                         }
                         else
                         {
-                            updatePlaceInOpen(s);
+                            UpdatePlaceInOpen(s, s.cost);
                         }
                     }
                 }
@@ -51,12 +52,8 @@ namespace SearchAlgorithmsLib
             while (n != null)
             {
                 solution.Add(n);
-                n = n.cameFrom;
+                n = n.CameFrom;
             } 
-        }
-        public void updatePlaceInOpen(State<T> s)
-        {
-            s.cost.SetCost(
         }
     }
 }

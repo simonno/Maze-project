@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public interface ISearchable<T>
+    public interface ISearchable<S, C>
     {
-        State<T> getInitialState();
-        State<T> getGoalState();
-        List<State<T>> getAllPossibleStates(State<T> s);
+        State<S, C> GetInitialState();
+        State<S, C> GetGoalState();
+        List<State<S, C>> GetAllPossibleStates(State<S, C> s);
+        bool BetterDirection(State<S, C> s1, State<S, C> s2);
     }
 }
