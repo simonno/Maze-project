@@ -6,29 +6,35 @@ using System.Threading.Tasks;
 using SearchAlgorithmsLib;
 using MazeLib;
 
-namespace mazeAdapter
+namespace MazeAdaptorApp
 {
-    class MazeAdaptor : ISearchable<Position, int>
+    class ObjectAdapter : ISearchable<Position, int>
     {
         private Maze maze;
 
-        public MazeAdaptor(Maze maze)
+        public ObjectAdapter(Maze maze)
         {
             this.maze = maze;
         }
 
         public bool BetterDirection(State<Position, int> potentialCameFrom, State<Position, int> s)
         {
-            if (s.cost.CompareTo(potentialCameFrom.cost
+            State<Position, int>.ICost<int> c = potentialCameFrom.cost;
+            State<Position, int>.ICost<int> c2 = new IntCost();
+            c2.Value = 1;
+            c.AddCost(c2);
+
+            if (c.CompareTo(s.cost) == 1) { return true; }
+            else return false;
         }
 
         public List<State<Position, int>> GetAllPossibleStates(State<Position, int> s)
         {
             List<State<Position, int>> possibleStates = new List<State<Position, int>>();
             Position pos = s.StateValue;
-            int x = pos.Col;
-            int y = pos.Row;
-            if (y + 1 < maze.Rows && maze[x,y + 1] == CellType.Free)
+            int x = pos.Row;
+            int y = pos.Col;
+            if (y + 1 < maze.Cols && maze[x, y + 1] == CellType.Free)
             {
                 possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x, y + 1)));
             }
@@ -38,7 +44,7 @@ namespace mazeAdapter
                 possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x, y - 1)));
             }
 
-            if (x + 1 < maze.Cols && maze[x + 1, y] == CellType.Free)
+            if (x + 1 < maze.Rows && maze[x + 1, y] == CellType.Free)
             {
                 possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x + 1, y)));
             }

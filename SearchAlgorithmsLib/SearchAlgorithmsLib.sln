@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{5AA36579-E931-47D7-B7F3-60F59E9917A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazeAdaptor", "maze\mazeAdaptor.csproj", "{457661A0-00D9-4AC2-A837-88F261AE4946}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeAdaptorApp", "maze\MazeAdaptorApp.csproj", "{457661A0-00D9-4AC2-A837-88F261AE4946}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

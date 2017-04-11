@@ -12,18 +12,18 @@ namespace SearchAlgorithmsLib
 
         public static class StatePool
         {
-            private static HashSet<State<S, C>> pool = new HashSet<State<S, C>>();
+            private static Dictionary<int, State<S, C>> pool = new Dictionary<int, State<S, C>>();
 
             public static State<S, C> getState(S  state)
             {
-                if (pool.(state.GetHashCode())
+                if (pool.ContainsKey(state.ToString().GetHashCode()))
                 {
-                    return pool.;
+                    return pool[state.ToString().GetHashCode()];
                 } else
                 {
                     State<S, C> s = new State<S, C>(state);
-                    pool.Add(s);
-                    return  s;
+                    pool[state.ToString().GetHashCode()] = s;
+                    return pool[state.ToString().GetHashCode()];
                
                 }
             }

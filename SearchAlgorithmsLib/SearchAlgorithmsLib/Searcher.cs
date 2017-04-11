@@ -7,7 +7,7 @@ using Priority_Queue;
 
 namespace SearchAlgorithmsLib
 {
-    public abstract class Searcher<S, C> : ISearcher<S>
+    public abstract class Searcher<S, C> : ISearcher<S, C>
     {
         protected SimplePriorityQueue<State<S, C>, State<S, C>.ICost<C>> openList;
         // a property of openList
@@ -25,6 +25,7 @@ namespace SearchAlgorithmsLib
 
         protected void pushOpenList(State<S, C> s)
         {
+            evaluatedNodes++;
             openList.Enqueue(s, s.cost);
         }
 
@@ -36,6 +37,7 @@ namespace SearchAlgorithmsLib
 
         protected State<S, C> popOpenList()
         {
+            evaluatedNodes++;
             return openList.Dequeue();
         }
         // ISearcher’s methods:
@@ -46,9 +48,10 @@ namespace SearchAlgorithmsLib
 
         protected void UpdatePlaceInOpen(State<S, C> s, State<S,C>.ICost<C> c)
         {
+            evaluatedNodes++;
             openList.UpdatePriority(s, c);
         }
 
-        public abstract Solution search(ISearchable<S, C> searchable);
+        public abstract List<State<S, C>> Search(ISearchable<S, C> searchable);
     }
 }

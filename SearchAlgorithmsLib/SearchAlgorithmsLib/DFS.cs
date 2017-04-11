@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    public class DFS<T> : ISearcher<T>
+    public class DFS<S, C> : ISearcher<S, C>
     {
-        public int getNumberOfNodesEvaluated()
+        private int evaluatedNodes;
+
+        public DFS()
         {
-            throw new NotImplementedException();
+            evaluatedNodes = 0;
         }
 
-        public override Solution search(ISearchable<T> searchable)
+        public int getNumberOfNodesEvaluated()
         {
-            State<T> s;
+            return evaluatedNodes;
+        }
+
+        public List<State<S, C>> Search(ISearchable<S, C> searchable)
+        {
+            State<S, C> s;
             //For DFS use stack
-            Stack<State<T>> stack = new Stack<State<T>>();
+            Stack<State<S, C>> stack = new Stack<State<S, C>>();
+            evaluatedNodes++;
             stack.Push(searchable.GetInitialState());
 
             while (stack.Count != 0)
@@ -25,22 +33,32 @@ namespace SearchAlgorithmsLib
                 s = stack.Pop();
 
                 if (s == searchable.GetGoalState())
-                    return backTrace();
+                    return backTrace(s);
 
-                foreach (State<T> i in searchable.GetAllPossibleStates(s))
+                foreach (State<S, C> i in searchable.GetAllPossibleStates(s))
                 {
                     if (i.CameFrom == null)
                     {
+                        evaluatedNodes++;
                         i.CameFrom = s;
                         stack.Push(i);
                     }
                 }
             }
+            return null;
         }
 
-        private Solution backTrace()
+        
+
+        private List<State<S, C>> backTrace(State<S, C> n)
         {
-            throw new NotImplementedException();
+            List<State<S, C>> solution = new List<State<S, C>>();
+            while (n != null)
+            {
+                solution.Add(n);
+                n = n.CameFrom;
+            }
+            return solution;
         }
     }
 }
