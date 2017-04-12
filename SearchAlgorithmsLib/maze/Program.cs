@@ -27,10 +27,10 @@ namespace MazeAdaptorApp
             BFS<Position, int> bfs = new BFS<Position, int>();
             DFS<Position, int> dfs = new DFS<Position, int>();
             dfs.Search(adapter);
-            Console.WriteLine(dfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("DFS:" + dfs.getNumberOfNodesEvaluated());
 
             bfs.Search(adapter);
-            Console.WriteLine(bfs.getNumberOfNodesEvaluated());
+            Console.WriteLine("BFS:" + bfs.getNumberOfNodesEvaluated());
             return;
         }
 

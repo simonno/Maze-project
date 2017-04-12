@@ -31,13 +31,11 @@ namespace SearchAlgorithmsLib
 
         protected State<S,C> popFirst()
         {
-            evaluatedNodes++;
             return openList.First;
         }
 
         protected State<S, C> popOpenList()
         {
-            evaluatedNodes++;
             return openList.Dequeue();
         }
         // ISearcher’s methods:
