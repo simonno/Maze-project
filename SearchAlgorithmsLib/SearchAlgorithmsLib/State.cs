@@ -53,6 +53,7 @@ namespace SearchAlgorithmsLib
         private State(S state) // CTOR
         {
             StateValue = state;
+            CameFrom = null;
         }
 
         public bool Equals(State<S, C> s) // we overload Object's Equals method

@@ -25,6 +25,7 @@ namespace SearchAlgorithmsLib
             State<S, C> s;
             //For DFS use stack
             Stack<State<S, C>> stack = new Stack<State<S, C>>();
+            List<State<S, C>> visited = new List<State<S, C>>();
             evaluatedNodes++;
             stack.Push(searchable.GetInitialState());
 
@@ -37,7 +38,7 @@ namespace SearchAlgorithmsLib
 
                 foreach (State<S, C> i in searchable.GetAllPossibleStates(s))
                 {
-                    if (i.CameFrom == null)
+                    if (i.CameFrom == null && !i.Equals(searchable.GetInitialState()))
                     {
                         evaluatedNodes++;
                         i.CameFrom = s;
