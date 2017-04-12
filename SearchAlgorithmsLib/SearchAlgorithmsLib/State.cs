@@ -4,8 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 
+/// </summary>
 namespace SearchAlgorithmsLib
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
+    /// <typeparam name="C"></typeparam>
     public class State<S, C>
     {
         public ICost<C> cost; // cost to reach this StateValue (set by a setter)
@@ -14,7 +22,7 @@ namespace SearchAlgorithmsLib
         {
             private static Dictionary<int, State<S, C>> pool = new Dictionary<int, State<S, C>>();
 
-            public static State<S, C> getState(S  state)
+            public static  State<S, C> getState(S  state)
             {
                 if (pool.ContainsKey(state.ToString().GetHashCode()))
                 {
@@ -28,20 +36,23 @@ namespace SearchAlgorithmsLib
                 }
             }
         }
+        private S stateValue;
         public S StateValue
         {
-           get { return StateValue; }
-           set { StateValue = value; }
+            get { return stateValue; }
+            set { stateValue = value; }
         }
+
+        private State<S, C> cameFrom;
         public State<S, C> CameFrom
         {
-            set { CameFrom = value; }
-            get { return CameFrom; }
+            set { cameFrom = value; }
+            get { return cameFrom; }
         }
 
         private State(S state) // CTOR
         {
-            this.StateValue = state;
+            StateValue = state;
         }
 
         public bool Equals(State<S, C> s) // we overload Object's Equals method

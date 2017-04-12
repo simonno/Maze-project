@@ -11,17 +11,27 @@ namespace MazeAdaptorApp
     class ObjectAdapter : ISearchable<Position, int>
     {
         private Maze maze;
+        private State<Position, int> init;
+        private State<Position, int> goal;
 
         public ObjectAdapter(Maze maze)
         {
             this.maze = maze;
+
+            init = State<Position, int>.StatePool.getState(maze.InitialPos);
+            init.cost = new IntCost() { Value = 0 };
+            init.CameFrom = null; 
+
+            goal = State<Position, int>.StatePool.getState(maze.GoalPos);
         }
 
         public bool BetterDirection(State<Position, int> potentialCameFrom, State<Position, int> s)
         {
             State<Position, int>.ICost<int> c = potentialCameFrom.cost;
-            State<Position, int>.ICost<int> c2 = new IntCost();
-            c2.Value = 1;
+            State<Position, int>.ICost<int> c2 = new IntCost()
+            {
+                Value = 1
+            };
             c.AddCost(c2);
 
             if (c.CompareTo(s.cost) == 1) { return true; }
@@ -36,39 +46,63 @@ namespace MazeAdaptorApp
             int y = pos.Col;
             if (y + 1 < maze.Cols && maze[x, y + 1] == CellType.Free)
             {
-                possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x, y + 1)));
+                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x, y + 1));
+                s2.cost = new IntCost()
+                {
+                    Value = 1
+                };
+                possibleStates.Add(s2);
             }
 
             if (y - 1 >= 0 && maze[x, y - 1] == CellType.Free)
             {
-                possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x, y - 1)));
+                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x, y - 1));
+                s2.cost = new IntCost()
+                {
+                    Value = 1
+                };
+                possibleStates.Add(s2);
             }
 
             if (x + 1 < maze.Rows && maze[x + 1, y] == CellType.Free)
             {
-                possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x + 1, y)));
+                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x + 1, y));
+                s2.cost = new IntCost()
+                {
+                    Value = 1
+                };
+                possibleStates.Add(s2);
             }
 
             if (x - 1 >= 0 && maze[x - 1, y] == CellType.Free)
             {
-                possibleStates.Add(State<Position, int>.StatePool.getState(new Position(x - 1, y)));
+                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x - 1, y));
+                s2.cost = new IntCost()
+                {
+                    Value = 1
+                };
+                possibleStates.Add(s2);
             }
 
             return possibleStates;
         }
         public State<Position, int> GetGoalState()
         {
-            return State<Position, int>.StatePool.getState(maze.GoalPos);
+            return goal;
         }
 
         public State<Position, int> GetInitialState()
-        {
-            return State<Position, int>.StatePool.getState(maze.InitialPos);
+        { 
+            return init;
         }
 
         public class IntCost : State<Position, int>.ICost<int>
         {
-            public int Value { get; set; }
+            private int value;
+            public int Value {
+                get { return value; }
+                set { this.value = value; }
+            }
 
             public void AddCost(State<Position, int>.ICost<int> c)
             {
