@@ -17,7 +17,7 @@ namespace SearchAlgorithmsLib
             HashSet<State<S, C>> closed = new HashSet<State<S, C>>();
             while (OpenListSize > 0)
             {
-                State<S, C> n = popFirst(); // inherited from Searcher, removes the best StateValue
+                State<S, C> n = popOpenList(); // inherited from Searcher, removes the best StateValue
                 closed.Add(n);
                 if (n == searchable.GetGoalState())
                     return BackTrace(n); // private method, back traces through the parents
@@ -30,17 +30,9 @@ namespace SearchAlgorithmsLib
                         s.CameFrom = n;
                         pushOpenList(s);
                     }
-                    else if (searchable.BetterDirection(n, s))
+                    else if (openList.Contains(s) && searchable.BetterDirection(n, s))
                     {
-                        if (!openList.Contains(s))
-                        {
-                            s.CameFrom = n;
-                            pushOpenList(s);
-                        }
-                        else
-                        {
                             UpdatePlaceInOpen(s, s.cost);
-                        }
                     }
                 }
             }
