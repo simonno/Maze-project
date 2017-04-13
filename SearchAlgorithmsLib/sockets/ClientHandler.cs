@@ -11,8 +11,12 @@ namespace ServerProject
     
        public class ClientHandler : IClientHandler
         {
-        public ClientHandler()
-        { }
+        IController command;
+
+        public ClientHandler(IController c)
+        {
+            this.command = c;
+        }
             public void HandleClient(TcpClient client)
             {
                 new Task(() =>
@@ -32,6 +36,7 @@ namespace ServerProject
 
         private string ExecuteCommand(string commandLine, TcpClient client)
         {
+            command.ExecuteCommand(commandLine, client);
             throw new NotImplementedException();
         }
     }
