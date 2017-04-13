@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Net.Sockets;
 
-public class Class1
+namespace ControllerLib
 {
     interface ICommand
     {

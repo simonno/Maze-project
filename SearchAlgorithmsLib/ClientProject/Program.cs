@@ -13,7 +13,7 @@ namespace ClientProject
     {
         static void Main(string[] args)
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8005);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             TcpClient client = new TcpClient();
             client.Connect(ep);
             Console.WriteLine("You are connected");
@@ -29,9 +29,9 @@ namespace ClientProject
                 int result = reader.ReadInt32();
                 Console.WriteLine("Result = {0}", result);
             }
-                            Console.ReadLine();
+            Console.ReadLine();
 
-            client.Close();
+            client.Close();
         }
     }
 }

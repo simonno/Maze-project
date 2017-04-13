@@ -1,22 +1,27 @@
-﻿using System;
+﻿using ModelLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Controller
+namespace ControllerLib
 {
-
     class Controller
     {
         private Dictionary<string, ICommand> commands;
         private IModel model;
+
+        public IModel Model
+        {
+            set { model = value; }
+        }
+
         public Controller()
         {
-            model = new Model();
-            commands = new Dictionary<string, ICommand>();
-            commands.Add("generate", new GenerateMazeCommand(model));
+            commands = new Dictionary<string, ICommand>
+            {
+                { "generate", new GenerateMazeCommand(model) }
+            };
             // more commands...
         }
         public string ExecuteCommand(string commandLine, TcpClient client)
@@ -30,5 +35,4 @@ namespace Controller
             return command.Execute(args, client);
         }
     }
-
 }

@@ -56,6 +56,7 @@ namespace SearchAlgorithmsLib
             CameFrom = null;
         }
 
+
         public bool Equals(State<S, C> s) // we overload Object's Equals method
         {
             return StateValue.Equals(s.StateValue);
@@ -63,7 +64,7 @@ namespace SearchAlgorithmsLib
 
         public override int GetHashCode()
         {
-            return StateValue.GetHashCode();
+            return StateValue.ToString().GetHashCode();
         }
 
         public interface ICost<V>: IComparable<ICost<V>>
