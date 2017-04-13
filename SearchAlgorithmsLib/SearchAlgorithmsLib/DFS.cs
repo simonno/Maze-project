@@ -38,9 +38,9 @@ namespace SearchAlgorithmsLib
 
                 foreach (State<S, C> i in searchable.GetAllPossibleStates(s))
                 {
+                    evaluatedNodes++;
                     if (i.CameFrom == null && !i.Equals(searchable.GetInitialState()))
                     {
-                        evaluatedNodes++;
                         i.CameFrom = s;
                         stack.Push(i);
                     }
