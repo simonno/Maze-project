@@ -36,6 +36,9 @@
     <Reference Include="MazeLib">
       <HintPath>..\..\MazeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,13 +52,23 @@
     <Compile Include="Controller.cs" />
     <Compile Include="GenerateMazeCommand.cs" />
     <Compile Include="ICommand.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolveCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelLib\ModelLib.csproj">
       <Project>{ad021c42-a6dd-4f25-b693-986869ba4830}</Project>
       <Name>ModelLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
+      <Project>{5AA36579-E931-47D7-B7F3-60F59E9917A2}</Project>
+      <Name>SearchAlgorithmsLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

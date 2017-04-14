@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{5AA36579-E931-47D7-B7F3-60F59E9917A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProject", "sockets\ServerProject.csproj", "{99D79817-9259-40D3-8004-E6D86853DC03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientProject", "ClientProject\ClientProject.csproj", "{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerProject", "ClientProject\ServerProject.csproj", "{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerLib", "ControllerLib\ControllerLib.csproj", "{602B9035-912C-4C23-B52C-CEE7045D4EC6}"
 EndProject
@@ -25,10 +23,6 @@ Global
 		{5AA36579-E931-47D7-B7F3-60F59E9917A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA36579-E931-47D7-B7F3-60F59E9917A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA36579-E931-47D7-B7F3-60F59E9917A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99D79817-9259-40D3-8004-E6D86853DC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99D79817-9259-40D3-8004-E6D86853DC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99D79817-9259-40D3-8004-E6D86853DC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99D79817-9259-40D3-8004-E6D86853DC03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}.Release|Any CPU.ActiveCfg = Release|Any CPU

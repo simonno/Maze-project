@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    // public class BFS<TPriority> : Searcher<T,TPriority> where TPriority : IComparable<TPriority>
     public class BFS<S, C> : Searcher<S, C> 
     {
-        public override List<State<S, C>> Search(ISearchable<S, C> searchable)
+        public override Solution<S, C> Search(ISearchable<S, C> searchable)
         {
             State<S, C> start = searchable.GetInitialState();
             start.CameFrom = null;
@@ -39,7 +38,7 @@ namespace SearchAlgorithmsLib
             return null;
         }
 
-        private List<State<S, C>> BackTrace(State<S, C> n)
+        private Solution<S, C> BackTrace(State<S, C> n)
         {
             List<State<S, C>> solution = new List<State<S, C>>();
             while (n != null)
@@ -47,8 +46,7 @@ namespace SearchAlgorithmsLib
                 solution.Add(n);
                 n = n.CameFrom;
             }
-
-            return solution;
+            return new Solution<S, C>(solution, getNumberOfNodesEvaluated());
         }
     }
 }

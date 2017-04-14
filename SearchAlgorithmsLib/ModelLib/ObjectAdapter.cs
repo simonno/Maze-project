@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SearchAlgorithmsLib;
 using MazeLib;
 
-namespace MazeAdaptorApp
+namespace ModelLib
 {
     class ObjectAdapter : ISearchable<Position, int>
     {
@@ -99,8 +99,7 @@ namespace MazeAdaptorApp
         public class IntCost : State<Position, int>.ICost<int>
         {
             private int value;
-            public int Value
-            {
+            public int Value {
                 get { return value; }
                 set { this.value = value; }
             }
@@ -116,5 +115,14 @@ namespace MazeAdaptorApp
                 return 0;
             }
         }
+
+        //private List<Position> GetPossiblePosition(Position pos)
+        //{
+        //    int x = pos.Col;
+        //    int y = pos.Row;
+        //    if (y + 1 < maze.Rows)
+        //    {
+        //    }
+        //}
     }
 }

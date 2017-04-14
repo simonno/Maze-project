@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AFF6F0C2-B9B0-4E8D-A86B-DF763391C503}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ClientProject</RootNamespace>
-    <AssemblyName>ClientProject</AssemblyName>
+    <RootNamespace>ServerProject</RootNamespace>
+    <AssemblyName>ServerProject</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,11 +45,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientHandler.cs" />
+    <Compile Include="IClientHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControllerLib\ControllerLib.csproj">
+      <Project>{602b9035-912c-4c23-b52c-cee7045d4ec6}</Project>
+      <Name>ControllerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MazeAdapterApp\MazeAdapterApp.csproj">
+      <Project>{47f0fb07-a54b-49be-8428-4afd48165eeb}</Project>
+      <Name>MazeAdapterApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
+      <Project>{ad021c42-a6dd-4f25-b693-986869ba4830}</Project>
+      <Name>ModelLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

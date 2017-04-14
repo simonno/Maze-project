@@ -20,7 +20,7 @@ namespace SearchAlgorithmsLib
             return evaluatedNodes;
         }
 
-        public List<State<S, C>> Search(ISearchable<S, C> searchable)
+        public Solution<S, C> Search(ISearchable<S, C> searchable)
         {
             State<S, C> s;
             //For DFS use stack
@@ -34,7 +34,7 @@ namespace SearchAlgorithmsLib
                 s = stack.Pop();
 
                 if (s == searchable.GetGoalState())
-                    return backTrace(s);
+                    return BackTrace(s);
 
                 foreach (State<S, C> i in searchable.GetAllPossibleStates(s))
                 {
@@ -51,7 +51,7 @@ namespace SearchAlgorithmsLib
 
         
 
-        private List<State<S, C>> backTrace(State<S, C> n)
+        private Solution<S, C> BackTrace(State<S, C> n)
         {
             List<State<S, C>> solution = new List<State<S, C>>();
             while (n != null)
@@ -59,7 +59,7 @@ namespace SearchAlgorithmsLib
                 solution.Add(n);
                 n = n.CameFrom;
             }
-            return solution;
+            return new Solution<S, C>(solution, getNumberOfNodesEvaluated());
         }
     }
 }

@@ -67,27 +67,11 @@ namespace SearchAlgorithmsLib
             return StateValue.ToString().GetHashCode();
         }
 
-        public interface ICost<V>: IComparable<ICost<V>>
+        public interface ICost<V> : IComparable<ICost<V>>
         {
             V Value { get; set; }
 
             void AddCost(ICost<V> c);
         }
-       /* public static Cost operator <=(State<T> a, State<T>  b)
-        {
-            if (a.cost.CompareTo(b.cost)<=0)
-            {
-                return a.cost;
-            }
-            return b.cost;
-        }
-        public static Cost operator >=(State<T> a, State<T> b)
-        {
-            if (b.cost.CompareTo(a.cost) <= 0)
-            {
-                return a.cost;
-            }
-            return b.cost;
-        }*/
     }
 }

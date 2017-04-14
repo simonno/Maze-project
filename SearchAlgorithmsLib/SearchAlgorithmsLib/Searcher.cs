@@ -50,6 +50,6 @@ namespace SearchAlgorithmsLib
             openList.UpdatePriority(s, c);
         }
 
-        public abstract List<State<S, C>> Search(ISearchable<S, C> searchable);
+        public abstract Solution<S, C> Search(ISearchable<S, C> searchable);
     }
 }

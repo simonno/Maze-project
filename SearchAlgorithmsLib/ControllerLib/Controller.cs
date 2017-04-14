@@ -6,12 +6,10 @@ using System.Net.Sockets;
 
 namespace ControllerLib
 {
-    class Controller
+    class Controller : IController
     {
-
         private Dictionary<string, ICommand> commands;
         private IModel model;
-
         public IModel Model
         {
             set { model = value; }
@@ -21,11 +19,11 @@ namespace ControllerLib
         {
             commands = new Dictionary<string, ICommand>
             {
-                { "generate", new GenerateMazeCommand(model) }
+                { "generate", new GenerateMazeCommand(model) },
+                { "solve", new SolveCommand(model) }
             };
-            // more commands...
         }
-        public string ExecuteCommand(string commandLine, TcpClient client)
+        public string ExecuteCommand(string commandLine, TcpClient client = null)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
