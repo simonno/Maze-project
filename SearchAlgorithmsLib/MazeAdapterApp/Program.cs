@@ -32,7 +32,6 @@ namespace MazeAdaptorApp
 
             bfs.Search(adapter);
             Console.WriteLine("BFS:" + bfs.getNumberOfNodesEvaluated());
-            Console.ReadLine();
             return;
         }
     }

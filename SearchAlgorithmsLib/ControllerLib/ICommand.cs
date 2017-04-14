@@ -1,10 +1,10 @@
-﻿using System;
-using System.Net.Sockets;
+﻿//using System;
+//using System.Net.Sockets;
 
-namespace ControllerLib
-{
-    interface ICommand
-    {
-        string Execute(string[] args, TcpClient client = null);
-    }
-}
+//namespace ControllerLib
+//{
+//    interface ICommand
+//    {
+//        string Execute(string[] args, TcpClient client = null);
+//    }
+//}

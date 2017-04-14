@@ -1,5 +1,4 @@
-﻿//using MazeLib;
-//using System;
+﻿//using System;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
@@ -7,8 +6,11 @@
 
 //namespace ModelLib
 //{
-//    public interface IModel
+//    class ServerModel: IModel
 //    {
-//        Maze GenerateMaze(String name, int rows,  int cols);
+//        Maze GenerateMaze(String name, int rows, int cols)
+//        {
+
+//        }
 //    }
 //}
