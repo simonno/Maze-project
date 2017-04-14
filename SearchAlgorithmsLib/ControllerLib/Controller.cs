@@ -8,6 +8,7 @@ namespace ControllerLib
 {
     class Controller
     {
+
         private Dictionary<string, ICommand> commands;
         private IModel model;
 
