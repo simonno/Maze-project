@@ -5,14 +5,13 @@ using ModelLib;
 
 namespace ControllerLib
 {
-    class GenerateMazeCommand : ICommand
+    class GenerateMazeCommand : Command
     {
-        private IModel model;
-        public GenerateMazeCommand(IModel model)
+        public GenerateMazeCommand(IModel model) : base(model)
         {
-            this.model = model;
         }
-        public string Execute(string[] args, TcpClient client = null)
+
+        public override string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);

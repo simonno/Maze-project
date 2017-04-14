@@ -12,6 +12,7 @@ namespace ModelLib
     class ServerModel : IModel
     {
         private Dictionary<string, Maze> mazes;
+        private Dictionary<string, MazeSolution> mazesSolutions;
 
         public ServerModel()
         {
@@ -51,8 +52,15 @@ namespace ModelLib
                 throw new Exception("This maze does not exist - " + name);
             }
 
+            if (mazesSolutions.ContainsKey(name))
+            {
+                return mazesSolutions[name];
+            }
+
             Maze maze = mazes[name];
-            return Solve(maze, typeOfSolve);
+            MazeSolution s =  Solve(maze, typeOfSolve);
+            mazesSolutions.Add(name, s);
+            return s;
         }
 
         public void Start(string name, int rows, int cols)

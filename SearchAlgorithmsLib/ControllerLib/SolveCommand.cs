@@ -11,21 +11,18 @@ using System.Threading.Tasks;
 
 namespace ControllerLib
 {
-    class SolveCommand : ICommand
+    class SolveCommand : Command
     {
-        private IModel model;
-        public SolveCommand(IModel model)
+        public SolveCommand(IModel model) : base(model)
         {
-            this.model = model;
         }
-        public string Execute(string[] args, TcpClient client = null)
+
+        public override string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
             int typeSolve = int.Parse(args[1]);
             MazeSolution s = model.Solve(name, typeSolve);
             return JsonConvert.SerializeObject(s);
         }
-
-
     }
 }
