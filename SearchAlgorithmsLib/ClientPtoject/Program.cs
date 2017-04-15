@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,23 +18,30 @@ namespace ClientPtoject
             TcpClient client = new TcpClient();
             client.Connect(ep);
             Console.WriteLine("You are connected");
-            string commandLine="" ;
+            string commandLine = "";
             string answerServer;
-
-            while (!commandLine.Equals("close"))
+            try
             {
-                Console.Write("Please enter a command: ");
-
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader readerFromServer = new StreamReader(stream))
-                using (StreamWriter writerToServer = new StreamWriter(stream))
+                while (!commandLine.Equals("close"))
                 {
-                    commandLine = Console.ReadLine();
-                    writerToServer.Write(commandLine);
-                     answerServer = readerFromServer.ReadLine();
-                    Console.WriteLine("Result = " + answerServer);
+                    Console.Write("Please enter a command: ");
 
+                    using (NetworkStream stream = client.GetStream())
+                    using (StreamReader readerFromServer = new StreamReader(stream))
+                    using (StreamWriter writerToServer = new StreamWriter(stream))
+                    {
+                        commandLine = Console.ReadLine();
+                        writerToServer.Write(commandLine);
+                        answerServer = readerFromServer.ReadLine();
+                        string a = (string)JsonConvert.DeserializeObject(answerServer);
+                        Console.WriteLine("Result = " + answerServer);
+
+                    }
                 }
+            }
+            catch (SocketException ex)
+            {
+                Console.WriteLine(ex);
             }
             client.Close();
 

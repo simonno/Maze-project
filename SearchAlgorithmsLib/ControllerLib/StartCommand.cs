@@ -21,6 +21,7 @@ namespace ControllerLib
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
             model.Start(name, rows, cols);
+            return "a";
         }
     }
 }
