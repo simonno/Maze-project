@@ -12,12 +12,16 @@ namespace ModelLib
     class ServerModel : IModel
     {
         private Dictionary<string, Maze> mazes;
+        private Dictionary<string, Maze> multiPlayerMazes;
         private Dictionary<string, MazeSolution> mazesSolutions;
 
         public ServerModel()
         {
             mazes = new Dictionary<string, Maze>();
+            multiPlayerMazes = new Dictionary<string, Maze>();
+            mazesSolutions = new Dictionary<string, MazeSolution>();
         }
+
 
         public void Close(string name)
         {
@@ -26,20 +30,24 @@ namespace ModelLib
 
         public Maze GenerateMaze(string name, int rows, int cols)
         {
-            IMazeGenerator g = new DFSMazeGenerator();
-            Maze maze = g.Generate(rows, cols);
+            Maze maze = Generate(name, rows, cols);
             mazes.Add(name, maze);
             return maze;
         }
 
-        public void Join(string name)
+        public void Join(string name) 
         {
-            throw new NotImplementedException();
+            if(!multiPlayerMazes.ContainsKey(name))
+            {
+                throw new Exception("This maze does not exist - " + name);
+            }
+
+
         }
 
         public List<string> List()
         {
-            Dictionary<string, Maze>.KeyCollection namesCollaction =  mazes.Keys;
+            Dictionary<string, Maze>.KeyCollection namesCollaction =  multiPlayerMazes.Keys;
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             return new List<string>(temp);
@@ -63,9 +71,19 @@ namespace ModelLib
             return s;
         }
 
+        private Maze Generate(string name, int rows, int cols)
+        {
+            IMazeGenerator g = new DFSMazeGenerator();
+            Maze maze = g.Generate(rows, cols);
+            maze.Name = name;
+            return maze;
+        }
+
         public void Start(string name, int rows, int cols)
         {
-            throw new NotImplementedException();
+            Maze maze = Generate(name, rows, cols);
+            multiPlayerMazes.Add(name, maze);
+            
         }
 
         private MazeSolution Solve(Maze maze, int type)
