@@ -57,6 +57,7 @@
     <Compile Include="ListCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveCommand.cs" />
+    <Compile Include="StartCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelLib\ModelLib.csproj">

@@ -37,8 +37,7 @@ namespace ServerProject
 
         private string ExecuteCommand(string commandLine, TcpClient client)
         {
-            controller.ExecuteCommand(commandLine, client);
-            throw new NotImplementedException();
+            return controller.ExecuteCommand(commandLine, client);
         }
     }
 }
