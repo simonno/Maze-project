@@ -34,7 +34,8 @@ namespace ClientPtoject
                         writer.AutoFlush = true;
                         writer.WriteLine(commandLine);
                         answerServer = reader.ReadLine();
-                        string a = (string)JsonConvert.DeserializeObject(answerServer);
+                        answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                        //string a = (string)JsonConvert.DeserializeObject(answerServer);
                         Console.WriteLine("Result = " + answerServer);
 
                     }
