@@ -27,12 +27,13 @@ namespace ClientPtoject
                     Console.Write("Please enter a command: ");
 
                     using (NetworkStream stream = client.GetStream())
-                    using (StreamReader readerFromServer = new StreamReader(stream))
-                    using (StreamWriter writerToServer = new StreamWriter(stream))
+                    using (StreamReader reader = new StreamReader(stream))
+                    using (StreamWriter writer = new StreamWriter(stream))
                     {
                         commandLine = Console.ReadLine();
-                        writerToServer.Write(commandLine);
-                        answerServer = readerFromServer.ReadLine();
+                        writer.AutoFlush = true;
+                        writer.WriteLine(commandLine);
+                        answerServer = reader.ReadLine();
                         string a = (string)JsonConvert.DeserializeObject(answerServer);
                         Console.WriteLine("Result = " + answerServer);
 
