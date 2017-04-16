@@ -6,7 +6,7 @@ using SearchAlgorithmsLib;
 
 namespace ModelLib
 {
-    class ServerModel : IModel
+    public class ServerModel : IModel
     {
         private Dictionary<string, Maze> mazes;
         private Dictionary<string, Maze> multiPlayerWaiting;

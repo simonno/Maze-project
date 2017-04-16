@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using ControllerLib;
+using ModelLib;
 
 namespace ServerProject
 {
@@ -14,7 +15,8 @@ namespace ServerProject
     {
         static void Main(string[] args)
         {
-            Controller controller = new Controller();
+            IModel model = new ServerModel();
+            IController controller = new Controller(model);
             ClientHandler ch = new ClientHandler(controller);
             Server server = new Server(8000, ch);
             server.Start();

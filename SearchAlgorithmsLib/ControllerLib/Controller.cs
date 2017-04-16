@@ -15,8 +15,9 @@ namespace ControllerLib
             set { model = value; }
         }
 
-        public Controller()
+        public Controller(IModel imodel)
         {
+            Model = imodel;
             commands = new Dictionary<string, ICommand>
             {
                 { "generate", new GenerateMazeCommand(model) },
