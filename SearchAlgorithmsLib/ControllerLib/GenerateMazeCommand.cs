@@ -16,9 +16,21 @@ namespace ControllerLib
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Maze maze = model.GenerateMaze(name, rows, cols);  
+            Maze maze = model.GenerateMaze(name, rows, cols);
 
-            return maze.ToJSON();
+            string a= maze.ToJSON();
+            string afterConvert = "";
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == '\n')
+                {
+                    afterConvert += "@";
+                }
+                else
+                {
+                    afterConvert += a[i];
+                }
+                
+            }return afterConvert;
         }
-    }
 }
