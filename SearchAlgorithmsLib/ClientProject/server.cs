@@ -25,25 +25,29 @@ namespace ServerProject
 
             listener.Start();
             Console.WriteLine("Waiting for connections...");
-
-            Task task = new Task(() =>
-            {
-                while (true)
+            
+                Task task = new Task(() =>
                 {
-                    try
+                    while (true)
                     {
-                        TcpClient client = listener.AcceptTcpClient();
-                        Console.WriteLine("Got new connection");
-                        ch.HandleClient(client);
+                        try
+                        {
+                            TcpClient client = listener.AcceptTcpClient();
+                            Console.WriteLine("Got new connection");
+                            ch.HandleClient(client);
+
+                            //
+                            //break;
+                        }
+                        catch (SocketException)
+                        {
+                            break;
+                        }
                     }
-                    catch (SocketException)
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Server stopped");
-            });
-            task.Start();
+                    Console.WriteLine("Server stopped");
+                });
+                task.Start();
+            
         }
 
         public void Stop()

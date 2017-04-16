@@ -18,7 +18,9 @@ namespace ServerProject
             ClientHandler ch = new ClientHandler(controller);
             Server server = new Server(8000, ch);
             server.Start();
-            Console.WriteLine("Server");
+                
+           
+            Console.WriteLine("finish Server");
             Console.ReadLine();
 
 
