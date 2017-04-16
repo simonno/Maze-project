@@ -34,8 +34,20 @@ namespace ClientPtoject
                         writer.AutoFlush = true;
                         writer.WriteLine(commandLine);
                         answerServer = reader.ReadLine();
-                        string a = (string)JsonConvert.DeserializeObject(answerServer);
-                        Console.WriteLine("Result = " + answerServer);
+                        string a = answerServer.ToString();
+                        string afterConvert = "";
+                        for(int i=0; i<a.Length; i++)
+                        {if (a[i] == '@')
+                            {
+                                afterConvert += "\n";
+                            }
+                            else
+                            {
+                                afterConvert += a[i];
+                            }
+
+                        }
+                        Console.WriteLine("Result = " + afterConvert);
 
                     }
                 }
