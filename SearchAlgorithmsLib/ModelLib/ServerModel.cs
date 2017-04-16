@@ -2,9 +2,6 @@
 using MazeLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SearchAlgorithmsLib;
 
 namespace ModelLib
@@ -12,13 +9,15 @@ namespace ModelLib
     class ServerModel : IModel
     {
         private Dictionary<string, Maze> mazes;
-        private Dictionary<string, Maze> multiPlayerMazes;
+        private Dictionary<string, Maze> multiPlayerWaiting;
+        private Dictionary<string, Maze> multiPlayerOnline;
         private Dictionary<string, MazeSolution> mazesSolutions;
 
         public ServerModel()
         {
             mazes = new Dictionary<string, Maze>();
-            multiPlayerMazes = new Dictionary<string, Maze>();
+            multiPlayerWaiting = new Dictionary<string, Maze>();
+            multiPlayerOnline = new Dictionary<string, Maze>();
             mazesSolutions = new Dictionary<string, MazeSolution>();
         }
 
@@ -35,19 +34,21 @@ namespace ModelLib
             return maze;
         }
 
-        public void Join(string name) 
+        public Maze Join(string name) 
         {
-            if(!multiPlayerMazes.ContainsKey(name))
+            if(!multiPlayerWaiting.ContainsKey(name))
             {
                 throw new Exception("This maze does not exist - " + name);
             }
-
-
+            Maze maze =  multiPlayerWaiting[name];
+            multiPlayerOnline[name] = maze;
+            multiPlayerWaiting.Remove(name);
+            return maze;
         }
 
         public List<string> List()
         {
-            Dictionary<string, Maze>.KeyCollection namesCollaction =  multiPlayerMazes.Keys;
+            Dictionary<string, Maze>.KeyCollection namesCollaction =  multiPlayerWaiting.Keys;
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             return new List<string>(temp);
@@ -55,20 +56,28 @@ namespace ModelLib
 
         public MazeSolution Solve(string name, int typeOfSolve)
         {
-            if (!mazes.ContainsKey(name))
-            {
-                throw new Exception("This maze does not exist - " + name);
-            }
-
             if (mazesSolutions.ContainsKey(name))
             {
                 return mazesSolutions[name];
             }
 
-            Maze maze = mazes[name];
-            MazeSolution s =  Solve(maze, typeOfSolve);
-            mazesSolutions.Add(name, s);
-            return s;
+            if (mazes.ContainsKey(name))
+            {
+                Maze maze = mazes[name];
+                MazeSolution s = Solve(maze, typeOfSolve);
+                mazesSolutions.Add(name, s);
+                return s;
+            }
+
+            if (multiPlayerWaiting.ContainsKey(name))
+            {
+                Maze maze = multiPlayerWaiting[name];
+                MazeSolution s = Solve(maze, typeOfSolve);
+                mazesSolutions.Add(name, s);
+                return s;
+            }
+
+            throw new Exception("This maze does not exist - " + name);
         }
 
         private Maze Generate(string name, int rows, int cols)
@@ -82,8 +91,7 @@ namespace ModelLib
         public void Start(string name, int rows, int cols)
         {
             Maze maze = Generate(name, rows, cols);
-            multiPlayerMazes.Add(name, maze);
-            
+            multiPlayerWaiting.Add(name, maze);
         }
 
         private MazeSolution Solve(Maze maze, int type)
@@ -112,6 +120,25 @@ namespace ModelLib
             }
 
             return new MazeSolution(s.GetEvaluatedNodes(), positionList);
+        }
+
+        public bool IsPair(string name)
+        {
+            return multiPlayerOnline.ContainsKey(name);
+        }
+
+        public Maze GetMaze(string name)
+        {
+            if (multiPlayerWaiting.ContainsKey(name))
+            {
+                return multiPlayerWaiting[name];
+            }
+
+            if (mazes.ContainsKey(name))
+            {
+                return mazes[name];
+            }
+            throw new Exception("This maze does not exist - " + name);
         }
     }
 }

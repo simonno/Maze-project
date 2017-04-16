@@ -18,9 +18,13 @@ namespace ModelLib
 
         List<string> List();
 
-        void Join(string name);
+        Maze Join(string name);
 
         void Close(string name);
+
+        bool IsPair(string name);
+
+        Maze GetMaze(string name);
 
     }
 }
