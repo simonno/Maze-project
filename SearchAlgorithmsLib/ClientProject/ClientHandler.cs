@@ -31,7 +31,7 @@ namespace ServerProject
                     string result = ExecuteCommand(commandLine, client);
                     writer.Write(result);
                 }
-                client.Close();
+            //    client.Close();
             }).Start();
         }
 

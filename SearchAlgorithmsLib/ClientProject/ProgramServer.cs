@@ -14,11 +14,14 @@ namespace ServerProject
     {
         static void Main(string[] args)
         {
-            IController controller = new Controller();
+            Controller controller = new Controller();
             ClientHandler ch = new ClientHandler(controller);
             Server server = new Server(8000, ch);
             server.Start();
-            server.Stop();
+            Console.WriteLine("Server");
+            Console.ReadLine();
+
+
 
         }
     }
