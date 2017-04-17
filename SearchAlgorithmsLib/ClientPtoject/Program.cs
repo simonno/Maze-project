@@ -22,8 +22,8 @@ namespace ClientPtoject
             string answerServer;
             try
             {
-                while (!commandLine.Equals("close"))
-                {
+               // while (!commandLine.Equals("close"))
+                //{
                     Console.Write("Please enter a command: ");
 
                     using (NetworkStream stream = client.GetStream())
@@ -83,7 +83,7 @@ namespace ClientPtoject
                             taskWrite.Start();
                         }
                     }
-                }
+               // }
             }
             catch (SocketException ex)
             {

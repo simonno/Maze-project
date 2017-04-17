@@ -48,7 +48,7 @@ namespace ServerProject
                         }
                     }
                 }
-                client.Close();
+              //  client.Close();
             }).Start();
         }
 
