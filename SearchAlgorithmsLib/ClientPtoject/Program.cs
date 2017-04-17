@@ -31,13 +31,57 @@ namespace ClientPtoject
                     using (StreamWriter writer = new StreamWriter(stream))
                     {
                         commandLine = Console.ReadLine();
+
                         writer.AutoFlush = true;
                         writer.WriteLine(commandLine);
-                        answerServer = reader.ReadLine();
-                        answerServer = answerServer.Replace("@", System.Environment.NewLine);
-                        //string a = (string)JsonConvert.DeserializeObject(answerServer);
-                        Console.WriteLine("Result = " + answerServer);
+                        if (commandLine.Substring(0, 8).Equals("generate")
+                             || commandLine.Substring(0, 5).Equals("solve"))
+                        {//single player
+                            answerServer = reader.ReadLine();
+                            answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                            //string a = (string)JsonConvert.DeserializeObject(answerServer);
+                            Console.WriteLine("Result = " + answerServer);
+                            client.Close();
+                        }
+                        else
+                        {//multi player
+                            Task taskRead = new Task(() =>
+                            {
+                                while (true)
+                                {
+                                    try
+                                    {
+                                        answerServer = reader.ReadLine();
+                                        answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                                        Console.WriteLine("Result = " + answerServer);
+                                    }
+                                    catch (SocketException)
+                                    {
+                                        break;
+                                    }
+                                }
+                                Console.WriteLine("stop reading");
+                            });
+                            taskRead.Start();
 
+                            Task taskWrite = new Task(() =>
+                            {
+                                while (true)
+                                {
+                                    try
+                                    {
+                                        writer.AutoFlush = true;
+                                        writer.WriteLine(commandLine);
+                                    }
+                                    catch (SocketException)
+                                    {
+                                        break;
+                                    }
+                                }
+                                Console.WriteLine("stop writing");
+                            });
+                            taskWrite.Start();
+                        }
                     }
                 }
             }

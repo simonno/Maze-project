@@ -20,7 +20,7 @@ namespace ControllerLib
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            model.Start(name, rows, cols);
+            model.Start(name, rows, cols,client);
             while (!model.IsPair(name)) {
                 Thread.Sleep(2000);
             }
