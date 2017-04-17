@@ -21,9 +21,14 @@ namespace ControllerLib
             commands = new Dictionary<string, ICommand>
             {
                 { "generate", new GenerateMazeCommand(model) },
-                { "solve", new SolveCommand(model) }
+                { "solve", new SolveCommand(model) },
+                { "start", new StartCommand(model) },
+                { "list", new ListCommand(model) },
+                { "play", new  PlayCommand(model) },
+                { "close", new CloseCommand(model) }
             };
         }
+
         public string ExecuteCommand(string commandLine, TcpClient client = null)
         {
             string[] arr = commandLine.Split(' ');
