@@ -13,15 +13,16 @@ namespace ControllerLib
 
         public override string Execute(string[] args, TcpClient client = null)
         {
-           TcpClient otherPlayer = model.Close(client);
+            JObject obj = new JObject();
+            obj["close"] = "game-over";
+            TcpClient otherPlayer = model.Close(client);
             using (NetworkStream stream = otherPlayer.GetStream())
             using (StreamWriter writer = new StreamWriter(stream))
             {
-                JObject obj = new JObject();
                 writer.AutoFlush = true;
                 writer.Write(obj.ToString());
             }
-            return null;
+            return obj.ToString();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace ControllerLib
                 { "close", new CloseCommand(model) }
             };
         }
+
         public string ExecuteCommand(string commandLine, TcpClient client = null)
         {
             string[] arr = commandLine.Split(' ');

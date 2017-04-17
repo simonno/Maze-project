@@ -46,9 +46,6 @@ namespace ClientPtoject
                 Console.WriteLine(ex);
             }
             client.Close();
-
-
-
         }
     }
 }
