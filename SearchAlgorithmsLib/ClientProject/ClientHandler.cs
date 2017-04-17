@@ -31,6 +31,7 @@ namespace ServerProject
                     using (StreamReader reader = new StreamReader(stream))
                     using (StreamWriter writer = new StreamWriter(stream))
                     {
+                        //hiii
                         try
                         {
                             string commandLine = reader.ReadLine();
