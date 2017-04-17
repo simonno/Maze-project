@@ -19,7 +19,6 @@ namespace ControllerLib
             Maze maze = model.GenerateMaze(name, rows, cols);
 
             return maze.ToJSON();
-
         }
     }
 }

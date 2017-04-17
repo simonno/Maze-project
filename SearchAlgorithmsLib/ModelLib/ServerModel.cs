@@ -3,21 +3,22 @@ using MazeLib;
 using System;
 using System.Collections.Generic;
 using SearchAlgorithmsLib;
+using System.Net.Sockets;
 
 namespace ModelLib
 {
     public class ServerModel : IModel
     {
         private Dictionary<string, Maze> mazes;
-        private Dictionary<string, Maze> multiPlayerWaiting;
-        private Dictionary<string, Maze> multiPlayerOnline;
+        private Dictionary<string, MultiPlayerInfo> multiPlayerWaiting;
+        private Dictionary<string, MultiPlayerInfo> multiPlayerOnline;
         private Dictionary<string, MazeSolution> mazesSolutions;
 
         public ServerModel()
         {
             mazes = new Dictionary<string, Maze>();
-            multiPlayerWaiting = new Dictionary<string, Maze>();
-            multiPlayerOnline = new Dictionary<string, Maze>();
+            multiPlayerWaiting = new Dictionary<string, MultiPlayerInfo>();
+            multiPlayerOnline = new Dictionary<string, MultiPlayerInfo>();
             mazesSolutions = new Dictionary<string, MazeSolution>();
         }
 
@@ -34,21 +35,21 @@ namespace ModelLib
             return maze;
         }
 
-        public Maze Join(string name) 
+        public Maze Join(string name, TcpClient guest) 
         {
             if(!multiPlayerWaiting.ContainsKey(name))
             {
                 throw new Exception("This maze does not exist - " + name);
             }
-            Maze maze =  multiPlayerWaiting[name];
-            multiPlayerOnline[name] = maze;
+            MultiPlayerInfo mp = multiPlayerWaiting[name];
+            multiPlayerOnline[name] = mp;
             multiPlayerWaiting.Remove(name);
-            return maze;
+            return mp.Maze;
         }
 
         public List<string> List()
         {
-            Dictionary<string, Maze>.KeyCollection namesCollaction =  multiPlayerWaiting.Keys;
+            Dictionary<string, MultiPlayerInfo>.KeyCollection namesCollaction =  multiPlayerWaiting.Keys;
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             return new List<string>(temp);
@@ -69,13 +70,13 @@ namespace ModelLib
                 return s;
             }
 
-            if (multiPlayerWaiting.ContainsKey(name))
-            {
-                Maze maze = multiPlayerWaiting[name];
-                MazeSolution s = Solve(maze, typeOfSolve);
-                mazesSolutions.Add(name, s);
-                return s;
-            }
+            //if (multiPlayerWaiting.ContainsKey(name))
+            //{
+            //    Maze maze = multiPlayerWaiting[name];
+            //    MazeSolution s = Solve(maze, typeOfSolve);
+            //    mazesSolutions.Add(name, s);
+            //    return s;
+            //}
 
             throw new Exception("This maze does not exist - " + name);
         }
@@ -88,10 +89,15 @@ namespace ModelLib
             return maze;
         }
 
-        public void Start(string name, int rows, int cols)
+        public void Start(string name, int rows, int cols, TcpClient host)
         {
             Maze maze = Generate(name, rows, cols);
-            multiPlayerWaiting.Add(name, maze);
+            MultiPlayerInfo mp = new MultiPlayerInfo()
+            {
+                Host = host,
+                Maze = maze
+            };
+            multiPlayerWaiting.Add(name, mp);
         }
 
         private MazeSolution Solve(Maze maze, int type)
@@ -103,15 +109,15 @@ namespace ModelLib
             switch (type)
             {
                 case 0:
-                    return ConvertSolution(bfs.Search(adapter));
+                    return ConvertSolution(bfs.Search(adapter), maze.Name);
                 case 1:
-                    return ConvertSolution(dfs.Search(adapter));
+                    return ConvertSolution(dfs.Search(adapter), maze.Name);
                 default:
                     throw new Exception("This search type does not exist - " + type);
             }
         }
 
-        private MazeSolution ConvertSolution(Solution<Position, int> s)
+        private MazeSolution ConvertSolution(Solution<Position, int> s, string name)
         {
             List<Position> positionList = new List<Position>();
             foreach (State<Position, int> state in s.GetSolution())
@@ -119,7 +125,14 @@ namespace ModelLib
                 positionList.Add(state.StateValue);
             }
 
-            return new MazeSolution(s.GetEvaluatedNodes(), positionList);
+            MazeSolution ms = new MazeSolution()
+            {
+                EvaluatedNodes = s.GetEvaluatedNodes(),
+                Solution = positionList,
+                GameName = name
+            };
+            return ms;
+            
         }
 
         public bool IsPair(string name)
@@ -131,7 +144,7 @@ namespace ModelLib
         {
             if (multiPlayerWaiting.ContainsKey(name))
             {
-                return multiPlayerWaiting[name];
+                return multiPlayerWaiting[name].Maze;
             }
 
             if (mazes.ContainsKey(name))
@@ -139,6 +152,24 @@ namespace ModelLib
                 return mazes[name];
             }
             throw new Exception("This maze does not exist - " + name);
+        }
+
+        public Tuple<TcpClient, PlayerDirection> Play(string move, TcpClient player)
+        {
+            foreach (MultiPlayerInfo mp in multiPlayerOnline.Values)
+            {
+                if (mp.ContainPlayer(player))
+                {
+                    TcpClient otherPlayer = mp.GetTheOtherPlayer(player);
+                    PlayerDirection pd = new PlayerDirection()
+                    {
+                        GameName = mp.Maze.Name,
+                        Move = move
+                    };
+                    return new Tuple<TcpClient, PlayerDirection>(otherPlayer, pd);
+                }
+            }
+            throw new Exception("This player does not exist.");
         }
     }
 }

@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="IModel.cs" />
     <Compile Include="MazeSolution.cs" />
+    <Compile Include="MultiPlayerInfo.cs" />
     <Compile Include="ObjectAdapter.cs" />
+    <Compile Include="PlayerDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerModel.cs" />
   </ItemGroup>
