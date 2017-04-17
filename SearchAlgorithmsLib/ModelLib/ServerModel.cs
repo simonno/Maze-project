@@ -35,9 +35,9 @@ namespace ModelLib
             return maze;
         }
 
-        public Maze Join(string name, TcpClient guest) 
+        public Maze Join(string name, TcpClient guest)
         {
-            if(!multiPlayerWaiting.ContainsKey(name))
+            if (!multiPlayerWaiting.ContainsKey(name))
             {
                 throw new Exception("This maze does not exist - " + name);
             }
@@ -49,7 +49,7 @@ namespace ModelLib
 
         public List<string> List()
         {
-            Dictionary<string, MultiPlayerInfo>.KeyCollection namesCollaction =  multiPlayerWaiting.Keys;
+            Dictionary<string, MultiPlayerInfo>.KeyCollection namesCollaction = multiPlayerWaiting.Keys;
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             return new List<string>(temp);
@@ -132,7 +132,7 @@ namespace ModelLib
                 GameName = name
             };
             return ms;
-            
+
         }
 
         public bool IsPair(string name)
@@ -156,17 +156,29 @@ namespace ModelLib
 
         public Tuple<TcpClient, PlayerDirection> Play(string move, TcpClient player)
         {
+            MultiPlayerInfo mp = FindMPInfo(player);
+            TcpClient otherPlayer = mp.GetTheOtherPlayer(player);
+            PlayerDirection pd = new PlayerDirection()
+            {
+                GameName = mp.Maze.Name,
+                Move = move
+            };
+            return new Tuple<TcpClient, PlayerDirection>(otherPlayer, pd);
+        }
+
+        public TcpClient Close(TcpClient player)
+        {
+            return FindMPInfo(player).GetTheOtherPlayer(player);
+
+        }
+
+        private MultiPlayerInfo FindMPInfo(TcpClient player)
+        {
             foreach (MultiPlayerInfo mp in multiPlayerOnline.Values)
             {
                 if (mp.ContainPlayer(player))
                 {
-                    TcpClient otherPlayer = mp.GetTheOtherPlayer(player);
-                    PlayerDirection pd = new PlayerDirection()
-                    {
-                        GameName = mp.Maze.Name,
-                        Move = move
-                    };
-                    return new Tuple<TcpClient, PlayerDirection>(otherPlayer, pd);
+                    return mp;
                 }
             }
             throw new Exception("This player does not exist.");

@@ -23,6 +23,8 @@ namespace ModelLib
 
         Tuple<TcpClient, PlayerDirection> Play(string move, TcpClient player);
 
+        TcpClient Close(TcpClient player);
+
         void Close(string name);
 
         bool IsPair(string name);
