@@ -30,10 +30,11 @@ namespace ClientPtoject
                 using (StreamReader reader = new StreamReader(stream))
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    commandLine = Console.ReadLine();
+                    //commandLine = Console.ReadLine();
 
-                    writer.AutoFlush = true;
-                    writer.WriteLine(commandLine);
+                    //writer.AutoFlush = true;
+                    //writer.WriteLine(commandLine);
+
                     // if (commandLine.Length>4&&(
                     // commandLine.Substring(0, 5).Equals("solve")
                     //|| commandLine.Substring(0, 8).Equals("generate") ))
@@ -72,11 +73,11 @@ namespace ClientPtoject
                     //             try
                     //             {
                     //                 writer.AutoFlush = true;
-                    //                 writer.WriteLine(commandLine);
+                    //                 writer.W
+                    //                 break;riteLine(commandLine);
                     //             }
                     //             catch (SocketException)
                     //             {
-                    //                 break;
                     //             }
                     //         }
                     //         Console.WriteLine("stop writing");
@@ -86,13 +87,37 @@ namespace ClientPtoject
 
                     while (true)
                     {
-                        answerServer = reader.ReadLine();
+                        commandLine = Console.ReadLine();
+                        if (string.IsNullOrEmpty(commandLine))
+                        {
+                            if (client.Connected == false)
+                            {
+                                client.Connect(ep);
+                                Console.WriteLine("You are connected");
+                            }
+                            try
+                            {
+                                writer.AutoFlush = true;
+                                writer.WriteLine(commandLine);
+                                break;
+                            }
+                            catch (SocketException)
+                            { 
+                            }
 
+                        }
+                        answerServer = reader.ReadLine();
+                        if (string.IsNullOrEmpty(answerServer))
+                        {
+                            answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                            Console.WriteLine("Result = " + answerServer);
+                        }
+                       
                     }
                 }
 
-                // }
             }
+
             catch (SocketException ex)
             {
                 Console.WriteLine(ex);
