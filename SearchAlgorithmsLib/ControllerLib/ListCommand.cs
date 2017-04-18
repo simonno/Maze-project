@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace ControllerLib
 {
-    class ListCommand : Command
+    class ListCommand : SingleCommand
     {
         public ListCommand(IModel model) : base(model)
         {

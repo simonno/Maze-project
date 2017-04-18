@@ -5,7 +5,7 @@ using System.IO;
 
 namespace ControllerLib
 {
-    class PlayCommand : Command
+    class PlayCommand : MultiCommand
     {
         public PlayCommand(IModel model) : base(model)
         {

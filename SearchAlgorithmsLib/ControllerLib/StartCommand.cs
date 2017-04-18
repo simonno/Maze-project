@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace ControllerLib
 {
-    class StartCommand : Command
+    class StartCommand : MultiCommand
     {
         public StartCommand(IModel model) : base(model)
         {

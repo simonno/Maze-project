@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ControllerLib
 {
-    class SolveCommand : Command
+    class SolveCommand : SingleCommand
     {
         public SolveCommand(IModel model) : base(model)
         {

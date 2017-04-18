@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace ControllerLib
 {
-    abstract class Command : ICommand
-    {
-        protected IModel model;
-        public Command(IModel model)
-        {
-            this.model = model;
-        }
 
-        public abstract string Execute(string[] args, TcpClient client = null);
+    abstract class MultiCommand : Command
+    {
+        public MultiCommand(IModel model) : base(model)
+        {
+        }
     }
 }

@@ -4,7 +4,7 @@ using MazeLib;
 
 namespace ControllerLib
 {
-    class JoinCommand : Command
+    class JoinCommand : MultiCommand
     {
         public JoinCommand(IModel model) : base(model)
         {

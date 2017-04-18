@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ControllerLib
 {
-    class CloseCommand : Command
+    class CloseCommand : MultiCommand
     {
         public CloseCommand(IModel model) : base(model)
         {

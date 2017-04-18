@@ -5,7 +5,7 @@ using ModelLib;
 
 namespace ControllerLib
 {
-    class GenerateMazeCommand : Command
+    class GenerateMazeCommand : SingleCommand
     {
         public GenerateMazeCommand(IModel model) : base(model)
         {
