@@ -11,7 +11,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch = null, TcpClient client = null)
         {
             Tuple<TcpClient, PlayerDirection> otherPlayerInfo = model.Play(args[0], client);
             TcpClient otherPlayer = otherPlayerInfo.Item1;

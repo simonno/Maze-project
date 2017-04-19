@@ -15,7 +15,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch = null, TcpClient client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);

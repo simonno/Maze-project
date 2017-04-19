@@ -15,7 +15,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch = null, TcpClient client = null)
         {
             return JsonConvert.SerializeObject(model.List());
         }

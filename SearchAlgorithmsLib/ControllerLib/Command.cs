@@ -16,6 +16,6 @@ namespace ControllerLib
             this.model = model;
         }
 
-        public abstract string Execute(string[] args, TcpClient client = null);
+        public abstract string Execute(string[] args, IClientHandler ch = null, TcpClient client = null);
     }
 }

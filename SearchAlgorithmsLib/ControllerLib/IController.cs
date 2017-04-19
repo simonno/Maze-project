@@ -4,6 +4,6 @@ namespace ControllerLib
 {
     public interface IController
     {
-        string ExecuteCommand(string args, TcpClient client = null);
+        string ExecuteCommand(string args, IClientHandler ch, TcpClient client = null);
     }
 }

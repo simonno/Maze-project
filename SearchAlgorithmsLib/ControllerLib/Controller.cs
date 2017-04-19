@@ -29,7 +29,7 @@ namespace ControllerLib
             };
         }
 
-        public string ExecuteCommand(string commandLine, TcpClient client = null)
+        public string ExecuteCommand(string commandLine, IClientHandler ch, TcpClient client = null)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
@@ -37,7 +37,11 @@ namespace ControllerLib
                 return "Command not found";
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
-            return command.Execute(args, client);
+            //if  (command is SingleCommand || command is CloseCommand)
+            //{
+            //    ch.StopConnetion();
+            //}
+            return command.Execute(args, ch, client);
         }
     }
 }

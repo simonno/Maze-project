@@ -11,7 +11,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
         {
             JObject obj = new JObject();
             obj["close"] = "game-over";
@@ -22,6 +22,7 @@ namespace ControllerLib
                 writer.AutoFlush = true;
                 writer.Write(obj.ToString());
             }
+            ch.StopConnetion();
             return obj.ToString();
         }
     }

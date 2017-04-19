@@ -17,11 +17,12 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
         {
             string name = args[0];
             int typeSolve = int.Parse(args[1]);
             MazeSolution s = model.Solve(name, typeSolve);
+            ch.StopConnetion();
             return s.ToJSON();
         }
     }
