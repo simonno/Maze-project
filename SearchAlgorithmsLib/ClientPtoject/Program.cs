@@ -39,8 +39,11 @@ namespace ClientPtoject
                                 continue;
                             }
                             answerServer = reader.ReadLine();
-                            answerServer = answerServer.Replace("@", System.Environment.NewLine);
-                            Console.WriteLine("Result = " + answerServer);
+                            if (answerServer != null)
+                            {
+                                answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                                Console.WriteLine("Result = " + answerServer);
+                            }
                         }
                         catch (SocketException)
                         {
@@ -58,6 +61,7 @@ namespace ClientPtoject
                     {
                         try
                         {
+                            Console.Write("Please enter a command: ");
                             commandLine = Console.ReadLine();
                             if (client.Connected == false)
                             {

@@ -25,6 +25,7 @@ namespace ControllerLib
                 { "start", new StartCommand(model) },
                 { "list", new ListCommand(model) },
                 { "play", new  PlayCommand(model) },
+                { "join", new  JoinCommand(model) },
                 { "close", new CloseCommand(model) }
             };
         }
