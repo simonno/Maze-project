@@ -50,8 +50,9 @@ namespace ControllerLib
                             break;
                         }
                     }
-                    client.Close();
+                    //  client.Close();
                 }
+                client.Close();
             }).Start();
         }
 
