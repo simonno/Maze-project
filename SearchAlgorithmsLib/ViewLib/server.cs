@@ -1,4 +1,5 @@
-﻿using ControllerLib;
+﻿using ClientLib;
+using ControllerLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerProject
+namespace ViewLib
 {
-    class Server
+    public class Server
     {
         /// <summary>
         /// The port
@@ -47,7 +48,7 @@ namespace ServerProject
                     {
                         TcpClient client = listener.AcceptTcpClient();
                         Console.WriteLine("Got new connection");
-                        ch.HandleClient(client);
+                        ch.HandleClient(new ClientOfServer(client));
                     }
                     catch (SocketException)
                     {

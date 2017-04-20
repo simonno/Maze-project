@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControllerLib
+namespace ViewLib
 {
     /// <summary>
     /// interface of the client handler
@@ -21,7 +21,7 @@ namespace ControllerLib
         /// <summary>
         /// Stops the connetion.
         /// </summary>
-        void StopConnetion();
+        //void StopConnetion();
 
     }
 }

@@ -37,6 +37,6 @@ namespace ControllerLib
         /// <returns>
         /// string of the command
         /// </returns>
-        public abstract string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null);
+        public abstract string Execute(string[] args, ClientOfServer client = null);
     }
 }

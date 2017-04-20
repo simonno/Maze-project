@@ -20,7 +20,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
             Tuple<ClientOfServer, PlayerDirection> otherPlayerInfo = model.Play(args[0], client);
             ClientOfServer otherPlayer = otherPlayerInfo.Item1;

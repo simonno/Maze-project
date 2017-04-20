@@ -27,13 +27,13 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns></returns>
-        public override string Execute(string[] args, IClientHandler ch, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
             Maze maze = model.GenerateMaze(name, rows, cols);
-            ch.StopConnetion();
+            client.DisconnectFromServer();
             return maze.ToJSON();
         }
     }

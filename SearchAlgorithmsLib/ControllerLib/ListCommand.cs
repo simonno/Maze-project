@@ -31,7 +31,7 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns>string of list command</returns>
-        public override string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
             return JsonConvert.SerializeObject(model.List());
         }

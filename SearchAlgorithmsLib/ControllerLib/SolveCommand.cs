@@ -33,12 +33,12 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns>string of the solve maze</returns>
-        public override string Execute(string[] args, IClientHandler ch, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
             string name = args[0];
             int typeSolve = int.Parse(args[1]);
             MazeSolution s = model.Solve(name, typeSolve);
-            ch.StopConnetion();
+            client.DisconnectFromServer();
             return s.ToJSON();
         }
     }

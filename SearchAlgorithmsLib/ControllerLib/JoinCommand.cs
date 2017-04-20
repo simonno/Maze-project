@@ -26,7 +26,7 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns>string of the join command</returns>
-        public override string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
             string name = args[0];
             Maze maze = model.Join(name,client);

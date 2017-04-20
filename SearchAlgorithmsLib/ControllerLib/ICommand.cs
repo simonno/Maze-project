@@ -16,6 +16,6 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns>string of the command</returns>
-        string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null);
+        string Execute(string[] args, ClientOfServer client = null);
     }
 }

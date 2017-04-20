@@ -58,7 +58,7 @@ namespace ControllerLib
         /// <param name="ch">The ClientHandler.</param>
         /// <param name="client">The client.</param>
         /// <returns>the string of the command </returns>
-        public string ExecuteCommand(string commandLine, IClientHandler ch, ClientOfServer client = null)
+        public string ExecuteCommand(string commandLine, ClientOfServer client = null)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
@@ -70,7 +70,7 @@ namespace ControllerLib
             //{
             //    ch.StopConnetion();
             //}
-            return command.Execute(args, ch, client);
+            return command.Execute(args, client);
         }
     }
 }

@@ -29,10 +29,10 @@ namespace ControllerLib
         /// <returns>
         /// string of the command
         /// </returns>
-        public override string Execute(string[] args,IClientHandler  ch, ClientOfServer client = null)
+        public override string Execute(string[] args, ClientOfServer client = null)
         {
-            JObject obj = new JObject();
-            obj["close"] = "game-over";
+            //JObject obj = new JObject();
+            //obj["close"] = "game-over";
             ClientOfServer otherPlayer = model.Close(client);
             //using (NetworkStream stream = otherPlayer.GetStream())
             //using (StreamWriter writer = new StreamWriter(stream))
@@ -41,8 +41,9 @@ namespace ControllerLib
             //    writer.Write(obj.ToString());
             //}
             otherPlayer.DisconnectFromServer();
-            ch.StopConnetion();
-            return obj.ToString();
+            client.DisconnectFromServer();
+            //return obj.ToString();
+            return null;
         }
     }
 }
