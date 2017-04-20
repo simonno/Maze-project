@@ -80,7 +80,7 @@ namespace ClientLib
                 Console.WriteLine(result);
             }
 
-            if (result.Equals(Jobj.ToString()))
+            if (result.Equals(Jobj.ToString())||(result.Equals("Disconnect")))
             {
                 Disconnect();
             }
@@ -153,6 +153,8 @@ namespace ClientLib
                 }
             }).Start();
         }
+        
+      
     }
 }
 
