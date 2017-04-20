@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -9,7 +10,7 @@ namespace ControllerLib
 {
     public interface IClientHandler
     {
-        void HandleClient(TcpClient client);
+        void HandleClient(ClientOfServer client);
         void StopConnetion();
 
     }

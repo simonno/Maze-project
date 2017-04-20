@@ -1,4 +1,5 @@
-﻿using MazeLib;
+﻿using ClientLib;
+using MazeLib;
 using ModelLib;
 using Newtonsoft.Json;
 using SearchAlgorithmsLib;
@@ -17,7 +18,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch, ClientOfServer client = null)
         {
             string name = args[0];
             int typeSolve = int.Parse(args[1]);

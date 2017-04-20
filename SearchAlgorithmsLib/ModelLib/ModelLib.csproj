@@ -61,6 +61,10 @@
     <Compile Include="ServerModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientLib\ClientLib.csproj">
+      <Project>{1b71a17b-041e-49f7-9fb3-8c83fa689937}</Project>
+      <Name>ClientLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
       <Project>{5AA36579-E931-47D7-B7F3-60F59E9917A2}</Project>
       <Name>SearchAlgorithmsLib</Name>

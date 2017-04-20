@@ -1,4 +1,5 @@
-﻿using MazeLib;
+﻿using ClientLib;
+using MazeLib;
 using SearchAlgorithmsLib;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,15 @@ namespace ModelLib
 
         MazeSolution Solve(string name, int typeOfSolve);
 
-        void Start(string name, int rows, int cols, TcpClient host);
+        void Start(string name, int rows, int cols, ClientOfServer host);
 
         List<string> List();
 
-        Maze Join(string name, TcpClient guest);
+        Maze Join(string name, ClientOfServer guest);
 
-        Tuple<TcpClient, PlayerDirection> Play(string move, TcpClient player);
+        Tuple<ClientOfServer, PlayerDirection> Play(string move, ClientOfServer player);
 
-        TcpClient Close(TcpClient player);
+        ClientOfServer Close(ClientOfServer player);
 
         void Close(string name);
 

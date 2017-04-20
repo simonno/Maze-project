@@ -1,4 +1,5 @@
-﻿using ModelLib;
+﻿using ClientLib;
+using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace ControllerLib
             this.model = model;
         }
 
-        public abstract string Execute(string[] args, IClientHandler ch = null, TcpClient client = null);
+        public abstract string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null);
     }
 }

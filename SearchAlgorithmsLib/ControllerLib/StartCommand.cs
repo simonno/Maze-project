@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ModelLib;
 using System.Threading;
+using ClientLib;
 
 namespace ControllerLib
 {
@@ -15,7 +16,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, IClientHandler ch = null, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);

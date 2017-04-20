@@ -8,36 +8,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientProject
+namespace ClientLib 
 {
 
     /// <summary>
     /// Client
     /// </summary>
-    public class Client
+    public class Client : AbstractClient 
     {
-        private JObject Jobj;
-
-        /// <summary>
-        /// The TCP client
-        /// </summary>
-        private TcpClient tcpClient;
-
-        /// <summary>
-        /// The reader
-        /// </summary>
-        public StreamReader Reader;
-
-        public void Close()
-        {
-            tcpClient.Close();
-        }
-
-        /// <summary>
-        /// The writer
-        /// </summary>
-        public StreamWriter Writer;
-
         /// <summary>
         /// The reading task running
         /// </summary>
@@ -100,11 +78,13 @@ namespace ClientProject
             {
                 result = result.Replace("@", System.Environment.NewLine);
                 Console.WriteLine(result);
-                if (result.Equals(Jobj.ToString()))
-                {
-                    Disconnect();
-                }
             }
+
+            if (result.Equals(Jobj.ToString()))
+            {
+                Disconnect();
+            }
+
             return result;
         }
 
@@ -123,17 +103,6 @@ namespace ClientProject
 
             Writer.WriteLine(command);
             Writer.Flush();
-        }
-
-        /// <summary>
-        /// Determines whether this client is connected.
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if this instance is connected; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsConnected()
-        {
-            return tcpClient.Connected;
         }
 
         /// <summary>
@@ -183,22 +152,6 @@ namespace ClientProject
                     Write();
                 }
             }).Start();
-        }
-
-        /// <summary>
-        /// Initializes the reader.
-        /// </summary>
-        public void InitializeReader()
-        {
-            Reader = new StreamReader(tcpClient.GetStream());
-        }
-
-        /// <summary>
-        /// Initializes the writer.
-        /// </summary>
-        public void InitializeWriter()
-        {
-            Writer = new StreamWriter(tcpClient.GetStream());
         }
     }
 }

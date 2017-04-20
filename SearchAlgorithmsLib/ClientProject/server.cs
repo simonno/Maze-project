@@ -48,6 +48,35 @@ namespace ServerProject
             task.Wait();
         }
 
+        /// <summary>
+        /// Reads from client.
+        /// </summary>
+        /// <returns></returns>
+        public string ReadFromClient()
+        {
+            string result;
+
+            do
+            {
+                try
+                {
+                    if (Reader == null)
+                    {
+                        InitializeReader();
+                    }
+                    result = Reader.ReadLine();
+                }
+
+                // If the connection has been closed.
+                catch (IOException)
+                {
+                    return "";
+                }
+            } while (string.IsNullOrEmpty(result));
+
+            return result;
+        }
+
         public void Stop()
         {
             listener.Stop();

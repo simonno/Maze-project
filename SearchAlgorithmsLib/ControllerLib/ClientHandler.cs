@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using ControllerLib;
 using Newtonsoft.Json.Linq;
+using ClientLib;
 
 namespace ControllerLib
 {
 
     public class ClientHandler : IClientHandler
     {
+
         IController controller;
         private bool run;
 
@@ -21,8 +23,31 @@ namespace ControllerLib
             controller = c;
             run = true;
         }
-        public void HandleClient(TcpClient client)
+        public void HandleClient(ClientOfServer client)
         {
+            new Task(() => {
+                while (client.IsConnected())
+                {
+                    // Receive the command from the client.
+                    string commandLine = client.ReadFromClient();
+
+                    if (!string.IsNullOrEmpty(commandLine))
+                    {
+                        Console.WriteLine("Received command: {0}", commandLine);
+
+                        // Send the result to the client.
+                        string result = controller.ExecuteCommand(commandLine, this, client);
+                        client.WriteToClient(result);
+
+                        // If the command is a single player command, 
+                        // stop the connection to the client now.
+                        if (Controller.DecypherCommand(commandLine) is SinglePlayerCommand)
+                        {
+                            client.DisconnectFromServer();
+                        }
+                    }
+                }
+            }).Start();
             new Task(() =>
             {
                 JObject obj = new JObject();
@@ -50,20 +75,9 @@ namespace ControllerLib
                             break;
                         }
                     }
-                    //  client.Close();
                 }
                 client.Close();
             }).Start();
-        }
-
-        public void StopConnetion()
-        {
-            run = false;
-        }
-
-        private string ExecuteCommand(string commandLine, TcpClient client)
-        {
-            return controller.ExecuteCommand(commandLine, this, client);
         }
     }
 }

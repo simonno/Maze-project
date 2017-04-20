@@ -1,4 +1,5 @@
-﻿using MazeLib;
+﻿using ClientLib;
+using MazeLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace ModelLib
 {
     class MultiPlayerInfo
     {
-        public TcpClient Host
+        public ClientOfServer Host
         {
             get; set;
         }
-        public TcpClient Guest
+        public ClientOfServer Guest
         {
             get; set;
         }
@@ -30,14 +31,14 @@ namespace ModelLib
             Maze = null;
         }
 
-        public TcpClient GetTheOtherPlayer(TcpClient player)
+        public ClientOfServer GetTheOtherPlayer(ClientOfServer player)
         {
-            if (Host == player)
+            if (Host.Equals(player))
             {
                 return Guest;
             }
 
-            if (Guest == player)
+            if (Guest.Equals(player))
             {
                 return Host;
             }
@@ -45,9 +46,9 @@ namespace ModelLib
             throw new Exception("the player does not exist");
         }
 
-        public bool ContainPlayer(TcpClient player)
+        public bool ContainPlayer(ClientOfServer player)
         {
-            if (Guest == player || Host == player) { return true; }
+            if (Guest.Equals(player) || Host.Equals(player)) { return true; }
             return false;
         }
     }

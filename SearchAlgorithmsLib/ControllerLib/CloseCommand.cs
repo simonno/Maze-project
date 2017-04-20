@@ -11,7 +11,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
+        public override string Execute(string[] args, ClientOfServer ch, TcpClient client = null)
         {
             JObject obj = new JObject();
             obj["close"] = "game-over";

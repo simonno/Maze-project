@@ -1,4 +1,5 @@
-﻿using ModelLib;
+﻿using ClientLib;
+using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace ControllerLib
             };
         }
 
-        public string ExecuteCommand(string commandLine, IClientHandler ch, TcpClient client = null)
+        public string ExecuteCommand(string commandLine, IClientHandler ch, ClientOfServer client = null)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];

@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using ModelLib;
 using System.IO;
+using ClientLib;
 
 namespace ControllerLib
 {
@@ -11,7 +12,7 @@ namespace ControllerLib
         {
         }
 
-        public override string Execute(string[] args, IClientHandler ch = null, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch = null, ClientOfServer client = null)
         {
             Tuple<TcpClient, PlayerDirection> otherPlayerInfo = model.Play(args[0], client);
             TcpClient otherPlayer = otherPlayerInfo.Item1;

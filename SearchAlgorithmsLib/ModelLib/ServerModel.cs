@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using SearchAlgorithmsLib;
 using System.Net.Sockets;
+using ClientLib;
 
 namespace ModelLib
 {
@@ -35,13 +36,14 @@ namespace ModelLib
             return maze;
         }
 
-        public Maze Join(string name, TcpClient guest)
+        public Maze Join(string name, ClientOfServer guest)
         {
             if (!multiPlayerWaiting.ContainsKey(name))
             {
                 throw new Exception("This maze does not exist - " + name);
             }
             MultiPlayerInfo mp = multiPlayerWaiting[name];
+            mp.Guest = guest;
             multiPlayerOnline[name] = mp;
             multiPlayerWaiting.Remove(name);
             return mp.Maze;
@@ -89,7 +91,7 @@ namespace ModelLib
             return maze;
         }
 
-        public void Start(string name, int rows, int cols, TcpClient host)
+        public void Start(string name, int rows, int cols, ClientOfServer host)
         {
             Maze maze = Generate(name, rows, cols);
             MultiPlayerInfo mp = new MultiPlayerInfo()
@@ -154,25 +156,25 @@ namespace ModelLib
             throw new Exception("This maze does not exist - " + name);
         }
 
-        public Tuple<TcpClient, PlayerDirection> Play(string move, TcpClient player)
+        public Tuple<ClientOfServer, PlayerDirection> Play(string move, ClientOfServer player)
         {
             MultiPlayerInfo mp = FindMPInfo(player);
-            TcpClient otherPlayer = mp.GetTheOtherPlayer(player);
+            ClientOfServer otherPlayer = mp.GetTheOtherPlayer(player);
             PlayerDirection pd = new PlayerDirection()
             {
                 GameName = mp.Maze.Name,
                 Move = move
             };
-            return new Tuple<TcpClient, PlayerDirection>(otherPlayer, pd);
+            return new Tuple<ClientOfServer, PlayerDirection>(otherPlayer, pd);
         }
 
-        public TcpClient Close(TcpClient player)
+        public ClientOfServer Close(ClientOfServer player)
         {
             return FindMPInfo(player).GetTheOtherPlayer(player);
 
         }
 
-        private MultiPlayerInfo FindMPInfo(TcpClient player)
+        private MultiPlayerInfo FindMPInfo(ClientOfServer player)
         {
             foreach (MultiPlayerInfo mp in multiPlayerOnline.Values)
             {
