@@ -2,6 +2,7 @@
 using ModelLib;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using ClientLib;
 
 namespace ControllerLib
 {
@@ -28,18 +29,18 @@ namespace ControllerLib
         /// <returns>
         /// string of the command
         /// </returns>
-        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
-        public override string Execute(string[] args, ClientOfServer ch, TcpClient client = null)
+        public override string Execute(string[] args,IClientHandler  ch, ClientOfServer client = null)
         {
             JObject obj = new JObject();
             obj["close"] = "game-over";
-            TcpClient otherPlayer = model.Close(client);
-            using (NetworkStream stream = otherPlayer.GetStream())
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
-                writer.AutoFlush = true;
-                writer.Write(obj.ToString());
-            }
+            ClientOfServer otherPlayer = model.Close(client);
+            //using (NetworkStream stream = otherPlayer.GetStream())
+            //using (StreamWriter writer = new StreamWriter(stream))
+            //{
+            //    writer.AutoFlush = true;
+            //    writer.Write(obj.ToString());
+            //}
+            otherPlayer.DisconnectFromServer();
             ch.StopConnetion();
             return obj.ToString();
         }

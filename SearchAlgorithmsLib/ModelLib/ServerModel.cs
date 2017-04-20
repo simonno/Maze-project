@@ -6,11 +6,12 @@ using SearchAlgorithmsLib;
 using System.Net.Sockets;
 using ClientLib;
 
-/// <summary>
-/// the model part of the server
-/// </summary>
+
 namespace ModelLib
 {
+    /// <summary>
+    /// the model part of the server
+    /// </summary>
     public class ServerModel : IModel
     {
         /// <summary>

@@ -40,8 +40,6 @@ namespace ControllerLib
         /// Handles the client.
         /// </summary>
         /// <param name="client">The client.</param>
-        public void HandleClient(TcpClient client)
-        {
         public void HandleClient(ClientOfServer client)
         {
             new Task(() => {

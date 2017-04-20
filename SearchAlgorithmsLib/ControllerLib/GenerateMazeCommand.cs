@@ -2,6 +2,7 @@
 using System;
 using System.Net.Sockets;
 using ModelLib;
+using ClientLib;
 
 namespace ControllerLib
 {
@@ -26,7 +27,7 @@ namespace ControllerLib
         /// <param name="ch">The ch.</param>
         /// <param name="client">The client.</param>
         /// <returns></returns>
-        public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
+        public override string Execute(string[] args, IClientHandler ch, ClientOfServer client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);

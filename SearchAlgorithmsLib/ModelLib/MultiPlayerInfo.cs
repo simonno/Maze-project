@@ -61,7 +61,7 @@ namespace ModelLib
         /// <param name="player">The player.</param>
         /// <returns>the tcp client</returns>
         /// <exception cref="System.Exception">the player does not exist</exception>
-        public TcpClient GetTheOtherPlayer(ClientOfServer player)
+        public ClientOfServer GetTheOtherPlayer(ClientOfServer player)
         {
             if (Host.Equals(player))
             {
