@@ -6,8 +6,16 @@ using ClientLib;
 
 namespace ControllerLib
 {
+    /// <summary>
+    ///  define the command play
+    /// </summary>
+    /// <seealso cref="ControllerLib.MultiCommand" />
     class PlayCommand : MultiCommand
     {
+        /// <summary>
+        /// Initializes a new instance of the play command <see cref="PlayCommand"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         public PlayCommand(IModel model) : base(model)
         {
         }

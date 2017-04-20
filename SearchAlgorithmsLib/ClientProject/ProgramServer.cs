@@ -10,7 +10,9 @@ using ControllerLib;
 using ModelLib;
 
 namespace ServerProject
-{
+{   /// <summary>
+    /// this is the main of server
+    /// </summary>
     class ProgramServer
     {
         static void Main(string[] args)

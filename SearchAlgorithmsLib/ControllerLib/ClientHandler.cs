@@ -12,17 +12,36 @@ using ClientLib;
 namespace ControllerLib
 {
 
+    /// <summary>
+    /// define a Client Handler 
+    /// </summary>
+    /// <seealso cref="ControllerLib.IClientHandler" />
     public class ClientHandler : IClientHandler
     {
-
+        /// <summary>
+        /// The controller - interface type
+        /// </summary>
         IController controller;
+        /// <summary>
+        /// The run bool
+        /// </summary>
         private bool run;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientHandler"/> class.
+        /// </summary>
+        /// <param name="c">The Controller.</param>
         public ClientHandler(IController c)
         {
             controller = c;
             run = true;
         }
+        /// <summary>
+        /// Handles the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        public void HandleClient(TcpClient client)
+        {
         public void HandleClient(ClientOfServer client)
         {
             new Task(() => {
@@ -78,6 +97,25 @@ namespace ControllerLib
                 }
                 client.Close();
             }).Start();
+        }
+
+        /// <summary>
+        /// Stops the connetion.
+        /// </summary>
+        public void StopConnetion()
+        {
+            run = false;
+        }
+
+        /// <summary>
+        /// Executes the command.
+        /// </summary>
+        /// <param name="commandLine">The command line.</param>
+        /// <param name="client">The client.</param>
+        /// <returns></returns>
+        private string ExecuteCommand(string commandLine, TcpClient client)
+        {
+            return controller.ExecuteCommand(commandLine, this, client);
         }
     }
 }

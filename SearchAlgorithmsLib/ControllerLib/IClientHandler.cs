@@ -8,9 +8,19 @@ using System.Threading.Tasks;
 
 namespace ControllerLib
 {
+    /// <summary>
+    /// interface of the client handler
+    /// </summary>
     public interface IClientHandler
     {
+        /// <summary>
+        /// Handles the client.
+        /// </summary>
+        /// <param name="client">The client.</param>
         void HandleClient(ClientOfServer client);
+        /// <summary>
+        /// Stops the connetion.
+        /// </summary>
         void StopConnetion();
 
     }
