@@ -5,12 +5,27 @@ using ModelLib;
 
 namespace ControllerLib
 {
+    /// <summary>
+    /// Generate Maze Command 
+    /// </summary>
+    /// <seealso cref="ControllerLib.SingleCommand" />
     class GenerateMazeCommand : SingleCommand
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateMazeCommand"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         public GenerateMazeCommand(IModel model) : base(model)
         {
         }
 
+        /// <summary>
+        /// Executes the specified arguments Generate Maze Command.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <param name="ch">The ch.</param>
+        /// <param name="client">The client.</param>
+        /// <returns></returns>
         public override string Execute(string[] args, IClientHandler ch, TcpClient client = null)
         {
             string name = args[0];
