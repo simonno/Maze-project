@@ -10,15 +10,27 @@ using SearchAlgorithmsLib;
 namespace MazeAdaptorApp
 {
 
+    /// <summary>
+    /// program  main of the maze adapter
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Main.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
             Program p = new Program();
             p.CompareSolvers(2000, 2000);
         }
 
-         public void CompareSolvers(int rows  ,int cols)
+        /// <summary>
+        /// Compares the solvers maze.
+        /// </summary>
+        /// <param name="rows">The rows maze.</param>
+        /// <param name="cols">The cols maze.</param>
+        public void CompareSolvers(int rows  ,int cols)
         {
             IMazeGenerator g = new DFSMazeGenerator();
             Maze maze = g.Generate(rows, cols);

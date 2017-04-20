@@ -7,17 +7,36 @@ using System.Threading.Tasks;
 
 namespace ModelLib
 {
+    /// <summary>
+    /// save the direction of the player
+    /// </summary>
     public class PlayerDirection
     {
+        /// <summary>
+        /// Gets or sets the name of the game.
+        /// </summary>
+        /// <value>
+        /// The name of the game.
+        /// </value>
         public string GameName
         {
             get; set;
         }
+        /// <summary>
+        /// Gets or sets the move.
+        /// </summary>
+        /// <value>
+        /// The move.
+        /// </value>
         public string Move
         {
             get; set;
         }
 
+        /// <summary>
+        /// transpose To the json.
+        /// </summary>
+        /// <returns>string of the direction</returns>
         public string ToJSON()
         {
             JObject obj = new JObject();
@@ -25,6 +44,11 @@ namespace ModelLib
             obj["Direction"] = Move;
             return obj.ToString();
         }
+        /// <summary>
+        /// transpose Froms the json.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>PlayerDirection of the direction</returns>
         public static PlayerDirection FromJSON(string str)
         {
             PlayerDirection pd = new PlayerDirection();

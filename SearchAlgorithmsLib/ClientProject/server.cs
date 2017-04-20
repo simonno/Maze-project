@@ -11,14 +11,26 @@ namespace ServerProject
 {
     class Server
     {
+        /// <summary>
+        /// The port
+        /// </summary>
         private int port;
+        /// <summary>
+        /// The listener Tcp listener
+        /// </summary>
         private TcpListener listener;
+        /// <summary>
+        /// The instance of interface to handel the clients
+        /// </summary>
         private IClientHandler ch;
         public Server(int port, IClientHandler ch)
         {
             this.port = port;
             this.ch = ch;
         }
+        /// <summary>
+        /// Starts this server.
+        /// </summary>
         public void Start()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
@@ -48,6 +60,9 @@ namespace ServerProject
             task.Wait();
         }
 
+        /// <summary>
+        /// Stops this instance.
+        /// </summary>
         public void Stop()
         {
             listener.Stop();

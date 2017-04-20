@@ -8,21 +8,45 @@ using System.Threading.Tasks;
 
 namespace ModelLib
 {
+    /// <summary>
+    /// multi player object info
+    /// </summary>
     class MultiPlayerInfo
     {
+        /// <summary>
+        /// Gets or sets the host.
+        /// </summary>
+        /// <value>
+        /// The host client.
+        /// </value>
         public TcpClient Host
         {
             get; set;
         }
+        /// <summary>
+        /// Gets or sets the guest.
+        /// </summary>
+        /// <value>
+        /// The guest.
+        /// </value>
         public TcpClient Guest
         {
             get; set;
         }
+        /// <summary>
+        /// Gets or sets the maze.
+        /// </summary>
+        /// <value>
+        /// The maze.
+        /// </value>
         public Maze Maze
         {
             get; set;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiPlayerInfo"/> class.
+        /// </summary>
         public MultiPlayerInfo()
         {
             Host = null;
@@ -30,6 +54,12 @@ namespace ModelLib
             Maze = null;
         }
 
+        /// <summary>
+        /// Gets the other player.
+        /// </summary>
+        /// <param name="player">The player.</param>
+        /// <returns>the tcp client</returns>
+        /// <exception cref="System.Exception">the player does not exist</exception>
         public TcpClient GetTheOtherPlayer(TcpClient player)
         {
             if (Host == player)
@@ -45,6 +75,11 @@ namespace ModelLib
             throw new Exception("the player does not exist");
         }
 
+        /// <summary>
+        /// Contains the player.
+        /// </summary>
+        /// <param name="player">The player.</param>
+        /// <returns>bool if Contains player</returns>
         public bool ContainPlayer(TcpClient player)
         {
             if (Guest == player || Host == player) { return true; }
