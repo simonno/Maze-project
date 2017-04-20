@@ -78,12 +78,13 @@ namespace ClientLib
             {
                 result = result.Replace("@", System.Environment.NewLine);
                 Console.WriteLine(result);
+                if (result.Equals("Disconnect"))
+                {
+                    Disconnect();
+                }
             }
 
-            if (result.Equals(Jobj.ToString()))
-            {
-                Disconnect();
-            }
+            
 
             return result;
         }
