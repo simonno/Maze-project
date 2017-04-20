@@ -82,10 +82,7 @@ namespace ClientLib
                 {
                     Disconnect();
                 }
-            }
-
-            
-
+            } 
             return result;
         }
 
