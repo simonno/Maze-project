@@ -7,7 +7,7 @@
     <ProjectGuid>{FB86AE75-9858-43A3-814C-BB19A95165C7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ClientPtoject</RootNamespace>
-    <AssemblyName>ClientPtoject</AssemblyName>
+    <AssemblyName>ClientProject</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

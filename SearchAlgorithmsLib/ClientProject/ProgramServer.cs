@@ -15,18 +15,10 @@ namespace ServerProject
     {
         static void Main(string[] args)
         {
-            IModel model = new ServerModel();
-            IController controller = new Controller(model);
-            ClientHandler ch = new ClientHandler(controller);
-            Server server = new Server(8000, ch);
+            Server server = new Server(8000, new ClientHandler(new Controller(new ServerModel())));
             server.Start();
-                
-           
             Console.WriteLine("finish Server");
             Console.ReadLine();
-
-
-
         }
     }
 }

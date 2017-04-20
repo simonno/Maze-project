@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ClientPtoject
+namespace ClientProject
 {
     class Program
     {
-        static void Main(string[] args)
+         void Main(string[] args)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             TcpClient client = new TcpClient();
@@ -31,7 +32,7 @@ namespace ClientPtoject
                 {
                     while (true)
                     {
-                        if (client.Connected)
+                        if (IsClientConnected(client))
                         {
                             StreamReader reader = new StreamReader(client.GetStream());
                             try
@@ -49,8 +50,13 @@ namespace ClientPtoject
                                 continue;
                             }
 
+                        } else
+                        {
+                            Thread.Sleep(2000);
+
                         }
-                        
+
+
                     }
                     Console.WriteLine("stop reading");
                 });
@@ -64,7 +70,7 @@ namespace ClientPtoject
                         {
                             Console.WriteLine("Please enter a command: ");
                             commandLine = Console.ReadLine();
-                            if (client.Connected == false)
+                            if (!IsClientConnected(client))
                             {
                                 client.Connect(ep);
                                 Console.WriteLine("You are connected");
@@ -86,8 +92,41 @@ namespace ClientPtoject
                 taskWrite.Wait();
             //}
         }
+        /// <summary>
+        /// THIS FUNCTION WILL CHECK IF CLIENT IS STILL CONNECTED WITH SERVER.
+        /// </summary>
+        /// <returns>FALSE IF NOT CONNECTED ELSE TRUE</returns>
+        static bool IsClientConnected(TcpClient ClientSocket)
+        {
+            IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+
+            TcpConnectionInformation[] tcpConnections = ipProperties.GetActiveTcpConnections();
+
+            foreach (TcpConnectionInformation c in tcpConnections)
+            {
+                TcpState stateOfConnection = c.State;
+
+                if (c.LocalEndPoint.Equals(ClientSocket.Client.LocalEndPoint) && c.RemoteEndPoint.Equals(ClientSocket.Client.RemoteEndPoint))
+                {
+                    if (stateOfConnection == TcpState.Established)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
+            }
+            return false;
+        }
     }
 }
+
+
+
 
 //try
 //        {
