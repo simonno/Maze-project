@@ -21,35 +21,36 @@ namespace ClientPtoject
             Console.WriteLine("You are connected");
             string commandLine = "";
             string answerServer;
-            Console.Write("Please enter a command: ");
+            //Console.Write("Please enter a command: ");
 
-            using (NetworkStream stream = client.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
+            //using (NetworkStream stream = client.GetStream())
+            //using (StreamReader reader = new StreamReader(stream))
+            //using (StreamWriter writer = new StreamWriter(stream))
+            //{
                 Task taskRead = new Task(() =>
                 {
                     while (true)
                     {
-                        try
+                        if (client.Connected)
                         {
-                            if (client.Connected == false)
+                            StreamReader reader = new StreamReader(client.GetStream());
+                            try
                             {
-                                Thread.Sleep(2000);
+                                answerServer = reader.ReadLine();
+                                if (answerServer != null)
+                                {
+                                    answerServer = answerServer.Replace("@", System.Environment.NewLine);
+                                    Console.WriteLine("Result = " + answerServer);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("task read - socket exception");
                                 continue;
                             }
-                            answerServer = reader.ReadLine();
-                            if (answerServer != null)
-                            {
-                                answerServer = answerServer.Replace("@", System.Environment.NewLine);
-                                Console.WriteLine("Result = " + answerServer);
-                            }
+
                         }
-                        catch (SocketException)
-                        {
-                            Console.WriteLine("task read - socket exception");
-                            break;
-                        }
+                        
                     }
                     Console.WriteLine("stop reading");
                 });
@@ -61,13 +62,14 @@ namespace ClientPtoject
                     {
                         try
                         {
-                            Console.Write("Please enter a command: ");
+                            Console.WriteLine("Please enter a command: ");
                             commandLine = Console.ReadLine();
                             if (client.Connected == false)
                             {
                                 client.Connect(ep);
                                 Console.WriteLine("You are connected");
                             }
+                            StreamWriter writer = new StreamWriter(client.GetStream());
                             writer.AutoFlush = true;
                             writer.WriteLine(commandLine);
                         }
@@ -82,7 +84,7 @@ namespace ClientPtoject
                 });
                 taskWrite.Start();
                 taskWrite.Wait();
-            }
+            //}
         }
     }
 }

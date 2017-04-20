@@ -18,11 +18,11 @@ namespace MazeAdaptorApp
         {
             this.maze = maze;
 
-            init = State<Position, int>.StatePool.getState(maze.InitialPos);
+            init = State<Position, int>.StatePool.GetState(maze.InitialPos);
             init.cost = new IntCost() { Value = 0 };
             init.CameFrom = null; 
 
-            goal = State<Position, int>.StatePool.getState(maze.GoalPos);
+            goal = State<Position, int>.StatePool.GetState(maze.GoalPos);
         }
 
         public bool BetterDirection(State<Position, int> potentialCameFrom, State<Position, int> s)
@@ -46,7 +46,7 @@ namespace MazeAdaptorApp
             int y = pos.Col;
             if (y + 1 < maze.Cols && maze[x, y + 1] == CellType.Free)
             {
-                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x, y + 1));
+                State<Position, int> s2 = State<Position, int>.StatePool.GetState(new Position(x, y + 1));
                 s2.cost = new IntCost()
                 {
                     Value = 1
@@ -56,7 +56,7 @@ namespace MazeAdaptorApp
 
             if (y - 1 >= 0 && maze[x, y - 1] == CellType.Free)
             {
-                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x, y - 1));
+                State<Position, int> s2 = State<Position, int>.StatePool.GetState(new Position(x, y - 1));
                 s2.cost = new IntCost()
                 {
                     Value = 1
@@ -66,7 +66,7 @@ namespace MazeAdaptorApp
 
             if (x + 1 < maze.Rows && maze[x + 1, y] == CellType.Free)
             {
-                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x + 1, y));
+                State<Position, int> s2 = State<Position, int>.StatePool.GetState(new Position(x + 1, y));
                 s2.cost = new IntCost()
                 {
                     Value = 1
@@ -76,7 +76,7 @@ namespace MazeAdaptorApp
 
             if (x - 1 >= 0 && maze[x - 1, y] == CellType.Free)
             {
-                State<Position, int> s2 = State<Position, int>.StatePool.getState(new Position(x - 1, y));
+                State<Position, int> s2 = State<Position, int>.StatePool.GetState(new Position(x - 1, y));
                 s2.cost = new IntCost()
                 {
                     Value = 1
