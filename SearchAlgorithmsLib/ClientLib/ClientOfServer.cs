@@ -34,7 +34,6 @@ namespace ClientLib
         public string ReadFromClient()
         {
             string result;
-
             do
             {
                 try
