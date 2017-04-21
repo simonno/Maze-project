@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ControllerLib;
 using ModelLib;
 using ViewLib;
+using System.Configuration;
 
 namespace ServerProject
 {   /// <summary>
@@ -18,7 +19,9 @@ namespace ServerProject
     {
         static void Main(string[] args)
         {
-            Server server = new Server(8000, new ClientHandler(new Controller(new ServerModel())));
+            string ip = ConfigurationManager.AppSettings["IP"];
+            string port = ConfigurationManager.AppSettings["Port"];
+            Server server = new Server(int.Parse(port), new ClientHandler(new Controller(new ServerModel())));
             server.Start();
             Console.WriteLine("finish Server");
             Console.ReadLine();

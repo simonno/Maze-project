@@ -33,7 +33,10 @@ namespace ControllerLib
         /// <returns>string of list command</returns>
         public override string Execute(string[] args, ClientOfServer client = null)
         {
-            return JsonConvert.SerializeObject(model.List());
+            string list = JsonConvert.SerializeObject(model.List());
+            client.WriteToClient(list);
+            client.DisconnectFromServer();
+            return list;
         }
     }
 }

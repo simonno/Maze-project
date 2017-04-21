@@ -1,4 +1,5 @@
 ﻿using ClientLib;
+using System.Configuration;
 
 namespace ClientProject
 {
@@ -6,7 +7,9 @@ namespace ClientProject
     {
         static void Main(string[] args)
         {
-            Client client = new Client("127.0.0.1", 8000);
+            string ip = ConfigurationManager.AppSettings["IP"];
+            string port = ConfigurationManager.AppSettings["Port"];
+            Client client = new Client(ip, int.Parse(port));
             client.Connect();
             // Wait for the writing and reading tasks to finish.
             while (client.ReadingTaskRunning || client.WritingTaskRunning) { }
