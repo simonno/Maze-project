@@ -68,9 +68,12 @@ namespace ClientLib
                 {
                     InitializeWriter();
                 }
-                message = message.Replace(System.Environment.NewLine, "@");
-                Writer.WriteLine(message + Environment.NewLine);
-                Writer.Flush();
+                if (message != null)
+                {
+                    message = message.Replace(System.Environment.NewLine, "@");
+                    Writer.WriteLine(message + Environment.NewLine);
+                    Writer.Flush();
+                }
             }
 
             // If the connection has been closed.

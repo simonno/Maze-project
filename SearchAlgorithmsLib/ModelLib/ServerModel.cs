@@ -242,7 +242,14 @@ namespace ModelLib
             {
                 return mazes[name];
             }
+
+            ///
+            if (multiPlayerOnline.ContainsKey(name))
+            {
+                return multiPlayerOnline[name].Maze;
+            }
             throw new Exception("This maze does not exist - " + name);
+            
         }
 
         /// <summary>
