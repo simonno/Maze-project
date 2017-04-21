@@ -270,10 +270,11 @@ namespace ModelLib
             return new Tuple<ClientOfServer, PlayerDirection>(otherPlayer, pd);
         }
 
-        public ClientOfServer Close(ClientOfServer player)
+        public ClientOfServer Close(string name, ClientOfServer player)
         {
-            return FindMPInfo(player).GetTheOtherPlayer(player);
-
+            MultiPlayerInfo mp = multiPlayerOnline[name];
+            multiPlayerOnline.Remove(name);
+            return mp.GetTheOtherPlayer(player);
         }
 
         /// <summary>

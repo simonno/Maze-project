@@ -31,6 +31,7 @@ namespace ControllerLib
         /// </returns>
         public override string Execute(string[] args, ClientOfServer client = null)
         {
+            string name = args[0];
             //JObject obj = new JObject();
             //obj["close"] = "game-over";
             ClientOfServer otherPlayer = model.Close(client);

@@ -66,15 +66,10 @@ namespace ModelLib
         /// <summary>
         /// Closes the specified TcpClient.
         /// </summary>
-        /// <param name="player">The Tcp Client f the player.</param>
-        /// <returns></returns>
-        ClientOfServer Close(ClientOfServer player);
-
-        /// <summary>
-        /// Closes the maze.
-        /// </summary>
-        /// <param name="name">The name o f maze.</param>
-        void Close(string name);
+        /// <param name="player">The Tcp Client of the player.</param>
+        /// <param name="name">The name of maze.</param>
+        /// <returns>>The Tcp Client of the other player.</returns>
+        ClientOfServer Close(string name, ClientOfServer player);
 
         /// <summary>
         /// Determines whether the  name is pair.
