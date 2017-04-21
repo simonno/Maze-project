@@ -1,0 +1,491 @@
+commit f7b1d1c360e2a9716a134a255e6b4f8d62e9f999
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 19:07:27 2017 +0300
+
+    app.config edit
+
+commit a4b718aeebf28a468ec66641484b79eccb81895e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 18:57:16 2017 +0300
+
+    close opratoin edit
+
+commit f65b4f06cdb8ff69539892b233d483aed2966aee
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 16:23:51 2017 +0300
+
+    fix allll
+
+commit 4b3325db9fc0df34290b2bbfa1bae74dd0ca4684
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 14:30:37 2017 +0300
+
+    update maybe everything is working
+
+commit f1544ddcb1dcb66f21be08fee7058cd006bc53b8
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 12:20:52 2017 +0300
+
+    generate and solve fix :)
+
+commit 3f86862115e468a413b7759e6eba06682aa2c3d2
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 03:20:23 2017 +0300
+
+    fix mass
+
+commit eba9e28046fcf28d94db7eec6397b528c3d452b0
+Merge: af0a762 6c352f3
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 03:15:55 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit af0a7626196c3a036d3c4c0472eaa7a01c226def
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 03:15:48 2017 +0300
+
+    edit
+
+commit 6c352f3f15ea9c95363b14d35045e4532b9741c6
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 03:10:12 2017 +0300
+
+    v
+
+commit 4a6ca0861a6e06f97995e980ad63db8df5ba877e
+Merge: a4d0bc0 1f5f77f
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 02:45:09 2017 +0300
+
+    check
+
+commit a4d0bc069d07a3f8537b4e6f80087c33c5fc1ebf
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 02:35:44 2017 +0300
+
+    edit
+
+commit dc2c274e890f02efd9382646c51f13573bf0aa0d
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 02:26:45 2017 +0300
+
+    edit client
+
+commit eccb697a1fa27f37f84adcfd230f201ff0871e82
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 02:22:50 2017 +0300
+
+    reorginaze
+
+commit 1f5f77fd8cd90761643d57fb9ddbb9351ae599a9
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 02:21:25 2017 +0300
+
+commit 197e1bff0c4ff02b42ae723a41b3ab5b5847c7b0
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 01:24:01 2017 +0300
+
+    after marge
+
+commit 30f628ff0da72df9d4bfca57eba0650ffda71d2d
+Merge: d3d83ac d8e13df
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 01:13:57 2017 +0300
+
+    after marge
+
+commit d3d83ac19f82d51dd88d0822acbc6c83a32594bc
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 21 00:47:12 2017 +0300
+
+    client edit
+
+commit d8e13df29597df07efb8deda760784fc1cec2069
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 21 00:26:03 2017 +0300
+
+    all commands
+
+commit 94ed319a9e9b594c12712bbd473896b081e6b187
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Thu Apr 20 23:01:30 2017 +0300
+
+    sync with most comments
+
+commit 234f6b576cca0ef1a9a93fd6201bc26aa9e95849
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Thu Apr 20 22:47:11 2017 +0300
+
+    Client edit
+
+commit 43e27c6833c5c79860c21febdb5a70b61ca040f5
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Thu Apr 20 17:56:24 2017 +0300
+
+    SearchAlgorithmsLib - comments
+
+commit 77e7ebffe75750d272c29d2c5e4f1af22e1e7821
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Thu Apr 20 00:00:14 2017 +0300
+
+    maybe fix
+
+commit f9d33d32704e0d9eb162a16c1e807d846f4dfe50
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Wed Apr 19 23:08:33 2017 +0300
+
+    continue debug
+
+commit df194ff8beff9f94dfe411940c6a04bfa9199e35
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 19 12:39:58 2017 +0300
+
+    client - edit
+
+commit 686d90468530a6f540c29956562c209fa26d568e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Tue Apr 18 23:55:02 2017 +0300
+
+    multi / single command edit
+
+commit 95e5ca8dcf70dd1d2f07b55eff501c9d6eb0b810
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Tue Apr 18 23:44:00 2017 +0300
+
+    client fix?
+
+commit ea903709b9b5ce45e64b66ed68bef75a68f2da7f
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Tue Apr 18 21:56:01 2017 +0300
+
+    client trying
+
+commit 222e10ea78037d5c107cc21c3995c0122a160c6f
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 17 18:51:42 2017 +0300
+
+    one generate works
+
+commit 13f1c557de95bb397c4bcf331089b8f15c75ea03
+Merge: b9ba681 1dfbd6a
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 17 17:06:17 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit 1dfbd6a22288399612a97b712c80e9df96351f8a
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 17:06:58 2017 +0300
+
+    edit client handler
+
+commit b9ba68105569ba2e7648216d479658d9a2f76258
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 17 17:06:15 2017 +0300
+
+    client multiplayer
+
+commit 3f4686fd8d19f7836bd6199a3eb7d473680a4468
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 16:42:54 2017 +0300
+
+    controller edit
+
+commit 12f9cd3e91c94d0a22aa8dea6cb24e49762b0555
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 15:51:30 2017 +0300
+
+    Close Command
+
+commit b92e8cd6f935f0407615a13e3acbf1d1aaa57da2
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 15:13:32 2017 +0300
+
+    PLAY coommand
+
+commit 502eb6c9779df7ea44e30fd1e0b17343f3c474b1
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 00:53:31 2017 +0300
+
+    edit - GenerateMazeCommand
+
+commit f45450a4c66d67600fd4d650814ca07fc725fa80
+Merge: 18dc55e f499d2f
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 00:51:16 2017 +0300
+
+    fix  connection - client  server
+
+commit 18dc55e1b911e7860dd61bd12829a88bff2c5e19
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 00:49:44 2017 +0300
+
+    fix connection - server - client
+
+commit f499d2f8342906f669444ec47fb8178216cc8e72
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 17 00:40:55 2017 +0300
+
+    convert json
+
+commit 4dbbbc5d522b2e71dd0cd33c887efef6eabee17f
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 00:29:29 2017 +0300
+
+    fix cotroller
+
+commit bee65f8e18bfadf393ebfdfafe69f5637ab8bf1d
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 17 00:15:13 2017 +0300
+
+    work until generate maze
+
+commit a6495d52f20fd2b935af5551b90ef2d1eb5cfde0
+Merge: 83e765d 2df05ef
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 17 00:13:36 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit 83e765d1b52201f3305ad7a2264f2fbd26521a5f
+Merge: e43c079 c0e1226
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 16 23:48:01 2017 +0300
+
+    check
+
+commit 2df05efb974068a855b67895b8d983676f0e383a
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sun Apr 16 23:43:54 2017 +0300
+
+    hii
+
+commit e8c74233668611039d960a83b55ff56bec16e92d
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sun Apr 16 23:38:27 2017 +0300
+
+    there is connection server-client!
+
+commit e43c0790688117bbeb372c1bd2b0f4445b8a044a
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 16 19:41:59 2017 +0300
+
+    check
+
+commit c0e122681942cdb7179368e5f35bba0ab1959679
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sat Apr 15 18:33:41 2017 +0300
+
+    something not working in the streams
+
+commit c6ecdfccddeb54ef2233bd53dd675404748c26ee
+Merge: 15ad6ce d548886
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sat Apr 15 18:07:14 2017 +0300
+
+    START AND JOIN commnd
+
+commit 15ad6ced88816216d8048cd23438c2821e4afb4b
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sat Apr 15 15:59:17 2017 +0300
+
+    check
+
+commit d54888633b36bf9065f4ddb31c91d3fedfc866be
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sat Apr 15 15:57:54 2017 +0300
+
+    try to upload
+
+commit ca5e67613494ffa792ed649829b7fccc68197994
+Merge: 445b4bd 539c826
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sat Apr 15 15:53:03 2017 +0300
+
+    set client
+
+commit 445b4bdf021e794288d91cb08fb973c96059b637
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sat Apr 15 15:49:01 2017 +0300
+
+    set client+ server main
+
+commit 539c82676783fd73f3a06af06741be8b0ebcca6f
+Merge: 063fa44 13babb5
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sat Apr 15 15:42:50 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit 063fa4424f2a5bc4f9ec5e4e485499432f4a8d5e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sat Apr 15 15:40:42 2017 +0300
+
+    push
+
+commit 13babb57ca761b48904637b434d5bdda54e5c616
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sat Apr 15 11:10:40 2017 +0300
+
+    client
+
+commit b9ca1038af5c6051ca75f79eb5ce30ca233e544e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 14 23:37:15 2017 +0300
+
+    edit command
+
+commit d96225dc2d5ee87de02c26e075366d7c77dcc33e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 14 22:56:47 2017 +0300
+
+    Client Handler + JSON
+
+commit 678c94d900370f437966522af6b431c5450697bc
+Merge: 70a1665 d22d753
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 14 12:49:51 2017 +0300
+
+    model
+
+commit 70a16653bf0ca7ab3281ec2877ef2c5dc7411539
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 14 10:12:57 2017 +0300
+
+    k
+
+commit d22d7533caef37f296527da6c03f74f565e7803d
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Thu Apr 13 23:43:05 2017 +0300
+
+    hii:)
+
+commit d65963394bc02820b425dbc028ecdf32aa780f22
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Thu Apr 13 18:36:50 2017 +0300
+
+    reoregenize
+
+commit 0b5584a5eb002ccf35e5fba321255e5008ef6c35
+Merge: 9056bab e2e312a
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Thu Apr 13 12:02:07 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit 9056babfc1876465b81cefe417691e11754cf25a
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Thu Apr 13 12:01:56 2017 +0300
+
+    edit program
+
+commit e2e312a6251f184f71957a35997af501e85f14d7
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Wed Apr 12 23:47:59 2017 +0300
+
+    server-client work one client only
+
+commit 1e16dc14a187359a326fa08d7e8b06e9ab1806dd
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 12 13:14:28 2017 +0300
+
+    fixes
+
+commit fe153652bf2552eca1ff9bcde52d97e857a1d4c6
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 12 13:00:54 2017 +0300
+
+    fix
+
+commit 1221c973ad5bff0ac7ee15bd9bc65e28bd5368c9
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 12 12:54:24 2017 +0300
+
+    bfs fix
+
+commit 7e1198fd0c59431c46f9bc45c29121ae818176d1
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 12 12:09:09 2017 +0300
+
+    dfs fix
+
+commit 41c86793e94a82bb25e4ef625265b6dcbbe7a121
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Wed Apr 12 11:05:31 2017 +0300
+
+    property
+
+commit f9358ef246f24e2f99e5650be75b9013474327dd
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Tue Apr 11 17:14:41 2017 +0300
+
+    adapter
+
+commit 6896070a4f5ed6d5a9149d49f01043e6d37d148f
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Mon Apr 10 19:12:18 2017 +0300
+
+    a lot !!!!
+
+commit da43d1aec61ffefb455d6a7ca3ae261dc2c9dc63
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Mon Apr 10 00:32:02 2017 +0300
+
+    update cost interface
+
+commit 55c9b6cc08c332760f49d4f8e91e98a9ecd08a09
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 9 17:35:36 2017 +0300
+
+    cost - adding
+
+commit 922388855f154d14161a7a4a6570ac90a8b34a24
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 9 15:33:09 2017 +0300
+
+    queue
+
+commit 92bc295c41a643ac1457e3e9386dec211bf9aa41
+Merge: d0ca5ac 7b8282a
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 9 12:22:32 2017 +0300
+
+    Merge branch 'master' of https://github.com/simonno/Maze-project
+
+commit d0ca5ac92fad25e73165a2f2955c35269abbc1ea
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Sun Apr 9 12:22:23 2017 +0300
+
+    objetct Adapter
+
+commit 7b8282a03b09dbb2a704b86599da0e06e27e043f
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Sun Apr 9 00:16:43 2017 +0300
+
+    add DFS
+    MYPRIORITY TYPE?
+
+commit cebe2751657c4470a4f3cb3d4ead037efea9abbd
+Author: meital.birka <meital.birka@gmail.com>
+Date:   Fri Apr 7 14:03:09 2017 +0300
+
+    work?
+
+commit 4ac1fa4cb31ee32e01ef9ede1fbd84569bcfea7e
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 7 14:56:33 2017 +0300
+
+    check !!!
+
+commit 36be9fa3ea446e9f6d108f0b910e8d3aa241e9e1
+Author: SYSTEM <SYSTEM@NOAM>
+Date:   Fri Apr 7 14:51:03 2017 +0300
+
+    check
+
+commit 21aad2b817406086759ec57f3f9d59b0895c411a
+Author: Noam Simon <simonoam@gmail.com>
+Date:   Fri Apr 7 14:44:40 2017 +0300
+
+    Initial commit
