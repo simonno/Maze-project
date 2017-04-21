@@ -49,6 +49,7 @@ namespace ClientLib
         private void Reconnect()
         {
             Console.WriteLine("Trying to connect to server");
+            tcpClient = new TcpClient();
             try
             {
                 tcpClient.Connect(socketInfo);

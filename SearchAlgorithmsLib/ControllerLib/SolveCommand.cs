@@ -38,6 +38,7 @@ namespace ControllerLib
             string name = args[0];
             int typeSolve = int.Parse(args[1]);
             MazeSolution s = model.Solve(name, typeSolve);
+            client.WriteToClient(s.ToJSON());
             client.DisconnectFromServer();
             return s.ToJSON();
         }
