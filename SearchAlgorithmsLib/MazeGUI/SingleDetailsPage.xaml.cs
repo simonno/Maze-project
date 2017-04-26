@@ -25,35 +25,35 @@ namespace MazeGUI
             InitializeComponent();
         }
 
-        private void TextBox_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (sender is TextBox tb)
-            {
-                if (System.Text.RegularExpressions.Regex.IsMatch(tb.Text, "[^0-9]"))
-                {
-                    MessageBox.Show("Please enter only numbers.");
-                    tb.Clear();
-                }
-            }
-        }
+        //private void TextBox_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (sender is TextBox tb)
+        //    {
+        //        if (System.Text.RegularExpressions.Regex.IsMatch(tb.Text, "[^0-9]"))
+        //        {
+        //            MessageBox.Show("Please enter only numbers.");
+        //            tb.Clear();
+        //        }
+        //    }
+        //}
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            string name = txtBoxName.Text;
+            string name = MazeDetails.txtBoxName.Text;
             if (string.IsNullOrEmpty(name))
             {
                 MessageBox.Show("Please insert a name for the maze");
                 return;
             }
 
-            string rows = txtBoxRows.Text;
+            string rows = MazeDetails.txtBoxRows.Text;
             if (string.IsNullOrEmpty(rows))
             {
                 MessageBox.Show("Please insert the number of the maze's rows.");
                 return;
             }
 
-            string columns = txtBoxColumns.Text;
+            string columns = MazeDetails.txtBoxColumns.Text;
             if (string.IsNullOrEmpty(columns))
             {
                 MessageBox.Show("Please insert the number of the maze's columns.");

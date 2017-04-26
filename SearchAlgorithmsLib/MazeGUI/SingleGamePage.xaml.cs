@@ -24,5 +24,21 @@ namespace MazeGUI
         {
             InitializeComponent();
         }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+                
+        }
+
+        private void btnSolve_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+        }
     }
 }
