@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MazeGUI
 {
     /// <summary>
-    /// Interaction logic for SingleWindow.xaml
+    /// Interaction logic for SingleGamePage.xaml
     /// </summary>
-    public partial class SingleWindow : Window
+    public partial class SingleGamePage : Page
     {
-        public SingleWindow()
+        public SingleGamePage()
         {
             InitializeComponent();
         }

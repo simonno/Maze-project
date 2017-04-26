@@ -34,7 +34,7 @@ namespace ControllerLib
             string name = args[0];
             //JObject obj = new JObject();
             //obj["close"] = "game-over";
-            ClientOfServer otherPlayer = model.Close(client);
+            ClientOfServer otherPlayer = model.Close(name, client);
             //using (NetworkStream stream = otherPlayer.GetStream())
             //using (StreamWriter writer = new StreamWriter(stream))
             //{

@@ -23,6 +23,7 @@ namespace MazeGUI
         public MainWindow()
         {
             InitializeComponent();
+            frmMainContent.Source = new Uri("MainMenuPage.xaml", UriKind.Relative); // initialize frame with the "test1" view
         }
     }
 }

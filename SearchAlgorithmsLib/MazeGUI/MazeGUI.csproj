@@ -54,12 +54,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SignleDetails.xaml.cs">
-      <DependentUpon>SignleDetails.xaml</DependentUpon>
+    <Compile Include="MainMenuPage.xaml.cs">
+      <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleWindow.xaml.cs">
-      <DependentUpon>SingleWindow.xaml</DependentUpon>
+    <Compile Include="SingleDetailsPage.xaml.cs">
+      <DependentUpon>SingleDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleGamePage.xaml.cs">
+      <DependentUpon>SingleGamePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,11 +79,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SignleDetails.xaml">
+    <Page Include="SingleDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleWindow.xaml">
+    <Page Include="SingleGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

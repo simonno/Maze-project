@@ -10,18 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MazeGUI
 {
     /// <summary>
-    /// Interaction logic for SignleDetails.xaml
+    /// Interaction logic for MainMenuPage.xaml
     /// </summary>
-    public partial class SignleDetails : Window
+    public partial class MainMenuPage : Page
     {
-        public SignleDetails()
+        public MainMenuPage()
         {
             InitializeComponent();
+        }
+
+        private void btnSingle_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("SingleDetailsPage.xaml", UriKind.Relative));
         }
     }
 }
