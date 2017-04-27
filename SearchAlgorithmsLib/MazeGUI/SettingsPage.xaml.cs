@@ -20,9 +20,28 @@ namespace MazeGUI
     /// </summary>
     public partial class SettingsPage : Page
     {
+        private NavigationService ns;
+
         public SettingsPage()
         {
             InitializeComponent();
+        }
+
+        private void btnCancle_Click(object sender, RoutedEventArgs e)
+        {
+            ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MainMenuPage.xaml", UriKind.Relative));
         }
     }
 }
