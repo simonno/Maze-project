@@ -20,6 +20,7 @@ namespace MazeGUI
     /// </summary>
     public partial class MainMenuPage : Page
     {
+        private NavigationService ns;
         public MainMenuPage()
         {
             InitializeComponent();
@@ -27,8 +28,20 @@ namespace MazeGUI
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("SingleDetailsPage.xaml", UriKind.Relative));
+        }
+
+        private void btnMulti_Click(object sender, RoutedEventArgs e)
+        {
+            ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MultiDetailsPage.xaml", UriKind.Relative));
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("SettingsPage.xaml", UriKind.Relative));
         }
     }
 }

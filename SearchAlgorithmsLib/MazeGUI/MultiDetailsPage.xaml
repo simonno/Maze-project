@@ -11,10 +11,19 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Text="Multi Player" HorizontalAlignment="Center" FontWeight="Black" FontSize="30" Padding="10"/>
-            <Grid>
-                
-            </Grid>
-            <local:MazeDetails x:Name="MazeDetails"/>
+            <Border Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="List of games:"/>
+                    <ComboBox x:Name="GamesList" Grid.Column="1" />
+                </Grid>
+            </Border>
+            <Button x:Name="btnJoin" Content="Join Game" Width="80" FontSize="15" Click="btnJoin_Click"/>
+
+            <local:MazeDetails x:Name="MazeDetails" Padding="10"/>
             <Button x:Name="btnStart" Content="Start Game" Width="80" FontSize="15"/>
         </StackPanel>
     </Grid>

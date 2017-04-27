@@ -22,10 +22,6 @@ namespace ViewLib
         /// The controller - interface type
         /// </summary>
         IController controller;
-        /// <summary>
-        /// The run bool
-        /// </summary>
-        private bool run;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientHandler"/> class.
@@ -34,7 +30,6 @@ namespace ViewLib
         public ClientHandler(IController c)
         {
             controller = c;
-            run = true;
         }
         /// <summary>
         /// Handles the client.

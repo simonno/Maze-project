@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace MazeGUI
 {
     /// <summary>
-    /// Interaction logic for MultiDetailsPage.xaml
+    /// Interaction logic for SettingsPage.xaml
     /// </summary>
-    public partial class MultiDetailsPage : Page
+    public partial class SettingsPage : Page
     {
-        public MultiDetailsPage()
+        public SettingsPage()
         {
             InitializeComponent();
-        }
-
-        private void btnJoin_Click(object sender, RoutedEventArgs e)
-        {
         }
     }
 }

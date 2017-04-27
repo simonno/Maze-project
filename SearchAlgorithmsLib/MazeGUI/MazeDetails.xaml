@@ -6,24 +6,23 @@
              xmlns:local="clr-namespace:MazeGUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Border Padding="20">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Maze name:" Margin="0 10 0 10"/>
-            <TextBlock Text="Maze rows:"  Grid.Row="1"/>
-            <TextBlock Text="Maze colums:" Grid.Row="2" Margin="0 10 0 10"/>
 
-            <TextBox x:Name="txtBoxName" Grid.Column="1" Padding="2"  Margin="0 10 0 10"/>
-            <TextBox x:Name="txtBoxRows" Grid.Column="1" Padding="2" Grid.Row="1" IsKeyboardFocusedChanged="TextBox_IsKeyboardFocusedChanged"/>
-            <TextBox x:Name="txtBoxColumns" Grid.Column="1" Padding="2" Grid.Row="2" Margin="0 10 0 10" IsKeyboardFocusedChanged="TextBox_IsKeyboardFocusedChanged"/>
-        </Grid>
-    </Border>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Maze name:" Margin="0 10 0 10"/>
+        <TextBlock Text="Maze rows:"  Grid.Row="1"/>
+        <TextBlock Text="Maze colums:" Grid.Row="2" Margin="0 10 0 10"/>
+
+        <TextBox x:Name="txtBoxName" Grid.Column="1" Padding="2"  Margin="0 10 0 10"/>
+        <TextBox x:Name="txtBoxRows" Grid.Column="1" Padding="2" Grid.Row="1" IsKeyboardFocusedChanged="TextBox_IsKeyboardFocusedChanged"/>
+        <TextBox x:Name="txtBoxColumns" Grid.Column="1" Padding="2" Grid.Row="2" Margin="0 10 0 10" IsKeyboardFocusedChanged="TextBox_IsKeyboardFocusedChanged"/>
+    </Grid>
 </UserControl>
