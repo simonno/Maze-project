@@ -17,19 +17,38 @@ namespace MazeGUI
 {
     /// <summary>
     /// Interaction logic for SingleGamePage.xaml
-    /// </summary>
+    /// </summary> 
+    public delegate void myfunc();
+    
     public partial class SingleGamePage : Page
     {
+      public event myfunc X;
+        
+
         public SingleGamePage()
         {
             InitializeComponent();
         }
 
+     
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-                
-        }
+            CheckChoice areYouSure = new CheckChoice();
+            if (areYouSure.ShowDialog() == true)
+            {
+                X += reset();
 
+            }
+        }
+        public void reset()
+        {
+            InitializeComponent();
+        }
+        public void activatePressed()
+        {
+            X();
+
+        }
         private void btnSolve_Click(object sender, RoutedEventArgs e)
         {
 

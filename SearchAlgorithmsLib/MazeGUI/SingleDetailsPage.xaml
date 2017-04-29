@@ -9,7 +9,7 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Text="Single Player" HorizontalAlignment="Center" FontWeight="Black" FontSize="30" Padding="10"/>
-            <local:MazeDetails x:Name="MazeDetails"/>
+            <local:MazeDetails x:Name="MazeDetails" Loaded="MazeDetails_Loaded"/>
             <Button x:Name="btnOk" Content="Ok" Width="50" FontSize="15" Click="btnOk_Click"/>
         </StackPanel>
     </Grid>

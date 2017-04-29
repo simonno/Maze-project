@@ -63,5 +63,7 @@ namespace MazeGUI
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(new Uri("SingleGamePage.xaml", UriKind.Relative));
         }
+
+      
     }
 }
