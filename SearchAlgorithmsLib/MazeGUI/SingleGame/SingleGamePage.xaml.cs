@@ -28,8 +28,8 @@ namespace MazeGUI.SingleGame
         public SingleGamePage()
         {
             InitializeComponent();
-            Maze m = new Maze(12, 12);
-            StackPanel.Children.Add(m);
+            //Maze m = new Maze(12, 12);
+            //StackPanel.Children.Add(m);
             
         }
 

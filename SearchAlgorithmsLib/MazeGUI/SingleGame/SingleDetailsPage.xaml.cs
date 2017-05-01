@@ -8,7 +8,7 @@ namespace MazeGUI.SingleGame
     /// <summary>
     /// Interaction logic for SingleDetailsPage.xaml
     /// </summary>
-    public partial class SingleDetailsPage : Window
+    public partial class SingleDetailsPage : Page
     {
         public SingleDetailsPage()
         {
@@ -40,7 +40,7 @@ namespace MazeGUI.SingleGame
 
 
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("SingleGamePage.xaml", UriKind.Relative));
+            ns.Navigate(new Uri("SingleGame/SingleGamePage.xaml", UriKind.Relative));
         }
     }
 }

@@ -20,8 +20,11 @@ namespace MazeGUI.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        private string boardDescription;
+        
         public MazeBoard()
         {
+            boardDescription = "";
             InitializeComponent();
         }
 
@@ -74,32 +77,72 @@ namespace MazeGUI.Controls
 
 
 
-        public string PlayerImageFile
+        //public string PlayerImageFile
+        //{
+        //    get { return (string)GetValue(PlayerImageFileProperty); }
+        //    set { SetValue(PlayerImageFileProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty PlayerImageFileProperty =
+        //    DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata(0));
+
+
+
+
+        //public string ExitImageFile
+        //{
+        //    get { return (string)GetValue(ExitImageFileProperty); }
+        //    set { SetValue(ExitImageFileProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty ExitImageFileProperty =
+        //    DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata(0));
+
+        public string Maze
         {
-            get { return (string)GetValue(PlayerImageFileProperty); }
-            set { SetValue(PlayerImageFileProperty, value); }
+            get
+            {
+                return boardDescription;
+            }
+            set
+            {
+                
+                string s = value;
+                boardDescription = value;
+                int rows = Rows;
+                int cols = Cols;
+                double width = myCanvas.Width / cols;
+                double height  = myCanvas.Height / rows;
+                
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        Label l = new Label();
+                        char c = s[i + rows * j];
+                        l.Content = c;
+                        l.Width = width;
+                        l.Height = height;
+                        Canvas.SetLeft(l, width * i);
+                        Canvas.SetTop(l, height * j);
+
+                        if (c == '1')
+                        {
+                            l.Foreground = Brushes.Red;
+                            l.Background = Brushes.Black;
+
+                        }
+                        else if (c == '0')
+                        {
+                            l.Foreground = Brushes.Red;
+                            l.Background = Brushes.White;
+                        }
+                        myCanvas.Children.Add(l);
+                    }
+                }
+            }
         }
-
-        // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlayerImageFileProperty =
-            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata(0));
-
-
-
-
-        public string ExitImageFile
-        {
-            get { return (string)GetValue(ExitImageFileProperty); }
-            set { SetValue(ExitImageFileProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ExitImageFileProperty =
-            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata(0));
-
-
-
-
-
     }
 }

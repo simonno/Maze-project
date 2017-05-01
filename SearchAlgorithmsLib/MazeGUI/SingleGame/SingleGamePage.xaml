@@ -3,9 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MazeGUI"
+      xmlns:Controls="clr-namespace:MazeGUI.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="320" d:DesignWidth="300"
       Title="SingleGamePage">
 
     <Grid Background="Aqua">
@@ -22,6 +22,8 @@
                     <Button x:Name="btnSolve" Grid.Column="1" Content="Solve maze" Click="btnSolve_Click" />
                     <Button x:Name="btnMenu" Grid.Column="2" Content="Main menu" Margin="10 0 0 0" Click="btnMenu_Click"/>
                 </Grid>
+                <Controls:MazeBoard x:Name="mazeBoard" Rows="5" Cols="5"
+                Maze="0010011011111100001110110"/>
             </StackPanel>
         </Border>
     </Grid>

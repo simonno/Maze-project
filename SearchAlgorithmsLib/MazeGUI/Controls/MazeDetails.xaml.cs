@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MazeGUI
+namespace MazeGUI.Controls
 {
     /// <summary>
     /// Interaction logic for MazeDetails.xaml

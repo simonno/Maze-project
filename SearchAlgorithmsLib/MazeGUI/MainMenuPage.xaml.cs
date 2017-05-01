@@ -19,10 +19,10 @@ namespace MazeGUI
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
-            //ns = NavigationService.GetNavigationService(this);
-            //ns.Navigate(new Uri("SingleDetailsPage.xaml", UriKind.Relative));
-            SingleDetailsPage menu = new SingleDetailsPage();
-            menu.ShowDialog();
+            ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("SingleGame/SingleDetailsPage.xaml", UriKind.Relative));
+            //SingleDetailsPage menu = new SingleDetailsPage();
+            //menu.ShowDialog();
         }
 
         private void btnMulti_Click(object sender, RoutedEventArgs e)
