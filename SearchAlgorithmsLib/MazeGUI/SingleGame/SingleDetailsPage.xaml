@@ -1,4 +1,4 @@
-﻿<Page x:Class="MazeGUI.SingleDetailsPage"
+﻿<Window x:Class="MazeGUI.SingleGame.SingleDetailsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,8 +9,8 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Text="Single Player" HorizontalAlignment="Center" FontWeight="Black" FontSize="30" Padding="10"/>
-            <local:MazeDetails x:Name="MazeDetails" Loaded="MazeDetails_Loaded"/>
+            <local:MazeDetails x:Name="MazeDetails"/>
             <Button x:Name="btnOk" Content="Ok" Width="50" FontSize="15" Click="btnOk_Click"/>
         </StackPanel>
     </Grid>
-</Page>
+</Window>

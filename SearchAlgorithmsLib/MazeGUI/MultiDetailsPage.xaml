@@ -21,6 +21,7 @@
                     <ComboBox x:Name="GamesList" Grid.Column="1" />
                 </Grid>
             </Border>
+
             <Button x:Name="btnJoin" Content="Join Game" Width="80" FontSize="15" Click="btnJoin_Click"/>
 
             <local:MazeDetails x:Name="MazeDetails" Padding="10"/>

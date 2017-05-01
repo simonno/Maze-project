@@ -20,22 +20,38 @@ namespace MazeGUI
     /// </summary>
     public partial class Maze : UserControl
     {
-        List<List<Label>> mazeCells;
+        List<List<MazeCell>> mazeCells;
+
         public Maze(int rows, int columns)
         {
             InitializeComponent();
-            mazeCells = new List<List<Label>>(rows);
+
+            for (int j = 0; j < columns; j++)
+            {
+                ColumnDefinition gridCol = new ColumnDefinition();
+                gridCol.Width = new GridLength(1, GridUnitType.Star);
+                Grid.ColumnDefinitions.Add(gridCol);
+            }
+
+            for (int j = 0; j < rows; j++)
+            {
+                RowDefinition gridRow = new RowDefinition();
+                gridRow.Height = new GridLength(1, GridUnitType.Star);
+                Grid.RowDefinitions.Add(gridRow);
+            }
+
+            mazeCells = new List<List<MazeCell>>(rows);
             for (int i = 0; i < rows; i++)
             {
-                mazeCells[i] = new List<Label>(columns);
+                ///mazeCells[i] = new List<MazeCell>(columns);
+                for (int j = 0; j < columns; j++)
+                {
+                    MazeCell m = new MazeCell(MazeCell.Colors.White);
+                    Grid.Children.Add(m);
+                    Grid.SetRow(m, i);
+                    Grid.SetColumn(m, j);
+                }
             }
-            mazeCells[2] = l3;
-            mazeCells[3] = l4;
-            mazeCells[4] = l5;
-            mazeCells[5] = l6;
-            mazeCells[6] = l7;
-            mazeCells[7] = l8;
-            mazeCells[8] = l9;
         }
     }
 }

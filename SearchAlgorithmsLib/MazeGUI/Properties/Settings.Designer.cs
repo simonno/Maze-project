@@ -18,6 +18,11 @@ namespace MazeGUI.Properties
     {
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        internal int ServerPort;
+        internal string ServerIP;
+        internal int SearchAlgorithm;
+        internal int MazeCols;
+        internal int MazeRows;
 
         public static Settings Default
         {

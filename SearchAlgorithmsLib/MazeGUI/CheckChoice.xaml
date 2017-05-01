@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="CheckChoice" Height="300" Width="300">
     <Grid>
-        <Button Content="Yes" HorizontalAlignment="Left" Margin="166,174,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="Button_Click_Yes"/>
-        <Button Content="No" HorizontalAlignment="Left" Margin="30,174,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="Button_Click_No"/>
-        <TextBlock HorizontalAlignment="Left" Margin="30,73,0,0" TextWrapping="Wrap" Text="You are sure you do not want to exit this game?" VerticalAlignment="Top" Height="52" Width="232"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="166,174,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="Button_Click_Yes"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="30,174,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="Button_Click_No"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,73,0,0" TextWrapping="Wrap" Text="Are you sure you want to exit this game?" FontWeight="Black" FontSize="20" VerticalAlignment="Top" Height="52" Width="232"/>
 
     </Grid>
 </Window>

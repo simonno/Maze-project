@@ -58,14 +58,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MazeBoard.xaml.cs">
+      <DependentUpon>MazeBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ApplicationSettingsModel.cs" />
     <Compile Include="CheckChoice.xaml.cs">
       <DependentUpon>CheckChoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\ISettingsModel.cs" />
     <Compile Include="MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Maze.xaml.cs">
       <DependentUpon>Maze.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MazeCell.xaml.cs">
+      <DependentUpon>MazeCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="MazeDetails.xaml.cs">
       <DependentUpon>MazeDetails.xaml</DependentUpon>
@@ -73,16 +81,22 @@
     <Compile Include="MultiDetailsPage.xaml.cs">
       <DependentUpon>MultiDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleDetailsPage.xaml.cs">
+    <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="SingleGame\SingleDetailsPage.xaml.cs">
       <DependentUpon>SingleDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleGamePage.xaml.cs">
+    <Compile Include="SingleGame\SingleGamePage.xaml.cs">
       <DependentUpon>SingleGamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel.cs" />
     <Page Include="CheckChoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MazeBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MazeCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MazeDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,17 +132,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleDetailsPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="SingleGame\SingleDetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="SingleGamePage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="SingleGame\SingleGamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -153,5 +171,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MazeGUI
+namespace MazeGUI.SingleGame
 {
     /// <summary>
     /// Interaction logic for SingleGamePage.xaml
@@ -28,6 +28,9 @@ namespace MazeGUI
         public SingleGamePage()
         {
             InitializeComponent();
+            Maze m = new Maze(12, 12);
+            StackPanel.Children.Add(m);
+            
         }
 
      
@@ -36,7 +39,7 @@ namespace MazeGUI
             CheckChoice areYouSure = new CheckChoice();
             if (areYouSure.ShowDialog() == true)
             {
-                X += reset();
+                //X += reset();
 
             }
         }

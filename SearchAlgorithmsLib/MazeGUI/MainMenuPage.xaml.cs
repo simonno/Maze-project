@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MazeGUI.SingleGame;
 
 namespace MazeGUI
 {
@@ -28,8 +19,10 @@ namespace MazeGUI
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
-            ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("SingleDetailsPage.xaml", UriKind.Relative));
+            //ns = NavigationService.GetNavigationService(this);
+            //ns.Navigate(new Uri("SingleDetailsPage.xaml", UriKind.Relative));
+            SingleDetailsPage menu = new SingleDetailsPage();
+            menu.ShowDialog();
         }
 
         private void btnMulti_Click(object sender, RoutedEventArgs e)
@@ -41,7 +34,7 @@ namespace MazeGUI
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("SettingsPage.xaml", UriKind.Relative));
+            ns.Navigate(new Uri("Settings/SettingsPage.xaml", UriKind.Relative));
         }
     }
 }
