@@ -64,6 +64,9 @@
     <Compile Include="MultiGame\MultiDetailsPage.xaml.cs">
       <DependentUpon>MultiDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MultiGame\MultiPlayerGame.xaml.cs">
+      <DependentUpon>MultiPlayerGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\ApplicationSettingsModel.cs" />
     <Compile Include="CheckChoice.xaml.cs">
       <DependentUpon>CheckChoice.xaml</DependentUpon>
@@ -117,6 +120,10 @@
     <Page Include="MultiGame\MultiDetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MultiGame\MultiPlayerGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>

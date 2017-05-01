@@ -28,7 +28,7 @@ namespace MazeGUI
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("MultiDetailsPage.xaml", UriKind.Relative));
+            ns.Navigate(new Uri("MultiGame/MultiDetailsPage.xaml", UriKind.Relative));
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)

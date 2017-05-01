@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Navigation;
 
 namespace MazeGUI.MultiGame
 {
@@ -16,6 +17,8 @@ namespace MazeGUI.MultiGame
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Uri("MultiGame/MultiPlayerGame.xaml", UriKind.Relative));
         }
     }
 }
