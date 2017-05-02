@@ -15,23 +15,26 @@ using System.Windows.Shapes;
 namespace MazeGUI
 {
     /// <summary>
-    /// Interaction logic for CheckChoice.xaml
+    /// Interaction logic for AskToSolve.xaml
     /// </summary>
-    public partial class CheckChoice : Window
+    public partial class AskToSolve : Window
     {
-       
-        public CheckChoice()
+        public bool choose { get; set; }
+        public AskToSolve()
         {
             InitializeComponent();
         }
-
-        private void Button_Click_Yes(object sender, RoutedEventArgs e)
+        private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
-          
-        }
-        private void Button_Click_No(object sender, RoutedEventArgs e)
-        {
+            choose = false;
             this.Close();
         }
+        private void Button_Click_Solve(object sender, RoutedEventArgs e)
+        {
+            choose = true;
+            this.Close();
+        }
+
+
     }
 }

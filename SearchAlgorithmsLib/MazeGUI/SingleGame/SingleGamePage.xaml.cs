@@ -18,13 +18,11 @@ namespace MazeGUI.SingleGame
     /// <summary>
     /// Interaction logic for SingleGamePage.xaml
     /// </summary> 
-    public delegate void myfunc();
+    //public delegate void myfunc();
     
     public partial class SingleGamePage : Page
     {
-      public event myfunc X;
-        
-
+      //public event myfunc X;
         public SingleGamePage()
         {
             InitializeComponent();
@@ -32,29 +30,36 @@ namespace MazeGUI.SingleGame
             //StackPanel.Children.Add(m);
             
         }
-
-     
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            CheckChoice areYouSure = new CheckChoice();
-            if (areYouSure.ShowDialog() == true)
-            {
-                //X += reset();
-
+            AskToExit areYouSure = new AskToExit();
+            if (areYouSure.ShowDialog() != true) {
+                if (areYouSure.choose==true)//exit the game
+                {
+                    reset();
+                }
             }
         }
         public void reset()
         {
             InitializeComponent();
         }
-        public void activatePressed()
-        {
-            X();
-
-        }
+     
         private void btnSolve_Click(object sender, RoutedEventArgs e)
         {
+            AskToSolve areYouSure = new AskToSolve();
+            if (areYouSure.ShowDialog() != true)
+            {
+                if (areYouSure.choose == true)//solve the game
+                {
+                    solveMaze();
+                }
+            }
+        }
 
+        private void solveMaze()
+        {
+           //TO DO solve maze 
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
