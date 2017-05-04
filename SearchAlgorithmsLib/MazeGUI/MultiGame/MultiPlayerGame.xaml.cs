@@ -24,5 +24,10 @@ namespace MazeGUI.MultiGame
         {
             InitializeComponent();
         }
+
+        private void mazeBoard2_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

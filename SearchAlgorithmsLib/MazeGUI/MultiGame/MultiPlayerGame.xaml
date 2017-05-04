@@ -24,6 +24,6 @@
         <Controls:MazeBoard x:Name="mazeBoard1" Margin="0 0 3 0" Rows="6" Cols="6"
                 Maze="0010011011101110001110110000001010010" Grid.Row="2"/>
         <Controls:MazeBoard x:Name="mazeBoard2" Margin="3 0 0 0" Rows="5" Cols="5"
-                Maze="0010011011111100001110110" Grid.Row="2" Grid.Column="1"/>
+                Maze="0010011101111100001110110" Grid.Row="2" Grid.Column="1" Loaded="mazeBoard2_Loaded"/>
     </Grid>
 </Page>

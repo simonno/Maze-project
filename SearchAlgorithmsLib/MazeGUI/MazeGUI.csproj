@@ -172,10 +172,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pictures\player.png" />
+    <Resource Include="Images\player.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pictures\mazeLogo.png" />
+    <Resource Include="Images\mazeLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MazeBackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

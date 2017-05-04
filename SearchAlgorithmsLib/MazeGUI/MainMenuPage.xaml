@@ -8,7 +8,11 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainMenuPage">
 
-    <Grid Background="AliceBlue">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/MazeBackground.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
         <TextBlock Text="The Maze" HorizontalAlignment="Center" FontWeight="Black" FontSize="30" Padding="10"/>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" >
             <Grid>

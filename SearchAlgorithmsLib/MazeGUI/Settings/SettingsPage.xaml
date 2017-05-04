@@ -52,10 +52,12 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="4">Search algorithm:</TextBlock>                    <ComboBox x:Name="cboSearchAlgo" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
+                    <TextBlock Grid.Row="4">Search algorithm:</TextBlock>
+                    <ComboBox x:Name="cboSearchAlgo" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
                         <ComboBoxItem>BFS</ComboBoxItem>
                         <ComboBoxItem>DFS</ComboBoxItem>
-                    </ComboBox>                </Grid>
+                    </ComboBox>
+                </Grid>
             </StackPanel>
 
             <!-- Buttons -->
