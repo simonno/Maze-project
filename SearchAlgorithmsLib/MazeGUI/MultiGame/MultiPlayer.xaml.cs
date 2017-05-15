@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MazeGUI.MultiGame
 {
     /// <summary>
-    /// Interaction logic for MultiPlayerGame.xaml
+    /// Interaction logic for MultiPlayer.xaml
     /// </summary>
-    public partial class MultiPlayerGame : Page
+    public partial class MultiPlayer : Window
     {
-        public MultiPlayerGame()
+        public MultiPlayer()
         {
             InitializeComponent();
-        }
-
-        private void mazeBoard2_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

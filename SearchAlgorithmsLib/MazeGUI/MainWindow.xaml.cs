@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MazeGUI.MultiGame;
+using MazeGUI.SingleGame;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MazeGUI
 {
@@ -23,7 +14,39 @@ namespace MazeGUI
         public MainWindow()
         {
             InitializeComponent();
-            frmMainContent.Source = new Uri("MainMenuPage.xaml", UriKind.Relative); // initialize frame with the "test1" view
+        }
+
+        private void btnSingle_Click(object sender, RoutedEventArgs e)
+        {
+            SinglePlayerDetails win = new SinglePlayerDetails()
+            {
+                Top = Top,
+                Left = Left
+            };
+            win.Show();
+            this.Close();
+        }
+
+        private void btnMulti_Click(object sender, RoutedEventArgs e)
+        {
+            MultiPlayerDetails win = new MultiPlayerDetails()
+            {
+                Top = Top,
+                Left = Left
+            };
+            win.Show();
+            this.Close();
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.Settings win = new Settings.Settings()
+            {
+                Top = Top,
+                Left = Left
+            };
+            win.Show();
+            this.Close();
         }
     }
 }

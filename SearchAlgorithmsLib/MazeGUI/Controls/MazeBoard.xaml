@@ -8,7 +8,10 @@
     <Grid>
         <Viewbox>
             <Border BorderBrush="Black" BorderThickness="3">
-                <Canvas x:Name="myCanvas" Width="300" Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <Canvas x:Name="myCanvas" Width="300" Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image x:Name="CharacterImg"/>
+                    <Image x:Name="ExitImg"/>
+                </Canvas>
             </Border>
         </Viewbox>
     </Grid>

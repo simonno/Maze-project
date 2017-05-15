@@ -1,16 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace MazeGUI.SingleGame
 {
     /// <summary>
-    /// Interaction logic for SingleDetailsPage.xaml
+    /// Interaction logic for SinglePlayerDetails.xaml
     /// </summary>
-    public partial class SingleDetailsPage : Page
+    public partial class SinglePlayerDetails : Window
     {
-        public SingleDetailsPage()
+        public SinglePlayerDetails()
         {
             InitializeComponent();
         }
@@ -39,8 +48,13 @@ namespace MazeGUI.SingleGame
             }
 
 
-            NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Uri("SingleGame/SingleGamePage.xaml", UriKind.Relative));
+            SinglePlayer win = new SinglePlayer()
+            {
+                Top = Top,
+                Left = Left
+            };
+            win.Show();
+            this.Close();
         }
     }
 }

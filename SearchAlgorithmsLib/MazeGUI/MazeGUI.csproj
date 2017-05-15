@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -67,29 +68,27 @@
     <Compile Include="Controls\MazeBoard.xaml.cs">
       <DependentUpon>MazeBoard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MultiGame\MultiDetailsPage.xaml.cs">
-      <DependentUpon>MultiDetailsPage.xaml</DependentUpon>
+    <Compile Include="MultiGame\MultiPlayer.xaml.cs">
+      <DependentUpon>MultiPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MultiGame\MultiPlayerGame.xaml.cs">
-      <DependentUpon>MultiPlayerGame.xaml</DependentUpon>
+    <Compile Include="MultiGame\MultiPlayerDetails.xaml.cs">
+      <DependentUpon>MultiPlayerDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\ApplicationSettingsModel.cs" />
     <Compile Include="Settings\ISettingsModel.cs" />
-    <Compile Include="MainMenuPage.xaml.cs">
-      <DependentUpon>MainMenuPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MazeDetails.xaml.cs">
       <DependentUpon>MazeDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="Settings\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\SettingsViewModel.cs" />
-    <Compile Include="SingleGame\SingleDetailsPage.xaml.cs">
-      <DependentUpon>SingleDetailsPage.xaml</DependentUpon>
+    <Compile Include="SingleGame\SingleGameViewModel.cs" />
+    <Compile Include="SingleGame\SinglePlayer.xaml.cs">
+      <DependentUpon>SinglePlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleGame\SingleGamePage.xaml.cs">
-      <DependentUpon>SingleGamePage.xaml</DependentUpon>
+    <Compile Include="SingleGame\SinglePlayerDetails.xaml.cs">
+      <DependentUpon>SinglePlayerDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel.cs" />
     <Page Include="AskToExit.xaml">
@@ -101,10 +100,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MazeBoard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,25 +119,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MultiGame\MultiDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MultiGame\MultiPlayerGame.xaml">
+    <Page Include="MultiGame\MultiPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings\SettingsPage.xaml">
+    <Page Include="MultiGame\MultiPlayerDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleGame\SingleDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Settings\Settings.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleGame\SingleGamePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="SingleGame\SinglePlayer.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleGame\SinglePlayerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +174,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MazeBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\monster.jpg" />
+    <Resource Include="Images\simpson.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit1.png" />
+    <Resource Include="Images\exit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientLib\ClientLib.csproj">
+      <Project>{1B71A17B-041E-49F7-9FB3-8C83FA689937}</Project>
+      <Name>ClientLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

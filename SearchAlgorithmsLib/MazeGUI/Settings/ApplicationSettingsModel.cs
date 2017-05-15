@@ -10,7 +10,7 @@ namespace MazeGUI.Settings
     {
         public string ServerIP
         {
-            get { return Properties.Settings.Default.ServerIP; }
+            get { return (string) Properties.Settings.Default["ServerIP"]; }
             set { Properties.Settings.Default.ServerIP = value; }
         }
         public int ServerPort
