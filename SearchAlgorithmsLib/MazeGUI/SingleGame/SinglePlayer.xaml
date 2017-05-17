@@ -23,7 +23,7 @@
                 <Button x:Name="btnSolve" Grid.Column="1" Content="Solve maze" Click="btnSolve_Click" />
                 <Button x:Name="btnMenu" Grid.Column="2" Content="Main menu" Margin="10 0 0 0" Click="btnMenu_Click"/>
                 <Controls:MazeBoard x:Name="mazeBoard" Rows="5" Cols="5"
-                Maze="0010011011111100001110110" Grid.Row="1" Grid.ColumnSpan="3"/>
+                Maze="0010011011111100001110110"  Grid.Row="1" Grid.ColumnSpan="3"/>
             </Grid>
         </StackPanel>
         </Border>

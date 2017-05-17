@@ -17,8 +17,8 @@ namespace MazeGUI.Controls
         {
             boardDescription = "";
             InitializeComponent();
-            double width = myCanvas.Width / Cols;
-            double height = myCanvas.Height / Rows;
+            //double width = myCanvas.Width / Cols;
+            //double height = myCanvas.Height / Rows;
             //CharacterImg.Source = new BitmapImage(new Uri(PlayerImageFile));
             //ExitImg.Source = new BitmapImage(new Uri(ExitImageFile));
            // Canvas.SetLeft(CharacterImg, )
@@ -58,7 +58,7 @@ namespace MazeGUI.Controls
             }
             set
             {
-                string[] args = value.Split(',');
+                string[] args = value.Split(' ');
                 int x = int.Parse(args[0]);
                 int y = int.Parse(args[1]);
                 SetValue(InitialPosProperty, new Point(x, y));
@@ -71,12 +71,12 @@ namespace MazeGUI.Controls
 
 
 
-        public Point GoalPos
+        public int GoalPos
         {
             get
             {
                 // Point init = 
-                return (Point)GetValue(GoalPosProperty);
+                return (int )GetValue(GoalPosProperty);
             }
             set
             {

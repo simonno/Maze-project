@@ -15,6 +15,7 @@ namespace MazeGUI.SingleGame
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             Client client = new Client(ip, port);
+
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
