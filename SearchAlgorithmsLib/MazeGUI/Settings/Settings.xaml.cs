@@ -14,11 +14,11 @@ namespace MazeGUI.Settings
         {
             InitializeComponent();
             vm = new SettingsViewModel(new ApplicationSettingsModel());
-            DataContext = vm;
-        }
+            DataContext = vm;        }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
+            vm.cancleSettings();
             MainWindow win = new MainWindow();
             win.Top = Top;
             win.Left = Left;
@@ -33,6 +33,8 @@ namespace MazeGUI.Settings
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+
+
             vm.SaveSettings();
             MainWindow win = new MainWindow();
             win.Top = Top;

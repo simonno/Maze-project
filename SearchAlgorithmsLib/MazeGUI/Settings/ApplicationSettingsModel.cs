@@ -39,5 +39,9 @@ namespace MazeGUI.Settings
         {
             Properties.Settings.Default.Save();
         }
+        public void cancleSettings()
+        {
+            Properties.Settings.Default.Reload();
+        }
     }
 }

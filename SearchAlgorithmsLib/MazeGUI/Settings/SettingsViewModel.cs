@@ -60,5 +60,9 @@
         {
             model.SaveSettings();
         }
+        public void cancleSettings()
+        {
+            model.cancleSettings();
+        }
     }
 }
