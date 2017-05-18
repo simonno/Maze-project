@@ -21,7 +21,7 @@ namespace MazeGUI.Controls
             //double height = myCanvas.Height / Rows;
             //CharacterImg.Source = new BitmapImage(new Uri(PlayerImageFile));
             //ExitImg.Source = new BitmapImage(new Uri(ExitImageFile));
-           // Canvas.SetLeft(CharacterImg, )
+            // Canvas.SetLeft(CharacterImg, )
         }
 
         public int Rows
@@ -49,25 +49,25 @@ namespace MazeGUI.Controls
 
 
 
-        public string InitialPos
-        {
-            get
-            {
-                Point init = (Point)GetValue(InitialPosProperty);
-                return init.ToString();
-            }
-            set
-            {
-                string[] args = value.Split(' ');
-                int x = int.Parse(args[0]);
-                int y = int.Parse(args[1]);
-                SetValue(InitialPosProperty, new Point(x, y));
-            }
-        }
+        //public string InitialPos
+        //{
+        //    get
+        //    {
+        //        Point init = (Point)GetValue(InitialPosProperty);
+        //        return init.ToString();
+        //    }
+        //    set
+        //    {
+        //        string[] args = value.Split(' ');
+        //        int x = int.Parse(args[0]);
+        //        int y = int.Parse(args[1]);
+        //        SetValue(InitialPosProperty, new Point(x, y));
+        //    }
+        //}
 
-        // Using a DependencyProperty as the backing store for InitialPos.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty InitialPosProperty =
-            DependencyProperty.Register("InitialPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0, 0)));
+        //// Using a DependencyProperty as the backing store for InitialPos.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty InitialPosProperty =
+        //    DependencyProperty.Register("InitialPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0, 0)));
 
 
 
@@ -76,7 +76,7 @@ namespace MazeGUI.Controls
             get
             {
                 // Point init = 
-                return (int )GetValue(GoalPosProperty);
+                return (int)GetValue(GoalPosProperty);
             }
             set
             {
@@ -116,17 +116,60 @@ namespace MazeGUI.Controls
         public static readonly DependencyProperty ExitImageFileProperty =
             DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("../Images/exit1.png"));
 
+        //public string Maze2
+        //{
+        //    get
+        //    {
+        //        return (string)GetValue(MazeProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(MazeProperty, value);
+        //        string s = value;
+        //        //boardDescription = value;
+        //        int rows = Rows;
+        //        int cols = Cols;
+        //        double width = myCanvas.Width / cols;
+        //        double height = myCanvas.Height / rows;
+
+        //        for (int i = 0; i < rows; i++)
+        //        {
+        //            for (int j = 0; j < cols; j++)
+        //            {
+        //                Label l = new Label();
+        //                char c = s[i + rows * j];
+        //                l.Content = c;
+        //                l.Width = width;
+        //                l.Height = height;
+        //                Canvas.SetLeft(l, width * i);
+        //                Canvas.SetTop(l, height * j);
+
+        //                if (c == '1')
+        //                {
+        //                    l.Foreground = Brushes.Red;
+        //                    l.Background = Brushes.Black;
+
+        //                }
+        //                else if (c == '0')
+        //                {
+        //                    l.Foreground = Brushes.Red;
+        //                    l.Background = Brushes.White;
+        //                }
+        //                myCanvas.Children.Add(l);
+        //            }
+        //        }
+        //    }
+        //}
+
+
         public string Maze
         {
-            get
-            {
-                return boardDescription;
-            }
+            get { return (string)GetValue(MazeProperty); }
             set
             {
+                SetValue(MazeProperty, value);
 
                 string s = value;
-                boardDescription = value;
                 int rows = Rows;
                 int cols = Cols;
                 double width = myCanvas.Width / cols;
@@ -143,24 +186,39 @@ namespace MazeGUI.Controls
                         l.Height = height;
                         Canvas.SetLeft(l, width * i);
                         Canvas.SetTop(l, height * j);
+                        l.Foreground = Brushes.Red;
 
-                        if (c == '1')
+                        switch (c)
                         {
-                            l.Foreground = Brushes.Red;
-                            l.Background = Brushes.Black;
+                            case '1':
+                                l.Background = Brushes.Black;
+                                break;
 
-                        }
-                        else if (c == '0')
-                        {
-                            l.Foreground = Brushes.Red;
-                            l.Background = Brushes.White;
+                            case '0':
+                                l.Background = Brushes.White;
+                                break;
+
+                            case '*':
+                                l.Background = Brushes.Blue;
+                                break;
+
+                            case '#':
+                                l.Background = Brushes.Green;
+                                break;
+
                         }
                         myCanvas.Children.Add(l);
                     }
                 }
             }
-
         }
+
+        // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeProperty =
+            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("01"));
+
+
+
         public class Point
         {
             int x;

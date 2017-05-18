@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MazeLib">
+      <HintPath>..\..\MazeLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -83,13 +86,15 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\SettingsViewModel.cs" />
-    <Compile Include="SingleGame\SingleGameViewModel.cs" />
+    <Compile Include="SingleGame\ApplicationSinglePlayerModel.cs" />
+    <Compile Include="SingleGame\SinglePlayerViewModel.cs" />
     <Compile Include="SingleGame\SinglePlayer.xaml.cs">
       <DependentUpon>SinglePlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="SingleGame\SinglePlayerDetails.xaml.cs">
       <DependentUpon>SinglePlayerDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleGame\ISinglePlayerModel.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="AskToExit.xaml">
       <SubType>Designer</SubType>
@@ -187,6 +192,10 @@
     <ProjectReference Include="..\ClientLib\ClientLib.csproj">
       <Project>{1B71A17B-041E-49F7-9FB3-8C83FA689937}</Project>
       <Name>ClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
+      <Project>{AD021C42-A6DD-4F25-B693-986869BA4830}</Project>
+      <Name>ModelLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

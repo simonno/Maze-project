@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MazeGUI.Controls"
         mc:Ignorable="d"
         Title="SinglePlayerDetails" Height="300" Width="300">
-    <Grid Background="White">
+    <Grid Background="White" Margin="10">
         <StackPanel>
             <TextBlock Text="Single Player" HorizontalAlignment="Center" FontWeight="Black" FontSize="30" Padding="10"/>
             <Controls:MazeDetails x:Name="MazeDetails"/>

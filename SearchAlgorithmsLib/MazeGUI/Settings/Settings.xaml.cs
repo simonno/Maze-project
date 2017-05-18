@@ -14,7 +14,8 @@ namespace MazeGUI.Settings
         {
             InitializeComponent();
             vm = new SettingsViewModel(new ApplicationSettingsModel());
-            DataContext = vm;        }
+            DataContext = vm;
+        }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {

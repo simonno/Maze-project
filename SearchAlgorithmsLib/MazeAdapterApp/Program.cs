@@ -22,7 +22,8 @@ namespace MazeAdaptorApp
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.CompareSolvers(2000, 2000);
+            p.CompareSolvers(20, 20);
+            Console.ReadLine();
         }
 
         /// <summary>

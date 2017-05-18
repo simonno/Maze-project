@@ -33,8 +33,8 @@ namespace MazeGUI.SingleGame
                 return;
             }
 
-            string rows = MazeDetails.txtBoxRows.Text;
-            if (string.IsNullOrEmpty(rows))
+            string rowsText = MazeDetails.txtBoxRows.Text;
+            if (string.IsNullOrEmpty(rowsText))
             {
                 MessageBox.Show("Please insert the number of the maze's rows.");
                 return;
@@ -47,8 +47,17 @@ namespace MazeGUI.SingleGame
                 return;
             }
 
+            if (!int.TryParse(rowsText, out int rows))
+            {
+                throw new Exception("rows convert failed.");
+            }
 
-            SinglePlayer win = new SinglePlayer()
+            if (!int.TryParse(columns, out int cols))
+            {
+                throw new Exception("cols convert failed.");
+            }
+
+            SinglePlayer win = new SinglePlayer(name, rows, cols)
             {
                 Top = Top,
                 Left = Left

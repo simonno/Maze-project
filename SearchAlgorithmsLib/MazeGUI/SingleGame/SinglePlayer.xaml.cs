@@ -9,13 +9,13 @@ namespace MazeGUI.SingleGame
     /// </summary>
     public partial class SinglePlayer : Window
     {
-        public SinglePlayer()
+        private SinglePlayerViewModel vm;
+
+        public SinglePlayer(string mazeName, int rows, int cols)
         {
             InitializeComponent();
-            string ip = Properties.Settings.Default.ServerIP;
-            int port = Properties.Settings.Default.ServerPort;
-            Client client = new Client(ip, port);
-
+            vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
+            DataContext = vm;
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
