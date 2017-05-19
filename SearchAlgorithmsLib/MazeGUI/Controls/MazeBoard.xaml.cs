@@ -120,7 +120,7 @@ namespace MazeGUI.Controls
                         case '#':
                             //l.Background = Brushes.Green;
                            l.Background = new ImageBrush(new BitmapImage(new Uri(ExitImageFile)));
-                            continue;
+                           break;
 
                     }
                     l.Foreground = Brushes.Red;
