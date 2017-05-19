@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,8 +27,8 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ExitImageFileProperty =
-            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/exit1.png"));
-
+            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("" +
+                "\\Images\\exit1.png"));
 
 
         public string PlayerImageFile
@@ -38,7 +39,9 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayerImageFileProperty =
-            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/simpson.png"));
+            DependencyProperty.Register("PlayerImageFile", typeof(string),
+                typeof(MazeBoard), new PropertyMetadata(""+
+                    "\\Images\\simpson.png"));
 
 
 
@@ -49,7 +52,7 @@ namespace MazeGUI.Controls
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RowsProperty =
+        public static readonly DependencyProperty RowsProperty = 
             DependencyProperty.Register("Rows", typeof(int), typeof(MazeBoard), new PropertyMetadata(Properties.Settings.Default.MazeRows));
 
 
@@ -113,13 +116,24 @@ namespace MazeGUI.Controls
                             break;
 
                         case '*':
-                            //ul.Background = Brushes.Red;
-                            l.Background = new ImageBrush(new BitmapImage(new Uri(PlayerImageFile)));
+                            //ul.Background = Brushes.Red;  
+
+                            string path = System.IO.Directory.GetCurrentDirectory();
+                            DirectoryInfo father = System.IO.Directory.GetParent(path);
+                            DirectoryInfo father2 = System.IO.Directory.GetParent(father.ToString());
+                            string fullPath = father2 + PlayerImageFile;
+                            l.Background = new ImageBrush(new BitmapImage(
+                                new Uri(fullPath)));
                             break;
 
                         case '#':
                             //l.Background = Brushes.Green;
-                           l.Background = new ImageBrush(new BitmapImage(new Uri(ExitImageFile)));
+                            string pathExit = System.IO.Directory.GetCurrentDirectory();
+                            
+                            DirectoryInfo fatherExit = System.IO.Directory.GetParent(pathExit);
+                            DirectoryInfo fatherExit2 = System.IO.Directory.GetParent(fatherExit.ToString());
+                            string fullPathExit = fatherExit2 + ExitImageFile;
+                            l.Background = new ImageBrush(new BitmapImage(new Uri(fullPathExit)));
                            break;
 
                     }
