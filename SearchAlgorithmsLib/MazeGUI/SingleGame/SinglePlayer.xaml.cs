@@ -16,7 +16,7 @@ namespace MazeGUI.SingleGame
             InitializeComponent();
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
-            MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
+            //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
             
         }
         
@@ -55,7 +55,7 @@ namespace MazeGUI.SingleGame
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols + mazeBoard.Maze);
+            //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols + mazeBoard.Maze);
             MainWindow win = new MainWindow();
             win.Top = Top;
             win.Left = Left;

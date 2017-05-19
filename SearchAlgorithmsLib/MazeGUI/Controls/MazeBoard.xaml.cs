@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MazeGUI.Controls
 {
@@ -24,6 +15,32 @@ namespace MazeGUI.Controls
         {
             InitializeComponent();
         }
+
+
+
+        public string ExitImageFile
+        {
+            get { return (string)GetValue(ExitImageFileProperty); }
+            set { SetValue(ExitImageFileProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ExitImageFileProperty =
+            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/exit1.png"));
+
+
+
+        public string PlayerImageFile
+        {
+            get { return (string)GetValue(PlayerImageFileProperty); }
+            set { SetValue(PlayerImageFileProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlayerImageFileProperty =
+            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/simpson.png"));
+
+
 
         public int Rows
         {
@@ -96,12 +113,14 @@ namespace MazeGUI.Controls
                             break;
 
                         case '*':
-                            l.Background = Brushes.Blue;
+                            //ul.Background = Brushes.Red;
+                            l.Background = new ImageBrush(new BitmapImage(new Uri(PlayerImageFile)));
                             break;
 
                         case '#':
-                            l.Background = Brushes.Green;
-                            break;
+                            //l.Background = Brushes.Green;
+                           l.Background = new ImageBrush(new BitmapImage(new Uri(ExitImageFile)));
+                            continue;
 
                     }
                     l.Foreground = Brushes.Red;
