@@ -22,7 +22,7 @@
                     <Button x:Name="btnReset" Grid.Column="0" Content="Reset game" Margin="0 0 10 0" Click="btnReset_Click"/>
                     <Button x:Name="btnSolve" Grid.Column="1" Content="Solve maze" Click="btnSolve_Click" />
                     <Button x:Name="btnMenu" Grid.Column="2" Content="Main menu" Margin="10 0 0 0" Click="btnMenu_Click"/>
-                <Controls:MazeBoard x:Name="mazeBoard" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Width="{Binding ElementName=StackPanel, Path=Width.Value}" Height="{Binding ElementName=StackPanel, Path=Height}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
+                <Controls:MazeBoard x:Name="mazeBoard" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
                 </Grid>
             </StackPanel>
         </Border>

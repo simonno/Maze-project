@@ -71,8 +71,8 @@ namespace MazeGUI.Controls
             string s = Maze;
             int rows = Rows;
             int cols = Cols;
-            double width = Width / cols;
-            double height = Height / rows;
+            double width = myCanvas.Width / cols;
+            double height = myCanvas.Height / rows;
 
             for (int i = 0; i < rows; i++)
             {
@@ -109,6 +109,5 @@ namespace MazeGUI.Controls
                 }
             }
         }
-
     }
 }
