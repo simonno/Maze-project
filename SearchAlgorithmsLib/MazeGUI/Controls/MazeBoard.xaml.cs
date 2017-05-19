@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -11,12 +13,40 @@ namespace MazeGUI.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        private List<List<int>> mazeCells;
+        private Label player;
+        private Point playerPos;
+
         public MazeBoard()
         {
+            player = new Label();
             InitializeComponent();
         }
 
+        public Point PlayerPos
+        {
+            get
+            {
+                return playerPos;
+            }
+            set
+            {
+                Point p = value;
+                if (Valid(p))
+                {
+                    playerPos = p;
+                    Canvas.SetLeft(player, Width * p.X);
+                    Canvas.SetTop(player, Height * p.Y);
+                }
+            }
+        }
 
+        private bool Valid(Point p)
+        {
+            if (mazeCells[p.X][p.Y] == 0)
+                return true;
+            return false;
+        }
 
         public string ExitImageFile
         {
@@ -26,7 +56,7 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ExitImageFileProperty =
-            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/exit1.png"));
+            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("exit1.png"));
 
 
 
@@ -38,7 +68,7 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayerImageFileProperty =
-            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("C:/Users/simon/Source/Repos/Maze-project/SearchAlgorithmsLib/MazeGUI/Images/simpson.png"));
+            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("simpson.png"));
 
 
 
@@ -75,7 +105,7 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for MyPropertyMaze.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MazeProperty =
-            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("1",OnMazePropertyChanged));
+            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("1", OnMazePropertyChanged));
 
 
         private static void OnMazePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -91,8 +121,11 @@ namespace MazeGUI.Controls
             double width = myCanvas.Width / cols;
             double height = myCanvas.Height / rows;
 
+
+            mazeCells = new List<List<int>>(rows);
             for (int i = 0; i < rows; i++)
             {
+               mazeCells.Add(new List<int>(cols));
                 for (int j = 0; j < cols; j++)
                 {
                     Label l = new Label();
@@ -106,26 +139,81 @@ namespace MazeGUI.Controls
                     {
                         case '1':
                             l.Background = Brushes.Black;
+                            mazeCells[i].Insert(j , 1);
                             break;
 
                         case '0':
                             l.Background = Brushes.White;
+                            mazeCells[i].Insert(j, 0);
                             break;
 
                         case '*':
-                            //ul.Background = Brushes.Red;
-                            l.Background = new ImageBrush(new BitmapImage(new Uri(PlayerImageFile)));
+                            l.Background = Brushes.Red;
+                            player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
+                            player.Width = width;
+                            player.Height = height;
+                            Canvas.SetLeft(player, width * i);
+                            Canvas.SetTop(player, height * j);
+                            playerPos = new Point(i, j);
+                            mazeCells[i].Insert(j, 0);
                             break;
 
                         case '#':
                             //l.Background = Brushes.Green;
-                           l.Background = new ImageBrush(new BitmapImage(new Uri(ExitImageFile)));
-                           break;
+                            l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
+                            mazeCells[i].Insert(j, 0);
+                            break;
 
                     }
                     l.Foreground = Brushes.Red;
                     myCanvas.Children.Add(l);
                 }
+            }
+            myCanvas.Children.Add(player);
+        }
+
+        private void ucMazeBoard_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up:
+                    MessageBox.Show("up");
+                    break;
+
+                case Key.Down:
+                    MessageBox.Show("down");
+                    break;
+
+                case Key.Right:
+                    MessageBox.Show("right");
+                    break;
+
+                case Key.Left:
+                    MessageBox.Show("left");
+                    break;
+            }
+        }
+
+        public class Point
+        {
+            public Point()
+            {
+                X = 0;
+                Y = 0;
+            }
+            public Point(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            public int X
+            {
+                set; get;
+            }
+            public int Y
+            {
+                set; get;
             }
         }
     }

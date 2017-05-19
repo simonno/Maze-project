@@ -1,6 +1,7 @@
 ﻿using ClientLib;
 using System.Windows;
 using System.Configuration;
+using System.Windows.Input;
 
 namespace MazeGUI.SingleGame
 {
@@ -56,11 +57,39 @@ namespace MazeGUI.SingleGame
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols + mazeBoard.Maze);
-            MainWindow win = new MainWindow();
-            win.Top = Top;
-            win.Left = Left;
+            MainWindow win = new MainWindow()
+            {
+                Top = Top,
+                Left = Left
+            };
             win.Show();
-            this.Close();
+            Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up:
+                    MessageBox.Show("up1");
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+                    break;
+
+                case Key.Down:
+                    MessageBox.Show("down1");
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+                    break;
+
+                case Key.Right:
+                    MessageBox.Show("right1");
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+                    break;
+
+                case Key.Left:
+                    MessageBox.Show("left1");
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                    break;
+            }
         }
     }
 }
