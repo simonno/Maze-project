@@ -14,14 +14,17 @@ namespace MazeGUI.Settings
         {
             InitializeComponent();
             vm = new SettingsViewModel(new ApplicationSettingsModel());
-            DataContext = vm;        }
+            DataContext = vm;
+        }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
-            vm.cancleSettings();
-            MainWindow win = new MainWindow();
-            win.Top = Top;
-            win.Left = Left;
+            vm.ReloadSettings();
+            MainWindow win = new MainWindow()
+            {
+                Top = Top,
+                Left = Left
+            };
             win.Show();
             this.Close();
         }
@@ -36,9 +39,11 @@ namespace MazeGUI.Settings
 
 
             vm.SaveSettings();
-            MainWindow win = new MainWindow();
-            win.Top = Top;
-            win.Left = Left;
+            MainWindow win = new MainWindow()
+            {
+                Top = Top,
+                Left = Left
+            };
             win.Show();
             this.Close();
         }

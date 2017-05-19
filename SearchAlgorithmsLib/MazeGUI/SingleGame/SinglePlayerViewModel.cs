@@ -19,7 +19,13 @@ namespace MazeGUI.SingleGame
         {
             get
             {
-                return model.MazeToString;
+                string maze = model.MazeToString;
+                return maze.Replace(Environment.NewLine, "");
+            }
+
+            set
+            {
+                NotifyPropertyChanged("MazeToString");
             }
         }
 
@@ -29,6 +35,11 @@ namespace MazeGUI.SingleGame
             {
                 return model.MazeName;
             }
+
+            set
+            {
+                NotifyPropertyChanged("MazeName");
+            }
         }
 
         public int MazeRows
@@ -37,12 +48,22 @@ namespace MazeGUI.SingleGame
             {
                 return model.MazeRows;
             }
+
+            set
+            {
+                NotifyPropertyChanged("MazeRows");
+            }
         }
         public int MazeCols
         {
             get
             {
                 return model.MazeCols;
+            }
+
+            set
+            {
+                NotifyPropertyChanged("MazeCols");
             }
         }
     }

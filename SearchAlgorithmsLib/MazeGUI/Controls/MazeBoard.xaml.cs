@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace MazeGUI.Controls
 {
@@ -11,17 +20,9 @@ namespace MazeGUI.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
-        private string boardDescription;
-
         public MazeBoard()
         {
-            boardDescription = "";
             InitializeComponent();
-            //double width = myCanvas.Width / Cols;
-            //double height = myCanvas.Height / Rows;
-            //CharacterImg.Source = new BitmapImage(new Uri(PlayerImageFile));
-            //ExitImg.Source = new BitmapImage(new Uri(ExitImageFile));
-            // Canvas.SetLeft(CharacterImg, )
         }
 
         public int Rows
@@ -30,10 +31,9 @@ namespace MazeGUI.Controls
             set { SetValue(RowsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Rows.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RowsProperty =
-            DependencyProperty.Register("Rows", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
-
+            DependencyProperty.Register("Rows", typeof(int), typeof(MazeBoard), new PropertyMetadata(Properties.Settings.Default.MazeRows));
 
 
 
@@ -45,202 +45,69 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for Cols.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ColsProperty =
-            DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
+            DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new PropertyMetadata(Properties.Settings.Default.MazeCols));
 
 
-
-        //public string InitialPos
-        //{
-        //    get
-        //    {
-        //        Point init = (Point)GetValue(InitialPosProperty);
-        //        return init.ToString();
-        //    }
-        //    set
-        //    {
-        //        string[] args = value.Split(' ');
-        //        int x = int.Parse(args[0]);
-        //        int y = int.Parse(args[1]);
-        //        SetValue(InitialPosProperty, new Point(x, y));
-        //    }
-        //}
-
-        //// Using a DependencyProperty as the backing store for InitialPos.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty InitialPosProperty =
-        //    DependencyProperty.Register("InitialPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0, 0)));
-
-
-
-        public int GoalPos
-        {
-            get
-            {
-                // Point init = 
-                return (int)GetValue(GoalPosProperty);
-            }
-            set
-            {
-                //string[] args = value.Split(',');
-                //int x = int.Parse(args[0]);
-                //int y = int.Parse(args[1]);
-                SetValue(GoalPosProperty, value);
-            }
-        }
-
-        // Using a DependencyProperty as the backing store for GoalPos.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty GoalPosProperty =
-            DependencyProperty.Register("GoalPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0, 0)));
-
-
-
-        public string PlayerImageFile
-        {
-            get { return (string)GetValue(PlayerImageFileProperty); }
-            set { SetValue(PlayerImageFileProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlayerImageFileProperty =
-            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("../Images/simpson.png"));
-
-
-
-
-        public string ExitImageFile
-        {
-            get { return (string)GetValue(ExitImageFileProperty); }
-            set { SetValue(ExitImageFileProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ExitImageFileProperty =
-            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("../Images/exit1.png"));
-
-        //public string Maze2
-        //{
-        //    get
-        //    {
-        //        return (string)GetValue(MazeProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(MazeProperty, value);
-        //        string s = value;
-        //        //boardDescription = value;
-        //        int rows = Rows;
-        //        int cols = Cols;
-        //        double width = myCanvas.Width / cols;
-        //        double height = myCanvas.Height / rows;
-
-        //        for (int i = 0; i < rows; i++)
-        //        {
-        //            for (int j = 0; j < cols; j++)
-        //            {
-        //                Label l = new Label();
-        //                char c = s[i + rows * j];
-        //                l.Content = c;
-        //                l.Width = width;
-        //                l.Height = height;
-        //                Canvas.SetLeft(l, width * i);
-        //                Canvas.SetTop(l, height * j);
-
-        //                if (c == '1')
-        //                {
-        //                    l.Foreground = Brushes.Red;
-        //                    l.Background = Brushes.Black;
-
-        //                }
-        //                else if (c == '0')
-        //                {
-        //                    l.Foreground = Brushes.Red;
-        //                    l.Background = Brushes.White;
-        //                }
-        //                myCanvas.Children.Add(l);
-        //            }
-        //        }
-        //    }
-        //}
 
 
         public string Maze
         {
             get { return (string)GetValue(MazeProperty); }
-            set
-            {
-                SetValue(MazeProperty, value);
-
-                string s = value;
-                int rows = Rows;
-                int cols = Cols;
-                double width = myCanvas.Width / cols;
-                double height = myCanvas.Height / rows;
-
-                for (int i = 0; i < rows; i++)
-                {
-                    for (int j = 0; j < cols; j++)
-                    {
-                        Label l = new Label();
-                        char c = s[i + rows * j];
-                        l.Content = c;
-                        l.Width = width;
-                        l.Height = height;
-                        Canvas.SetLeft(l, width * i);
-                        Canvas.SetTop(l, height * j);
-                        l.Foreground = Brushes.Red;
-
-                        switch (c)
-                        {
-                            case '1':
-                                l.Background = Brushes.Black;
-                                break;
-
-                            case '0':
-                                l.Background = Brushes.White;
-                                break;
-
-                            case '*':
-                                l.Background = Brushes.Blue;
-                                break;
-
-                            case '#':
-                                l.Background = Brushes.Green;
-                                break;
-
-                        }
-                        myCanvas.Children.Add(l);
-                    }
-                }
-            }
+            set { SetValue(MazeProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for MyPropertyMaze.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MazeProperty =
-            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("01"));
+            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("1",OnMazePropertyChanged));
 
 
-
-        public class Point
+        private static void OnMazePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            int x;
-            int y;
-            public Point(int x, int y)
-            {
-                this.x = x;
-                this.y = y;
-            }
+            MazeBoard board = (MazeBoard)d;
+            board.OnMazePropertyChanged();
+        }
+        private void OnMazePropertyChanged()
+        {
+            string s = Maze;
+            int rows = Rows;
+            int cols = Cols;
+            double width = Width / cols;
+            double height = Height / rows;
 
-            public Point(string args)
+            for (int i = 0; i < rows; i++)
             {
-                string[] args2 = args.Split(',');
-                x = int.Parse(args2[0]);
-                y = int.Parse(args2[1]);
-            }
+                for (int j = 0; j < cols; j++)
+                {
+                    Label l = new Label();
+                    char c = s[i + rows * j];
+                    l.Content = c;
+                    l.Width = width;
+                    l.Height = height;
+                    Canvas.SetLeft(l, width * i);
+                    Canvas.SetTop(l, height * j);
+                    switch (c)
+                    {
+                        case '1':
+                            l.Background = Brushes.Black;
+                            break;
 
-            public override string ToString()
-            {
-                return x.ToString() + "," + y.ToString();
-            }
+                        case '0':
+                            l.Background = Brushes.White;
+                            break;
 
+                        case '*':
+                            l.Background = Brushes.Blue;
+                            break;
+
+                        case '#':
+                            l.Background = Brushes.Green;
+                            break;
+
+                    }
+                    l.Foreground = Brushes.Red;
+                    myCanvas.Children.Add(l);
+                }
+            }
         }
 
     }

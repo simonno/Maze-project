@@ -36,10 +36,9 @@ namespace MazeGUI.SingleGame
             Connect();
             Writer.Flush();
             Writer.WriteLine("generate {0} {1} {2}", mazeName, rows, cols);
-            //Writer.WriteLine("generate noam 12 12");
             Writer.Flush();
             string answer = Reader.ReadLine();
-            answer = answer.Replace("@", System.Environment.NewLine);
+            answer = answer.Replace("@", Environment.NewLine);
             maze = Maze.FromJSON(answer);
             Disconnect();
         }

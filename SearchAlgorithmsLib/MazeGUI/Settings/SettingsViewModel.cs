@@ -60,9 +60,9 @@
         {
             model.SaveSettings();
         }
-        public void cancleSettings()
+        public void ReloadSettings()
         {
-            model.cancleSettings();
+            model.ReloadSettings();
         }
     }
 }

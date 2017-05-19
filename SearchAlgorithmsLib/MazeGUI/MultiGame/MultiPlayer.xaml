@@ -19,9 +19,9 @@
         <Button x:Name="btnMainMenu" Content="Back to the main menu" Grid.ColumnSpan="2" />
         <TextBlock Text="My board" Margin="0 0 3 0" Grid.Row="1"/>
         <TextBlock Text="Other player's board" Margin="3 0 0 0" Grid.Row="1" Grid.Column="1"/>
-        <Controls:MazeBoard x:Name="mazeBoard1" Margin="0 0 3 0" Rows="6" Cols="6"
+        <Controls:MazeBoard2 x:Name="mazeBoard1" Margin="0 0 3 0" Rows="6" Cols="6"
                 Maze="0010011011101110001110110000001010010" Grid.Row="2"/>
-        <Controls:MazeBoard x:Name="mazeBoard2" Margin="3 0 0 0" Rows="5" Cols="5"
+        <Controls:MazeBoard2 x:Name="mazeBoard2" Margin="3 0 0 0" Rows="5" Cols="5"
                 Maze="0010011101111100001110110" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </Window>

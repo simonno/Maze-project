@@ -8,7 +8,7 @@
         int MazeCols { get; set; }
         int SearchAlgorithm { get; set; }
         void SaveSettings();
-        void cancleSettings();
+        void ReloadSettings();
 
     }
 }
