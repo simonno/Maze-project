@@ -62,14 +62,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AskToExit.xaml.cs">
-      <DependentUpon>AskToExit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AskToSolve.xaml.cs">
-      <DependentUpon>AskToSolve.xaml</DependentUpon>
+    <Compile Include="PopMessage.xaml.cs">
+      <DependentUpon>PopMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MazeBoard.xaml.cs">
       <DependentUpon>MazeBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PopMassage.xaml.cs">
+      <DependentUpon>PopMassage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MultiGame\MultiPlayer.xaml.cs">
       <DependentUpon>MultiPlayer.xaml</DependentUpon>
@@ -96,15 +96,15 @@
     </Compile>
     <Compile Include="SingleGame\ISinglePlayerModel.cs" />
     <Compile Include="ViewModel.cs" />
-    <Page Include="AskToExit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AskToSolve.xaml">
+    <Page Include="PopMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MazeBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PopMassage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

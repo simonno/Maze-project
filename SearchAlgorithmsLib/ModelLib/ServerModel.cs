@@ -62,6 +62,8 @@ namespace ModelLib
         /// <returns>new maze as requserted</returns>
         public Maze GenerateMaze(string name, int rows, int cols)
         {
+            if (mazes.ContainsKey(name))
+                return mazes[name];
             Maze maze = Generate(name, rows, cols);
             mazes.Add(name, maze);
             return maze;

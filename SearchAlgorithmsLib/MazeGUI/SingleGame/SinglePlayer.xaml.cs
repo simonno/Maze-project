@@ -23,10 +23,10 @@ namespace MazeGUI.SingleGame
         
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            AskToExit areYouSure = new AskToExit();
-            if (areYouSure.ShowDialog() != true)
+            PopMessage resetMessage = new PopMessage("Do you want to reset this maze?", "No", "Yes");
+            if (resetMessage.ShowDialog() != true)
             {
-                if (areYouSure.choose == true) //resey the game
+                if (resetMessage.Choose == true) //reset the game
                 {
                     Reset();
                 }
@@ -40,21 +40,19 @@ namespace MazeGUI.SingleGame
 
         private void btnSolve_Click(object sender, RoutedEventArgs e)
         {
-            AskToSolve areYouSure = new AskToSolve();
-            if (areYouSure.ShowDialog() != true)
+            PopMessage solveMessage = new PopMessage("Do you want to solve this maze?" , "No", "Yes");
+            if (solveMessage.ShowDialog() != true)
             {
-                if (areYouSure.choose == true) //solve the game
+                if (solveMessage.Choose == true) //solve the game
                 {
-                    solveMaze();
+                    SolveMaze();
                 }
             }
         }
 
-        private void solveMaze()
+        private void SolveMaze()
         {
             string solveString = vm.s();
-
-
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
@@ -74,22 +72,22 @@ namespace MazeGUI.SingleGame
             switch (e.Key)
             {
                 case Key.Up:
-                    MessageBox.Show("up1");
+                    //MessageBox.Show("up1");
                     mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
                     break;
 
                 case Key.Down:
-                    MessageBox.Show("down1");
+                    //MessageBox.Show("down1");
                     mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
                     break;
 
                 case Key.Right:
-                    MessageBox.Show("right1");
+                    //MessageBox.Show("right1");
                     mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
                     break;
 
                 case Key.Left:
-                    MessageBox.Show("left1");
+                    //MessageBox.Show("left1");
                     mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
                     break;
             }
