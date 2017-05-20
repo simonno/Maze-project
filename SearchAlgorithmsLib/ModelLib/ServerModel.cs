@@ -106,7 +106,7 @@ namespace ModelLib
         /// <param name="typeOfSolve">The type of solve.</param>
         /// <returns>the solve of the maze</returns>
         /// <exception cref="System.Exception">This maze does not exist - " + name</exception>
-        public MazeSolution Solve(string name, int typeOfSolve)
+        public  MazeSolution Solve(string name, int typeOfSolve)
         {
             if (mazesSolutions.ContainsKey(name))
             {

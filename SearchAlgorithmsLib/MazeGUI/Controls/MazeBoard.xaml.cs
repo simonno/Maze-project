@@ -18,6 +18,7 @@ namespace MazeGUI.Controls
         private Point playerPos;
         private Point playerStartPoint;
         private Point exitPos;
+        private string strSolve;
 
         public MazeBoard()
         {
@@ -120,6 +121,17 @@ namespace MazeGUI.Controls
         public static readonly DependencyProperty ColsProperty =
             DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new PropertyMetadata(Properties.Settings.Default.MazeCols));
 
+
+        //public string mazeSolve
+        //{
+        //    get { return (string)GetValue(mazeSolveProperty); }
+        //    set { SetValue(mazeSolveProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for Cols.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty mazeSolveProperty =
+        //    DependencyProperty.Register("Solve", typeof(string), typeof(MazeBoard), 
+        //        new PropertyMetadata(Properties.Settings.Default.MazeSolution));
 
 
 

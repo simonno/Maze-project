@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,5 +67,25 @@ namespace MazeGUI.SingleGame
                 NotifyPropertyChanged("MazeCols");
             }
         }
+        public string Solve
+        {
+            get
+            {
+                MazeSolution mazeSolve = model.Solve();
+                return mazeSolve.SolutionString;
+            }
+            set
+            {
+                NotifyPropertyChanged("MazeSolve");
+            }
+        }
+        public string s()
+        {
+            
+            MazeSolution mazeSolve = model.Solve();
+            return mazeSolve.SolutionString;
+            
+        }
+     
     }
 }

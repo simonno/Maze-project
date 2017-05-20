@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using ModelLib;
+//using ModelLib;
 
 namespace MazeGUI.SingleGame
 {
@@ -20,6 +21,7 @@ namespace MazeGUI.SingleGame
         private TcpClient tcpClient;
         private StreamReader Reader;
         private StreamWriter Writer;
+        private MazeSolution sol;
 
         public ApplicationSinglePlayerModel(string mazeName, int rows, int cols)
         {
@@ -29,6 +31,7 @@ namespace MazeGUI.SingleGame
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
             defaultSearchAlgorithm = Properties.Settings.Default.SearchAlgorithm;
             GenerateMaze(mazeName, rows, cols);
+       //     sol = Solve();
         }
 
         private void GenerateMaze(string mazeName, int rows, int cols)
@@ -72,14 +75,34 @@ namespace MazeGUI.SingleGame
                 return maze.ToString();
             }
         }
-
+        //public string MazeSolution
+        //{
+        //    get
+        //    {
+        //        return sol.ToString();
+        //    }
+        //}
         public MazeSolution Solve()
         {
 
             Connect();
-            Writer.WriteLine("solve" + maze.Name + "{0}", defaultSearchAlgorithm);
+            // Writer.WriteLine("solve" + maze.Name + "{0}", defaultSearchAlgorithm);
+            //MazeSolution s = ModelLib.ServerModel.Solve(MazeName, defaultSearchAlgorithm);
+
+            string command = "solve "+ maze.Name+ " "+ defaultSearchAlgorithm;
+      
+
+            Writer.WriteLine(command);
+            Writer.Flush();
+
+            //MazeSolution s = new MazeSolution();
+            //s.Solve(maze, defaultSearchAlgorithm);
+            //client.WriteToClient(s.ToJSON());
             string answer = Reader.ReadLine();
-            MazeSolution ms = MazeSolution.FromJSON(answer);
+            answer = answer.Replace("@", System.Environment.NewLine);
+
+            MazeSolution ms;
+            ms = ModelLib.MazeSolution.FromJSON(answer);
             Disconnect();
             return ms;
         }

@@ -52,7 +52,9 @@ namespace MazeGUI.SingleGame
 
         private void solveMaze()
         {
-            //TO DO solve maze 
+            string solveString = vm.s();
+
+
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)

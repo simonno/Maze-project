@@ -97,7 +97,13 @@ namespace ModelLib
             if (p2.Col < p1.Col) { return 2; }
             return 3; //  if (p2.Col > p1.Col) 
         }
+        public static int d()
+        {
+            return 1;
+        }
 
+        
     }
+
 }
 
