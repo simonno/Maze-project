@@ -35,6 +35,7 @@ namespace MazeGUI.SingleGame
         public void Reset()
         {
             InitializeComponent();
+            mazeBoard.PlayerPos = mazeBoard.PlayerStartPoint;
         }
 
         private void btnSolve_Click(object sender, RoutedEventArgs e)

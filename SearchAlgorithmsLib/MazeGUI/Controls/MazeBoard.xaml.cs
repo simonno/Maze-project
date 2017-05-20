@@ -16,6 +16,8 @@ namespace MazeGUI.Controls
         private List<List<int>> mazeCells;
         private Label player;
         private Point playerPos;
+        private Point playerStartPoint;
+        private Point exitPos;
 
         public MazeBoard()
         {
@@ -35,14 +37,38 @@ namespace MazeGUI.Controls
                 if (Valid(p))
                 {
                     playerPos = p;
-                    Canvas.SetLeft(player, Width * p.X);
-                    Canvas.SetTop(player, Height * p.Y);
+                    int rows = Rows;
+                    int cols = Cols;
+                    double width = myCanvas.Width / cols;
+                    double height = myCanvas.Height / rows;
+                    Canvas.SetLeft(player, width * p.X);
+                    Canvas.SetTop(player, height * p.Y);
+                }
+                else
+                {
+                    MessageBox.Show("cant go there");
+
+                }
+                if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
+                {
+                    MessageBox.Show("you win!!");
                 }
             }
         }
-
+        public Point PlayerStartPoint
+        {
+            get
+            {
+                return playerStartPoint;
+            }
+        }
         private bool Valid(Point p)
         {
+            if ((p.X < 0) || (p.X > mazeCells.Capacity-1) || (p.Y < 0) || (p.Y > mazeCells.Capacity-1))
+            {
+                return false;
+
+            }
             if (mazeCells[p.X][p.Y] == 0)
                 return true;
             return false;
@@ -155,6 +181,7 @@ namespace MazeGUI.Controls
                             Canvas.SetLeft(player, width * i);
                             Canvas.SetTop(player, height * j);
                             playerPos = new Point(i, j);
+                            playerStartPoint = new Point(i, j);
                             mazeCells[i].Insert(j, 0);
                             break;
 
@@ -162,6 +189,7 @@ namespace MazeGUI.Controls
                             //l.Background = Brushes.Green;
                             l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
                             mazeCells[i].Insert(j, 0);
+                            exitPos = new Point(i, j);
                             break;
 
                     }
