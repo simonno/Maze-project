@@ -62,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MultiGame\IMultiPlayerDetailsModel.cs" />
+    <Compile Include="MultiGame\MultiPlayerDetailsViewModel.cs" />
     <Compile Include="PopMessage.xaml.cs">
       <DependentUpon>PopMessage.xaml</DependentUpon>
     </Compile>

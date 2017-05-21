@@ -23,11 +23,6 @@ namespace MazeGUI.SingleGame
                 string maze = model.MazeToString;
                 return maze.Replace(Environment.NewLine, "");
             }
-
-            set
-            {
-                NotifyPropertyChanged("MazeToString");
-            }
         }
 
         public string MazeName
@@ -35,11 +30,6 @@ namespace MazeGUI.SingleGame
             get
             {
                 return model.MazeName;
-            }
-
-            set
-            {
-                NotifyPropertyChanged("MazeName");
             }
         }
 
@@ -61,11 +51,6 @@ namespace MazeGUI.SingleGame
             {
                 return model.MazeCols;
             }
-
-            set
-            {
-                NotifyPropertyChanged("MazeCols");
-            }
         }
         public string Solve
         {
@@ -73,10 +58,6 @@ namespace MazeGUI.SingleGame
             {
                 MazeSolution mazeSolve = model.Solve();
                 return mazeSolve.SolutionString;
-            }
-            set
-            {
-                NotifyPropertyChanged("MazeSolve");
             }
         }
         public string s()

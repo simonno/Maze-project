@@ -17,13 +17,11 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="List of games:"/>
-                    <ComboBox x:Name="GamesList" Grid.Column="1" />
+                    <ComboBox x:Name="GamesList" Grid.Column="1" ItemsSource="{Binding GamesList}"/>
                 </Grid>
-
                 <Button x:Name="btnJoin" Content="Join Game" Width="80" FontSize="15" Click="btnJoin_Click"/>
-
-                <Controls:MazeDetails x:Name="MazeDetails" Padding="10"/>
-                <Button x:Name="btnStart" Content="Start Game" Width="80" FontSize="15"/>
+                <Controls:MazeDetails x:Name="MazeDetails" DefaultMazeCols="{Binding MazeCols}" DefaultMazeRows="{Binding MazeRows}" Padding="10"/>
+                <Button x:Name="btnStart"  Content="Start Game" Width="80" FontSize="15"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -212,28 +212,6 @@ namespace MazeGUI.Controls
             myCanvas.Children.Add(player);
         }
 
-        private void ucMazeBoard_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.Key)
-            {
-                case Key.Up:
-                    MessageBox.Show("up");
-                    break;
-
-                case Key.Down:
-                    MessageBox.Show("down");
-                    break;
-
-                case Key.Right:
-                    MessageBox.Show("right");
-                    break;
-
-                case Key.Left:
-                    MessageBox.Show("left");
-                    break;
-            }
-        }
-
         public class Point
         {
             public Point()

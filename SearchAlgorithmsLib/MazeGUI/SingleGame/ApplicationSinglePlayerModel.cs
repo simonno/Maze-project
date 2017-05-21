@@ -21,17 +21,14 @@ namespace MazeGUI.SingleGame
         private TcpClient tcpClient;
         private StreamReader Reader;
         private StreamWriter Writer;
-        private MazeSolution sol;
 
         public ApplicationSinglePlayerModel(string mazeName, int rows, int cols)
         {
-            //maze.Name = "noam $ meital";
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
             defaultSearchAlgorithm = Properties.Settings.Default.SearchAlgorithm;
             GenerateMaze(mazeName, rows, cols);
-       //     sol = Solve();
         }
 
         private void GenerateMaze(string mazeName, int rows, int cols)
@@ -75,34 +72,21 @@ namespace MazeGUI.SingleGame
                 return maze.ToString();
             }
         }
-        //public string MazeSolution
-        //{
-        //    get
-        //    {
-        //        return sol.ToString();
-        //    }
-        //}
         public MazeSolution Solve()
         {
 
             Connect();
-            // Writer.WriteLine("solve" + maze.Name + "{0}", defaultSearchAlgorithm);
-            //MazeSolution s = ModelLib.ServerModel.Solve(MazeName, defaultSearchAlgorithm);
 
-            string command = "solve "+ maze.Name+ " "+ defaultSearchAlgorithm;
+            //string command = "solve "+ maze.Name+ " "+ defaultSearchAlgorithm;
       
 
-            Writer.WriteLine(command);
+            Writer.WriteLine("solve {0} {1}", maze.Name, defaultSearchAlgorithm);
             Writer.Flush();
-
-            //MazeSolution s = new MazeSolution();
-            //s.Solve(maze, defaultSearchAlgorithm);
-            //client.WriteToClient(s.ToJSON());
             string answer = Reader.ReadLine();
-            answer = answer.Replace("@", System.Environment.NewLine);
+            answer = answer.Replace("@", Environment.NewLine);
 
             MazeSolution ms;
-            ms = ModelLib.MazeSolution.FromJSON(answer);
+            ms = MazeSolution.FromJSON(answer);
             Disconnect();
             return ms;
         }

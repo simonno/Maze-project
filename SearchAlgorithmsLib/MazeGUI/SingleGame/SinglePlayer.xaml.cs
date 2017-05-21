@@ -53,41 +53,41 @@ namespace MazeGUI.SingleGame
 
         private void SolveMaze()
         {
-            //Task task = new Task(() =>
-            //{
-                string solveString = vm.s();
-                int i = 0;
-                while (i < solveString.Length)
+            Reset();
+            string solveString = vm.s();
+            int i = 0;
+            while (i < solveString.Length)
+            {
+                switch (solveString[i])
                 {
-                    switch (solveString[i])
-                    {
-                        case 'U':
-                            //MessageBox.Show("up1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
-                            break;
+                    case 'U':
+                        //MessageBox.Show("up1");
+                        mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+                        break;
 
-                        case 'D':
-                            //MessageBox.Show("down1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
-                            break;
+                    case 'D':
+                        //MessageBox.Show("down1");
+                        mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+                        break;
 
-                        case 'R':
-                            //MessageBox.Show("right1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
-                            break;
+                    case 'R':
+                        //MessageBox.Show("right1");
+                        mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+                        break;
 
-                        case 'L':
-                            //MessageBox.Show("left1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
-                            break;
-                    }
-                    i++;
+                    case 'L':
+                        //MessageBox.Show("left1");
+                        mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                        break;
                 }
-            //});
-            //task.Start();
-            //task.Wait();
+                i++;
+            }
         }
 
+        private void MoveTo(Controls.MazeBoard.Point end)
+        {
+
+        }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {

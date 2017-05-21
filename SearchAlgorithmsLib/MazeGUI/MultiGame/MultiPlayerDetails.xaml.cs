@@ -7,9 +7,12 @@ namespace MazeGUI.MultiGame
     /// </summary>
     public partial class MultiPlayerDetails : Window
     {
+        private MultiPlayerDetailsViewModel vm;
         public MultiPlayerDetails()
         {
             InitializeComponent();
+            vm = new MultiPlayerDetailsViewModel();
+            DataContext = vm;
         }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
