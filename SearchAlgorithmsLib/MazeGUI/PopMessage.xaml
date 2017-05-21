@@ -24,7 +24,7 @@
            Value="White" />
         </Style>
     </Window.Resources>
-                <Grid Margin="20">
+    <Grid Margin="20">
         <Controls:PopQuestion x:Name="ucPopQuestion" LeftBtnContent="{Binding LeftBtnContent}" RightBtnContent="{Binding RightBtnContent}" MassageText="{Binding Message}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

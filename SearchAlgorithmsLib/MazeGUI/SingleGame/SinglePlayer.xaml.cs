@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Configuration;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace MazeGUI.SingleGame
 {
@@ -18,9 +19,9 @@ namespace MazeGUI.SingleGame
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
             //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
-            
+
         }
-        
+
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
             PopMessage resetMessage = new PopMessage("Do you want to reset this maze?", "No", "Yes");
@@ -40,7 +41,7 @@ namespace MazeGUI.SingleGame
 
         private void btnSolve_Click(object sender, RoutedEventArgs e)
         {
-            PopMessage solveMessage = new PopMessage("Do you want to solve this maze?" , "No", "Yes");
+            PopMessage solveMessage = new PopMessage("Do you want to solve this maze?", "No", "Yes");
             if (solveMessage.ShowDialog() != true)
             {
                 if (solveMessage.Choose == true) //solve the game
@@ -52,32 +53,41 @@ namespace MazeGUI.SingleGame
 
         private void SolveMaze()
         {
-            string solveString = vm.s();
-            int i = solveString.Length-1;
-            while (i >= 0)
-            {
-                if (solveString[i] == '0')//down
+            //Task task = new Task(() =>
+            //{
+                string solveString = vm.s();
+                int i = 0;
+                while (i < solveString.Length)
                 {
-                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
-                }
-                else if (solveString[i] == '2')//right
-                {
-                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+                    switch (solveString[i])
+                    {
+                        case 'U':
+                            //MessageBox.Show("up1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+                            break;
 
-                }
-                else if (solveString[i] == '1')//up
-                {
-                
-                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
-                }
+                        case 'D':
+                            //MessageBox.Show("down1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+                            break;
 
-                else if (solveString[i] == '3')//left
-                {
-                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                        case 'R':
+                            //MessageBox.Show("right1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+                            break;
+
+                        case 'L':
+                            //MessageBox.Show("left1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                            break;
+                    }
+                    i++;
                 }
-                i--;
-            }
+            //});
+            //task.Start();
+            //task.Wait();
         }
+
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -118,3 +128,5 @@ namespace MazeGUI.SingleGame
         }
     }
 }
+
+

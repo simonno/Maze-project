@@ -83,25 +83,20 @@ namespace ModelLib
         private string FromListToString()
         {
             string solution = "";
-            for (int i = 1; i < Solution.Count; i++)
+            for (int i = Solution.Count - 1; i > 0 ; i--)
             {
-                solution += ComparePosition(Solution[i - 1], Solution[i]).ToString();
-             }
+                solution += ComparePosition(Solution[i], Solution[i-1]).ToString();
+            }
             return solution;
         }
 
-        private int ComparePosition(Position p1, Position p2)
+        private char ComparePosition(Position p1, Position p2)
         {
-            if (p2.Row < p1.Row) { return 0; }
-            if (p2.Row > p1.Row) { return 1; }
-            if (p2.Col < p1.Col) { return 2; }//right
-            return 3; //  if (p2.Col > p1.Col) 
+            if (p2.Row < p1.Row) { return 'U'; } // up
+            if (p2.Row > p1.Row) { return 'D'; } // down
+            if (p2.Col < p1.Col) { return 'L'; }//left
+            return 'R'; //  if (p2.Col > p1.Col)  - right
         }
-        public static int d()
-        {
-            return 1;
-        }
-
         
     }
 

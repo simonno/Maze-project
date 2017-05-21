@@ -6,26 +6,25 @@
         xmlns:Controls="clr-namespace:MazeGUI.Controls"
         mc:Ignorable="d"
         Title="{Binding MazeName}" Height="350" Width="300" KeyDown="Window_KeyDown">
-        <Border Padding="10">
-            <!-- Buttons -->
-            <StackPanel x:Name="StackPanel">
-                <Grid x:Name="MyGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button x:Name="btnReset" Grid.Column="0" Content="Reset game" Margin="0 0 10 0" Click="btnReset_Click"/>
-                    <Button x:Name="btnSolve" Grid.Column="1" Content="Solve maze" Click="btnSolve_Click" />
-                    <Button x:Name="btnMenu" Grid.Column="2" Content="Main menu" Margin="10 0 0 0" Click="btnMenu_Click"/>
+    <Border Padding="10">
+        <!-- Buttons -->
+        <StackPanel x:Name="StackPanel">
+            <Grid x:Name="MyGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnReset" Grid.Column="0" Content="Reset game" Margin="0 0 10 0" Click="btnReset_Click"/>
+                <Button x:Name="btnSolve" Grid.Column="1" Content="Solve maze" Click="btnSolve_Click" />
+                <Button x:Name="btnMenu" Grid.Column="2" Content="Main menu" Margin="10 0 0 0" Click="btnMenu_Click"/>
                 <Controls:MazeBoard x:Name="mazeBoard" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
-                </Grid>
-            </StackPanel>
-        </Border>
+            </Grid>
+        </StackPanel>
+    </Border>
 </Window>
-<!--Width="{Binding ElementName=MyGrid, Path=ActualWidth}" Height="{Binding ElementName=MyGrid, Path=RowDefinitions[1].ActualHeight}"-->
-
+  
