@@ -53,6 +53,30 @@ namespace MazeGUI.SingleGame
         private void SolveMaze()
         {
             string solveString = vm.s();
+            int i = solveString.Length-1;
+            while (i >= 0)
+            {
+                if (solveString[i] == '0')//down
+                {
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+                }
+                else if (solveString[i] == '2')//right
+                {
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+
+                }
+                else if (solveString[i] == '1')//up
+                {
+                
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+                }
+
+                else if (solveString[i] == '3')//left
+                {
+                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                }
+                i--;
+            }
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)

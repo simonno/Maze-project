@@ -86,7 +86,7 @@ namespace ModelLib
             for (int i = 1; i < Solution.Count; i++)
             {
                 solution += ComparePosition(Solution[i - 1], Solution[i]).ToString();
-            }
+             }
             return solution;
         }
 
@@ -94,7 +94,7 @@ namespace ModelLib
         {
             if (p2.Row < p1.Row) { return 0; }
             if (p2.Row > p1.Row) { return 1; }
-            if (p2.Col < p1.Col) { return 2; }
+            if (p2.Col < p1.Col) { return 2; }//right
             return 3; //  if (p2.Col > p1.Col) 
         }
         public static int d()
