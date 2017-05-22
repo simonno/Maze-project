@@ -93,7 +93,20 @@ namespace MazeGUI.MultiGame
             //Disconnect();
             return ms;
         }
-        private void Connect()
+        public Maze Join(string mazeName)
+        {
+            Connect();
+            Writer.WriteLine("join {0}", mazeName);
+            Writer.Flush();
+            string answer = Reader.ReadLine();
+            answer = answer.Replace("@", Environment.NewLine);
+
+            Maze ms;
+            ms = Maze.FromJSON(answer);
+            return ms;
+
+        }
+            private void Connect()
         {
             Console.WriteLine("Trying to connect to server");
             tcpClient = new TcpClient();

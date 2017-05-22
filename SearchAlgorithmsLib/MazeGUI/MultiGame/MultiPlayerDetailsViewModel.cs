@@ -63,6 +63,14 @@ namespace MazeGUI.MultiGame
             
 
         }
+        public Maze Join(string mazeName)
+        {
+
+            Maze maze = model.Join(mazeName);
+            return maze;
+
+
+        }
 
     }
 }
