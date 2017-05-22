@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace MazeGUI.MultiGame
 {
@@ -11,7 +12,7 @@ namespace MazeGUI.MultiGame
         public MultiPlayerDetails()
         {
             InitializeComponent();
-            vm = new MultiPlayerDetailsViewModel();
+            vm = new MultiPlayerDetailsViewModel(new ApplicationMultiPlayerModel());
             DataContext = vm;
         }
 
@@ -28,7 +29,37 @@ namespace MazeGUI.MultiGame
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            string start = vm.start();
+            string name = MazeDetails.txtBoxName.Text;
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Please insert a name for the maze");
+                return;
+            }
+
+            string rowsText = MazeDetails.txtBoxRows.Text;
+            if (string.IsNullOrEmpty(rowsText))
+            {
+                MessageBox.Show("Please insert the number of the maze's rows.");
+                return;
+            }
+
+            string columns = MazeDetails.txtBoxColumns.Text;
+            if (string.IsNullOrEmpty(columns))
+            {
+                MessageBox.Show("Please insert the number of the maze's columns.");
+                return;
+            }
+            if (!int.TryParse(rowsText, out int rows))
+            {
+                throw new Exception("rows convert failed.");
+            }
+
+            if (!int.TryParse(columns, out int cols))
+            {
+                throw new Exception("cols convert failed.");
+            }
+
+            string start = vm.Start(name,rows, cols);
         }
     }
 }

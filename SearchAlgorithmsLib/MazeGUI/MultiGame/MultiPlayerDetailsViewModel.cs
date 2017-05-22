@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,20 +10,25 @@ namespace MazeGUI.MultiGame
 {
     class MultiPlayerDetailsViewModel : ViewModel
     {
-        private IMultiPlayerDetailsModel model; 
+        private IMultiPlayerDetailsModel model;
 
+        public MultiPlayerDetailsViewModel(IMultiPlayerDetailsModel model)
+        {
+            this.model = model;
+        }
         public ObservableCollection<string> GamesList
         {
 
             get
             {
-                List<string> games = new List<string>
-                {
-                    "noam",
-                    "n6878",
-                    "n123",
-                    "noa"
-                };
+                //List<string> games = new List<string>
+                //{
+                //    "noam",
+                //    "n6878",
+                //    "n123",
+                //    "noa"
+                //};
+                List<string> games =model.List();
                 return new ObservableCollection<string>(games);
             }
 
@@ -49,11 +55,12 @@ namespace MazeGUI.MultiGame
                 NotifyPropertyChanged("MazeCols");
             }
         }
-        public string start()
+        public string Start(string mazeName, int rows, int cols)
         {
 
-            //string mazeSolve = model.Start();
-            return "SolutionString";
+            Maze maze = model.Start( mazeName, rows,  cols);
+            return maze.ToJSON();
+            
 
         }
 
