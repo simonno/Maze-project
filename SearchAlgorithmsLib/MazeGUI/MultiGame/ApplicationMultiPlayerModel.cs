@@ -7,10 +7,12 @@ using MazeLib;
 using System.Net.Sockets;
 using System.IO;
 using System.Net;
+using Newtonsoft.Json;
+using ModelLib;
 
 namespace MazeGUI.MultiGame
 {
-    class ApplicationMultiPlayerModel: IMultiPlayerDetailsModel
+    public class ApplicationMultiPlayerModel : IMultiPlayerModel
     {
         private IPEndPoint socketInfo;
         private Maze maze;
@@ -23,8 +25,17 @@ namespace MazeGUI.MultiGame
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
-            
+
         }
+
+        public string MazeToString
+        {
+            get
+            {
+                return maze.ToString();
+            }
+        }
+
         public string MazeName
         {
             get
@@ -46,7 +57,12 @@ namespace MazeGUI.MultiGame
                 return maze.Cols;
             }
         }
-        public List<string> List()
+
+        public List<string> GamesList
+        {
+            get { return List(); }
+        }
+        private List<string> List()
         {
             Connect();
 
@@ -54,47 +70,74 @@ namespace MazeGUI.MultiGame
             Writer.Flush();
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
-            string list = answer;
-            int i = list.Length - 1;
-            List<string> p = new List<string>();
-            string name;
-            for(int j=0; j<=i; j++)
-            {
-                if ((list[j] == '"'))
-                {
-                    j = j + 1;
-                    if (list[j + 1] != ',')
-                    {
-                        name = "";
-                        while (list[j] != '"')
-                        {
-                            name += list[j];
-                            j++;
-                        }
-                        p.Add(name);
-                    }
-                }
-            }
-            return p;
+            return JsonConvert.DeserializeObject<List<string>>(answer);
+            //string list = answer;
+            //int i = list.Length - 1;
+            //List<string> p = new List<string>();
+            //string name;
+            //for (int j = 0; j <= i; j++)
+            //{
+            //    if ((list[j] == '"'))
+            //    {
+            //        j = j + 1;
+            //        if (list[j + 1] != ',')
+            //        {
+            //            name = "";
+            //            while (list[j] != '"')
+            //            {
+            //                name += list[j];
+            //                j++;
+            //            }
+            //            p.Add(name);
+            //        }
+            //    }
+            //}
+            //return p;
         }
-        public Maze Start(string mazeName, int rows, int cols)
+        public void Start(string mazeName, int rows, int cols)
         {
 
             Connect();
-            
-            Writer.WriteLine("start {0} {1} {2}", mazeName, rows ,cols);
+            OpenReadTask();
+            Writer.WriteLine("start {0} {1} {2}", mazeName, rows, cols);
             Writer.Flush();
-            string answer = Reader.ReadLine();
-            answer = answer.Replace("@", Environment.NewLine);
 
-            Maze ms;
-            ms = Maze.FromJSON(answer);
+
+            //// TODO "waiting for connection" win
+
+            //string answer = Reader.ReadLine();
+            //answer = answer.Replace("@", Environment.NewLine);
+            //Maze ms;
+            //ms = Maze.FromJSON(answer);
             //Disconnect();
-            return ms;
         }
-        public Maze Join(string mazeName)
+
+        private void OpenReadTask()
+        {
+            new Task(() =>
+            {
+                string answer = Reader.ReadLine();
+                answer = answer.Replace("@", Environment.NewLine);
+                maze = Maze.FromJSON(answer);
+                MultiPlayer mp = new MultiPlayer();
+                mp.Show();
+                
+
+                bool stop = false;
+                while (!stop)
+                {
+                    answer = Reader.ReadLine();
+                    answer = answer.Replace("@", Environment.NewLine);
+                    PlayerDirection pd = PlayerDirection.FromJSON(answer);
+
+                }
+            }).Start();
+        }
+
+        public void Join(string mazeName)
         {
             Connect();
+            OpenReadTask();
             Writer.WriteLine("join {0}", mazeName);
             Writer.Flush();
             string answer = Reader.ReadLine();
@@ -102,10 +145,9 @@ namespace MazeGUI.MultiGame
 
             Maze ms;
             ms = Maze.FromJSON(answer);
-            return ms;
 
         }
-            private void Connect()
+        private void Connect()
         {
             Console.WriteLine("Trying to connect to server");
             tcpClient = new TcpClient();

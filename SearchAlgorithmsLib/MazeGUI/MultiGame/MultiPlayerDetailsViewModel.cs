@@ -10,9 +10,9 @@ namespace MazeGUI.MultiGame
 {
     class MultiPlayerDetailsViewModel : ViewModel
     {
-        private IMultiPlayerDetailsModel model;
+        private IMultiPlayerModel model;
 
-        public MultiPlayerDetailsViewModel(IMultiPlayerDetailsModel model)
+        public MultiPlayerDetailsViewModel(IMultiPlayerModel model)
         {
             this.model = model;
         }
@@ -21,8 +21,7 @@ namespace MazeGUI.MultiGame
 
             get
             {
-                List<string> games = model.List();
-                return new ObservableCollection<string>(games);
+                return new ObservableCollection<string>(model.GamesList);
             }
 
             set
@@ -40,6 +39,7 @@ namespace MazeGUI.MultiGame
                 NotifyPropertyChanged("MazeRows");
             }
         }
+
         public int MazeCols
         {
             get { return Properties.Settings.Default.MazeCols; }
@@ -48,20 +48,15 @@ namespace MazeGUI.MultiGame
                 NotifyPropertyChanged("MazeCols");
             }
         }
-        public string Start(string mazeName, int rows, int cols)
+
+        public void Start(string mazeName, int rows, int cols)
         {
-
-            Maze maze = model.Start( mazeName, rows,  cols);
-            return maze.ToJSON();
-        }
-        public Maze Join(string mazeName)
-        {
-
-            Maze maze = model.Join(mazeName);
-            return maze;
-
-
+            model.Start(mazeName, rows,  cols);
         }
 
+        public void Join(string mazeName)
+        {
+        model.Join(mazeName);
+        }
     }
 }

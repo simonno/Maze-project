@@ -37,6 +37,9 @@
     <Reference Include="MazeLib">
       <HintPath>..\..\MazeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -62,15 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\AnimationMessage.xaml.cs">
-      <DependentUpon>AnimationMessage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MultiGame\ApplicationMultiPlayerModel.cs" />
-    <Compile Include="MultiGame\IMultiPlayerDetailsModel.cs" />
+    <Compile Include="MultiGame\IMultiPlayerModel.cs" />
     <Compile Include="MultiGame\MultiPlayerDetailsViewModel.cs" />
-    <Compile Include="MultiGame\WaitAnimation.xaml.cs">
-      <DependentUpon>WaitAnimation.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="MultiGame\MultiPlayerViewModel.cs" />
     <Compile Include="PopMessage.xaml.cs">
       <DependentUpon>PopMessage.xaml</DependentUpon>
     </Compile>
@@ -105,14 +103,6 @@
     </Compile>
     <Compile Include="SingleGame\ISinglePlayerModel.cs" />
     <Compile Include="ViewModel.cs" />
-    <Page Include="Controls\AnimationMessage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MultiGame\WaitAnimation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="PopMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +170,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
