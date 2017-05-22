@@ -15,7 +15,7 @@ namespace MazeGUI.SingleGame
     /// </summary>
     public partial class SinglePlayer : Window
     {
-        private System.Windows.Threading.DispatcherTimer _timer = null;
+        //private System.Windows.Threading.DispatcherTimer _timer = null;
 
         private SinglePlayerViewModel vm;
 
@@ -25,9 +25,9 @@ namespace MazeGUI.SingleGame
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
             //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
-            _timer = new DispatcherTimer();
-            _timer.IsEnabled = false;
-            _timer.Tick += new System.EventHandler(MoveTo);
+            //_timer = new DispatcherTimer();
+            //_timer.IsEnabled = false;
+           // _timer.Tick += new System.EventHandler(MoveTo);
         }
     
 
@@ -95,44 +95,44 @@ namespace MazeGUI.SingleGame
             return "Success";
         }
 
-        private void MoveTo(object sender, EventArgs e)
-        {
-            Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
-            {
-                Reset();
-                string solveString = vm.s();
-                int i = 0;
-                while (i < solveString.Length)
-                {
-                    switch (solveString[i])
-                    {
-                        case 'U':
-                            //MessageBox.Show("up1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
-                            break;
+        //private void MoveTo(object sender, EventArgs e)
+        //{
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
+        //    {
+        //        Reset();
+        //        string solveString = vm.s();
+        //        int i = 0;
+        //        while (i < solveString.Length)
+        //        {
+        //            switch (solveString[i])
+        //            {
+        //                case 'U':
+        //                    //MessageBox.Show("up1");
+        //                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+        //                    break;
 
-                        case 'D':
-                            //MessageBox.Show("down1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
-                            break;
+        //                case 'D':
+        //                    //MessageBox.Show("down1");
+        //                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+        //                    break;
 
-                        case 'R':
-                            //MessageBox.Show("right1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
-                            break;
+        //                case 'R':
+        //                    //MessageBox.Show("right1");
+        //                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+        //                    break;
 
-                        case 'L':
-                            //MessageBox.Show("left1");
-                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
-                            break;
-                    }
+        //                case 'L':
+        //                    //MessageBox.Show("left1");
+        //                    mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+        //                    break;
+        //            }
 
-                    i++;
+        //            i++;
 
-                }
-            })); 
+        //        }
+        //    })); 
             
-        }
+        //}
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {

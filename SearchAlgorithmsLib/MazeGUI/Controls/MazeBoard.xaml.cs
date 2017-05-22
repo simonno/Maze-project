@@ -18,7 +18,7 @@ namespace MazeGUI.Controls
         private Point playerPos;
         private Point playerStartPoint;
         private Point exitPos;
-        private string strSolve;
+    //    private string strSolve;
 
         public MazeBoard()
         {
