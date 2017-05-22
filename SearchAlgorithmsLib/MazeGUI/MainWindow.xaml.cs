@@ -27,6 +27,7 @@ namespace MazeGUI
             this.Close();
         }
 
+//vv
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             MultiPlayerDetails win = new MultiPlayerDetails()
