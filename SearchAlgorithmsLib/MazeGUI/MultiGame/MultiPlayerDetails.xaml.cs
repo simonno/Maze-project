@@ -20,20 +20,26 @@ namespace MazeGUI.MultiGame
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
-            if (GamesList.SelectedIndex <0)
+            if (GamesList.Items.Count <= 0)
             {
-                MessageBox.Show("Please choose a name for the list");
+                MessageBox.Show("Games list is empty, please create a new game.");
                 return;
             }
-            string selectedName =(string) GamesList.SelectedValue;
-            Maze start = vm.Join(selectedName);
 
-            MultiPlayer win = new MultiPlayer()
+            if (GamesList.SelectedIndex < 0)
             {
-                Top = Top,
-                Left = Left
-            };
-            win.Show();
+                MessageBox.Show("Please choose a name for the list.");
+                return;
+            }
+            string selectedName = (string) GamesList.SelectedValue;
+            vm.Join(selectedName);
+
+            //MultiPlayer win = new MultiPlayer()
+            //{
+            //    Top = Top,
+            //    Left = Left
+            //};
+            //win.Show();
             this.Close();
         }
 
@@ -69,7 +75,8 @@ namespace MazeGUI.MultiGame
                 throw new Exception("cols convert failed.");
             }
 
-            string start = vm.Start(name,rows, cols);
+            vm.Start(name,rows, cols);
+            Close();
         }
     }
 }

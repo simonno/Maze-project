@@ -19,9 +19,26 @@ namespace MazeGUI.MultiGame
     /// </summary>
     public partial class MultiPlayer : Window
     {
-        public MultiPlayer()
+        private MultiPlayerViewModel vm;
+        public MultiPlayer(ApplicationMultiPlayerModel model)
         {
             InitializeComponent();
+            vm = new MultiPlayerViewModel(model);
+            DataContext = vm;
+
         }
+
+        private void btnMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow win = new MainWindow()
+            {
+                Top = Top,
+                Left = Left
+            };
+            win.Show();
+            Close();
+        }
+
+        
     }
 }
