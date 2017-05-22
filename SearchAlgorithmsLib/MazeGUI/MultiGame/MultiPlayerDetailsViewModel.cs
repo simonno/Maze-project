@@ -9,6 +9,7 @@ namespace MazeGUI.MultiGame
 {
     class MultiPlayerDetailsViewModel : ViewModel
     {
+        private IMultiPlayerDetailsModel model; 
 
         public ObservableCollection<string> GamesList
         {
@@ -47,6 +48,13 @@ namespace MazeGUI.MultiGame
             {
                 NotifyPropertyChanged("MazeCols");
             }
+        }
+        public string start()
+        {
+
+            string mazeSolve = model.Start();
+            return mazeSolve.SolutionString;
+
         }
 
     }

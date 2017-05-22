@@ -25,5 +25,10 @@ namespace MazeGUI.MultiGame
             win.Show();
             this.Close();
         }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            string start = vm.start();
+        }
     }
 }
