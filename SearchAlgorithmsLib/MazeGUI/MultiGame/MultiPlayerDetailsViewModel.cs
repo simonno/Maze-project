@@ -21,14 +21,7 @@ namespace MazeGUI.MultiGame
 
             get
             {
-                //List<string> games = new List<string>
-                //{
-                //    "noam",
-                //    "n6878",
-                //    "n123",
-                //    "noa"
-                //};
-                List<string> games =model.List();
+                List<string> games = model.List();
                 return new ObservableCollection<string>(games);
             }
 
@@ -60,8 +53,6 @@ namespace MazeGUI.MultiGame
 
             Maze maze = model.Start( mazeName, rows,  cols);
             return maze.ToJSON();
-            
-
         }
         public Maze Join(string mazeName)
         {

@@ -24,7 +24,6 @@ namespace MazeGUI.SingleGame
             InitializeComponent();
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
-            //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
             timer = new DispatcherTimer();
             timer.IsEnabled = false;
         }

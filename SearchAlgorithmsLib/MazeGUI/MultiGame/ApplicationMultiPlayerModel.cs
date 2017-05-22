@@ -56,8 +56,8 @@ namespace MazeGUI.MultiGame
             answer = answer.Replace("@", Environment.NewLine);
             string list = answer;
             int i = list.Length - 1;
-             List<string> p = new List<string>();
-              string name;
+            List<string> p = new List<string>();
+            string name;
             for(int j=0; j<=i; j++)
             {
                 if ((list[j] == '"'))
@@ -75,7 +75,6 @@ namespace MazeGUI.MultiGame
                     }
                 }
             }
-            //Disconnect();    [\"ffff\",\"ffff\"
             return p;
         }
         public Maze Start(string mazeName, int rows, int cols)
