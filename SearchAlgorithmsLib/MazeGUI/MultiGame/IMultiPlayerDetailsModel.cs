@@ -11,5 +11,6 @@ namespace MazeGUI.MultiGame
     {
         Maze Start(string mazeName, int rows, int cols);
         List<string> List();
+        Maze Join(string mazeName);
     }
 }

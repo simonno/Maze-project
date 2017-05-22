@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MazeGUI.MultiGame
 {
@@ -18,6 +20,14 @@ namespace MazeGUI.MultiGame
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
+            if (GamesList.SelectedIndex <0)
+            {
+                MessageBox.Show("Please choose a name for the list");
+                return;
+            }
+            string selectedName =(string) GamesList.SelectedValue;
+            Maze start = vm.Join(selectedName);
+
             MultiPlayer win = new MultiPlayer()
             {
                 Top = Top,

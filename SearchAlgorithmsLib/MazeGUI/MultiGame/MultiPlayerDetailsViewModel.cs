@@ -54,5 +54,14 @@ namespace MazeGUI.MultiGame
             Maze maze = model.Start( mazeName, rows,  cols);
             return maze.ToJSON();
         }
+        public Maze Join(string mazeName)
+        {
+
+            Maze maze = model.Join(mazeName);
+            return maze;
+
+
+        }
+
     }
 }
