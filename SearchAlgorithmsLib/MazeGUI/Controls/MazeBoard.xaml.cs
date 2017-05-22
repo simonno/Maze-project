@@ -212,6 +212,8 @@ namespace MazeGUI.Controls
             myCanvas.Children.Add(player);
         }
 
+
+
         public class Point
         {
             public Point()
