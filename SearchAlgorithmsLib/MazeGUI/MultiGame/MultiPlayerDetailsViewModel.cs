@@ -52,8 +52,8 @@ namespace MazeGUI.MultiGame
         public string start()
         {
 
-            string mazeSolve = model.Start();
-            return mazeSolve.SolutionString;
+            //string mazeSolve = model.Start();
+            return "SolutionString";
 
         }
 

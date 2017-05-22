@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
 namespace MazeGUI.Controls
@@ -18,13 +19,33 @@ namespace MazeGUI.Controls
         private Point playerPos;
         private Point playerStartPoint;
         private Point exitPos;
-        private string strSolve;
 
         public MazeBoard()
         {
             player = new Label();
             InitializeComponent();
         }
+
+        public void MoveUp()
+        {
+            PlayerPos = new Point(PlayerPos.X, PlayerPos.Y - 1);
+        }
+        public void MoveDown()
+        {
+           PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
+
+        }
+        public void MoveLeft()
+        {
+            PlayerPos = new Point(PlayerPos.X - 1, PlayerPos.Y);
+
+        }
+        public void MoveRight()
+        {
+            PlayerPos = new Point(PlayerPos.X + 1, PlayerPos.Y);
+        }
+
+
 
         public Point PlayerPos
         {
@@ -37,13 +58,15 @@ namespace MazeGUI.Controls
                 Point p = value;
                 if (Valid(p))
                 {
+                    double width = myCanvas.Width / Cols;
+                    double height = myCanvas.Height / Rows;
                     playerPos = p;
-                    int rows = Rows;
-                    int cols = Cols;
-                    double width = myCanvas.Width / cols;
-                    double height = myCanvas.Height / rows;
-                    Canvas.SetLeft(player, width * p.X);
-                    Canvas.SetTop(player, height * p.Y);
+                    MoveTo(player, new Point(width * p.X, height * p.Y));
+                    //int rows = Rows;
+                    //int cols = Cols;
+                   
+                    //Canvas.SetLeft(player, width * p.X);
+                    //Canvas.SetTop(player, height * p.Y);
                 }
                 else
                 {
@@ -70,9 +93,26 @@ namespace MazeGUI.Controls
                 return false;
 
             }
-            if (mazeCells[p.X][p.Y] == 0)
+            int x = Convert.ToInt32(p.X);
+            int y = Convert.ToInt32(p.Y);
+            if (mazeCells[x][y] == 0)
                 return true;
             return false;
+        }
+
+        public void MoveTo(Label target, Point newP)
+        {
+
+            Point oldP = new Point()
+            {
+                X = Canvas.GetLeft(target),
+                Y = Canvas.GetTop(target)
+            };
+            DoubleAnimation anim1 = new DoubleAnimation(oldP.X, newP.X, TimeSpan.FromSeconds(0.25));
+            DoubleAnimation anim2 = new DoubleAnimation(oldP.Y, newP.Y, TimeSpan.FromSeconds(0.25));
+
+            target.BeginAnimation(Canvas.LeftProperty, anim1);
+            target.BeginAnimation(Canvas.TopProperty, anim2);
         }
 
         public string ExitImageFile
@@ -122,18 +162,6 @@ namespace MazeGUI.Controls
             DependencyProperty.Register("Cols", typeof(int), typeof(MazeBoard), new PropertyMetadata(Properties.Settings.Default.MazeCols));
 
 
-        //public string mazeSolve
-        //{
-        //    get { return (string)GetValue(mazeSolveProperty); }
-        //    set { SetValue(mazeSolveProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for Cols.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty mazeSolveProperty =
-        //    DependencyProperty.Register("Solve", typeof(string), typeof(MazeBoard), 
-        //        new PropertyMetadata(Properties.Settings.Default.MazeSolution));
-
-
 
         public string Maze
         {
@@ -168,7 +196,6 @@ namespace MazeGUI.Controls
                 {
                     Label l = new Label();
                     char c = s[i + rows * j];
-                    l.Content = c;
                     l.Width = width;
                     l.Height = height;
                     Canvas.SetLeft(l, width * i);
@@ -205,7 +232,6 @@ namespace MazeGUI.Controls
                             break;
 
                     }
-                    l.Foreground = Brushes.Red;
                     myCanvas.Children.Add(l);
                 }
             }
@@ -214,27 +240,27 @@ namespace MazeGUI.Controls
 
 
 
-        public class Point
-        {
-            public Point()
-            {
-                X = 0;
-                Y = 0;
-            }
-            public Point(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
+        //public class Point
+        //{
+        //    public Point()
+        //    {
+        //        X = 0;
+        //        Y = 0;
+        //    }
+        //    public Point(int x, int y)
+        //    {
+        //        X = x;
+        //        Y = y;
+        //    }
 
-            public int X
-            {
-                set; get;
-            }
-            public int Y
-            {
-                set; get;
-            }
-        }
+        //    public int X
+        //    {
+        //        set; get;
+        //    }
+        //    public int Y
+        //    {
+        //        set; get;
+        //    }
+        //}
     }
 }
