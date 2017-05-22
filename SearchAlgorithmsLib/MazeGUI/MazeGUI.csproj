@@ -62,9 +62,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AnimationMessage.xaml.cs">
+      <DependentUpon>AnimationMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MultiGame\ApplicationMultiPlayerModel.cs" />
     <Compile Include="MultiGame\IMultiPlayerDetailsModel.cs" />
     <Compile Include="MultiGame\MultiPlayerDetailsViewModel.cs" />
+    <Compile Include="MultiGame\WaitAnimation.xaml.cs">
+      <DependentUpon>WaitAnimation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PopMessage.xaml.cs">
       <DependentUpon>PopMessage.xaml</DependentUpon>
     </Compile>
@@ -99,6 +105,14 @@
     </Compile>
     <Compile Include="SingleGame\ISinglePlayerModel.cs" />
     <Compile Include="ViewModel.cs" />
+    <Page Include="Controls\AnimationMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiGame\WaitAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PopMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
