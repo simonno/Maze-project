@@ -15,8 +15,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+            
         <Button x:Name="btnLeft" Grid.Row="1" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="btnRight" Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+       
+
         <TextBlock x:Name="text" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>

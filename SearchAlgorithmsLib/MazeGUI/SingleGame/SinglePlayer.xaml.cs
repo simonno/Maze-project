@@ -3,6 +3,10 @@ using System.Windows;
 using System.Configuration;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Timers;
+using System;
+using System.Windows.Threading;
 
 namespace MazeGUI.SingleGame
 {
@@ -11,6 +15,8 @@ namespace MazeGUI.SingleGame
     /// </summary>
     public partial class SinglePlayer : Window
     {
+        private System.Windows.Threading.DispatcherTimer _timer = null;
+
         private SinglePlayerViewModel vm;
 
         public SinglePlayer(string mazeName, int rows, int cols)
@@ -19,8 +25,11 @@ namespace MazeGUI.SingleGame
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
             //MessageBox.Show("rows:" + mazeBoard.Rows + " , cols:" + mazeBoard.Cols);
-
+            _timer = new DispatcherTimer();
+            _timer.IsEnabled = false;
+            _timer.Tick += new System.EventHandler(MoveTo);
         }
+    
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
@@ -46,12 +55,12 @@ namespace MazeGUI.SingleGame
             {
                 if (solveMessage.Choose == true) //solve the game
                 {
-                    SolveMaze();
+                    var result =   SolveMaze();
                 }
             }
         }
 
-        private void SolveMaze()
+        private async Task<string> SolveMaze()
         {
             Reset();
             string solveString = vm.s();
@@ -80,13 +89,49 @@ namespace MazeGUI.SingleGame
                         mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
                         break;
                 }
+                await Task.Delay(1000);
                 i++;
             }
+            return "Success";
         }
 
-        private void MoveTo(Controls.MazeBoard.Point end)
+        private void MoveTo(object sender, EventArgs e)
         {
+            Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
+            {
+                Reset();
+                string solveString = vm.s();
+                int i = 0;
+                while (i < solveString.Length)
+                {
+                    switch (solveString[i])
+                    {
+                        case 'U':
+                            //MessageBox.Show("up1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y - 1);
+                            break;
 
+                        case 'D':
+                            //MessageBox.Show("down1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X, mazeBoard.PlayerPos.Y + 1);
+                            break;
+
+                        case 'R':
+                            //MessageBox.Show("right1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X + 1, mazeBoard.PlayerPos.Y);
+                            break;
+
+                        case 'L':
+                            //MessageBox.Show("left1");
+                            mazeBoard.PlayerPos = new Controls.MazeBoard.Point(mazeBoard.PlayerPos.X - 1, mazeBoard.PlayerPos.Y);
+                            break;
+                    }
+
+                    i++;
+
+                }
+            })); 
+            
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
