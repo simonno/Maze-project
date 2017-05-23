@@ -88,7 +88,7 @@ namespace MazeGUI.MultiGame
             Connect();
             Writer.WriteLine("start {0} {1} {2}", mazeName, rows, cols);
             Writer.Flush();
-            OpenReadTask();
+            GetMaze();
         }
 
         public void Join(string mazeName)
@@ -96,10 +96,10 @@ namespace MazeGUI.MultiGame
             Connect();
             Writer.WriteLine("join {0}", mazeName);
             Writer.Flush();
-            OpenReadTask();
+            GetMaze();
         }
 
-        private void OpenReadTask()
+        private void GetMaze()
         {
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
@@ -176,27 +176,25 @@ namespace MazeGUI.MultiGame
         public void Play(Direction d)
         {
             string move="";
-            int num = (int)d;
-            switch (num)
+            switch (d)
             {
-                case '0':
+                case Direction.Left:
                     move = "Left";
                     break;
-                case '1':
+                case Direction.Right:
                     move = "Right";
                     break;
-                case '2':
+                case Direction.Up:
                     move = "Up";
                     break;
-                case '3':
+                case Direction.Down:
                     move = "Down";
                     break;
 
             }
-            Connect();
             Writer.WriteLine("play {0}", move);
             Writer.Flush();
-            OpenReadTask();
+            GetMaze();
         }
 
     }
