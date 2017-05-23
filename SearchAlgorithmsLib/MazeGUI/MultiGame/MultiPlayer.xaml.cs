@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,33 @@ namespace MazeGUI.MultiGame
             InitializeComponent();
             vm = new MultiPlayerViewModel(model);
             DataContext = vm;
+            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName == "VM_OpponentPosChanged")
+                    MoveOppenent();
+            };
+        }
+
+        private void MoveOppenent()
+        {
+            switch (vm.OpponentPosChanged)
+            {
+                case Direction.Up:
+                    opponentBoard.MoveUp();
+                    break;
+
+                case Direction.Down:
+                    opponentBoard.MoveDown();
+                    break;
+
+                case Direction.Right:
+                    opponentBoard.MoveRight();
+                    break;
+
+                case Direction.Left:
+                    opponentBoard.MoveLeft();
+                    break;
+            }
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using MazeLib;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace MazeGUI.MultiGame
 {
@@ -18,7 +19,6 @@ namespace MazeGUI.MultiGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
-
-
+        Direction OpponentPosChanged { get; }
     }
 }

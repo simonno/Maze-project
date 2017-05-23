@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +17,22 @@ namespace MazeGUI.MultiGame
         public MultiPlayerViewModel(IMultiPlayerModel model)
         {
             this.model = model;
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+                MultiPlayer mp = new MultiPlayer(model);
+                mp.Show();
+                NotifyPropertyChanged("VM_" + e.PropertyName);
+            };
+        }
+
+        public Direction OpponentPosChanged
+        {
+            get { return model.OpponentPosChanged; }
+           
+        }
+
+        public void Play(Direction d)
+        {
+            model.Play(d);
         }
 
         public string MazeToString

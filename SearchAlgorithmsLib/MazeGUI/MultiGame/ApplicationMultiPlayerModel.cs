@@ -10,6 +10,7 @@ using System.Net;
 using Newtonsoft.Json;
 using ModelLib;
 using System.Threading;
+using System.Drawing;
 
 namespace MazeGUI.MultiGame
 {
@@ -20,6 +21,7 @@ namespace MazeGUI.MultiGame
         private StreamReader Reader;
         private StreamWriter Writer;
         private TcpClient tcpClient;
+        private Direction opponentPos;
 
         public ApplicationMultiPlayerModel()
         {
@@ -27,6 +29,16 @@ namespace MazeGUI.MultiGame
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
 
+        }
+
+        public Direction OpponentPosChanged
+        {
+            get { return opponentPos; }
+            set
+            {
+                opponentPos = value;
+                NotifyPropertyChanged("OpponentPosChanged");
+            }
         }
 
         public Maze Maze
@@ -194,8 +206,6 @@ namespace MazeGUI.MultiGame
             }
             Writer.WriteLine("play {0}", move);
             Writer.Flush();
-            GetMaze();
         }
-
     }
 }
