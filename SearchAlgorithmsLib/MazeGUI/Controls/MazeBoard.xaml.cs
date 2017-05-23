@@ -26,6 +26,10 @@ namespace MazeGUI.Controls
             InitializeComponent();
         }
 
+        public void MoveBackToTheStart()
+        {
+            PlayerPos = playerStartPoint;
+        }
         public void MoveUp()
         {
             PlayerPos = new Point(PlayerPos.X, PlayerPos.Y - 1);

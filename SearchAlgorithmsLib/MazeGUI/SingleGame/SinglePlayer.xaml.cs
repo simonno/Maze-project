@@ -27,7 +27,7 @@ namespace MazeGUI.SingleGame
             timer = new DispatcherTimer();
             timer.IsEnabled = false;
         }
-    
+
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
@@ -36,14 +36,9 @@ namespace MazeGUI.SingleGame
             {
                 if (resetMessage.Choose == true) //reset the game
                 {
-                    Reset();
+                    mazeBoard.MoveBackToTheStart();
                 }
             }
-        }
-        public void Reset()
-        {
-            InitializeComponent();
-            mazeBoard.PlayerPos = mazeBoard.PlayerStartPoint;
         }
 
         private void btnSolve_Click(object sender, RoutedEventArgs e)
@@ -61,7 +56,7 @@ namespace MazeGUI.SingleGame
         {
             btnReset.IsEnabled = false;
             btnSolve.IsEnabled = false;
-            Reset();
+            mazeBoard.MoveBackToTheStart();
             string solveString = vm.s();
             int i = 0;
             while (i < solveString.Length)
