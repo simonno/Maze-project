@@ -91,7 +91,6 @@ namespace MazeGUI.Controls
             if ((p.X < 0) || (p.X > Cols - 1) || (p.Y < 0) || (p.Y > Rows - 1))
             {
                 return false;
-
             }
             int x = Convert.ToInt32(p.X);
             int y = Convert.ToInt32(p.Y);
