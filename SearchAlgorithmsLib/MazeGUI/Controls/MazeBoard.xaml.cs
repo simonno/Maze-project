@@ -32,7 +32,7 @@ namespace MazeGUI.Controls
         }
         public void MoveDown()
         {
-           PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
+            PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
 
         }
         public void MoveLeft()
@@ -64,7 +64,7 @@ namespace MazeGUI.Controls
                     MoveTo(player, new Point(width * p.X, height * p.Y));
                     //int rows = Rows;
                     //int cols = Cols;
-                   
+
                     //Canvas.SetLeft(player, width * p.X);
                     //Canvas.SetTop(player, height * p.Y);
                 }
@@ -88,7 +88,7 @@ namespace MazeGUI.Controls
         }
         private bool Valid(Point p)
         {
-            if ((p.X < 0) || (p.X > mazeCells.Capacity-1) || (p.Y < 0) || (p.Y > mazeCells.Capacity-1))
+            if ((p.X < 0) || (p.X > Cols - 1) || (p.Y < 0) || (p.Y > Rows - 1))
             {
                 return false;
 
@@ -187,29 +187,29 @@ namespace MazeGUI.Controls
             double width = myCanvas.Width / cols;
             double height = myCanvas.Height / rows;
 
-
-            mazeCells = new List<List<int>>(rows);
-            for (int i = 0; i < rows; i++)
+            mazeCells = new List<List<int>>(cols);
+            for (int xPos = 0; xPos < cols; xPos++)
             {
-               mazeCells.Add(new List<int>(cols));
-                for (int j = 0; j < cols; j++)
+                mazeCells.Add(new List<int>(rows));
+                for (int yPos = 0; yPos < rows; yPos++)
                 {
+
                     Label l = new Label();
-                    char c = s[i + rows * j];
+                    char c = s[xPos + cols * yPos];
                     l.Width = width;
                     l.Height = height;
-                    Canvas.SetLeft(l, width * i);
-                    Canvas.SetTop(l, height * j);
+                    Canvas.SetLeft(l, width * xPos);
+                    Canvas.SetTop(l, height * yPos);
                     switch (c)
                     {
                         case '1':
                             l.Background = Brushes.Black;
-                            mazeCells[i].Insert(j , 1);
+                            mazeCells[xPos].Insert(yPos, 1);
                             break;
 
                         case '0':
                             l.Background = Brushes.White;
-                            mazeCells[i].Insert(j, 0);
+                            mazeCells[xPos].Insert(yPos, 0);
                             break;
 
                         case '*':
@@ -217,18 +217,18 @@ namespace MazeGUI.Controls
                             player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
                             player.Width = width;
                             player.Height = height;
-                            Canvas.SetLeft(player, width * i);
-                            Canvas.SetTop(player, height * j);
-                            playerPos = new Point(i, j);
-                            playerStartPoint = new Point(i, j);
-                            mazeCells[i].Insert(j, 0);
+                            Canvas.SetLeft(player, width * xPos);
+                            Canvas.SetTop(player, height * yPos);
+                            playerPos = new Point(xPos, yPos);
+                            playerStartPoint = new Point(xPos, yPos);
+                            mazeCells[xPos].Insert(yPos, 0);
                             break;
 
                         case '#':
                             //l.Background = Brushes.Green;
                             l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
-                            mazeCells[i].Insert(j, 0);
-                            exitPos = new Point(i, j);
+                            mazeCells[xPos].Insert(yPos, 0);
+                            exitPos = new Point(xPos, yPos);
                             break;
 
                     }

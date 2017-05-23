@@ -119,7 +119,7 @@ namespace MazeGUI.MultiGame
                 string answer = Reader.ReadLine();
                 answer = answer.Replace("@", Environment.NewLine);
                 maze = Maze.FromJSON(answer);
-                MultiPlayer mp = new MultiPlayer();
+                MultiPlayer mp = new MultiPlayer(this);
                 mp.Show();
                 
 
