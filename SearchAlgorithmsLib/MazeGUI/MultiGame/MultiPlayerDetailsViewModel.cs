@@ -17,8 +17,7 @@ namespace MazeGUI.MultiGame
                 MultiPlayer mp = new MultiPlayer(model);
                 mp.Show();
                 NotifyPropertyChanged("VM_" + e.PropertyName);
-            };
-
+            };
         }
         public ObservableCollection<string> GamesList
         {
@@ -63,10 +62,5 @@ namespace MazeGUI.MultiGame
         {
         model.Join(mazeName);
         }
-        public void Play(string move)
-        {
-            model.Play(move);
-        }
-
     }
 }

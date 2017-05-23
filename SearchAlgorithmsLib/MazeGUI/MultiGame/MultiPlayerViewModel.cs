@@ -23,16 +23,15 @@ namespace MazeGUI.MultiGame
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+        public void Play(Direction move)
+        {
+            model.Play(move);
+        }
 
         public Direction OpponentPosChanged
         {
             get { return model.OpponentPosChanged; }
            
-        }
-
-        public void Play(Direction d)
-        {
-            model.Play(d);
         }
 
         public string MazeToString

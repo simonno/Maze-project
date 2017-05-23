@@ -73,18 +73,22 @@ namespace MazeGUI.MultiGame
             {
                 case Key.Up:
                     myBoard.MoveUp();
+                    vm.Play(Direction.Up);
                     break;
 
                 case Key.Down:
                     myBoard.MoveDown();
+                    vm.Play(Direction.Down);
                     break;
 
                 case Key.Right:
                     myBoard.MoveRight();
+                    vm.Play(Direction.Right);
                     break;
 
                 case Key.Left:
                     myBoard.MoveLeft();
+                    vm.Play(Direction.Left);
                     break;
             }
 

@@ -19,7 +19,7 @@
         <Button x:Name="btnMainMenu" Content="Back to the main menu" Grid.ColumnSpan="2" Click="btnMainMenu_Click"/>
         <TextBlock Text="My board" Margin="0 0 3 0" Grid.Row="1"/>
         <TextBlock Text="Other player's board" Margin="3 0 0 0" Grid.Row="1" Grid.Column="1"/>
-        <Controls:MazeBoard x:Name="myBoard" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 3 0" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2"/>
-        <Controls:MazeBoard x:Name="opponentBoard" Margin="3 0 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2" Grid.Column="1"/>
+        <Controls:MazeBoard x:Name="myBoard" PlayerImageFile="simpson.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 3 0" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2"/>
+        <Controls:MazeBoard x:Name="opponentBoard" PlayerImageFile="monster.jpg" Margin="3 0 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </Window>
