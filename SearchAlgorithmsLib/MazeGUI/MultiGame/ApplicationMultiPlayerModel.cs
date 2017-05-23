@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using ModelLib;
+using System.Threading;
 
 namespace MazeGUI.MultiGame
 {
@@ -98,17 +99,21 @@ namespace MazeGUI.MultiGame
         {
 
             Connect();
-            OpenReadTask();
+          //  OpenReadTask();
             Writer.WriteLine("start {0} {1} {2}", mazeName, rows, cols);
             Writer.Flush();
 
 
             //// TODO "waiting for connection" win
 
-            //string answer = Reader.ReadLine();
-            //answer = answer.Replace("@", Environment.NewLine);
-            //Maze ms;
-            //ms = Maze.FromJSON(answer);
+            string answer = Reader.ReadLine();
+            answer = answer.Replace("@", Environment.NewLine);
+            Maze ms;
+            ms = Maze.FromJSON(answer);
+
+            maze = ms;
+            MultiPlayer mp = new MultiPlayer();
+            mp.Show();
             //Disconnect();
         }
 
@@ -118,8 +123,8 @@ namespace MazeGUI.MultiGame
             {
                 string answer = Reader.ReadLine();
                 answer = answer.Replace("@", Environment.NewLine);
-                maze = Maze.FromJSON(answer);
-                MultiPlayer mp = new MultiPlayer(this);
+                maze = Maze.FromJSON(answer); 
+                MultiPlayer mp = new MultiPlayer();
                 mp.Show();
                 
 
@@ -137,7 +142,7 @@ namespace MazeGUI.MultiGame
         public void Join(string mazeName)
         {
             Connect();
-            OpenReadTask();
+            //OpenReadTask();
             Writer.WriteLine("join {0}", mazeName);
             Writer.Flush();
             string answer = Reader.ReadLine();
@@ -145,6 +150,10 @@ namespace MazeGUI.MultiGame
 
             Maze ms;
             ms = Maze.FromJSON(answer);
+            maze = ms;
+            MultiPlayer mp = new MultiPlayer();
+            mp.Show();
+
 
         }
         private void Connect()

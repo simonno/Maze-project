@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Threading;
+
+
 
 namespace MazeGUI.MultiGame
 {
@@ -52,6 +54,7 @@ namespace MazeGUI.MultiGame
         public void Start(string mazeName, int rows, int cols)
         {
             model.Start(mazeName, rows,  cols);
+            
         }
 
         public void Join(string mazeName)

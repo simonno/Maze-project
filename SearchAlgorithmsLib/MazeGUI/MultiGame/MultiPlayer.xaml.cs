@@ -20,12 +20,16 @@ namespace MazeGUI.MultiGame
     public partial class MultiPlayer : Window
     {
         private MultiPlayerViewModel vm;
-        public MultiPlayer(ApplicationMultiPlayerModel model)
+        public MultiPlayer()
         {
             InitializeComponent();
-            vm = new MultiPlayerViewModel(model);
+           // vm = new MultiPlayerViewModel(model);
+            vm = new MultiPlayerViewModel(new ApplicationMultiPlayerModel());
+
             DataContext = vm;
 
+        //    vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
+            
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
