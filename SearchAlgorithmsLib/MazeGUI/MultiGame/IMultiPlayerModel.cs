@@ -1,19 +1,19 @@
-﻿using MazeLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace MazeGUI.MultiGame
 {
-    interface IMultiPlayerModel
+    public interface IMultiPlayerModel : INotifyPropertyChanged
     {
         void Start(string mazeName, int rows, int cols);
-        List<string> GamesList
-        {
-            get;
-        }
+
         void Join(string mazeName);
+
+        List<string> GamesList { get; }
+
+        string MazeToString { get; }
+        string MazeName { get; }
+        int MazeRows { get; }
+        int MazeCols { get; }
     }
 }

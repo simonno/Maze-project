@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Threading;
@@ -10,13 +11,17 @@ using System.Windows.Threading;
 
 namespace MazeGUI.MultiGame
 {
-    class MultiPlayerDetailsViewModel : ViewModel
+    class MultiPlayerDetailsViewModel : ANotifyPropertyChanged
     {
         private IMultiPlayerModel model;
 
         public MultiPlayerDetailsViewModel(IMultiPlayerModel model)
         {
             this.model = model;
+            model.PropertyChanged += delegate(Object sender, PropertyChangedEventArgs e){
+                NotifyPropertyChanged("VM_" + e.PropertyName);
+                MultiPlayer mp = new MultiPlayer(model);
+            };
         }
         public ObservableCollection<string> GamesList
         {

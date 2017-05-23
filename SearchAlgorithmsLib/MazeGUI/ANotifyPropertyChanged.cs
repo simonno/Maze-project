@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MazeGUI
 {
-    public abstract class ViewModel : INotifyPropertyChanged
+    public abstract class ANotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)

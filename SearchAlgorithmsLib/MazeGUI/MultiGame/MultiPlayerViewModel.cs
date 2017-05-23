@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MazeGUI.MultiGame
 {
-    class MultiPlayerViewModel : ViewModel
+    class MultiPlayerViewModel : ANotifyPropertyChanged
     {
-        private ApplicationMultiPlayerModel model;
+        private IMultiPlayerModel model;
 
-        public MultiPlayerViewModel(ApplicationMultiPlayerModel model)
+        public MultiPlayerViewModel(IMultiPlayerModel model)
         {
             this.model = model;
         }

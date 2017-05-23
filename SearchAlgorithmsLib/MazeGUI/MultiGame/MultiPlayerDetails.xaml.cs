@@ -1,5 +1,6 @@
 ﻿using MazeLib;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,6 +17,10 @@ namespace MazeGUI.MultiGame
             InitializeComponent();
             vm = new MultiPlayerDetailsViewModel(new ApplicationMultiPlayerModel());
             DataContext = vm;
+            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                Close();
+            };
         }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
@@ -31,7 +36,7 @@ namespace MazeGUI.MultiGame
                 MessageBox.Show("Please choose a name for the list.");
                 return;
             }
-            string selectedName = (string) GamesList.SelectedValue;
+            string selectedName = (string)GamesList.SelectedValue;
             vm.Join(selectedName);
 
             //MultiPlayer win = new MultiPlayer()
@@ -75,8 +80,10 @@ namespace MazeGUI.MultiGame
                 throw new Exception("cols convert failed.");
             }
 
-            vm.Start(name,rows, cols);
-            Close();
+            btnStart.Content = "Waiting for a player to join";
+            btnStart.IsEnabled = false;
+            vm.Start(name, rows, cols);
+
         }
     }
 }

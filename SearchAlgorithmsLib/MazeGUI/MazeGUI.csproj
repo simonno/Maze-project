@@ -102,7 +102,7 @@
       <DependentUpon>SinglePlayerDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="SingleGame\ISinglePlayerModel.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="ANotifyPropertyChanged.cs" />
     <Page Include="PopMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

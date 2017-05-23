@@ -22,6 +22,7 @@
                 <Button x:Name="btnJoin" Content="Join Game" Width="80" FontSize="15" Click="btnJoin_Click"/>
                 <Controls:MazeDetails x:Name="MazeDetails" DefaultMazeCols="{Binding MazeCols}" DefaultMazeRows="{Binding MazeRows}" Padding="10"/>
                 <Button x:Name="btnStart"  Content="Start Game" Width="80" FontSize="15" Click="btnStart_Click"/>
+                <!--" TextBlock x:Name="WaitingText" Text="Waiting for a player to join" Visibility="Hidden"/-->
             </StackPanel>
         </Grid>
     </Border>
