@@ -133,7 +133,7 @@ namespace MazeGUI.MultiGame
                     {
                         answer = answer.Replace("@", Environment.NewLine);
                         PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        opponentPos = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                        OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
                     }
                 }
             }).Start();
