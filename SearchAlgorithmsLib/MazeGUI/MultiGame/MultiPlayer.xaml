@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MazeGUI.Controls"
         mc:Ignorable="d"
-        Title="{Binding MazeName}" Height="300" Width="300">
+        Title="{Binding MazeName}" Height="300" Width="300" KeyDown="Window_KeyDown">
     <Grid Background="Blue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +19,7 @@
         <Button x:Name="btnMainMenu" Content="Back to the main menu" Grid.ColumnSpan="2" Click="btnMainMenu_Click"/>
         <TextBlock Text="My board" Margin="0 0 3 0" Grid.Row="1"/>
         <TextBlock Text="Other player's board" Margin="3 0 0 0" Grid.Row="1" Grid.Column="1"/>
-        <Controls:MazeBoard x:Name="mazeBoard1" Margin="0 0 3 0" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2"/>
-        <Controls:MazeBoard x:Name="mazeBoard2" Margin="3 0 0 0" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2" Grid.Column="1"/>
+        <Controls:MazeBoard x:Name="myBoard" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 3 0" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2"/>
+        <Controls:MazeBoard x:Name="otherPlayerBoard" Margin="3 0 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Rows="{Binding MazeRows}" Cols="{Binding MazeCols}" Maze="{Binding MazeToString}" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </Window>

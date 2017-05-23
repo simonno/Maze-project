@@ -173,6 +173,9 @@ namespace MazeGUI.MultiGame
             Console.WriteLine("Connection has closed.");
         }
 
-
+        public void Play(Direction d)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

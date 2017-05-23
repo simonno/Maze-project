@@ -24,7 +24,7 @@ namespace MazeGUI.MultiGame
         {
             InitializeComponent();
             vm = new MultiPlayerViewModel(model);
-            DataContext = vm;            
+            DataContext = vm;
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -38,6 +38,27 @@ namespace MazeGUI.MultiGame
             Close();
         }
 
-        
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up:
+                    myBoard.MoveUp();
+                    break;
+
+                case Key.Down:
+                    myBoard.MoveDown();
+                    break;
+
+                case Key.Right:
+                    myBoard.MoveRight();
+                    break;
+
+                case Key.Left:
+                    myBoard.MoveLeft();
+                    break;
+            }
+
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace MazeGUI.MultiGame
 {
     class MultiPlayerViewModel : NotifyChanged
     {
+
         private IMultiPlayerModel model;
 
         public MultiPlayerViewModel(IMultiPlayerModel model)

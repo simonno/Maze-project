@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MazeLib;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace MazeGUI.MultiGame
@@ -9,11 +10,15 @@ namespace MazeGUI.MultiGame
 
         void Join(string mazeName);
 
+        void Play(Direction d);
+
         List<string> GamesList { get; }
 
         string MazeToString { get; }
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
+
+
     }
 }
