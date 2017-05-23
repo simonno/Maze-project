@@ -175,7 +175,29 @@ namespace MazeGUI.MultiGame
 
         public void Play(Direction d)
         {
-            throw new NotImplementedException();
+            string move="";
+            int num = (int)d;
+            switch (num)
+            {
+                case '0':
+                    move = "Left";
+                    break;
+                case '1':
+                    move = "Right";
+                    break;
+                case '2':
+                    move = "Up";
+                    break;
+                case '3':
+                    move = "Down";
+                    break;
+
+            }
+            Connect();
+            Writer.WriteLine("play {0}", move);
+            Writer.Flush();
+            OpenReadTask();
         }
+
     }
 }

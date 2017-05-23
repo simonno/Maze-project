@@ -62,5 +62,10 @@ namespace MazeGUI.MultiGame
         {
         model.Join(mazeName);
         }
+        public void Play(string move)
+        {
+            model.Play(move);
+        }
+
     }
 }
