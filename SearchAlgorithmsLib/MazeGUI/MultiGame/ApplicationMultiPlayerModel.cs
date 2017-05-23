@@ -22,6 +22,7 @@ namespace MazeGUI.MultiGame
         private StreamWriter Writer;
         private TcpClient tcpClient;
         private Direction opponentPos;
+        private bool stopReading;
 
         public ApplicationMultiPlayerModel()
         {
@@ -116,25 +117,28 @@ namespace MazeGUI.MultiGame
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
             Maze = Maze.FromJSON(answer);
-
-            //new Task(() =>
-            //{
-            //    string answer = Reader.ReadLine();
-            //    answer = answer.Replace("@", Environment.NewLine);
-            //    Maze = Maze.FromJSON(answer);
-
-
-
-            //    //bool stop = false;
-            //    //while (!stop)
-            //    //{
-            //    //    answer = Reader.ReadLine();
-            //    //    answer = answer.Replace("@", Environment.NewLine);
-            //    //    PlayerDirection pd = PlayerDirection.FromJSON(answer);
-
-            //    //}
-            //}).Start();
+            CreateReadTask();
         }
+
+        private void CreateReadTask()
+        {
+            new Task(() =>
+            {
+                stopReading = false;
+                string answer;
+                while (!stopReading)
+                {
+                    answer = Reader.ReadLine();
+                    if (!string.IsNullOrEmpty(answer))
+                    {
+                        answer = answer.Replace("@", Environment.NewLine);
+                        PlayerDirection pd = PlayerDirection.FromJSON(answer);
+                        opponentPos = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                    }
+                }
+            }).Start();
+        }
+
 
         private void Connect()
         {
