@@ -12,6 +12,9 @@ namespace MazeGUI.MultiGame
     public partial class MultiPlayerDetails : Window
     {
         private MultiPlayerDetailsViewModel vm;
+
+        public bool InvokeRequired { get; private set; }
+
         public MultiPlayerDetails()
         {
             InitializeComponent();
@@ -19,7 +22,8 @@ namespace MazeGUI.MultiGame
             DataContext = vm;
             vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                Close();
+                if (e.PropertyName == "VM_Maze")
+                    Close();
             };
         }
 
@@ -85,5 +89,18 @@ namespace MazeGUI.MultiGame
             vm.Start(name, rows, cols);
 
         }
+
+        //public void SafeClose()
+        //{
+        //    // Make sure we're running on the UI thread
+        //    if (InvokeRequired)
+        //    {
+        //        BeginInvoke(new Action(SafeClose));
+        //        return;
+        //    }
+
+        //    // Close the form now that we're running on the UI thread
+        //    Close();
+        //}
     }
 }

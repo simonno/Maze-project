@@ -1,6 +1,6 @@
 ﻿namespace MazeGUI.Settings
 {
-    public class SettingsViewModel : ANotifyPropertyChanged
+    public class SettingsViewModel : NotifyChanged
     {
         private ISettingsModel model;
         public SettingsViewModel(ISettingsModel model)

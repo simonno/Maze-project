@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MazeGUI.MultiGame
 {
-    class MultiPlayerViewModel : ANotifyPropertyChanged
+    class MultiPlayerViewModel : NotifyChanged
     {
         private IMultiPlayerModel model;
 

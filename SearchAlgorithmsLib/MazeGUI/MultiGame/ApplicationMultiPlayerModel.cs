@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace MazeGUI.MultiGame
 {
-    public class ApplicationMultiPlayerModel : ANotifyPropertyChanged, IMultiPlayerModel
+    public class ApplicationMultiPlayerModel : NotifyChanged, IMultiPlayerModel
     {
         private IPEndPoint socketInfo;
         private Maze maze;
@@ -101,23 +101,27 @@ namespace MazeGUI.MultiGame
 
         private void OpenReadTask()
         {
-            new Task(() =>
-            {
-                string answer = Reader.ReadLine();
-                answer = answer.Replace("@", Environment.NewLine);
-                Maze = Maze.FromJSON(answer);
+            string answer = Reader.ReadLine();
+            answer = answer.Replace("@", Environment.NewLine);
+            Maze = Maze.FromJSON(answer);
+
+            //new Task(() =>
+            //{
+            //    string answer = Reader.ReadLine();
+            //    answer = answer.Replace("@", Environment.NewLine);
+            //    Maze = Maze.FromJSON(answer);
 
 
 
-                //bool stop = false;
-                //while (!stop)
-                //{
-                //    answer = Reader.ReadLine();
-                //    answer = answer.Replace("@", Environment.NewLine);
-                //    PlayerDirection pd = PlayerDirection.FromJSON(answer);
+            //    //bool stop = false;
+            //    //while (!stop)
+            //    //{
+            //    //    answer = Reader.ReadLine();
+            //    //    answer = answer.Replace("@", Environment.NewLine);
+            //    //    PlayerDirection pd = PlayerDirection.FromJSON(answer);
 
-                //}
-            }).Start();
+            //    //}
+            //}).Start();
         }
 
         private void Connect()

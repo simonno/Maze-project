@@ -1,17 +1,12 @@
-﻿using MazeLib;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Threading;
 
 
 
 namespace MazeGUI.MultiGame
 {
-    class MultiPlayerDetailsViewModel : ANotifyPropertyChanged
+    class MultiPlayerDetailsViewModel : NotifyChanged
     {
         private IMultiPlayerModel model;
 
@@ -19,8 +14,9 @@ namespace MazeGUI.MultiGame
         {
             this.model = model;
             model.PropertyChanged += delegate(Object sender, PropertyChangedEventArgs e){
-                NotifyPropertyChanged("VM_" + e.PropertyName);
                 MultiPlayer mp = new MultiPlayer(model);
+                mp.Show();
+                NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
         public ObservableCollection<string> GamesList

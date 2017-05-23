@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MazeGUI.SingleGame
 {
-    public class SinglePlayerViewModel : ANotifyPropertyChanged
+    public class SinglePlayerViewModel : NotifyChanged
     {
         private ISinglePlayerModel model;
 
