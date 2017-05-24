@@ -43,24 +43,24 @@ namespace MazeGUI.MultiGame
 
         private void MoveOppenent()
         {
-            switch (vm.OpponentPosChanged)
-            {
-                case Direction.Up:
-                    opponentBoard.MoveUp();
-                    break;
+            //switch (vm.OpponentPosChanged)
+            //{
+            //    case Direction.Up:
+            //        opponentBoard.MoveUp();
+            //        break;
 
-                case Direction.Down:
-                    opponentBoard.MoveDown();
-                    break;
+            //    case Direction.Down:
+            //        opponentBoard.MoveDown();
+            //        break;
 
-                case Direction.Right:
-                    opponentBoard.MoveRight();
-                    break;
+            //    case Direction.Right:
+            //        opponentBoard.MoveRight();
+            //        break;
 
-                case Direction.Left:
-                    opponentBoard.MoveLeft();
-                    break;
-            }
+            //    case Direction.Left:
+            //        opponentBoard.MoveLeft();
+            //        break;
+            //}
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -71,13 +71,13 @@ namespace MazeGUI.MultiGame
                 if (exitMessage.Choose == true) //reset the game
                 {
                     vm.Close();
-                     MainWindow win = new MainWindow()
-            {
-                Top = Top,
-                Left = Left
-            };
-            win.Show();
-            Close();
+                    MainWindow win = new MainWindow()
+                    {
+                        Top = Top,
+                        Left = Left
+                    };
+                    win.Show();
+                    Close();
 
                 }
             }
@@ -85,32 +85,32 @@ namespace MazeGUI.MultiGame
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            Dispatcher.Invoke(() =>
-            {
-                switch (e.Key)
-                {
-                    case Key.Up:
-                        myBoard.MoveUp();
-                        vm.Play(Direction.Up);
-                        break;
+            //Dispatcher.Invoke(() =>
+            //{
+            //    switch (e.Key)
+            //    {
+            //        case Key.Up:
+            //            myBoard.MoveUp();
+            //            vm.Play(Direction.Up);
+            //            break;
 
-                    case Key.Down:
-                        myBoard.MoveDown();
-                        vm.Play(Direction.Down);
-                        break;
+            //        case Key.Down:
+            //            myBoard.MoveDown();
+            //            vm.Play(Direction.Down);
+            //            break;
 
-                    case Key.Right:
-                        myBoard.MoveRight();
-                        vm.Play(Direction.Right);
-                        break;
+            //        case Key.Right:
+            //            myBoard.MoveRight();
+            //            vm.Play(Direction.Right);
+            //            break;
 
-                    case Key.Left:
-                        myBoard.MoveLeft();
-                        vm.Play(Direction.Left);
-                        break;
-                }
+            //        case Key.Left:
+            //            myBoard.MoveLeft();
+            //            vm.Play(Direction.Left);
+            //            break;
+            //    }
 
-            });
+            //});
         }
     }
 }

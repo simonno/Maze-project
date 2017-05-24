@@ -14,7 +14,9 @@ namespace MazeGUI.SingleGame
     public class SinglePlayerViewModel : NotifyChanged
     {
         private ISinglePlayerModel model;
-       // private Point playerPos;
+        private Position playerPos;
+
+        // private Point playerPos;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
@@ -23,7 +25,7 @@ namespace MazeGUI.SingleGame
             {
                 if (e.PropertyName == "PlayerPos")
                 {
-                     MazeToString
+
                 }
             };
         }
@@ -33,7 +35,26 @@ namespace MazeGUI.SingleGame
             get
             {
                 string maze = model.MazeToString;
-                return maze.Replace(Environment.NewLine, "");
+                maze.Replace(Environment.NewLine, "");
+                maze.Replace("*", "0");
+                maze.Replace("#", "0");
+                return maze;
+            }
+        }
+
+        public Position InitialPos
+        {
+            get
+            {
+                return model.InitialPos;
+            }
+        }
+
+        public Position GoalPos
+        {
+            get
+            {
+                return model.GoalPos;
             }
         }
 
@@ -64,14 +85,15 @@ namespace MazeGUI.SingleGame
                 return model.MazeCols;
             }
         }
-        public Point PlayerPos
+        public Position PlayerPos
         {
             get
             {
-                return model.PlayerPos;
+                return playerPos;
             }
             set
             {
+                playerPos = model.PlayerPos;
                 NotifyPropertyChanged("PlayerPos");
             }
         }
@@ -88,7 +110,7 @@ namespace MazeGUI.SingleGame
             MazeSolution mazeSolve = model.Solve();
             return mazeSolve.SolutionString;
         }
-        public void movePlayer(Direction d)
+        public void MovePlayer(Direction d)
         {
             model.ChangePlayerPos(d);
         }

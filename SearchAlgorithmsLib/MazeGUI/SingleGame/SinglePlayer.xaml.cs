@@ -7,6 +7,7 @@ using System.Threading;
 using System.Timers;
 using System;
 using System.Windows.Threading;
+using MazeLib;
 
 namespace MazeGUI.SingleGame
 {
@@ -36,7 +37,7 @@ namespace MazeGUI.SingleGame
             {
                 if (resetMessage.Choose == true) //reset the game
                 {
-                    mazeBoard.MoveBackToTheStart();
+                    //mazeBoard.MoveBackToTheStart();
                 }
             }
         }
@@ -48,44 +49,44 @@ namespace MazeGUI.SingleGame
             {
                 if (solveMessage.Choose == true) //solve the game
                 {
-                    var result =  SolveMaze();
+                    //var result =  SolveMaze();
                 }
             }
         }
-        private async Task<string> SolveMaze()
-        {
-            btnReset.IsEnabled = false;
-            btnSolve.IsEnabled = false;
-            mazeBoard.MoveBackToTheStart();
-            string solveString = vm.s();
-            int i = 0;
-            while (i < solveString.Length)
-            {
-                switch (solveString[i])
-                {
-                    case 'U':
-                        mazeBoard.MoveUp();
-                        break;
+        //private async Task<string> SolveMaze()
+        //{
+        //    btnReset.IsEnabled = false;
+        //    btnSolve.IsEnabled = false;
+        //    mazeBoard.MoveBackToTheStart();
+        //    string solveString = vm.s();
+        //    int i = 0;
+        //    while (i < solveString.Length)
+        //    {
+        //        switch (solveString[i])
+        //        {
+        //            case 'U':
+        //                mazeBoard.MoveUp();
+        //                break;
 
-                    case 'D':
-                        mazeBoard.MoveDown();
-                        break;
+        //            case 'D':
+        //                mazeBoard.MoveDown();
+        //                break;
 
-                    case 'R':
-                        mazeBoard.MoveRight();
-                        break;
+        //            case 'R':
+        //                mazeBoard.MoveRight();
+        //                break;
 
-                    case 'L':
-                        mazeBoard.MoveLeft();
-                        break;
-                }
-                await Task.Delay(500);
-                i++;
-            }
-            btnReset.IsEnabled = true;
-            btnSolve.IsEnabled = true;
-            return "Success";
-        }
+        //            case 'L':
+        //                mazeBoard.MoveLeft();
+        //                break;
+        //        }
+        //        await Task.Delay(500);
+        //        i++;
+        //    }
+        //    btnReset.IsEnabled = true;
+        //    btnSolve.IsEnabled = true;
+        //    return "Success";
+        //}
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow()
@@ -102,21 +103,23 @@ namespace MazeGUI.SingleGame
             switch (e.Key)
             {
                 case Key.Up:
-                    mazeBoard.MoveUp();
+                    vm.MovePlayer(Direction.Up);
                     break;
 
                 case Key.Down:
-                    mazeBoard.MoveDown();
+                    vm.MovePlayer(Direction.Down);
                     break;
 
                 case Key.Right:
-                    mazeBoard.MoveRight();
+                    vm.MovePlayer(Direction.Left);
                     break;
 
                 case Key.Left:
-                    mazeBoard.MoveLeft();
+                    vm.MovePlayer(Direction.Right);
                     break;
             }
+
+
         }
     }
 }

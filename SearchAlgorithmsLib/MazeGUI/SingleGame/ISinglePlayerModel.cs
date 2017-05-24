@@ -16,9 +16,11 @@ namespace MazeGUI.SingleGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
-         Point PlayerPos { get; }
+        Position PlayerPos { get; }
+        Position InitialPos { get; }
+        Position GoalPos { get; }
 
-            MazeSolution Solve();
+        MazeSolution Solve();
         void ChangePlayerPos(Direction d);
     }
 }

@@ -18,47 +18,82 @@ namespace MazeGUI.Controls
     {
         private List<List<int>> mazeCells;
         private Label player;
-       private Point playerPos;
+        private Label goal;
+        private Point playerPos;
         private Point exitPos;
 
         public MazeBoard()
         {
             player = new Label();
+            goal = new Label();
             InitializeComponent();
         }
 
-        public void MoveBackToTheStart()
-        {
-            PlayerPos = PlayerStartPoint;
-        }
-        public void MoveUp()
-        {
-            PlayerPos = new Point(PlayerPos.X, PlayerPos.Y - 1);
-        }
-        public void MoveDown()
-        {
-            PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
 
-        }
-        public void MoveLeft()
-        {
-            PlayerPos = new Point(PlayerPos.X - 1, PlayerPos.Y);
 
-        }
-        public void MoveRight()
+        public Position GoalPos
         {
-            PlayerPos = new Point(PlayerPos.X + 1, PlayerPos.Y);
+            get { return (Position)GetValue(GoalPosProperty); }
+            set { SetValue(GoalPosProperty, value); }
         }
 
-        public Point PlayerPos
+        // Using a DependencyProperty as the backing store for GoalPos.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GoalPosProperty =
+            DependencyProperty.Register("GoalPos", typeof(Position), typeof(MazeBoard), new PropertyMetadata(new Position(0, 0), OnGoalPosPropertyChanged));
+
+        private static void OnGoalPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return (Point)GetValue(PlayerPosProperty); }
+            MazeBoard board = (MazeBoard)d;
+            board.OnGoalPosPropertyChanged();
+        }
+
+        private void OnGoalPosPropertyChanged()
+        {
+            double width = myCanvas.Width / Cols;
+            double height = myCanvas.Height / Rows;
+            goal.Width = width;
+            goal.Height = height;
+            Canvas.SetLeft(goal, width * GoalPos.Col);
+            Canvas.SetTop(goal, height * GoalPos.Row);
+            myCanvas.Children.Add(goal);
+        }
+
+        public Position InitialPos
+        {
+            get { return (Position)GetValue(InitialPosProperty); }
+            set { SetValue(InitialPosProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for InitialPos.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InitialPosProperty =
+            DependencyProperty.Register("InitialPos", typeof(Position), typeof(MazeBoard), new PropertyMetadata(new Position(0, 0), OnInitialPosPropertyChanged));
+
+        private static void OnInitialPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeBoard board = (MazeBoard)d;
+            board.OnInitialPosPropertyChanged();
+        }
+
+        private void OnInitialPosPropertyChanged()
+        {
+            double width = myCanvas.Width / Cols;
+            double height = myCanvas.Height / Rows;
+            player.Width = width;
+            player.Height = height;
+            Canvas.SetLeft(player, width * InitialPos.Col);
+            Canvas.SetTop(player, height * InitialPos.Row);
+            myCanvas.Children.Add(player);
+        }
+
+        public Position PlayerPos
+        {
+            get { return (Position)GetValue(PlayerPosProperty); }
             set { SetValue(PlayerPosProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PlayerPos.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayerPosProperty =
-            DependencyProperty.Register("PlayerPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0,0), OnPlayerPosPropertyChanged));
+            DependencyProperty.Register("PlayerPos", typeof(Position), typeof(MazeBoard), new PropertyMetadata(new Position(0, 0), OnPlayerPosPropertyChanged));
 
         private static void OnPlayerPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -68,67 +103,24 @@ namespace MazeGUI.Controls
 
         private void OnPlayerPosPropertyChanged()
         {
-            Point p = PlayerPos;
-            if (Valid(p))
-            {
-                double width = myCanvas.Width / Cols;
-                double height = myCanvas.Height / Rows;
-                //MoveTo(player, new Point(width * p.X, height * p.Y));
-                Canvas.SetTop(player, height * p.Y);
-                Canvas.SetLeft(player, width * p.X);
-            }
-            //else
-            //{
-            //    MessageBox.Show("cant go there");
-            //}
-            if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
+
+            double width = myCanvas.Width / Cols;
+            double height = myCanvas.Height / Rows;
+            //MoveTo(player, new Point(width * p.X, height * p.Y));
+            Canvas.SetTop(player, height * PlayerPos.Row);
+            Canvas.SetLeft(player, width * PlayerPos.Col);
+
+            if ((PlayerPos.Col == exitPos.X) && (PlayerPos.Row == exitPos.Y))
             {
                 MessageBox.Show("you win!!");
             }
         }
 
-        //public Point PlayerPos
-        //{
-        //    get
-        //    {
-        //        return playerPos;
-        //    }
-        //    set
-        //    {
-        //        Point p = value;
-        //        if (Valid(p))
-        //        {
-        //            double width = myCanvas.Width / Cols;
-        //            double height = myCanvas.Height / Rows;
-        //            playerPos = p;
-        //            MoveTo(player, new Point(width * p.X, height * p.Y));
-        //        }
-        //        //else
-        //        //{
-        //        //    MessageBox.Show("cant go there");
-        //        //}
-        //        if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
-        //        {
-        //            MessageBox.Show("you win!!");
-        //        }
-        //    }
-        //}
         public Point PlayerStartPoint
         {
             get; set;
         }
-        private bool Valid(Point p)
-        {
-            if ((p.X < 0) || (p.X > Cols - 1) || (p.Y < 0) || (p.Y > Rows - 1))
-            {
-                return false;
-            }
-            int x = Convert.ToInt32(p.X);
-            int y = Convert.ToInt32(p.Y);
-            if (mazeCells[x][y] == 0)
-                return true;
-            return false;
-        }
+
 
         public void MoveTo(Label target, Point newP)
         {
@@ -154,9 +146,18 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for ExitImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ExitImageFileProperty =
-            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("exit1.png"));
+            DependencyProperty.Register("ExitImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("exit1.png", OnExitImageFilePropertyChanged));
 
+        private static void OnExitImageFilePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeBoard board = (MazeBoard)d;
+            board.OnExitImageFilePropertyChanged();
+        }
 
+        private void OnExitImageFilePropertyChanged()
+        {
+            goal.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
+        }
 
         public string PlayerImageFile
         {
@@ -166,9 +167,19 @@ namespace MazeGUI.Controls
 
         // Using a DependencyProperty as the backing store for PlayerImageFile.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayerImageFileProperty =
-            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("simpson.png"));
+            DependencyProperty.Register("PlayerImageFile", typeof(string), typeof(MazeBoard), new PropertyMetadata("simpson.png", OnPlayerImageFilePropertyChanged));
 
+        private static void OnPlayerImageFilePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeBoard board = (MazeBoard)d;
+            board.OnPlayerImageFilePropertyChanged();
 
+        }
+
+        private void OnPlayerImageFilePropertyChanged()
+        {
+            player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
+        }
 
         public int Rows
         {
@@ -245,55 +256,116 @@ namespace MazeGUI.Controls
                             mazeCells[xPos].Insert(yPos, 0);
                             break;
 
-                        case '*':
-                            l.Background = Brushes.Red;
-                            player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
-                            player.Width = width;
-                            player.Height = height;
-                            Canvas.SetLeft(player, width * xPos);
-                            Canvas.SetTop(player, height * yPos);
-                            PlayerStartPoint = new Point(xPos, yPos);
-                            mazeCells[xPos].Insert(yPos, 0);
-                            break;
+                            //case '*':
+                            //    l.Background = Brushes.Red;
+                            //    player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
+                            //    player.Width = width;
+                            //    player.Height = height;
+                            //    Canvas.SetLeft(player, width * xPos);
+                            //    Canvas.SetTop(player, height * yPos);
+                            //    PlayerStartPoint = new Point(xPos, yPos);
+                            //    mazeCells[xPos].Insert(yPos, 0);
+                            //    break;
 
-                        case '#':
-                            //l.Background = Brushes.Green;
-                            l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
-                            mazeCells[xPos].Insert(yPos, 0);
-                            exitPos = new Point(xPos, yPos);
-                            break;
+                            //case '#':
+                            //    //l.Background = Brushes.Green;
+                            //    l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
+                            //    mazeCells[xPos].Insert(yPos, 0);
+                            //    exitPos = new Point(xPos, yPos);
+                            //    break;
 
                     }
                     myCanvas.Children.Add(l);
                 }
             }
-            PlayerPos = PlayerStartPoint;
-            myCanvas.Children.Add(player);
+            //PlayerPos = PlayerStartPoint;
+            //myCanvas.Children.Add(player);
         }
-
-
-
-        //public class Point
-        //{
-        //    public Point()
-        //    {
-        //        X = 0;
-        //        Y = 0;
-        //    }
-        //    public Point(int x, int y)
-        //    {
-        //        X = x;
-        //        Y = y;
-        //    }
-
-        //    public int X
-        //    {
-        //        set; get;
-        //    }
-        //    public int Y
-        //    {
-        //        set; get;
-        //    }
-        //}
     }
 }
+//private bool Valid(Point p)
+//{
+//    if ((p.X < 0) || (p.X > Cols - 1) || (p.Y < 0) || (p.Y > Rows - 1))
+//    {
+//        return false;
+//    }
+//    int x = Convert.ToInt32(p.X);
+//    int y = Convert.ToInt32(p.Y);
+//    if (mazeCells[x][y] == 0)
+//        return true;
+//    return false;
+//}
+
+//public class Point
+//{
+//    public Point()
+//    {
+//        X = 0;
+//        Y = 0;
+//    }
+//    public Point(int x, int y)
+//    {
+//        X = x;
+//        Y = y;
+//    }
+
+//    public int X
+//    {
+//        set; get;
+//    }
+//    public int Y
+//    {
+//        set; get;
+//    }
+//}
+
+//public void MoveBackToTheStart()
+//{
+//    PlayerPos = PlayerStartPoint;
+//}
+//public void MoveUp()
+//{
+//    PlayerPos = new Point(PlayerPos.X, PlayerPos.Y - 1);
+//}
+//public void MoveDown()
+//{
+//    PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
+
+//}
+//public void MoveLeft()
+//{
+//    PlayerPos = new Point(PlayerPos.X - 1, PlayerPos.Y);
+
+//}
+//public void MoveRight()
+//{
+//    PlayerPos = new Point(PlayerPos.X + 1, PlayerPos.Y);
+//}
+
+//public Point PlayerPos
+//{
+//    get
+//    {
+//        return playerPos;
+//    }
+//    set
+//    {
+//        Point p = value;
+//        if (Valid(p))
+//        {
+//            double width = myCanvas.Width / Cols;
+//            double height = myCanvas.Height / Rows;
+//            playerPos = p;
+//            MoveTo(player, new Point(width * p.X, height * p.Y));
+//        }
+//        //else
+//        //{
+//        //    MessageBox.Show("cant go there");
+//        //}
+//        if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
+//        {
+//            MessageBox.Show("you win!!");
+//        }
+//    }
+//}
+
