@@ -26,6 +26,8 @@ namespace MazeGUI.Controls
         {
             player = new Label();
             goal = new Label();
+            OnPlayerImageFilePropertyChanged();
+            OnExitImageFilePropertyChanged();
             InitializeComponent();
         }
 
@@ -231,10 +233,8 @@ namespace MazeGUI.Controls
             double width = myCanvas.Width / cols;
             double height = myCanvas.Height / rows;
 
-            mazeCells = new List<List<int>>(cols);
             for (int xPos = 0; xPos < cols; xPos++)
             {
-                mazeCells.Add(new List<int>(rows));
                 for (int yPos = 0; yPos < rows; yPos++)
                 {
 
@@ -248,12 +248,10 @@ namespace MazeGUI.Controls
                     {
                         case '1':
                             l.Background = Brushes.Black;
-                            mazeCells[xPos].Insert(yPos, 1);
                             break;
 
                         case '0':
                             l.Background = Brushes.White;
-                            mazeCells[xPos].Insert(yPos, 0);
                             break;
 
                             //case '*':

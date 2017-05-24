@@ -111,11 +111,11 @@ namespace MazeGUI.SingleGame
                     break;
 
                 case Key.Right:
-                    vm.MovePlayer(Direction.Left);
+                    vm.MovePlayer(Direction.Right);
                     break;
 
                 case Key.Left:
-                    vm.MovePlayer(Direction.Right);
+                    vm.MovePlayer(Direction.Left);
                     break;
             }
 
