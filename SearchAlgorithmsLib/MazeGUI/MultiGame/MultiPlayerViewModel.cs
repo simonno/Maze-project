@@ -26,17 +26,8 @@ namespace MazeGUI.MultiGame
         public void Play(Direction move)
         {
             model.Play(move);
-            Task.Factory.StartNew(() =>
-            {
-                // CreateReadTask();
-                var result = model.aaa();
-            });
         }
-        public void aaa()
-        {
-            var result = model.aaa();
-
-        }
+     
 
         public void Close()
         {
@@ -79,5 +70,6 @@ namespace MazeGUI.MultiGame
                 return model.MazeCols;
             }
         }
+
     }
 }

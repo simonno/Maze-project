@@ -25,5 +25,6 @@ namespace MazeGUI.MultiGame
         int MazeRows { get; }
         int MazeCols { get; }
         Direction OpponentPosChanged { get; }
+
     }
 }

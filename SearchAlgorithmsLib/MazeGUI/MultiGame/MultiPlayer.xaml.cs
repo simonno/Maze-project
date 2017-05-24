@@ -32,7 +32,6 @@ namespace MazeGUI.MultiGame
                 if (e.PropertyName == "VM_OpponentPosChanged")
                     MoveOppenent();
             };
-            
         }
 
         private void MoveOppenent()
@@ -75,37 +74,36 @@ namespace MazeGUI.MultiGame
 
                 }
             }
-
-
-           
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+            Dispatcher.Invoke(() =>
             {
-                case Key.Up:
-                    myBoard.MoveUp();
-                    vm.Play(Direction.Up);
-                    break;
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        myBoard.MoveUp();
+                        vm.Play(Direction.Up);
+                        break;
 
-                case Key.Down:
-                    myBoard.MoveDown();
-                    vm.Play(Direction.Down);
-                    break;
+                    case Key.Down:
+                        myBoard.MoveDown();
+                        vm.Play(Direction.Down);
+                        break;
 
-                case Key.Right:
-                    myBoard.MoveRight();
-                    vm.Play(Direction.Right);
-                    break;
+                    case Key.Right:
+                        myBoard.MoveRight();
+                        vm.Play(Direction.Right);
+                        break;
 
-                case Key.Left:
-                    myBoard.MoveLeft();
-                    vm.Play(Direction.Left);
-                    break;
-            }
-        
+                    case Key.Left:
+                        myBoard.MoveLeft();
+                        vm.Play(Direction.Left);
+                        break;
+                }
 
+            });
         }
     }
 }

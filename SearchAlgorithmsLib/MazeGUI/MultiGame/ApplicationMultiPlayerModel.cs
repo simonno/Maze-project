@@ -129,17 +129,18 @@ namespace MazeGUI.MultiGame
 
             stopReading = false;
             string answer;
-          
-                answer = Reader.ReadLine();
-                if (!string.IsNullOrEmpty(answer))
-                {
+            while (!stopReading) { 
+            answer = Reader.ReadLine();
+            if (!string.IsNullOrEmpty(answer))
+            {
 
-                    answer = answer.Replace("@", Environment.NewLine);
-                    PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                    OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
-                    await Task.Delay(500);
-                    stopReading = true;
-                }
+                answer = answer.Replace("@", Environment.NewLine);
+                PlayerDirection pd = PlayerDirection.FromJSON(answer);
+                OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                await Task.Delay(500);
+                stopReading = true;
+            }
+        }
             
             return "Success";
         }
