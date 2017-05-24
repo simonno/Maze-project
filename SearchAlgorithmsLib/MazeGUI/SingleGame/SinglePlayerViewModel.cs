@@ -23,7 +23,7 @@ namespace MazeGUI.SingleGame
             {
                 if (e.PropertyName == "PlayerPos")
                 {
-                     MazeToString
+                    PlayerPos = model.PlayerPos;
                 }
             };
         }
