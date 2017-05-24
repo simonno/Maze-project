@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using ModelLib;
 using System.Threading;
 using System.Drawing;
+using System.Windows.Threading;
+using System.Windows;
 
 namespace MazeGUI.MultiGame
 {
@@ -117,26 +119,55 @@ namespace MazeGUI.MultiGame
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
             Maze = Maze.FromJSON(answer);
+          
             CreateReadTask();
+          
         }
 
-        private void CreateReadTask()
+        public async Task<string> aaa()
         {
-            new Task(() =>
-            {
-                stopReading = false;
-                string answer;
-                while (!stopReading)
+
+            stopReading = false;
+            string answer;
+          
+                answer = Reader.ReadLine();
+                if (!string.IsNullOrEmpty(answer))
                 {
-                    answer = Reader.ReadLine();
-                    if (!string.IsNullOrEmpty(answer))
-                    {
-                        answer = answer.Replace("@", Environment.NewLine);
-                        PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
-                    }
+
+                    answer = answer.Replace("@", Environment.NewLine);
+                    PlayerDirection pd = PlayerDirection.FromJSON(answer);
+                    OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                    await Task.Delay(500);
+                    stopReading = true;
                 }
-            }).Start();
+            
+            return "Success";
+        }
+            private void CreateReadTask()
+        {
+
+            new Task(() =>
+        {
+            stopReading = false;
+            string answer;
+            while (!stopReading)
+            {
+                answer = Reader.ReadLine();
+                if (!string.IsNullOrEmpty(answer))
+                {
+
+                    answer = answer.Replace("@", Environment.NewLine);
+
+                  //  Application.Current.Dispatcher.Invoke((() => {
+                        PlayerDirection pd = PlayerDirection.FromJSON(answer);
+
+                          OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                     // }));
+                   // Application.Current.Dispatcher.InvokeShutdown();
+                }
+            }
+        }).Start();
+
         }
 
 
@@ -209,6 +240,13 @@ namespace MazeGUI.MultiGame
 
             }
             Writer.WriteLine("play {0}", move);
+            Writer.Flush();
+           // var result = aaa();
+        }
+        public void Close(string mazeName)
+        {
+           
+            Writer.WriteLine("close {0}", mazeName);
             Writer.Flush();
         }
     }

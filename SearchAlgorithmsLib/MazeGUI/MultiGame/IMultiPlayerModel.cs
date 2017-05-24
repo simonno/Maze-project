@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace MazeGUI.MultiGame
 {
@@ -10,10 +11,14 @@ namespace MazeGUI.MultiGame
         void Start(string mazeName, int rows, int cols);
 
         void Join(string mazeName);
-
+        void Close(string mazeName);
         void Play(Direction d);
+         Task<string> aaa();
 
-        List<string> GamesList { get; }
+
+
+
+            List<string> GamesList { get; }
 
         string MazeToString { get; }
         string MazeName { get; }

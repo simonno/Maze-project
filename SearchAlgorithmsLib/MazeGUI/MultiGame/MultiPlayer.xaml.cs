@@ -32,6 +32,7 @@ namespace MazeGUI.MultiGame
                 if (e.PropertyName == "VM_OpponentPosChanged")
                     MoveOppenent();
             };
+            
         }
 
         private void MoveOppenent()
@@ -58,13 +59,25 @@ namespace MazeGUI.MultiGame
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow win = new MainWindow()
+            PopMessage exitMessage = new PopMessage("Do you want to exit this maze?", "No", "Yes");
+            if (exitMessage.ShowDialog() != true)
+            {
+                if (exitMessage.Choose == true) //reset the game
+                {
+                    vm.Close();
+                     MainWindow win = new MainWindow()
             {
                 Top = Top,
                 Left = Left
             };
             win.Show();
             Close();
+
+                }
+            }
+
+
+           
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -91,6 +104,7 @@ namespace MazeGUI.MultiGame
                     vm.Play(Direction.Left);
                     break;
             }
+        
 
         }
     }
