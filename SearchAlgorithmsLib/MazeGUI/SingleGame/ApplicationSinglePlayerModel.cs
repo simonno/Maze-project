@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using ModelLib;
 using System.Drawing;
+using System.Threading;
 //using ModelLib;
 
 namespace MazeGUI.SingleGame
@@ -42,15 +43,48 @@ namespace MazeGUI.SingleGame
         }
 
 
-        public MazeSolution Solve()
+        public void Solve()
         {
             Connect();
             Writer.WriteLine("solve {0} {1}", maze.Name, defaultSearchAlgorithm);
             Writer.Flush();
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
+            Disconnect();
+            MazeSolution ms = MazeSolution.FromJSON(answer);
+            RunSolveTask(ms.SolutionString);
+        }
 
-            return MazeSolution.FromJSON(answer);
+        private void RunSolveTask(string solutionString)
+        {
+            new Task(() =>
+            {
+                foreach (char direction in solutionString)
+                {
+                    switch (direction)
+                    {
+                        case 'U':
+                            PlayerPos = new Position(PlayerPos.Row - 1, PlayerPos.Col);
+                            break;
+
+                        case 'D':
+                            PlayerPos = new Position(PlayerPos.Row + 1, PlayerPos.Col);
+                            break;
+
+                        case 'R':
+                            PlayerPos = new Position(PlayerPos.Row, PlayerPos.Col + 1);
+                            break;
+
+                        case 'L':
+                            PlayerPos = new Position(PlayerPos.Row, PlayerPos.Col - 1);
+                            break;
+
+                        default:
+                            return;
+                    }
+                    Thread.Sleep(120);
+                }
+            }).Start();
         }
     }
 }

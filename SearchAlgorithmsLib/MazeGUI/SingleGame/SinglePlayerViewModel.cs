@@ -96,18 +96,10 @@ namespace MazeGUI.SingleGame
                 NotifyPropertyChanged("PlayerPos");
             }
         }
-        public string Solve
+
+        public void Solve()
         {
-            get
-            {
-                MazeSolution mazeSolve = model.Solve();
-                return mazeSolve.SolutionString;
-            }
-        }
-        public string s()
-        {
-            MazeSolution mazeSolve = model.Solve();
-            return mazeSolve.SolutionString;
+            model.Solve();
         }
         public void MovePlayer(Direction d)
         {

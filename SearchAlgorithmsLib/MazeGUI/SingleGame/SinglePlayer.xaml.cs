@@ -49,44 +49,11 @@ namespace MazeGUI.SingleGame
             {
                 if (solveMessage.Choose == true) //solve the game
                 {
-                    //var result =  SolveMaze();
+                    vm.Solve();
                 }
             }
         }
-        //private async Task<string> SolveMaze()
-        //{
-        //    btnReset.IsEnabled = false;
-        //    btnSolve.IsEnabled = false;
-        //    mazeBoard.MoveBackToTheStart();
-        //    string solveString = vm.s();
-        //    int i = 0;
-        //    while (i < solveString.Length)
-        //    {
-        //        switch (solveString[i])
-        //        {
-        //            case 'U':
-        //                mazeBoard.MoveUp();
-        //                break;
-
-        //            case 'D':
-        //                mazeBoard.MoveDown();
-        //                break;
-
-        //            case 'R':
-        //                mazeBoard.MoveRight();
-        //                break;
-
-        //            case 'L':
-        //                mazeBoard.MoveLeft();
-        //                break;
-        //        }
-        //        await Task.Delay(500);
-        //        i++;
-        //    }
-        //    btnReset.IsEnabled = true;
-        //    btnSolve.IsEnabled = true;
-        //    return "Success";
-        //}
+     
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow()
@@ -118,10 +85,43 @@ namespace MazeGUI.SingleGame
                     vm.MovePlayer(Direction.Left);
                     break;
             }
-
-
         }
     }
 }
+
+//private async Task<string> SolveMaze()
+//{
+//    btnReset.IsEnabled = false;
+//    btnSolve.IsEnabled = false;
+//    mazeBoard.MoveBackToTheStart();
+//    string solveString = vm.s();
+//    int i = 0;
+//    while (i < solveString.Length)
+//    {
+//        switch (solveString[i])
+//        {
+//            case 'U':
+//                mazeBoard.MoveUp();
+//                break;
+
+//            case 'D':
+//                mazeBoard.MoveDown();
+//                break;
+
+//            case 'R':
+//                mazeBoard.MoveRight();
+//                break;
+
+//            case 'L':
+//                mazeBoard.MoveLeft();
+//                break;
+//        }
+//        await Task.Delay(500);
+//        i++;
+//    }
+//    btnReset.IsEnabled = true;
+//    btnSolve.IsEnabled = true;
+//    return "Success";
+//}
 
 

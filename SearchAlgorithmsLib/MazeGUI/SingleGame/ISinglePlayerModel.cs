@@ -19,8 +19,7 @@ namespace MazeGUI.SingleGame
         Position PlayerPos { get; }
         Position InitialPos { get; }
         Position GoalPos { get; }
-
-        MazeSolution Solve();
+        void Solve();
         void ChangePlayerPos(Direction d);
     }
 }
