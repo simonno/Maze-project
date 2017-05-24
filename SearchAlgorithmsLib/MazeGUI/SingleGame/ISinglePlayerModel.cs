@@ -1,13 +1,14 @@
 ﻿using ModelLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MazeGUI.SingleGame
 {
-    public interface ISinglePlayerModel
+    public interface ISinglePlayerModel : INotifyPropertyChanged
     {
         string MazeToString { get; }
         string MazeName { get; }

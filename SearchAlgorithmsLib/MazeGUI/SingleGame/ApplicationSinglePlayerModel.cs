@@ -9,14 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using ModelLib;
+using System.Drawing;
 //using ModelLib;
 
 namespace MazeGUI.SingleGame
 {
-    public class ApplicationSinglePlayerModel : ISinglePlayerModel
+    public class ApplicationSinglePlayerModel : NotifyChanged, ISinglePlayerModel
     {
+        private List<List<int>> mazeCells;
         private int defaultSearchAlgorithm;
         private Maze maze;
+        private Position playerPos;
         private IPEndPoint socketInfo;
         private TcpClient tcpClient;
         private StreamReader Reader;
@@ -38,9 +41,81 @@ namespace MazeGUI.SingleGame
             Writer.WriteLine("generate {0} {1} {2}", mazeName, rows, cols);
             Writer.Flush();
             string answer = Reader.ReadLine();
-            answer = answer.Replace("@", Environment.NewLine);
-            maze = Maze.FromJSON(answer);
             Disconnect();
+            answer = answer.Replace("@", Environment.NewLine);
+            Maze = Maze.FromJSON(answer);
+            PlayerPos = Maze.InitialPos;
+            CreateMazeCells(MazeToString);
+        }
+
+        private void CreateMazeCells(string mazeToString)
+        {
+            mazeCells = new List<List<int>>(MazeRows);
+            for (int i = 0; i < MazeRows; i++)
+            {
+                mazeCells.Add(new List<int>(MazeCols));
+                for (int j = 0; mazeToString[j + i * MazeCols] != System.Environment.; j++)
+                {
+                    Char c = mazeToString[i + ]
+                }
+            }
+        }
+
+        public void ChangePlayerPos(Direction d)
+        {
+            int x = PlayerPos.Col;
+            int y = PlayerPos.Row;
+            Position temp;
+            switch (d)
+            {
+                case Direction.Up:
+                    temp = new Position(x, y - 1);
+                    break;
+
+                case Direction.Down:
+                    temp = new Position(x, y + 1);
+                    break;
+
+                case Direction.Right:
+                    temp = new Position(x + 1, y);
+                    break;
+
+                case Direction.Left:
+                    temp = new Position(x - 1, y);
+                    break;
+                default:
+                    return;
+            }
+            if(isValidPos(temp))
+            {
+                PlayerPos = temp;
+            }
+
+        }
+
+        private bool isValidPos(Position temp)
+        {
+            
+        }
+
+        public Maze Maze
+        {
+            get { return maze; }
+            set
+            {
+                maze = value;
+                NotifyPropertyChanged("Maze");
+            }
+        }
+
+        public Position PlayerPos
+        {
+            get { return playerPos; }
+            set
+            {
+                playerPos = value;
+                NotifyPropertyChanged("PlayerPos");
+            }
         }
 
         public string MazeName
@@ -78,7 +153,7 @@ namespace MazeGUI.SingleGame
             Connect();
 
             //string command = "solve "+ maze.Name+ " "+ defaultSearchAlgorithm;
-      
+
 
             Writer.WriteLine("solve {0} {1}", maze.Name, defaultSearchAlgorithm);
             Writer.Flush();

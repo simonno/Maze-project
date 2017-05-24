@@ -1,6 +1,7 @@
 ﻿using ModelLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,12 @@ namespace MazeGUI.SingleGame
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
             this.model = model;
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+                if (e.PropertyName == "PlayerPos")
+                {
+                   MazeToString
+                }
+            };
         }
 
         public string MazeToString

@@ -13,12 +13,10 @@ namespace MazeGUI.MultiGame
         void Join(string mazeName);
         void Close(string mazeName);
         void Play(Direction d);
-         Task<string> aaa();
 
 
 
-
-            List<string> GamesList { get; }
+        List<string> GamesList { get; }
 
         string MazeToString { get; }
         string MazeName { get; }
