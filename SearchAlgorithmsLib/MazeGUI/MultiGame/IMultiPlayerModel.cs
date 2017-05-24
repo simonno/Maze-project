@@ -22,5 +22,7 @@ namespace MazeGUI.MultiGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
+        void ChangePlayerPos(Direction d);
+
     }
 }

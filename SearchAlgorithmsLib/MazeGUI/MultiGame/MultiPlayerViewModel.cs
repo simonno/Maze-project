@@ -13,6 +13,7 @@ namespace MazeGUI.MultiGame
     {
 
         private IMultiPlayerModel model;
+        private Position playerPos;
 
         public MultiPlayerViewModel(IMultiPlayerModel model)
         {
@@ -21,7 +22,50 @@ namespace MazeGUI.MultiGame
                 MultiPlayer mp = new MultiPlayer(model);
                 mp.Show();
                 NotifyPropertyChanged("VM_" + e.PropertyName);
+                if (e.PropertyName == "PlayerPos")
+                {
+                    PlayerPos = model.PlayerPos;
+                }
             };
+        }
+
+        public string MazeToString
+        {
+            get
+            {
+                string maze = model.MazeToString;
+                maze = maze.Replace(Environment.NewLine, "");
+                maze = maze.Replace("*", "0");
+                maze = maze.Replace("#", "0");
+                return maze;
+            }
+        }
+        public Position InitialPos
+        {
+            get
+            {
+                return model.InitialPos;
+            }
+        }
+
+        public Position GoalPos
+        {
+            get
+            {
+                return model.GoalPos;
+            }
+        }
+        public Position PlayerPos
+        {
+            get
+            {
+                return playerPos;
+            }
+            set
+            {
+                playerPos = value;
+                NotifyPropertyChanged("PlayerPos");
+            }
         }
         public void Play(Direction move)
         {
@@ -39,14 +83,6 @@ namespace MazeGUI.MultiGame
            
         }
 
-        public string MazeToString
-        {
-            get
-            {
-                string maze = model.MazeToString;
-                return maze.Replace(Environment.NewLine, "");
-            }
-        }
 
         public string MazeName
         {
@@ -62,6 +98,11 @@ namespace MazeGUI.MultiGame
             {
                 return model.MazeRows;
             }
+
+            set
+            {
+                NotifyPropertyChanged("MazeRows");
+            }
         }
         public int MazeCols
         {
@@ -69,6 +110,10 @@ namespace MazeGUI.MultiGame
             {
                 return model.MazeCols;
             }
+        }
+        public void MovePlayer(Direction d)
+        {
+            model.ChangePlayerPos(d);
         }
 
     }
