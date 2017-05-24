@@ -16,7 +16,6 @@ namespace MazeGUI.SingleGame
         private ISinglePlayerModel model;
         private Position playerPos;
 
-        // private Point playerPos;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
@@ -25,7 +24,7 @@ namespace MazeGUI.SingleGame
             {
                 if (e.PropertyName == "PlayerPos")
                 {
-
+                    PlayerPos = model.PlayerPos;
                 }
             };
         }
@@ -93,7 +92,7 @@ namespace MazeGUI.SingleGame
             }
             set
             {
-                playerPos = model.PlayerPos;
+                playerPos = value;
                 NotifyPropertyChanged("PlayerPos");
             }
         }
