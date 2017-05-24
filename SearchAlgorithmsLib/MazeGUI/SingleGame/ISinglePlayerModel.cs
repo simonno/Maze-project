@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeLib;
 
 namespace MazeGUI.SingleGame
 {
@@ -16,6 +17,6 @@ namespace MazeGUI.SingleGame
         int MazeCols { get; }
     
         MazeSolution Solve();
-
+        void ChangePlayerPos(Direction d);
     }
 }

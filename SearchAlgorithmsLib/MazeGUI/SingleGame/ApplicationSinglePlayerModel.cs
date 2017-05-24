@@ -54,9 +54,9 @@ namespace MazeGUI.SingleGame
             for (int i = 0; i < MazeRows; i++)
             {
                 mazeCells.Add(new List<int>(MazeCols));
-                for (int j = 0; mazeToString[j + i * MazeCols] != System.Environment.; j++)
+                for (int j = 0; mazeToString[j + i * MazeCols].ToString() != Environment.NewLine; j++)
                 {
-                    Char c = mazeToString[i + ]
+                    //Char c = mazeToString[i + ]
                 }
             }
         }
@@ -95,7 +95,9 @@ namespace MazeGUI.SingleGame
 
         private bool isValidPos(Position temp)
         {
-            
+            if (mazeCells[temp.Col][temp.Row] == 0)
+                return true;
+            return false;
         }
 
         public Maze Maze

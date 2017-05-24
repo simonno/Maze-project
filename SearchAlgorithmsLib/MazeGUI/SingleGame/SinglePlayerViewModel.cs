@@ -18,10 +18,11 @@ namespace MazeGUI.SingleGame
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
             this.model = model;
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
                 if (e.PropertyName == "PlayerPos")
                 {
-                   MazeToString
+                    MazeToString
                 }
             };
         }
@@ -79,27 +80,7 @@ namespace MazeGUI.SingleGame
         }
         public void movePlayer(Direction d)
         {
-
-            switch (d)
-            {
-                case Direction.Left:
-                    playerPos = new Point(playerPos.X - 1, playerPos.Y);
-                    break;
-                case Direction.Right:
-                    playerPos = new Point(playerPos.X + 1, playerPos.Y);
-                    break;
-                case Direction.Up:
-                    playerPos = new Point(playerPos.X, playerPos.Y - 1);
-                    break;
-                case Direction.Down:
-                    playerPos = new Point(playerPos.X, playerPos.Y + 1);
-                    break;
-            }
-            Point p = playerPos;
-            if (model.Valid(p))
-            {
-
-            }
+            model.ChangePlayerPos(d);
         }
-        
-}
+
+    }
