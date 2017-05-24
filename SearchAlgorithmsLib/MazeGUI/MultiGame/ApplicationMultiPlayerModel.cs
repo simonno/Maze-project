@@ -114,16 +114,27 @@ namespace MazeGUI.MultiGame
 
         private void GetMaze()
         {
-            string answer = Reader.ReadLine();
-            answer = answer.Replace("@", Environment.NewLine);
-            Maze = Maze.FromJSON(answer);
-            CreateReadTask();
+            while (stopReading)
+            {
+                string answer = Reader.ReadLine();
+                if (!string.IsNullOrEmpty(answer))
+                {
+                    answer = answer.Replace("@", Environment.NewLine);
+                    Maze = Maze.FromJSON(answer);
+                    CreateReadTask();
+                    break;
+                }
+                Thread.Sleep(500);
+            }
         }
 
         private void CreateReadTask()
-        {
-            new Task(() =>
+        {   // create a thread  
+            Thread newThread = new Thread(new ThreadStart(() =>
             {
+                // start the Dispatcher processing  
+                //System.Windows.Threading.Dispatcher.Run();
+
                 stopReading = false;
                 string answer;
                 while (!stopReading)
@@ -135,8 +146,22 @@ namespace MazeGUI.MultiGame
                         PlayerDirection pd = PlayerDirection.FromJSON(answer);
                         OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
                     }
+                    Thread.Sleep(500);
                 }
-            }).Start();
+            }));
+
+            // set the apartment state  
+            newThread.SetApartmentState(ApartmentState.STA);
+
+            // make the thread a background thread  
+            newThread.IsBackground = true;
+
+            // start the thread  
+            newThread.Start();
+            //new Task(() =>
+            //{
+                
+            //}).Start();
         }
 
 

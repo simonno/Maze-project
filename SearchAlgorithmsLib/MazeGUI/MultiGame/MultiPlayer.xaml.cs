@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MazeGUI.MultiGame
 {
@@ -21,16 +22,22 @@ namespace MazeGUI.MultiGame
     /// </summary>
     public partial class MultiPlayer : Window
     {
+        private Dispatcher d;
+
         private MultiPlayerViewModel vm;
         public MultiPlayer(IMultiPlayerModel model)
         {
             InitializeComponent();
             vm = new MultiPlayerViewModel(model);
             DataContext = vm;
+            d = Dispatcher.CurrentDispatcher;
             vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName == "VM_OpponentPosChanged")
-                    MoveOppenent();
+                opponentBoard.Player.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                {
+                    if (e.PropertyName == "VM_OpponentPosChanged")
+                        MoveOppenent();
+                }));
             };
         }
 

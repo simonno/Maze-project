@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,8 +17,7 @@ namespace MazeGUI.Controls
     {
         private List<List<int>> mazeCells;
         private Label player;
-        private Point playerPos;
-        private Point playerStartPoint;
+        //private Point playerPos;
         private Point exitPos;
 
         public MazeBoard()
@@ -28,7 +28,7 @@ namespace MazeGUI.Controls
 
         public void MoveBackToTheStart()
         {
-            PlayerPos = playerStartPoint;
+            PlayerPos = PlayerStartPoint;
         }
         public void MoveUp()
         {
@@ -49,46 +49,72 @@ namespace MazeGUI.Controls
             PlayerPos = new Point(PlayerPos.X + 1, PlayerPos.Y);
         }
 
-
-
         public Point PlayerPos
         {
-            get
+            get { return (Point)GetValue(PlayerPosProperty); }
+            set { SetValue(PlayerPosProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlayerPos.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlayerPosProperty =
+            DependencyProperty.Register("PlayerPos", typeof(Point), typeof(MazeBoard), new PropertyMetadata(new Point(0,0), OnPlayerPosPropertyChanged));
+
+        private static void OnPlayerPosPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeBoard board = (MazeBoard)d;
+            board.OnPlayerPosPropertyChanged();
+        }
+
+        private void OnPlayerPosPropertyChanged()
+        {
+            Point p = PlayerPos;
+            if (Valid(p))
             {
-                return playerPos;
+                double width = myCanvas.Width / Cols;
+                double height = myCanvas.Height / Rows;
+                //MoveTo(player, new Point(width * p.X, height * p.Y));
+                Canvas.SetTop(player, height * p.Y);
+                Canvas.SetLeft(player, width * p.X);
             }
-            set
+            //else
+            //{
+            //    MessageBox.Show("cant go there");
+            //}
+            if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
             {
-                Point p = value;
-                if (Valid(p))
-                {
-                    double width = myCanvas.Width / Cols;
-                    double height = myCanvas.Height / Rows;
-                    playerPos = p;
-                    MoveTo(player, new Point(width * p.X, height * p.Y));
-                    //int rows = Rows;
-                    //int cols = Cols;
-
-                    //Canvas.SetLeft(player, width * p.X);
-                    //Canvas.SetTop(player, height * p.Y);
-                }
-                else
-                {
-                    MessageBox.Show("cant go there");
-
-                }
-                if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
-                {
-                    MessageBox.Show("you win!!");
-                }
+                MessageBox.Show("you win!!");
             }
         }
+
+        //public Point PlayerPos
+        //{
+        //    get
+        //    {
+        //        return playerPos;
+        //    }
+        //    set
+        //    {
+        //        Point p = value;
+        //        if (Valid(p))
+        //        {
+        //            double width = myCanvas.Width / Cols;
+        //            double height = myCanvas.Height / Rows;
+        //            playerPos = p;
+        //            MoveTo(player, new Point(width * p.X, height * p.Y));
+        //        }
+        //        //else
+        //        //{
+        //        //    MessageBox.Show("cant go there");
+        //        //}
+        //        if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
+        //        {
+        //            MessageBox.Show("you win!!");
+        //        }
+        //    }
+        //}
         public Point PlayerStartPoint
         {
-            get
-            {
-                return playerStartPoint;
-            }
+            get; set;
         }
         private bool Valid(Point p)
         {
@@ -111,11 +137,12 @@ namespace MazeGUI.Controls
                 X = Canvas.GetLeft(target),
                 Y = Canvas.GetTop(target)
             };
-            DoubleAnimation anim1 = new DoubleAnimation(oldP.X, newP.X, TimeSpan.FromSeconds(0.25));
-            DoubleAnimation anim2 = new DoubleAnimation(oldP.Y, newP.Y, TimeSpan.FromSeconds(0.25));
+            DoubleAnimation anim1 = new DoubleAnimation(oldP.X, newP.X, TimeSpan.FromSeconds(0.20));
+            DoubleAnimation anim2 = new DoubleAnimation(oldP.Y, newP.Y, TimeSpan.FromSeconds(0.20));
 
             target.BeginAnimation(Canvas.LeftProperty, anim1);
             target.BeginAnimation(Canvas.TopProperty, anim2);
+            Thread.Sleep(500);
         }
 
         public string ExitImageFile
@@ -172,6 +199,8 @@ namespace MazeGUI.Controls
             set { SetValue(MazeProperty, value); }
         }
 
+        public Label Player { get => player; set => player = value; }
+
         // Using a DependencyProperty as the backing store for MyPropertyMaze.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MazeProperty =
             DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard), new PropertyMetadata("1", OnMazePropertyChanged));
@@ -222,8 +251,7 @@ namespace MazeGUI.Controls
                             player.Height = height;
                             Canvas.SetLeft(player, width * xPos);
                             Canvas.SetTop(player, height * yPos);
-                            playerPos = new Point(xPos, yPos);
-                            playerStartPoint = new Point(xPos, yPos);
+                            PlayerStartPoint = new Point(xPos, yPos);
                             mazeCells[xPos].Insert(yPos, 0);
                             break;
 
@@ -238,6 +266,7 @@ namespace MazeGUI.Controls
                     myCanvas.Children.Add(l);
                 }
             }
+            PlayerPos = PlayerStartPoint;
             myCanvas.Children.Add(player);
         }
 
