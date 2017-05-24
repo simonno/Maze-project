@@ -35,7 +35,7 @@ namespace MazeGUI.MultiGame
         }
         public Direction OpponentPosChanged
         {
-            get { return model.OpponentPosChanged; }
+            get { return Direction.Up; }
            
         }
 

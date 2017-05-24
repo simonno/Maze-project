@@ -9,20 +9,18 @@ namespace MazeGUI.MultiGame
     public interface IMultiPlayerModel : INotifyPropertyChanged
     {
         void Start(string mazeName, int rows, int cols);
-
         void Join(string mazeName);
         void Close(string mazeName);
         void Play(Direction d);
 
-
-
+        Position PlayerPos { get; }
+        Position OpponentPos { get; }
+        Position InitialPos { get; }
+        Position GoalPos { get; }
         List<string> GamesList { get; }
-
         string MazeToString { get; }
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
-        Direction OpponentPosChanged { get; }
-
     }
 }

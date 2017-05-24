@@ -16,11 +16,9 @@ namespace MazeGUI.Controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
-        private List<List<int>> mazeCells;
         private Label player;
         private Label goal;
-        private Point playerPos;
-        private Point exitPos;
+
 
         public MazeBoard()
         {
@@ -112,7 +110,7 @@ namespace MazeGUI.Controls
             Canvas.SetTop(player, height * PlayerPos.Row);
             Canvas.SetLeft(player, width * PlayerPos.Col);
 
-            if ((PlayerPos.Col == exitPos.X) && (PlayerPos.Row == exitPos.Y))
+            if ((PlayerPos.Col == GoalPos.Col) && (PlayerPos.Row == GoalPos.Row))
             {
                 MessageBox.Show("you win!!");
             }

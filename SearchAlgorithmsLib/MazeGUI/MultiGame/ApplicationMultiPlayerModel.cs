@@ -16,14 +16,10 @@ using System.Windows;
 
 namespace MazeGUI.MultiGame
 {
-    public class ApplicationMultiPlayerModel : NotifyChanged, IMultiPlayerModel
+    public class ApplicationMultiPlayerModel : Model, IMultiPlayerModel
     {
-        private IPEndPoint socketInfo;
-        private Maze maze;
-        private StreamReader Reader;
-        private StreamWriter Writer;
-        private TcpClient tcpClient;
-        private Direction opponentPos;
+        
+        private Position opponentPos;
         private bool stopReading;
 
         public ApplicationMultiPlayerModel()
@@ -31,56 +27,15 @@ namespace MazeGUI.MultiGame
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
-
         }
 
-        public Direction OpponentPosChanged
+        public Position OpponentPos
         {
             get { return opponentPos; }
             set
             {
                 opponentPos = value;
-                NotifyPropertyChanged("OpponentPosChanged");
-            }
-        }
-
-        public Maze Maze
-        {
-            get { return maze; }
-            set
-            {
-                maze = value;
-                NotifyPropertyChanged("Maze");
-            }
-        }
-
-        public string MazeToString
-        {
-            get
-            {
-                return maze.ToString();
-            }
-        }
-
-        public string MazeName
-        {
-            get
-            {
-                return maze.Name;
-            }
-        }
-        public int MazeRows
-        {
-            get
-            {
-                return maze.Rows;
-            }
-        }
-        public int MazeCols
-        {
-            get
-            {
-                return maze.Cols;
+                NotifyPropertyChanged("OpponentPos");
             }
         }
 
@@ -140,7 +95,7 @@ namespace MazeGUI.MultiGame
                     {
                         answer = answer.Replace("@", Environment.NewLine);
                         PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                        //OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
                     }
                     Thread.Sleep(500);
                 }
@@ -160,55 +115,6 @@ namespace MazeGUI.MultiGame
             //}).Start();
         }
 
-
-        private void Connect()
-        {
-            Console.WriteLine("Trying to connect to server");
-            tcpClient = new TcpClient();
-            try
-            {
-                tcpClient.Connect(socketInfo);
-            }
-            catch (SocketException s)
-            {
-                Console.WriteLine("ERROR: Connection failed.");
-                throw s;
-            }
-            Console.WriteLine("Connection succeeded.");
-
-            InitializeReader();
-            InitializeWriter();
-        }
-
-        /// <summary>
-        /// Initializes the reader.
-        /// </summary>
-        private void InitializeReader()
-        {
-            Reader = new StreamReader(tcpClient.GetStream());
-        }
-
-        /// <summary>
-        /// Initializes the writer.
-        /// </summary>
-        private void InitializeWriter()
-        {
-            Writer = new StreamWriter(tcpClient.GetStream());
-        }
-
-        /// <summary>
-        /// Disposes the writer and reader.
-        /// </summary>
-        private void Disconnect()
-        {
-            // Dispose the reader and writer.
-            Reader.Dispose();
-            Writer.Dispose();
-
-            // Close the connection.
-            tcpClient.Close();
-            Console.WriteLine("Connection has closed.");
-        }
 
         public void Play(Direction d)
         {
@@ -235,7 +141,6 @@ namespace MazeGUI.MultiGame
         }
         public void Close(string mazeName)
         {
-           
             Writer.WriteLine("close {0}", mazeName);
             Writer.Flush();
         }
