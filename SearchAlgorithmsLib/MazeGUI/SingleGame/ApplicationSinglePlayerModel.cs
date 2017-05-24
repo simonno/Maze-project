@@ -99,9 +99,9 @@ namespace MazeGUI.SingleGame
                 PlayerPos = temp;
         }
 
-        private bool IsValidPos(Position temp)
+        private bool IsValidPos(Position pos)
         {
-            if (mazeCells[temp.Col][temp.Row] == 0)
+            if (pos.Col < MazeCols && pos.Row < MazeRows && pos.Col >= 0 && pos.Row >= 0 && mazeCells[pos.Col][pos.Row] == 0)
                 return true;
             return false;
         }
