@@ -3,17 +3,18 @@ using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace MazeGUI.SingleGame
 {
     public class SinglePlayerViewModel : NotifyChanged
     {
         private ISinglePlayerModel model;
-        private Point playerPos;
+       // private Point playerPos;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
@@ -63,6 +64,17 @@ namespace MazeGUI.SingleGame
                 return model.MazeCols;
             }
         }
+        public Point PlayerPos
+        {
+            get
+            {
+                return model.PlayerPos;
+            }
+            set
+            {
+                NotifyPropertyChanged("PlayerPos");
+            }
+        }
         public string Solve
         {
             get
@@ -73,10 +85,8 @@ namespace MazeGUI.SingleGame
         }
         public string s()
         {
-
             MazeSolution mazeSolve = model.Solve();
             return mazeSolve.SolutionString;
-
         }
         public void movePlayer(Direction d)
         {
@@ -84,3 +94,4 @@ namespace MazeGUI.SingleGame
         }
 
     }
+}

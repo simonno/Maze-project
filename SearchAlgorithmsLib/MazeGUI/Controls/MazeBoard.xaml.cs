@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace MazeGUI.Controls
     {
         private List<List<int>> mazeCells;
         private Label player;
-        //private Point playerPos;
+       private Point playerPos;
         private Point exitPos;
 
         public MazeBoard()

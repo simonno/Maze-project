@@ -19,11 +19,12 @@ namespace MazeGUI.SingleGame
         private List<List<int>> mazeCells;
         private int defaultSearchAlgorithm;
         private Maze maze;
-        private Position playerPos;
+        private Point playerPos;
         private IPEndPoint socketInfo;
         private TcpClient tcpClient;
         private StreamReader Reader;
         private StreamWriter Writer;
+        
 
         public ApplicationSinglePlayerModel(string mazeName, int rows, int cols)
         {
@@ -44,7 +45,7 @@ namespace MazeGUI.SingleGame
             Disconnect();
             answer = answer.Replace("@", Environment.NewLine);
             Maze = Maze.FromJSON(answer);
-            PlayerPos = Maze.InitialPos;
+            playerPos = new Point(0,0) ;
             CreateMazeCells(MazeToString);
         }
 
@@ -56,32 +57,43 @@ namespace MazeGUI.SingleGame
                 mazeCells.Add(new List<int>(MazeCols));
                 for (int j = 0; mazeToString[j + i * MazeCols].ToString() != Environment.NewLine; j++)
                 {
-                    //Char c = mazeToString[i + ]
+                    Char c = mazeToString[j + i * MazeCols];
+                    if (c == '1')
+                    {
+                        Console.Write("1");
+                    }
+                    else
+                    {
+                        Console.Write("0");
+
+                    }
+
                 }
+                Console.WriteLine("");
             }
         }
 
         public void ChangePlayerPos(Direction d)
         {
-            int x = PlayerPos.Col;
-            int y = PlayerPos.Row;
-            Position temp;
+            int x = PlayerPos.Y;
+            int y = PlayerPos.X;
+            Point temp;
             switch (d)
             {
                 case Direction.Up:
-                    temp = new Position(x, y - 1);
+                    temp = new Point(x, y - 1);
                     break;
 
                 case Direction.Down:
-                    temp = new Position(x, y + 1);
+                    temp = new Point(x, y + 1);
                     break;
 
                 case Direction.Right:
-                    temp = new Position(x + 1, y);
+                    temp = new Point(x + 1, y);
                     break;
 
                 case Direction.Left:
-                    temp = new Position(x - 1, y);
+                    temp = new Point(x - 1, y);
                     break;
                 default:
                     return;
@@ -93,9 +105,9 @@ namespace MazeGUI.SingleGame
 
         }
 
-        private bool isValidPos(Position temp)
+        private bool isValidPos(Point temp)
         {
-            if (mazeCells[temp.Col][temp.Row] == 0)
+            if (mazeCells[temp.X][temp.Y] == 0)
                 return true;
             return false;
         }
@@ -110,7 +122,7 @@ namespace MazeGUI.SingleGame
             }
         }
 
-        public Position PlayerPos
+        public Point PlayerPos
         {
             get { return playerPos; }
             set
@@ -149,6 +161,7 @@ namespace MazeGUI.SingleGame
                 return maze.ToString();
             }
         }
+        
         public MazeSolution Solve()
         {
 

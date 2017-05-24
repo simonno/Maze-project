@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using System.Drawing;
 
 namespace MazeGUI.SingleGame
 {
@@ -15,8 +16,9 @@ namespace MazeGUI.SingleGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
-    
-        MazeSolution Solve();
+         Point PlayerPos { get; }
+
+            MazeSolution Solve();
         void ChangePlayerPos(Direction d);
     }
 }
