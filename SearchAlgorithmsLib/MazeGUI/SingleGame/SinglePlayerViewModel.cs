@@ -1,15 +1,18 @@
-﻿using ModelLib;
+﻿using MazeLib;
+using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MazeGUI.SingleGame
 {
     public class SinglePlayerViewModel : NotifyChanged
     {
         private ISinglePlayerModel model;
+        private Point playerPos;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
@@ -62,11 +65,34 @@ namespace MazeGUI.SingleGame
         }
         public string s()
         {
-            
+
             MazeSolution mazeSolve = model.Solve();
             return mazeSolve.SolutionString;
-            
+
         }
-     
-    }
+        public void movePlayer(Direction d)
+        {
+
+            switch (d)
+            {
+                case Direction.Left:
+                    playerPos = new Point(playerPos.X - 1, playerPos.Y);
+                    break;
+                case Direction.Right:
+                    playerPos = new Point(playerPos.X + 1, playerPos.Y);
+                    break;
+                case Direction.Up:
+                    playerPos = new Point(playerPos.X, playerPos.Y - 1);
+                    break;
+                case Direction.Down:
+                    playerPos = new Point(playerPos.X, playerPos.Y + 1);
+                    break;
+            }
+            Point p = playerPos;
+            if (model.Valid(p))
+            {
+
+            }
+        }
+        
 }
