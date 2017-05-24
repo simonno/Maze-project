@@ -50,21 +50,22 @@ namespace MazeGUI.SingleGame
 
         private void CreateMazeCells(string mazeToString)
         {
+            string[] rowsStinrgs = mazeToString.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            int rowIndex = 0;
             mazeCells = new List<List<int>>(MazeRows);
-            for (int i = 0; i < MazeRows; i++)
+            foreach (String row in rowsStinrgs)
             {
                 mazeCells.Add(new List<int>(MazeCols));
-                int j = 0;
-                char c = mazeToString[j + i * MazeCols];
-                while (c.ToString() != Environment.NewLine)
-                {
-                    if (c == '1')
-                        mazeCells[i].Insert(j, 1);
-                    else
-                        mazeCells[i].Insert(j, 0);
 
-                    c = mazeToString[(++j) + i * MazeCols];
+                for (int i = 0; i < MazeCols; i++)
+                {
+                    if (row[i] == '1')
+                        mazeCells[rowIndex].Insert(i, 1);
+                    else
+                        mazeCells[rowIndex].Insert(i, 0);
                 }
+                rowIndex++;
             }
         }
 

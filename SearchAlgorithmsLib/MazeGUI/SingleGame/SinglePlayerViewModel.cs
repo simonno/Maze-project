@@ -35,9 +35,9 @@ namespace MazeGUI.SingleGame
             get
             {
                 string maze = model.MazeToString;
-                maze.Replace(Environment.NewLine, "");
-                maze.Replace("*", "0");
-                maze.Replace("#", "0");
+                maze = maze.Replace(Environment.NewLine, "");
+                maze = maze.Replace("*", "0");
+                maze = maze.Replace("#", "0");
                 return maze;
             }
         }
