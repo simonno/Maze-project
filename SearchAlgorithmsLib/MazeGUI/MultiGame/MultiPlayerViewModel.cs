@@ -27,7 +27,12 @@ namespace MazeGUI.MultiGame
         {
             model.Play(move);
         }
+     
 
+        public void Close()
+        {
+            model.Close(MazeName);
+        }
         public Direction OpponentPosChanged
         {
             get { return model.OpponentPosChanged; }
@@ -65,5 +70,6 @@ namespace MazeGUI.MultiGame
                 return model.MazeCols;
             }
         }
+
     }
 }

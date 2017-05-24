@@ -62,5 +62,6 @@ namespace MazeGUI.MultiGame
         {
         model.Join(mazeName);
         }
+        
     }
 }

@@ -65,40 +65,52 @@ namespace MazeGUI.MultiGame
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow win = new MainWindow()
+            PopMessage exitMessage = new PopMessage("Do you want to exit this maze?", "No", "Yes");
+            if (exitMessage.ShowDialog() != true)
+            {
+                if (exitMessage.Choose == true) //reset the game
+                {
+                    vm.Close();
+                     MainWindow win = new MainWindow()
             {
                 Top = Top,
                 Left = Left
             };
             win.Show();
             Close();
+
+                }
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+            Dispatcher.Invoke(() =>
             {
-                case Key.Up:
-                    myBoard.MoveUp();
-                    vm.Play(Direction.Up);
-                    break;
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        myBoard.MoveUp();
+                        vm.Play(Direction.Up);
+                        break;
 
-                case Key.Down:
-                    myBoard.MoveDown();
-                    vm.Play(Direction.Down);
-                    break;
+                    case Key.Down:
+                        myBoard.MoveDown();
+                        vm.Play(Direction.Down);
+                        break;
 
-                case Key.Right:
-                    myBoard.MoveRight();
-                    vm.Play(Direction.Right);
-                    break;
+                    case Key.Right:
+                        myBoard.MoveRight();
+                        vm.Play(Direction.Right);
+                        break;
 
-                case Key.Left:
-                    myBoard.MoveLeft();
-                    vm.Play(Direction.Left);
-                    break;
-            }
+                    case Key.Left:
+                        myBoard.MoveLeft();
+                        vm.Play(Direction.Left);
+                        break;
+                }
 
+            });
         }
     }
 }

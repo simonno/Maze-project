@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using ModelLib;
 using System.Threading;
 using System.Drawing;
+using System.Windows.Threading;
+using System.Windows;
 
 namespace MazeGUI.MultiGame
 {
@@ -114,18 +116,12 @@ namespace MazeGUI.MultiGame
 
         private void GetMaze()
         {
-            while (stopReading)
-            {
-                string answer = Reader.ReadLine();
-                if (!string.IsNullOrEmpty(answer))
-                {
-                    answer = answer.Replace("@", Environment.NewLine);
-                    Maze = Maze.FromJSON(answer);
-                    CreateReadTask();
-                    break;
-                }
-                Thread.Sleep(500);
-            }
+            string answer = Reader.ReadLine();
+            answer = answer.Replace("@", Environment.NewLine);
+            Maze = Maze.FromJSON(answer);
+          
+            CreateReadTask();
+          
         }
 
         private void CreateReadTask()
@@ -234,6 +230,13 @@ namespace MazeGUI.MultiGame
 
             }
             Writer.WriteLine("play {0}", move);
+            Writer.Flush();
+           // var result = aaa();
+        }
+        public void Close(string mazeName)
+        {
+           
+            Writer.WriteLine("close {0}", mazeName);
             Writer.Flush();
         }
     }
