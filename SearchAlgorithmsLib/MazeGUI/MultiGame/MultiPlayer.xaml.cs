@@ -22,45 +22,12 @@ namespace MazeGUI.MultiGame
     /// </summary>
     public partial class MultiPlayer : Window
     {
-        private Dispatcher d;
-
         private MultiPlayerViewModel vm;
         public MultiPlayer(IMultiPlayerModel model)
         {
             InitializeComponent();
             vm = new MultiPlayerViewModel(model);
             DataContext = vm;
-            d = Dispatcher.CurrentDispatcher;
-            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                opponentBoard.Player.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    if (e.PropertyName == "VM_OpponentPosChanged")
-                        MoveOppenent();
-                }));
-            };
-        }
-
-        private void MoveOppenent()
-        {
-            //switch (vm.OpponentPosChanged)
-            //{
-            //    case Direction.Up:
-            //        opponentBoard.MoveUp();
-            //        break;
-
-            //    case Direction.Down:
-            //        opponentBoard.MoveDown();
-            //        break;
-
-            //    case Direction.Right:
-            //        opponentBoard.MoveRight();
-            //        break;
-
-            //    case Direction.Left:
-            //        opponentBoard.MoveLeft();
-            //        break;
-            //}
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -85,32 +52,24 @@ namespace MazeGUI.MultiGame
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            //Dispatcher.Invoke(() =>
-            //{
-            //    switch (e.Key)
-            //    {
-            //        case Key.Up:
-            //            myBoard.MoveUp();
-            //            vm.Play(Direction.Up);
-            //            break;
+            switch (e.Key)
+            {
+                case Key.Up:
+                    vm.MovePlayer(Direction.Up);
+                    break;
 
-            //        case Key.Down:
-            //            myBoard.MoveDown();
-            //            vm.Play(Direction.Down);
-            //            break;
+                case Key.Down:
+                    vm.MovePlayer(Direction.Down);
+                    break;
 
-            //        case Key.Right:
-            //            myBoard.MoveRight();
-            //            vm.Play(Direction.Right);
-            //            break;
+                case Key.Right:
+                    vm.MovePlayer(Direction.Right);
+                    break;
 
-            //        case Key.Left:
-            //            myBoard.MoveLeft();
-            //            vm.Play(Direction.Left);
-            //            break;
-            //    }
-
-            //});
+                case Key.Left:
+                    vm.MovePlayer(Direction.Left);
+                    break;
+            }
         }
     }
 }

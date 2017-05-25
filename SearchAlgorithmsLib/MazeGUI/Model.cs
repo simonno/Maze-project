@@ -41,7 +41,7 @@ namespace MazeGUI
             }
         }
 
-        public void ChangePlayerPos(Direction d)
+        public Position CheckMovement(Direction d)
         {
             int x = PlayerPos.Col;
             int y = PlayerPos.Row;
@@ -65,10 +65,13 @@ namespace MazeGUI
                     break;
 
                 default:
-                    return;
+                    throw new Exception("Unvalid movement.");
+
             }
             if (IsValidPos(temp))
-                PlayerPos = temp;
+                return temp;
+
+            else throw new Exception("Unvalid movement.");
         }
 
         protected bool IsValidPos(Position pos)

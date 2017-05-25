@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using MazeLib;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace ModelLib
         /// <value>
         /// The move.
         /// </value>
-        public string Move
+        public Direction Move
         {
             get; set;
         }
@@ -41,7 +42,7 @@ namespace ModelLib
         {
             JObject obj = new JObject();
             obj["Name"] = GameName;
-            obj["Direction"] = Move;
+            obj["Direction"] = Move.ToString();
             return obj.ToString();
         }
         /// <summary>
@@ -54,7 +55,7 @@ namespace ModelLib
             PlayerDirection pd = new PlayerDirection();
             JObject obj = JObject.Parse(str);
             pd.GameName = (string) obj["Name"];
-            pd.Move = (string) obj["Direction"];
+            pd.Move = (Direction) Enum.Parse(typeof(Direction), ((string) obj["Direction"]));
             return pd;
         }
     }

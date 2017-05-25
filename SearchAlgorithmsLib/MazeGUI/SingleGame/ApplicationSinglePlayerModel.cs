@@ -1,17 +1,9 @@
-﻿using ClientLib;
-using MazeLib;
+﻿using MazeLib;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using System.Net.Sockets;
 using ModelLib;
-using System.Drawing;
 using System.Threading;
-//using ModelLib;
 
 namespace MazeGUI.SingleGame
 {
@@ -57,6 +49,7 @@ namespace MazeGUI.SingleGame
 
         private void RunSolveTask(string solutionString)
         {
+            Reset();
             new Task(() =>
             {
                 foreach (char direction in solutionString)
@@ -85,6 +78,20 @@ namespace MazeGUI.SingleGame
                     Thread.Sleep(120);
                 }
             }).Start();
+        }
+
+        public void Reset()
+        {
+            PlayerPos = Maze.InitialPos;
+        }
+
+        public void MovePlayer(Direction d)
+        {
+            try
+            {
+                PlayerPos = CheckMovement(d);
+            }
+            catch (Exception) { }
         }
     }
 }

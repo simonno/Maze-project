@@ -61,7 +61,7 @@ namespace ModelLib
         /// <param name="move">The move.</param>
         /// <param name="player">The player.</param>
         /// <returns></returns>
-        Tuple<ClientOfServer, PlayerDirection> Play(string move, ClientOfServer player);
+        Tuple<ClientOfServer, PlayerDirection> Play(Direction move, ClientOfServer player);
 
         /// <summary>
         /// Closes the specified TcpClient.

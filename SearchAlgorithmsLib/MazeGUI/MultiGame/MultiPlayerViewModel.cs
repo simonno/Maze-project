@@ -19,12 +19,12 @@ namespace MazeGUI.MultiGame
         {
             this.model = model;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-                MultiPlayer mp = new MultiPlayer(model);
-                mp.Show();
-                NotifyPropertyChanged("VM_" + e.PropertyName);
                 if (e.PropertyName == "PlayerPos")
                 {
                     PlayerPos = model.PlayerPos;
+                } else if (e.PropertyName == "OpponentPos")
+                {
+                    OpponentPos = model.OpponentPos;
                 }
             };
         }
@@ -67,9 +67,23 @@ namespace MazeGUI.MultiGame
                 NotifyPropertyChanged("PlayerPos");
             }
         }
+
+        public Position OpponentPos
+        {
+            get
+            {
+                return playerPos;
+            }
+            set
+            {
+                playerPos = value;
+                NotifyPropertyChanged("OpponentPos");
+            }
+        }
+
         public void Play(Direction move)
         {
-            model.Play(move);
+            model.MovePlayer(move);
         }
      
 
@@ -77,13 +91,7 @@ namespace MazeGUI.MultiGame
         {
             model.Close(MazeName);
         }
-        public Direction OpponentPosChanged
-        {
-            get { return Direction.Up; }
-           
-        }
-
-
+      
         public string MazeName
         {
             get
@@ -98,11 +106,6 @@ namespace MazeGUI.MultiGame
             {
                 return model.MazeRows;
             }
-
-            set
-            {
-                NotifyPropertyChanged("MazeRows");
-            }
         }
         public int MazeCols
         {
@@ -113,7 +116,7 @@ namespace MazeGUI.MultiGame
         }
         public void MovePlayer(Direction d)
         {
-            model.ChangePlayerPos(d);
+            model.MovePlayer(d);
         }
 
     }

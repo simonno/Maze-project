@@ -11,7 +11,7 @@ namespace MazeGUI.MultiGame
         void Start(string mazeName, int rows, int cols);
         void Join(string mazeName);
         void Close(string mazeName);
-        void Play(Direction d);
+        void MovePlayer(Direction d);
 
         Position PlayerPos { get; }
         Position OpponentPos { get; }
@@ -22,7 +22,5 @@ namespace MazeGUI.MultiGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
-        void ChangePlayerPos(Direction d);
-
     }
 }

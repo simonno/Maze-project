@@ -245,7 +245,6 @@ namespace ModelLib
                 return mazes[name];
             }
 
-            ///
             if (multiPlayerOnline.ContainsKey(name))
             {
                 return multiPlayerOnline[name].Maze;
@@ -260,7 +259,7 @@ namespace ModelLib
         /// <param name="move">The move.</param>
         /// <param name="player">The player.</param>
         /// <returns>map of TcpClient, PlayerDirection </returns>
-        public Tuple<ClientOfServer, PlayerDirection> Play(string move, ClientOfServer player)
+        public Tuple<ClientOfServer, PlayerDirection> Play(Direction move, ClientOfServer player)
         {
             MultiPlayerInfo mp = FindMPInfo(player);
             ClientOfServer otherPlayer = mp.GetTheOtherPlayer(player);

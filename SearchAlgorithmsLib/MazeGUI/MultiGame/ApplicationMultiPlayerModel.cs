@@ -18,7 +18,7 @@ namespace MazeGUI.MultiGame
 {
     public class ApplicationMultiPlayerModel : Model, IMultiPlayerModel
     {
-        
+
         private Position opponentPos;
         private bool stopReading;
 
@@ -74,18 +74,17 @@ namespace MazeGUI.MultiGame
             string answer = Reader.ReadLine();
             answer = answer.Replace("@", Environment.NewLine);
             Maze = Maze.FromJSON(answer);
-          
+            PlayerPos = Maze.InitialPos;
+            OpponentPos = Maze.InitialPos;
+            CreateMazeCells(MazeToString);
             CreateReadTask();
-          
+
         }
 
         private void CreateReadTask()
-        {   // create a thread  
-            Thread newThread = new Thread(new ThreadStart(() =>
+        {   // create a task  
+            new Task(() =>
             {
-                // start the Dispatcher processing  
-                //System.Windows.Threading.Dispatcher.Run();
-
                 stopReading = false;
                 string answer;
                 while (!stopReading)
@@ -95,30 +94,36 @@ namespace MazeGUI.MultiGame
                     {
                         answer = answer.Replace("@", Environment.NewLine);
                         PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        //OpponentPosChanged = (Direction)Enum.Parse(typeof(Direction), pd.Move);
+                        UpDateOpponentPos(pd.Move);
+
                     }
                     Thread.Sleep(500);
                 }
-            }));
-
-            // set the apartment state  
-            newThread.SetApartmentState(ApartmentState.STA);
-
-            // make the thread a background thread  
-            newThread.IsBackground = true;
-
-            // start the thread  
-            newThread.Start();
-            //new Task(() =>
-            //{
-                
-            //}).Start();
+            }).Start();
         }
 
-
-        public void Play(Direction d)
+        private void UpDateOpponentPos(Direction move)
         {
-            string move="";
+            try
+            {
+                OpponentPos = CheckMovement(move);
+            }
+            catch (Exception) { }
+        }
+
+        public void MovePlayer(Direction move)
+        {
+            try
+            {
+                PlayerPos = CheckMovement(move);
+                UpdateServer(move);
+            }
+            catch (Exception) { }
+        }
+
+        private void UpdateServer(Direction d)
+        {
+            string move = "";
             switch (d)
             {
                 case Direction.Left:
@@ -137,8 +142,8 @@ namespace MazeGUI.MultiGame
             }
             Writer.WriteLine("play {0}", move);
             Writer.Flush();
-           // var result = aaa();
         }
+
         public void Close(string mazeName)
         {
             Writer.WriteLine("close {0}", mazeName);

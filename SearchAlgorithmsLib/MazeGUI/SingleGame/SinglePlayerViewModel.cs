@@ -96,14 +96,19 @@ namespace MazeGUI.SingleGame
                 NotifyPropertyChanged("PlayerPos");
             }
         }
+        public void Reset()
+        {
+            model.Reset();
+        }
 
         public void Solve()
         {
             model.Solve();
         }
+
         public void MovePlayer(Direction d)
         {
-            model.ChangePlayerPos(d);
+            model.MovePlayer(d);
         }
 
     }
