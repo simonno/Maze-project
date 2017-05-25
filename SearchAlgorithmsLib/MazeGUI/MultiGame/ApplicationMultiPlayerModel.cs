@@ -21,6 +21,7 @@ namespace MazeGUI.MultiGame
 
         private Position opponentPos;
         private bool stopReading;
+        private DispatcherTimer dispatcherTimer;
 
         public ApplicationMultiPlayerModel()
         {
@@ -77,29 +78,27 @@ namespace MazeGUI.MultiGame
             PlayerPos = Maze.InitialPos;
             OpponentPos = Maze.InitialPos;
             CreateMazeCells(MazeToString);
-            CreateReadTask();
 
+            //new Task(() =>
+            //{
+                //  DispatcherTimer setup
+                dispatcherTimer = new DispatcherTimer(DispatcherPriority.Render);
+                dispatcherTimer.Tick += new EventHandler(delegate (Object sender, EventArgs e) { ReadFromServer(); });
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                dispatcherTimer.Start();
+            //}).Start();
         }
 
-        private void CreateReadTask()
-        {   // create a task  
-            new Task(() =>
+        private void ReadFromServer()
+        {
+            string answer = Reader.ReadLine();
+            if (!string.IsNullOrEmpty(answer))
             {
-                stopReading = false;
-                string answer;
-                while (!stopReading)
-                {
-                    answer = Reader.ReadLine();
-                    if (!string.IsNullOrEmpty(answer))
-                    {
-                        answer = answer.Replace("@", Environment.NewLine);
-                        PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        UpDateOpponentPos(pd.Move);
+                answer = answer.Replace("@", Environment.NewLine);
+                PlayerDirection pd = PlayerDirection.FromJSON(answer);
+                UpDateOpponentPos(pd.Move);
 
-                    }
-                    Thread.Sleep(500);
-                }
-            }).Start();
+            }
         }
 
         private void UpDateOpponentPos(Direction move)
@@ -108,7 +107,7 @@ namespace MazeGUI.MultiGame
             {
                 OpponentPos = CheckMovement(move);
             }
-            catch (Exception) { }
+            catch (Exception e) { Console.WriteLine(e.ToString() + move.ToString()); }
         }
 
         public void MovePlayer(Direction move)

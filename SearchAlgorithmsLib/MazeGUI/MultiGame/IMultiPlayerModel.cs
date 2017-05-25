@@ -12,7 +12,6 @@ namespace MazeGUI.MultiGame
         void Join(string mazeName);
         void Close(string mazeName);
         void MovePlayer(Direction d);
-
         Position PlayerPos { get; }
         Position OpponentPos { get; }
         Position InitialPos { get; }
