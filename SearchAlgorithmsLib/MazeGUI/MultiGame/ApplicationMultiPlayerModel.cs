@@ -21,12 +21,16 @@ namespace MazeGUI.MultiGame
 
         private Position opponentPos;
         private bool stopReading;
+        private bool stopReading2;
+        private Queue<string> coma;
 
         public ApplicationMultiPlayerModel()
         {
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
+            coma = new Queue<string>();
+
         }
 
         public Position OpponentPos
@@ -35,6 +39,8 @@ namespace MazeGUI.MultiGame
             set
             {
                 opponentPos = value;
+                Console.WriteLine(opponentPos);
+
                 NotifyPropertyChanged("OpponentPos");
             }
         }
@@ -81,6 +87,9 @@ namespace MazeGUI.MultiGame
 
         }
 
+        /// <summary>
+        /// Creates the read task.
+        /// </summary>
         private void CreateReadTask()
         {   // create a task  
             new Task(() =>
@@ -92,30 +101,61 @@ namespace MazeGUI.MultiGame
                     answer = Reader.ReadLine();
                     if (!string.IsNullOrEmpty(answer))
                     {
+                        //Thread.Sleep(5000);
                         answer = answer.Replace("@", Environment.NewLine);
-                        PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        UpDateOpponentPos(pd.Move);
+                        coma.Enqueue(answer);
+                        //PlayerDirection pd = PlayerDirection.FromJSON(answer);
+                        //Thread.Sleep(5000);
 
+                        // UpDateOpponentPos(pd.Move);
                     }
-                    Thread.Sleep(500);
+                    // Thread.Sleep(1000);
                 }
             }).Start();
-        }
+            new Task(() =>
+            {
+                stopReading2 = false;
+                string answer2;
+                while (!stopReading2)
+                {
+                    while (coma.Count > 0)
+                    {
+                        answer2 = "";
+                        string o = coma.Dequeue();
+                        if (o.Contains("Direction"))
+                        {
+                            PlayerDirection pd = PlayerDirection.FromJSON(o);
+                            UpDateOpponentPos(pd.Move);
+                            Thread.Sleep(1000);
 
-        private void UpDateOpponentPos(Direction move)
+                        }
+                    }
+                }
+
+            }).Start();
+        }
+            /// <summary>
+            /// Ups the date opponent position.
+            /// </summary>
+            /// <param name="move">The move.</param>
+            private  void UpDateOpponentPos(Direction move)
         {
             try
             {
-                OpponentPos = CheckMovement(move);
+                OpponentPos =  CheckMovement(OpponentPos,move);
             }
             catch (Exception) { }
         }
 
+        /// <summary>
+        /// Moves the player.
+        /// </summary>
+        /// <param name="move">The move.</param>
         public void MovePlayer(Direction move)
         {
             try
             {
-                PlayerPos = CheckMovement(move);
+                PlayerPos = CheckMovement(PlayerPos,move);
                 UpdateServer(move);
             }
             catch (Exception) { }

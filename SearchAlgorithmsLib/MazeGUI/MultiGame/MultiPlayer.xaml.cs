@@ -28,6 +28,11 @@ namespace MazeGUI.MultiGame
             InitializeComponent();
             vm = new MultiPlayerViewModel(model);
             DataContext = vm;
+            //DispatcherTimer timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(1);
+            //timer.Tick += timer_Tick;
+            //timer.Start();
+            
         }
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -50,7 +55,7 @@ namespace MazeGUI.MultiGame
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private  void Window_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
@@ -71,5 +76,8 @@ namespace MazeGUI.MultiGame
                     break;
             }
         }
+        //void timer_Tick(object sender, EventArgs e)
+        //{
+        //}
     }
 }
