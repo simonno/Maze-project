@@ -14,9 +14,12 @@ namespace MazeGUI.MultiGame
         {
             this.model = model;
             model.PropertyChanged += delegate(Object sender, PropertyChangedEventArgs e){
-                MultiPlayer mp = new MultiPlayer(model);
-                mp.Show();
-                NotifyPropertyChanged("VM_" + e.PropertyName);
+                if (e.PropertyName == "Maze")
+                {
+                    MultiPlayer mp = new MultiPlayer(model);
+                    mp.Show();
+                    NotifyPropertyChanged("VM_" + e.PropertyName);
+                }
             };
 
         }

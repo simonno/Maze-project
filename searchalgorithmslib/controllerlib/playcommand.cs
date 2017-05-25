@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using ModelLib;
 using System.IO;
 using ClientLib;
+using MazeLib;
 
 namespace ControllerLib
 {
@@ -22,14 +23,9 @@ namespace ControllerLib
 
         public override string Execute(string[] args, ClientOfServer client = null)
         {
-            Tuple<ClientOfServer, PlayerDirection> otherPlayerInfo = model.Play(args[0], client);
+            Direction move = (Direction)Enum.Parse(typeof(Direction), args[0]);
+            Tuple<ClientOfServer, PlayerDirection> otherPlayerInfo = model.Play(move, client);
             ClientOfServer otherPlayer = otherPlayerInfo.Item1;
-            //using (NetworkStream stream = otherPlayer.GetStream())
-            //using (StreamWriter writer = new StreamWriter(stream))
-            //{
-            //    writer.AutoFlush = true;
-            //    writer.Write(otherPlayerInfo.Item2.ToJSON());
-            //}
             otherPlayer.WriteToClient(otherPlayerInfo.Item2.ToJSON());
             return null;
         }
