@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MazeGUI.Controls"
         mc:Ignorable="d"
-        Title="{Binding MazeName}" Height="350" Width="300" KeyDown="Window_KeyDown">
+        Title="{Binding MazeName}"  Height="350" Width="300" KeyDown="Window_KeyDown">
     <Border Padding="10">
         <!-- Buttons -->
         <StackPanel x:Name="StackPanel">

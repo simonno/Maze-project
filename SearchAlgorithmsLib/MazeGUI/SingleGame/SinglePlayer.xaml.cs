@@ -8,6 +8,7 @@ using System.Timers;
 using System;
 using System.Windows.Threading;
 using MazeLib;
+using System.Windows.Data;
 
 namespace MazeGUI.SingleGame
 {
@@ -16,8 +17,6 @@ namespace MazeGUI.SingleGame
     /// </summary>
     public partial class SinglePlayer : Window
     {
-        private DispatcherTimer timer = null;
-
         private SinglePlayerViewModel vm;
 
         public SinglePlayer(string mazeName, int rows, int cols)
@@ -25,10 +24,42 @@ namespace MazeGUI.SingleGame
             InitializeComponent();
             vm = new SinglePlayerViewModel(new ApplicationSinglePlayerModel(mazeName, rows, cols));
             DataContext = vm;
-            timer = new DispatcherTimer();
-            timer.IsEnabled = false;
+            SetBinding(YouWonProperty, new Binding("YouWon"));
         }
 
+
+
+        public bool YouWon
+        {
+            get { return (bool)GetValue(YouWonProperty); }
+            set { SetValue(YouWonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for YouWon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty YouWonProperty =
+            DependencyProperty.Register("YouWon", typeof(bool), typeof(SinglePlayer), new PropertyMetadata(false, OnYouWonPropertyChanged));
+
+        private static void OnYouWonPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SinglePlayer win = (SinglePlayer)d;
+            win.OnYouWonPropertyChanged();
+        }
+
+        private void OnYouWonPropertyChanged()
+        {
+            if (YouWon == true)
+            {
+                PopMessage youWonMessage = new PopMessage("You Won", "Keep playing", "Return to main menu");
+                if (youWonMessage.ShowDialog() != true)
+                {
+                    if (youWonMessage.Choose == true) //solve the game
+                    {
+                        BackToMainMenu();
+                    }
+                }
+            }
+            YouWon = false;
+        }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
@@ -53,8 +84,13 @@ namespace MazeGUI.SingleGame
                 }
             }
         }
-     
+
         private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            BackToMainMenu();
+        }
+
+        private void BackToMainMenu()
         {
             MainWindow win = new MainWindow()
             {

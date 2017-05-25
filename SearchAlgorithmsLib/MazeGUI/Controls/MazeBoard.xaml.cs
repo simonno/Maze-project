@@ -19,7 +19,6 @@ namespace MazeGUI.Controls
         private Label player;
         private Label goal;
 
-
         public MazeBoard()
         {
             player = new Label();
@@ -28,9 +27,7 @@ namespace MazeGUI.Controls
             OnExitImageFilePropertyChanged();
             InitializeComponent();
         }
-
-
-
+        
         public Position GoalPos
         {
             get { return (Position)GetValue(GoalPosProperty); }
@@ -109,18 +106,7 @@ namespace MazeGUI.Controls
             //MoveTo(player, new Point(width * p.X, height * p.Y));
             Canvas.SetTop(player, height * PlayerPos.Row);
             Canvas.SetLeft(player, width * PlayerPos.Col);
-
-            if ((PlayerPos.Col == GoalPos.Col) && (PlayerPos.Row == GoalPos.Row))
-            {
-                MessageBox.Show("you win!!");
-            }
         }
-
-        public Point PlayerStartPoint
-        {
-            get; set;
-        }
-
 
         public void MoveTo(Label target, Point newP)
         {
@@ -252,116 +238,10 @@ namespace MazeGUI.Controls
                             l.Background = Brushes.White;
                             break;
 
-                            //case '*':
-                            //    l.Background = Brushes.Red;
-                            //    player.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + PlayerImageFile)));
-                            //    player.Width = width;
-                            //    player.Height = height;
-                            //    Canvas.SetLeft(player, width * xPos);
-                            //    Canvas.SetTop(player, height * yPos);
-                            //    PlayerStartPoint = new Point(xPos, yPos);
-                            //    mazeCells[xPos].Insert(yPos, 0);
-                            //    break;
-
-                            //case '#':
-                            //    //l.Background = Brushes.Green;
-                            //    l.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Images/" + ExitImageFile)));
-                            //    mazeCells[xPos].Insert(yPos, 0);
-                            //    exitPos = new Point(xPos, yPos);
-                            //    break;
-
                     }
                     myCanvas.Children.Add(l);
                 }
             }
-            //PlayerPos = PlayerStartPoint;
-            //myCanvas.Children.Add(player);
         }
     }
 }
-//private bool Valid(Point p)
-//{
-//    if ((p.X < 0) || (p.X > Cols - 1) || (p.Y < 0) || (p.Y > Rows - 1))
-//    {
-//        return false;
-//    }
-//    int x = Convert.ToInt32(p.X);
-//    int y = Convert.ToInt32(p.Y);
-//    if (mazeCells[x][y] == 0)
-//        return true;
-//    return false;
-//}
-
-//public class Point
-//{
-//    public Point()
-//    {
-//        X = 0;
-//        Y = 0;
-//    }
-//    public Point(int x, int y)
-//    {
-//        X = x;
-//        Y = y;
-//    }
-
-//    public int X
-//    {
-//        set; get;
-//    }
-//    public int Y
-//    {
-//        set; get;
-//    }
-//}
-
-//public void MoveBackToTheStart()
-//{
-//    PlayerPos = PlayerStartPoint;
-//}
-//public void MoveUp()
-//{
-//    PlayerPos = new Point(PlayerPos.X, PlayerPos.Y - 1);
-//}
-//public void MoveDown()
-//{
-//    PlayerPos = new Point(PlayerPos.X, PlayerPos.Y + 1);
-
-//}
-//public void MoveLeft()
-//{
-//    PlayerPos = new Point(PlayerPos.X - 1, PlayerPos.Y);
-
-//}
-//public void MoveRight()
-//{
-//    PlayerPos = new Point(PlayerPos.X + 1, PlayerPos.Y);
-//}
-
-//public Point PlayerPos
-//{
-//    get
-//    {
-//        return playerPos;
-//    }
-//    set
-//    {
-//        Point p = value;
-//        if (Valid(p))
-//        {
-//            double width = myCanvas.Width / Cols;
-//            double height = myCanvas.Height / Rows;
-//            playerPos = p;
-//            MoveTo(player, new Point(width * p.X, height * p.Y));
-//        }
-//        //else
-//        //{
-//        //    MessageBox.Show("cant go there");
-//        //}
-//        if ((PlayerPos.X == exitPos.X) && (PlayerPos.Y == exitPos.Y))
-//        {
-//            MessageBox.Show("you win!!");
-//        }
-//    }
-//}
-

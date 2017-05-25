@@ -19,6 +19,7 @@ namespace MazeGUI
         protected TcpClient tcpClient;
         protected StreamReader Reader;
         protected StreamWriter Writer;
+        protected bool youWon;
 
         protected void CreateMazeCells(string mazeToString)
         {
@@ -99,9 +100,25 @@ namespace MazeGUI
             {
                 playerPos = value;
                 NotifyPropertyChanged("PlayerPos");
+                if (ReachedGoalPos(playerPos))
+                {
+                    YouWon = true;
+                } else if (YouWon == true)
+                {
+                    YouWon = false;
+                }
             }
         }
 
+        public bool YouWon
+        {
+            get { return youWon; }
+            set
+            {
+                youWon = value;
+                NotifyPropertyChanged("YouWon");
+            }
+        }
         public string MazeName
         {
             get
@@ -147,7 +164,12 @@ namespace MazeGUI
                 return maze.GoalPos;
             }
         }
-
+        protected bool ReachedGoalPos(Position pos)
+        {
+            if (pos.Col == GoalPos.Col && pos.Row == GoalPos.Row)
+                return true;
+            else return false;
+        }
         protected void Connect()
         {
             Console.WriteLine("Trying to connect to server");

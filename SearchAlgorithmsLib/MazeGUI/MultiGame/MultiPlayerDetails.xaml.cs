@@ -40,16 +40,9 @@ namespace MazeGUI.MultiGame
                 MessageBox.Show("Please choose a name for the list.");
                 return;
             }
-            string selectedName = (string)GamesList.SelectedValue;
+            string selectedName = (string) GamesList.SelectedValue;
             vm.Join(selectedName);
-
-            //MultiPlayer win = new MultiPlayer()
-            //{
-            //    Top = Top,
-            //    Left = Left
-            //};
-            //win.Show();
-            this.Close();
+            Close();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -89,18 +82,5 @@ namespace MazeGUI.MultiGame
             vm.Start(name, rows, cols);
 
         }
-
-        //public void SafeClose()
-        //{
-        //    // Make sure we're running on the UI thread
-        //    if (InvokeRequired)
-        //    {
-        //        BeginInvoke(new Action(SafeClose));
-        //        return;
-        //    }
-
-        //    // Close the form now that we're running on the UI thread
-        //    Close();
-        //}
     }
 }

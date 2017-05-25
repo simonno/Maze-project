@@ -20,11 +20,7 @@ namespace MazeGUI.Settings
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
             vm.ReloadSettings();
-            MainWindow win = new MainWindow()
-            {
-                Top = Top,
-                Left = Left
-            };
+            MainWindow win = new MainWindow();
             win.Show();
             this.Close();
         }
@@ -39,11 +35,7 @@ namespace MazeGUI.Settings
 
 
             vm.SaveSettings();
-            MainWindow win = new MainWindow()
-            {
-                Top = Top,
-                Left = Left
-            };
+            MainWindow win = new MainWindow();
             win.Show();
             this.Close();
         }

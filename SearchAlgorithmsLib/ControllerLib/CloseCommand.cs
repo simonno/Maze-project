@@ -32,18 +32,9 @@ namespace ControllerLib
         public override string Execute(string[] args, ClientOfServer client = null)
         {
             string name = args[0];
-            //JObject obj = new JObject();
-            //obj["close"] = "game-over";
             ClientOfServer otherPlayer = model.Close(name, client);
-            //using (NetworkStream stream = otherPlayer.GetStream())
-            //using (StreamWriter writer = new StreamWriter(stream))
-            //{
-            //    writer.AutoFlush = true;
-            //    writer.Write(obj.ToString());
-            //}
             otherPlayer.DisconnectFromServer();
             client.DisconnectFromServer();
-            //return obj.ToString();
             return null;
         }
     }

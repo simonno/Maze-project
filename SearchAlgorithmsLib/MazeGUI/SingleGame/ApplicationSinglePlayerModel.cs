@@ -13,6 +13,7 @@ namespace MazeGUI.SingleGame
 
         public ApplicationSinglePlayerModel(string mazeName, int rows, int cols)
         {
+            youWon = false;
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);

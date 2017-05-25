@@ -21,5 +21,9 @@ namespace MazeGUI.MultiGame
         string MazeName { get; }
         int MazeRows { get; }
         int MazeCols { get; }
+        bool ExitGame { get; }
+        bool LostConnection { get; }
+        bool OpponentWon { get; }
+        bool YouWon { get; }
     }
 }

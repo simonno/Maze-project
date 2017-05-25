@@ -14,17 +14,39 @@ namespace MazeGUI.MultiGame
 
         private IMultiPlayerModel model;
         private Position playerPos;
+        private bool exitGame;
+        private bool lostConnection;
+        private bool youWon;
+        private bool opponentWon;
 
         public MultiPlayerViewModel(IMultiPlayerModel model)
         {
             this.model = model;
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
                 if (e.PropertyName == "PlayerPos")
                 {
                     PlayerPos = model.PlayerPos;
-                } else if (e.PropertyName == "OpponentPos")
+                }
+                else if (e.PropertyName == "OpponentPos")
                 {
                     OpponentPos = model.OpponentPos;
+                }
+                else if (e.PropertyName == "YouWon")
+                {
+                    YouWon = model.YouWon;
+                }
+                else if (e.PropertyName == "OpponentWon")
+                {
+                    OpponentWon = model.OpponentWon;
+                }
+                else if (e.PropertyName == "ExitGame")
+                {
+                    ExitGame = model.ExitGame;
+                }
+                else if (e.PropertyName == "LostConnection")
+                {
+                    LostConnection = model.LostConnection;
                 }
             };
         }
@@ -76,7 +98,6 @@ namespace MazeGUI.MultiGame
             }
             set
             {
-                Console.WriteLine("h " + playerPos);
                 playerPos = value;
                 NotifyPropertyChanged("OpponentPos");
             }
@@ -86,13 +107,13 @@ namespace MazeGUI.MultiGame
         {
             model.MovePlayer(move);
         }
-     
+
 
         public void Close()
         {
             model.Close(MazeName);
         }
-      
+
         public string MazeName
         {
             get
@@ -115,6 +136,48 @@ namespace MazeGUI.MultiGame
                 return model.MazeCols;
             }
         }
+
+        public bool ExitGame
+        {
+            get { return exitGame; }
+            set
+            {
+                exitGame = value;
+                NotifyPropertyChanged("ExitGame");
+            }
+        }
+
+        public bool LostConnection
+        {
+            get { return lostConnection; }
+            set
+            {
+                lostConnection = value;
+                NotifyPropertyChanged("LostConnection");
+            }
+        }
+
+
+        public bool YouWon
+        {
+            get { return youWon; }
+            set
+            {
+                youWon = value;
+                NotifyPropertyChanged("YouWon");
+            }
+        }
+
+        public bool OpponentWon
+        {
+            get { return opponentWon; }
+            set
+            {
+                opponentWon = value;
+                NotifyPropertyChanged("OpponentWon");
+            }
+        }
+
         public void MovePlayer(Direction d)
         {
             model.MovePlayer(d);

@@ -21,16 +21,22 @@ namespace MazeGUI.MultiGame
 
         private Position opponentPos;
         private bool stopReading;
-        private bool stopReading2;
-        private Queue<string> coma;
+        private bool stopExecutingCommands;
+        private bool lostConnection;
+        private bool opponentWon;
+        private bool exitGame;
+        private Queue<string> serverCommands;
 
         public ApplicationMultiPlayerModel()
         {
             string ip = Properties.Settings.Default.ServerIP;
             int port = Properties.Settings.Default.ServerPort;
             socketInfo = new IPEndPoint(IPAddress.Parse(ip), port);
-            coma = new Queue<string>();
-
+            serverCommands = new Queue<string>();
+            lostConnection = false;
+            youWon = false;
+            opponentWon = false;
+            exitGame = false;
         }
 
         public Position OpponentPos
@@ -39,23 +45,46 @@ namespace MazeGUI.MultiGame
             set
             {
                 opponentPos = value;
-                Console.WriteLine(opponentPos);
-
                 NotifyPropertyChanged("OpponentPos");
+                if (ReachedGoalPos(opponentPos))
+                {
+                    OpponentWon = true;
+                }
+                else if (OpponentWon == true)
+                {
+                    OpponentWon = false;
+                }
             }
         }
 
-        public List<string> GamesList
+
+        public bool LostConnection
         {
-            get
+            get { return lostConnection; }
+            set
             {
-                Connect();
-                Writer.WriteLine("list");
-                Writer.Flush();
-                string answer = Reader.ReadLine();
-                answer = answer.Replace("@", Environment.NewLine);
-                Disconnect();
-                return JsonConvert.DeserializeObject<List<string>>(answer);
+                lostConnection = value;
+                NotifyPropertyChanged("LostConnection");
+            }
+        }
+
+        public bool ExitGame
+        {
+            get { return exitGame; }
+            set
+            {
+                exitGame = value;
+                NotifyPropertyChanged("ExitGame");
+            }
+        }
+
+        public bool OpponentWon
+        {
+            get { return opponentWon; }
+            set
+            {
+                opponentWon = value;
+                NotifyPropertyChanged("OpponentWon");
             }
         }
 
@@ -83,66 +112,73 @@ namespace MazeGUI.MultiGame
             PlayerPos = Maze.InitialPos;
             OpponentPos = Maze.InitialPos;
             CreateMazeCells(MazeToString);
-            CreateReadTask();
-
+            CreateTasks();
         }
 
-        /// <summary>
-        /// Creates the read task.
-        /// </summary>
-        private void CreateReadTask()
-        {   // create a task  
+
+        private void CreateTasks()
+        {   // create a reading task  
             new Task(() =>
             {
                 stopReading = false;
                 string answer;
                 while (!stopReading)
                 {
-                    answer = Reader.ReadLine();
-                    if (!string.IsNullOrEmpty(answer))
+                    try
                     {
-                        //Thread.Sleep(5000);
-                        answer = answer.Replace("@", Environment.NewLine);
-                        coma.Enqueue(answer);
-                        //PlayerDirection pd = PlayerDirection.FromJSON(answer);
-                        //Thread.Sleep(5000);
-
-                        // UpDateOpponentPos(pd.Move);
+                        answer = Reader.ReadLine();
+                        if (!string.IsNullOrEmpty(answer))
+                        {
+                            answer = answer.Replace("@", Environment.NewLine);
+                            serverCommands.Enqueue(answer);
+                        }
                     }
-                    // Thread.Sleep(1000);
+                    catch (IOException)
+                    {
+                        stopReading = true;
+                        stopExecutingCommands = true;
+                        LostConnection = true;
+                    }
                 }
             }).Start();
+
+            // create executing commands task.
             new Task(() =>
             {
-                stopReading2 = false;
-                string answer2;
-                while (!stopReading2)
+                stopExecutingCommands = false;
+                while (!stopExecutingCommands)
                 {
-                    while (coma.Count > 0)
+                    while (!stopExecutingCommands && serverCommands.Count > 0)
                     {
-                        answer2 = "";
-                        string o = coma.Dequeue();
-                        if (o.Contains("Direction"))
+                        string command = serverCommands.Dequeue();
+                        try
                         {
-                            PlayerDirection pd = PlayerDirection.FromJSON(o);
+                            PlayerDirection pd = PlayerDirection.FromJSON(command);
                             UpDateOpponentPos(pd.Move);
-                            Thread.Sleep(1000);
-
+                            Thread.Sleep(500);
+                        }
+                        catch (Exception)
+                        {
+                            if (command == "Disconnect")
+                            {
+                                stopReading = true;
+                                stopExecutingCommands = true;
+                                ExitGame = true;
+                            }
                         }
                     }
                 }
-
             }).Start();
         }
-            /// <summary>
-            /// Ups the date opponent position.
-            /// </summary>
-            /// <param name="move">The move.</param>
-            private  void UpDateOpponentPos(Direction move)
+        /// <summary>
+        /// Ups the date opponent position.
+        /// </summary>
+        /// <param name="move">The move.</param>
+        private void UpDateOpponentPos(Direction move)
         {
             try
             {
-                OpponentPos =  CheckMovement(OpponentPos,move);
+                OpponentPos = CheckMovement(OpponentPos, move);
             }
             catch (Exception) { }
         }
@@ -155,7 +191,7 @@ namespace MazeGUI.MultiGame
         {
             try
             {
-                PlayerPos = CheckMovement(PlayerPos,move);
+                PlayerPos = CheckMovement(PlayerPos, move);
                 UpdateServer(move);
             }
             catch (Exception) { }
@@ -184,10 +220,30 @@ namespace MazeGUI.MultiGame
             Writer.Flush();
         }
 
+        public List<string> GamesList
+        {
+            get
+            {
+                Connect();
+                Writer.WriteLine("list");
+                Writer.Flush();
+                string answer = Reader.ReadLine();
+                answer = answer.Replace("@", Environment.NewLine);
+                Disconnect();
+                return JsonConvert.DeserializeObject<List<string>>(answer);
+            }
+        }
+
         public void Close(string mazeName)
         {
+            stopReading = true;
+            stopExecutingCommands = true;
             Writer.WriteLine("close {0}", mazeName);
             Writer.Flush();
+            //if (!(Reader.ReadLine() == "Disconnect"))
+            //{
+            //    Console.WriteLine("Fail to disconnect server.");
+            //}
         }
     }
 }

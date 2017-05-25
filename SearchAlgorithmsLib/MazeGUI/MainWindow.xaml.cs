@@ -18,34 +18,21 @@ namespace MazeGUI
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
-            SinglePlayerDetails win = new SinglePlayerDetails()
-            {
-                Top = Top,
-                Left = Left
-            };
+            SinglePlayerDetails win = new SinglePlayerDetails();
             win.Show();
             this.Close();
         }
 
-//vvb
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
-            MultiPlayerDetails win = new MultiPlayerDetails()
-            {
-                Top = Top,
-                Left = Left
-            };
+            MultiPlayerDetails win = new MultiPlayerDetails();
             win.Show();
             this.Close();
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Settings win = new Settings.Settings()
-            {
-                Top = Top,
-                Left = Left
-            };
+            Settings.Settings win = new Settings.Settings();
             win.Show();
             this.Close();
         }

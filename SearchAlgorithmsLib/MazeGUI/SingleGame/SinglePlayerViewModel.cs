@@ -15,7 +15,7 @@ namespace MazeGUI.SingleGame
     {
         private ISinglePlayerModel model;
         private Position playerPos;
-
+        private bool youWon;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
         {
@@ -25,6 +25,10 @@ namespace MazeGUI.SingleGame
                 if (e.PropertyName == "PlayerPos")
                 {
                     PlayerPos = model.PlayerPos;
+                }
+                else if (e.PropertyName == "YouWon")
+                {
+                    YouWon = model.YouWon;
                 }
             };
         }
@@ -38,6 +42,16 @@ namespace MazeGUI.SingleGame
                 maze = maze.Replace("*", "0");
                 maze = maze.Replace("#", "0");
                 return maze;
+            }
+        }
+
+        public bool YouWon
+        {
+            get { return youWon; }
+            set
+            {
+                youWon = value;
+                NotifyPropertyChanged("YouWon");
             }
         }
 
