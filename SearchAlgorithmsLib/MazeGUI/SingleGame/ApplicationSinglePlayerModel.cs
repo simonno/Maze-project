@@ -89,7 +89,7 @@ namespace MazeGUI.SingleGame
         {
             try
             {
-                PlayerPos = CheckMovement(d);
+                PlayerPos = CheckMovement(PlayerPos,d);
             }
             catch (Exception) { }
         }

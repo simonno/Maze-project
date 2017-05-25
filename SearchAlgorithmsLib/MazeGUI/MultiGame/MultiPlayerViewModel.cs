@@ -76,6 +76,7 @@ namespace MazeGUI.MultiGame
             }
             set
             {
+                Console.WriteLine("h " + playerPos);
                 playerPos = value;
                 NotifyPropertyChanged("OpponentPos");
             }
