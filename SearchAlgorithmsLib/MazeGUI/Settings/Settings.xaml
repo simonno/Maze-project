@@ -61,7 +61,7 @@
             <!-- Buttons -->
             <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
                 <Button x:Name="btnCancle" Content="Cancle" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Padding="5 0" Click="btnCancle_Click"/>
-                <Button x:Name="btnClear" Content="Clear" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Padding="5 0" Click="btnClear_Click"/>
+               
                 <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Padding="5 0" Click="btnSave_Click"/>
             </StackPanel>
 

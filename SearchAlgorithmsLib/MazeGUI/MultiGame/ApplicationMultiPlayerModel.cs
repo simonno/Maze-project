@@ -16,17 +16,46 @@ using System.Windows;
 
 namespace MazeGUI.MultiGame
 {
+    /// <summary>
+    /// Class ApplicationMultiPlayerModel.
+    /// </summary>
+    /// <seealso cref="MazeGUI.Model" />
+    /// <seealso cref="MazeGUI.MultiGame.IMultiPlayerModel" />
     public class ApplicationMultiPlayerModel : Model, IMultiPlayerModel
     {
 
+        /// <summary>
+        /// The opponent position
+        /// </summary>
         private Position opponentPos;
+        /// <summary>
+        /// The stop reading
+        /// </summary>
         private bool stopReading;
+        /// <summary>
+        /// The stop executing commands
+        /// </summary>
         private bool stopExecutingCommands;
+        /// <summary>
+        /// The lost connection
+        /// </summary>
         private bool lostConnection;
+        /// <summary>
+        /// The opponent won
+        /// </summary>
         private bool opponentWon;
+        /// <summary>
+        /// The exit game
+        /// </summary>
         private bool exitGame;
+        /// <summary>
+        /// The server commands
+        /// </summary>
         private Queue<string> serverCommands;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationMultiPlayerModel"/> class.
+        /// </summary>
         public ApplicationMultiPlayerModel()
         {
             string ip = Properties.Settings.Default.ServerIP;
@@ -39,6 +68,10 @@ namespace MazeGUI.MultiGame
             exitGame = false;
         }
 
+        /// <summary>
+        /// Gets the opponent position.
+        /// </summary>
+        /// <value>The opponent position.</value>
         public Position OpponentPos
         {
             get { return opponentPos; }
@@ -58,6 +91,10 @@ namespace MazeGUI.MultiGame
         }
 
 
+        /// <summary>
+        /// Gets a value indicating whether [lost connection].
+        /// </summary>
+        /// <value><c>true</c> if [lost connection]; otherwise, <c>false</c>.</value>
         public bool LostConnection
         {
             get { return lostConnection; }
@@ -68,6 +105,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [exit game].
+        /// </summary>
+        /// <value><c>true</c> if [exit game]; otherwise, <c>false</c>.</value>
         public bool ExitGame
         {
             get { return exitGame; }
@@ -78,6 +119,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [opponent won].
+        /// </summary>
+        /// <value><c>true</c> if [opponent won]; otherwise, <c>false</c>.</value>
         public bool OpponentWon
         {
             get { return opponentWon; }
@@ -88,6 +133,12 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Starts the specified maze name.
+        /// </summary>
+        /// <param name="mazeName">Name of the maze.</param>
+        /// <param name="rows">The rows.</param>
+        /// <param name="cols">The cols.</param>
         public void Start(string mazeName, int rows, int cols)
         {
             Connect();
@@ -96,6 +147,10 @@ namespace MazeGUI.MultiGame
             GetMaze();
         }
 
+        /// <summary>
+        /// Joins the specified maze name.
+        /// </summary>
+        /// <param name="mazeName">Name of the maze.</param>
         public void Join(string mazeName)
         {
             Connect();
@@ -104,6 +159,9 @@ namespace MazeGUI.MultiGame
             GetMaze();
         }
 
+        /// <summary>
+        /// Gets the maze.
+        /// </summary>
         private void GetMaze()
         {
             string answer = Reader.ReadLine();
@@ -116,6 +174,9 @@ namespace MazeGUI.MultiGame
         }
 
 
+        /// <summary>
+        /// Creates the tasks.
+        /// </summary>
         private void CreateTasks()
         {   // create a reading task  
             new Task(() =>
@@ -197,6 +258,10 @@ namespace MazeGUI.MultiGame
             catch (Exception) { }
         }
 
+        /// <summary>
+        /// Updates the server.
+        /// </summary>
+        /// <param name="d">The d.</param>
         private void UpdateServer(Direction d)
         {
             string move = "";
@@ -220,6 +285,10 @@ namespace MazeGUI.MultiGame
             Writer.Flush();
         }
 
+        /// <summary>
+        /// Gets the games list.
+        /// </summary>
+        /// <value>The games list.</value>
         public List<string> GamesList
         {
             get
@@ -234,6 +303,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Closes the specified maze name.
+        /// </summary>
+        /// <param name="mazeName">Name of the maze.</param>
         public void Close(string mazeName)
         {
             stopReading = true;

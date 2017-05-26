@@ -11,10 +11,20 @@ namespace MazeGUI.MultiGame
     /// </summary>
     public partial class MultiPlayerDetails : Window
     {
+        /// <summary>
+        /// The vm
+        /// </summary>
         private MultiPlayerDetailsViewModel vm;
 
+        /// <summary>
+        /// Gets a value indicating whether [invoke required].
+        /// </summary>
+        /// <value><c>true</c> if [invoke required]; otherwise, <c>false</c>.</value>
         public bool InvokeRequired { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiPlayerDetails"/> class.
+        /// </summary>
         public MultiPlayerDetails()
         {
             InitializeComponent();
@@ -27,6 +37,11 @@ namespace MazeGUI.MultiGame
             };
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnJoin control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
             if (GamesList.Items.Count <= 0)
@@ -45,6 +60,16 @@ namespace MazeGUI.MultiGame
             Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnStart control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.Exception">
+        /// rows convert failed.
+        /// or
+        /// cols convert failed.
+        /// </exception>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             string name = MazeDetails.txtBoxName.Text;

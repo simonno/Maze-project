@@ -10,17 +10,49 @@ using System.Threading.Tasks;
 
 namespace MazeGUI
 {
+    /// <summary>
+    /// Class Model.
+    /// </summary>
+    /// <seealso cref="MazeGUI.NotifyChanged" />
     public abstract class Model : NotifyChanged
     {
+        /// <summary>
+        /// The maze cells
+        /// </summary>
         protected List<List<int>> mazeCells;
+        /// <summary>
+        /// The maze
+        /// </summary>
         protected Maze maze;
+        /// <summary>
+        /// The player position
+        /// </summary>
         protected Position playerPos;
+        /// <summary>
+        /// The socket information
+        /// </summary>
         protected IPEndPoint socketInfo;
+        /// <summary>
+        /// The TCP client
+        /// </summary>
         protected TcpClient tcpClient;
+        /// <summary>
+        /// The reader
+        /// </summary>
         protected StreamReader Reader;
+        /// <summary>
+        /// The writer
+        /// </summary>
         protected StreamWriter Writer;
+        /// <summary>
+        /// You won
+        /// </summary>
         protected bool youWon;
 
+        /// <summary>
+        /// Creates the maze cells.
+        /// </summary>
+        /// <param name="mazeToString">The maze to string.</param>
         protected void CreateMazeCells(string mazeToString)
         {
             string[] rowsStinrgs = mazeToString.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -42,7 +74,18 @@ namespace MazeGUI
             }
         }
 
-        public  Position CheckMovement(Position p,Direction d)
+        /// <summary>
+        /// Checks the movement.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="d">The d.</param>
+        /// <returns>Position.</returns>
+        /// <exception cref="System.Exception">
+        /// Unvalid movement.
+        /// or
+        /// Unvalid movement.
+        /// </exception>
+        public Position CheckMovement(Position p,Direction d)
         { 
             int x = p.Col;
             int y = p.Row;
@@ -76,6 +119,11 @@ namespace MazeGUI
             else { throw new Exception("Unvalid movement."); }
         }
 
+        /// <summary>
+        /// Determines whether [is valid position] [the specified position].
+        /// </summary>
+        /// <param name="pos">The position.</param>
+        /// <returns><c>true</c> if [is valid position] [the specified position]; otherwise, <c>false</c>.</returns>
         protected bool IsValidPos(Position pos)
         {
             if (pos.Col < MazeCols && pos.Row < MazeRows && pos.Col >= 0 && pos.Row >= 0 && mazeCells[pos.Row][pos.Col] == 0)
@@ -83,6 +131,10 @@ namespace MazeGUI
             return false;
         }
 
+        /// <summary>
+        /// Gets or sets the maze.
+        /// </summary>
+        /// <value>The maze.</value>
         public Maze Maze
         {
             get { return maze; }
@@ -93,6 +145,10 @@ namespace MazeGUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets the player position.
+        /// </summary>
+        /// <value>The player position.</value>
         public Position PlayerPos
         {
             get { return playerPos; }
@@ -110,6 +166,10 @@ namespace MazeGUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [you won].
+        /// </summary>
+        /// <value><c>true</c> if [you won]; otherwise, <c>false</c>.</value>
         public bool YouWon
         {
             get { return youWon; }
@@ -119,6 +179,10 @@ namespace MazeGUI
                 NotifyPropertyChanged("YouWon");
             }
         }
+        /// <summary>
+        /// Gets the name of the maze.
+        /// </summary>
+        /// <value>The name of the maze.</value>
         public string MazeName
         {
             get
@@ -126,6 +190,10 @@ namespace MazeGUI
                 return maze.Name;
             }
         }
+        /// <summary>
+        /// Gets the maze rows.
+        /// </summary>
+        /// <value>The maze rows.</value>
         public int MazeRows
         {
             get
@@ -133,6 +201,10 @@ namespace MazeGUI
                 return maze.Rows;
             }
         }
+        /// <summary>
+        /// Gets the maze cols.
+        /// </summary>
+        /// <value>The maze cols.</value>
         public int MazeCols
         {
             get
@@ -141,6 +213,10 @@ namespace MazeGUI
             }
         }
 
+        /// <summary>
+        /// Gets the maze to string.
+        /// </summary>
+        /// <value>The maze to string.</value>
         public string MazeToString
         {
             get
@@ -149,6 +225,10 @@ namespace MazeGUI
             }
         }
 
+        /// <summary>
+        /// Gets the initial position.
+        /// </summary>
+        /// <value>The initial position.</value>
         public Position InitialPos
         {
             get
@@ -157,6 +237,10 @@ namespace MazeGUI
             }
         }
 
+        /// <summary>
+        /// Gets the goal position.
+        /// </summary>
+        /// <value>The goal position.</value>
         public Position GoalPos
         {
             get
@@ -164,12 +248,20 @@ namespace MazeGUI
                 return maze.GoalPos;
             }
         }
+        /// <summary>
+        /// Reacheds the goal position.
+        /// </summary>
+        /// <param name="pos">The position.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected bool ReachedGoalPos(Position pos)
         {
             if (pos.Col == GoalPos.Col && pos.Row == GoalPos.Row)
                 return true;
             else return false;
         }
+        /// <summary>
+        /// Connects this instance.
+        /// </summary>
         protected void Connect()
         {
             Console.WriteLine("Trying to connect to server");

@@ -16,7 +16,9 @@ namespace ServerProject
     /// this is the main of server
     /// </summary>
     class ProgramServer
-    {
+    {  /// <summary>
+       /// this is the main of server
+       /// </summary>
         static void Main(string[] args)
         {
             string ip = ConfigurationManager.AppSettings["IP"];

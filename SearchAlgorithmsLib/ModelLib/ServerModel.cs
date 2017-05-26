@@ -123,13 +123,7 @@ namespace ModelLib
                 return s;
             }
 
-            //if (multiPlayerWaiting.ContainsKey(name))
-            //{
-            //    Maze maze = multiPlayerWaiting[name];
-            //    MazeSolution s = Solve(maze, typeOfSolve);
-            //    mazesSolutions.Add(name, s);
-            //    return s;
-            //}
+
 
             throw new Exception("This maze does not exist - " + name);
         }
@@ -271,6 +265,12 @@ namespace ModelLib
             return new Tuple<ClientOfServer, PlayerDirection>(otherPlayer, pd);
         }
 
+        /// <summary>
+        /// Closes the specified TcpClient.
+        /// </summary>
+        /// <param name="name">The name of maze.</param>
+        /// <param name="player">The Tcp Client of the player.</param>
+        /// <returns>&gt;The Tcp Client of the other player.</returns>
         public ClientOfServer Close(string name, ClientOfServer player)
         {
             if (multiPlayerOnline.ContainsKey(name)){

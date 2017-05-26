@@ -10,8 +10,14 @@ using System.Threading.Tasks;
 
 namespace ClientLib
 {
+    /// <summary>
+    /// Class AbstractClient.
+    /// </summary>
     public abstract class AbstractClient
     {
+        /// <summary>
+        /// The jobj
+        /// </summary>
         protected JObject Jobj;
 
         /// <summary>
@@ -29,6 +35,9 @@ namespace ClientLib
         /// </summary>
         public StreamWriter Writer;
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public void Close()
         {
             tcpClient.Close();

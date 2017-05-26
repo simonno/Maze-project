@@ -9,16 +9,42 @@ using System.Threading.Tasks;
 
 namespace MazeGUI.MultiGame
 {
+    /// <summary>
+    /// Class MultiPlayerViewModel.
+    /// </summary>
+    /// <seealso cref="MazeGUI.NotifyChanged" />
     class MultiPlayerViewModel : NotifyChanged
     {
 
+        /// <summary>
+        /// The model
+        /// </summary>
         private IMultiPlayerModel model;
+        /// <summary>
+        /// The player position
+        /// </summary>
         private Position playerPos;
+        /// <summary>
+        /// The exit game
+        /// </summary>
         private bool exitGame;
+        /// <summary>
+        /// The lost connection
+        /// </summary>
         private bool lostConnection;
+        /// <summary>
+        /// You won
+        /// </summary>
         private bool youWon;
+        /// <summary>
+        /// The opponent won
+        /// </summary>
         private bool opponentWon;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiPlayerViewModel"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         public MultiPlayerViewModel(IMultiPlayerModel model)
         {
             this.model = model;
@@ -51,6 +77,10 @@ namespace MazeGUI.MultiGame
             };
         }
 
+        /// <summary>
+        /// Gets the maze to string.
+        /// </summary>
+        /// <value>The maze to string.</value>
         public string MazeToString
         {
             get
@@ -62,6 +92,10 @@ namespace MazeGUI.MultiGame
                 return maze;
             }
         }
+        /// <summary>
+        /// Gets the initial position.
+        /// </summary>
+        /// <value>The initial position.</value>
         public Position InitialPos
         {
             get
@@ -70,6 +104,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets the goal position.
+        /// </summary>
+        /// <value>The goal position.</value>
         public Position GoalPos
         {
             get
@@ -77,6 +115,10 @@ namespace MazeGUI.MultiGame
                 return model.GoalPos;
             }
         }
+        /// <summary>
+        /// Gets or sets the player position.
+        /// </summary>
+        /// <value>The player position.</value>
         public Position PlayerPos
         {
             get
@@ -90,6 +132,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets or sets the opponent position.
+        /// </summary>
+        /// <value>The opponent position.</value>
         public Position OpponentPos
         {
             get
@@ -103,18 +149,29 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Plays the specified move.
+        /// </summary>
+        /// <param name="move">The move.</param>
         public void Play(Direction move)
         {
             model.MovePlayer(move);
         }
 
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public void Close()
         {
             model.Close(MazeName);
            
         }
 
+        /// <summary>
+        /// Gets the name of the maze.
+        /// </summary>
+        /// <value>The name of the maze.</value>
         public string MazeName
         {
             get
@@ -123,6 +180,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets the maze rows.
+        /// </summary>
+        /// <value>The maze rows.</value>
         public int MazeRows
         {
             get
@@ -130,6 +191,10 @@ namespace MazeGUI.MultiGame
                 return model.MazeRows;
             }
         }
+        /// <summary>
+        /// Gets the maze cols.
+        /// </summary>
+        /// <value>The maze cols.</value>
         public int MazeCols
         {
             get
@@ -138,6 +203,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [exit game].
+        /// </summary>
+        /// <value><c>true</c> if [exit game]; otherwise, <c>false</c>.</value>
         public bool ExitGame
         {
             get { return exitGame; }
@@ -148,6 +217,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [lost connection].
+        /// </summary>
+        /// <value><c>true</c> if [lost connection]; otherwise, <c>false</c>.</value>
         public bool LostConnection
         {
             get { return lostConnection; }
@@ -159,6 +232,10 @@ namespace MazeGUI.MultiGame
         }
 
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [you won].
+        /// </summary>
+        /// <value><c>true</c> if [you won]; otherwise, <c>false</c>.</value>
         public bool YouWon
         {
             get { return youWon; }
@@ -169,6 +246,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [opponent won].
+        /// </summary>
+        /// <value><c>true</c> if [opponent won]; otherwise, <c>false</c>.</value>
         public bool OpponentWon
         {
             get { return opponentWon; }
@@ -179,6 +260,10 @@ namespace MazeGUI.MultiGame
             }
         }
 
+        /// <summary>
+        /// Moves the player.
+        /// </summary>
+        /// <param name="d">The d.</param>
         public void MovePlayer(Direction d)
         {
             model.MovePlayer(d);

@@ -11,11 +11,19 @@ namespace MazeGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSingle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
             SinglePlayerDetails win = new SinglePlayerDetails();
@@ -23,6 +31,11 @@ namespace MazeGUI
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnMulti control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             MultiPlayerDetails win = new MultiPlayerDetails();
@@ -30,6 +43,11 @@ namespace MazeGUI
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnSettings control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             Settings.Settings win = new Settings.Settings();

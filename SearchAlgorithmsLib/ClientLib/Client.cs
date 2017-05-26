@@ -26,9 +26,17 @@ namespace ClientLib
         /// </summary>
         public bool WritingTaskRunning;
 
+        /// <summary>
+        /// The socket information
+        /// </summary>
         private IPEndPoint socketInfo;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Client"/> class.
+        /// </summary>
+        /// <param name="IP">The ip.</param>
+        /// <param name="port">The port.</param>
         public Client(string IP, int port)
         {
             socketInfo = new IPEndPoint(IPAddress.Parse(IP), port);
@@ -46,6 +54,9 @@ namespace ClientLib
             StartWritingTask();
         }
 
+        /// <summary>
+        /// Reconnects this instance.
+        /// </summary>
         private void Reconnect()
         {
             Console.WriteLine("Trying to connect to server");

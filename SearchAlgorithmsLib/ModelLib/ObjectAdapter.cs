@@ -186,13 +186,6 @@ namespace ModelLib
             }
         }
 
-        //private List<Position> GetPossiblePosition(Position pos)
-        //{
-        //    int x = pos.Col;
-        //    int y = pos.Row;
-        //    if (y + 1 < maze.Rows)
-        //    {
-        //    }
-        //}
+       
     }
 }

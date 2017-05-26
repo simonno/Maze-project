@@ -19,11 +19,24 @@ namespace MazeGUI.SingleGame
     /// </summary>
     public partial class SinglePlayerDetails : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SinglePlayerDetails"/> class.
+        /// </summary>
         public SinglePlayerDetails()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnOk control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.Exception">
+        /// rows convert failed.
+        /// or
+        /// cols convert failed.
+        /// </exception>
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             string name = MazeDetails.txtBoxName.Text;

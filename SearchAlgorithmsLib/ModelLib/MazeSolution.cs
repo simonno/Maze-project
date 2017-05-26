@@ -80,6 +80,10 @@ namespace ModelLib
             return ms;
         }
 
+        /// <summary>
+        /// Froms the list to string.
+        /// </summary>
+        /// <returns>System.String.</returns>
         private string FromListToString()
         {
             string solution = "";
@@ -90,6 +94,12 @@ namespace ModelLib
             return solution;
         }
 
+        /// <summary>
+        /// Compares the position.
+        /// </summary>
+        /// <param name="p1">The p1.</param>
+        /// <param name="p2">The p2.</param>
+        /// <returns>System.Char.</returns>
         private char ComparePosition(Position p1, Position p2)
         {
             if (p2.Row < p1.Row) { return 'U'; } // up

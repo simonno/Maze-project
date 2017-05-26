@@ -7,10 +7,24 @@ using System.Threading;
 
 namespace MazeGUI.SingleGame
 {
+    /// <summary>
+    /// Class ApplicationSinglePlayerModel.
+    /// </summary>
+    /// <seealso cref="MazeGUI.Model" />
+    /// <seealso cref="MazeGUI.SingleGame.ISinglePlayerModel" />
     public class ApplicationSinglePlayerModel : Model, ISinglePlayerModel
     {
+        /// <summary>
+        /// The default search algorithm
+        /// </summary>
         private int defaultSearchAlgorithm;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationSinglePlayerModel"/> class.
+        /// </summary>
+        /// <param name="mazeName">Name of the maze.</param>
+        /// <param name="rows">The rows.</param>
+        /// <param name="cols">The cols.</param>
         public ApplicationSinglePlayerModel(string mazeName, int rows, int cols)
         {
             youWon = false;
@@ -21,6 +35,12 @@ namespace MazeGUI.SingleGame
             GenerateMaze(mazeName, rows, cols);
         }
 
+        /// <summary>
+        /// Generates the maze.
+        /// </summary>
+        /// <param name="mazeName">Name of the maze.</param>
+        /// <param name="rows">The rows.</param>
+        /// <param name="cols">The cols.</param>
         private void GenerateMaze(string mazeName, int rows, int cols)
         {
             Connect();
@@ -36,6 +56,9 @@ namespace MazeGUI.SingleGame
         }
 
 
+        /// <summary>
+        /// Solves this instance.
+        /// </summary>
         public void Solve()
         {
             Connect();
@@ -48,6 +71,10 @@ namespace MazeGUI.SingleGame
             RunSolveTask(ms.SolutionString);
         }
 
+        /// <summary>
+        /// Runs the solve task.
+        /// </summary>
+        /// <param name="solutionString">The solution string.</param>
         private void RunSolveTask(string solutionString)
         {
             Reset();
@@ -81,11 +108,18 @@ namespace MazeGUI.SingleGame
             }).Start();
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public void Reset()
         {
             PlayerPos = Maze.InitialPos;
         }
 
+        /// <summary>
+        /// Moves the player.
+        /// </summary>
+        /// <param name="d">The d.</param>
         public void MovePlayer(Direction d)
         {
             try
