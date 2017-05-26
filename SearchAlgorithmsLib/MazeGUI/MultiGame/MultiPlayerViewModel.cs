@@ -112,6 +112,7 @@ namespace MazeGUI.MultiGame
         public void Close()
         {
             model.Close(MazeName);
+           
         }
 
         public string MazeName

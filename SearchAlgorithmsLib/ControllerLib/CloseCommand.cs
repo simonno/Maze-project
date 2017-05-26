@@ -33,7 +33,10 @@ namespace ControllerLib
         {
             string name = args[0];
             ClientOfServer otherPlayer = model.Close(name, client);
-            otherPlayer.DisconnectFromServer();
+            if (otherPlayer != null)
+            {
+                otherPlayer.DisconnectFromServer();
+            }
             client.DisconnectFromServer();
             return null;
         }

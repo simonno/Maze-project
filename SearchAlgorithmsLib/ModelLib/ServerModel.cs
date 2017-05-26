@@ -273,9 +273,13 @@ namespace ModelLib
 
         public ClientOfServer Close(string name, ClientOfServer player)
         {
-            MultiPlayerInfo mp = multiPlayerOnline[name];
-            multiPlayerOnline.Remove(name);
-            return mp.GetTheOtherPlayer(player);
+            if (multiPlayerOnline.ContainsKey(name)){
+                MultiPlayerInfo mp = multiPlayerOnline[name];
+                multiPlayerOnline.Remove(name);
+                return mp.GetTheOtherPlayer(player);
+
+            }
+            return null;
         }
 
         /// <summary>
