@@ -21,7 +21,9 @@
             <Setter Property="Background"
               Value="Blue" />
             <Setter Property="Foreground"
-           Value="White" />
+           Value="White" /> 
+        <Setter Property="Width"
+           Value="Auto" />
         </Style>
     </Window.Resources>
     <Grid Margin="20">

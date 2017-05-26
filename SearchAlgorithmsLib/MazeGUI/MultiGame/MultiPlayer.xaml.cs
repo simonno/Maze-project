@@ -56,14 +56,8 @@ namespace MazeGUI.MultiGame
         {
             if (LostConnection == true)
             {
-                PopMessage youWonMessage = new PopMessage("You Lost", "Keep playing", "Return to main menu");
-                if (youWonMessage.ShowDialog() != true)
-                {
-                    if (youWonMessage.Choose == true)
-                    {
-                        BackToMainMenu();
-                    }
-                }
+                MessageBox.Show("Lost Connection");
+
             }
             MainWindow win = new MainWindow();
             win.Show();
@@ -118,14 +112,12 @@ namespace MazeGUI.MultiGame
         {
             if (YouWon == true)
             {
-                PopMessage youWonMessage = new PopMessage("You Won", "Keep playing", "Return to main menu");
-                if (youWonMessage.ShowDialog() != true)
-                {
-                    if (youWonMessage.Choose == true) 
-                    {
-                        BackToMainMenu();
-                    }
-                }
+                MessageBox.Show("You Won");
+                //PopMessage youWonMessage = new PopMessage("You Won", "Keep playing", "");
+                //if (youWonMessage.ShowDialog() != true)
+                //{
+                   
+                //}
             }
             YouWon = false;
         }
@@ -150,7 +142,13 @@ namespace MazeGUI.MultiGame
         {
             if (OpponentWon == true)
             {
-                MessageBox.Show("You Lose!!!");
+                MessageBox.Show("You Lose");
+
+                //PopMessage youWonMessage = new PopMessage("You Lose!!!", "Keep playing", "");
+                //if (youWonMessage.ShowDialog() != true)
+                //{
+
+                //}
             }
             OpponentWon = false;
         }
@@ -201,7 +199,6 @@ namespace MazeGUI.MultiGame
         private void closeWin(object sender, EventArgs e)
         {
             vm.Close();
-            Close();
         }
     }
 }
