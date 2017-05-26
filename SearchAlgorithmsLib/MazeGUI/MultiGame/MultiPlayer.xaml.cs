@@ -201,8 +201,6 @@ namespace MazeGUI.MultiGame
         private void closeWin(object sender, EventArgs e)
         {
             vm.Close();
-            MainWindow win = new MainWindow();
-            win.Show();
             Close();
         }
     }
