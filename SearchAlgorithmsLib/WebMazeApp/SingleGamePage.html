@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Single Game</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container body-content">
+        <h2>Single Player Game</h2><hr />
+        <div class="col-sm-4 form-horizontal">
+            <div class="form-group">
+                <label for="mazeName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="mazeName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeRows" class="col-sm-2 control-label">Rows</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="mazeRows" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeCols" class="col-sm-2 control-label">Cols</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="mazeCols" />
+                </div>
+            </div>
+            <div class="form-group col-sm-4 col-sm-push-2">
+                    <input type="submit" class="form-control" value="Start New Game" id="newGame">
+            </div>
+            <div class="form-group">
+                <label for="SearchAlgo" class="col-sm-2 control-label">Search Algorithm</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="SearchAlgo">
+                        <option value="DFS">DFS</option>
+                        <option value="BFS">BFS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-8">
+                <input type="submit" class="form-control" value="Solve Game" id="solveGame">
+            </div>
+        </div>
+        <div class="col-sm-8 text-center">
+            <canvas id="mazeCanvas" tabindex="1" class="maze-board" width="500"
+                    height="500"></canvas>
+            <script>
+                function drawMaze(maze) {
+                    var myCanvas = document.getElementById("mazeCanvas");
+                    var context = mazeCanvas.getContext("2d");
+                    var rows = maze.length;
+                    var cols = maze[0].length;
+                    var cellWidth = mazeCanvas.width / cols;
+                    var cellHeight = mazeCanvas.height / rows;
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            if (maze[i][j] == 1) {
+                                context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+                            }
+                        }
+                    }
+                }
+                maze = [[0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 0, 0, 0]];
+                drawMaze(maze);
+            </script>
+        </div>
+    </div>
+</body>
+</html>
