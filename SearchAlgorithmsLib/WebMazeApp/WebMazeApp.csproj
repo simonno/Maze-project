@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Header.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
@@ -90,6 +91,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="HomePage.html" />
+    <Content Include="js\DrawMaze.js" />
     <Content Include="LoginPage.html" />
     <Content Include="MultiGamePage.html" />
     <Content Include="RegisterPage.html" />

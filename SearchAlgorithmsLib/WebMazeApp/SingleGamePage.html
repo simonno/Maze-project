@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <title>Single Game</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    <header id="site-header">
+        <script>
+            $("#site-header").load("Header.html");
+        </script>
+    </header>
     <div class="container body-content">
         <h2>Single Player Game</h2><hr />
         <div class="col-sm-4 form-horizontal">
@@ -28,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-4 col-sm-push-2">
-                    <input type="submit" class="form-control" value="Start New Game" id="newGame">
+                <input type="submit" class="form-control" value="Start New Game" id="newGame">
             </div>
             <div class="form-group">
                 <label for="SearchAlgo" class="col-sm-2 control-label">Search Algorithm</label>
@@ -46,28 +52,16 @@
         <div class="col-sm-8 text-center">
             <canvas id="mazeCanvas" tabindex="1" class="maze-board" width="500"
                     height="500"></canvas>
+            <script src="js/DrawMaze.js"></script>
             <script>
-                function drawMaze(maze) {
-                    var myCanvas = document.getElementById("mazeCanvas");
-                    var context = mazeCanvas.getContext("2d");
-                    var rows = maze.length;
-                    var cols = maze[0].length;
-                    var cellWidth = mazeCanvas.width / cols;
-                    var cellHeight = mazeCanvas.height / rows;
-                    for (var i = 0; i < rows; i++) {
-                        for (var j = 0; j < cols; j++) {
-                            if (maze[i][j] == 1) {
-                                context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
-                            }
-                        }
-                    }
-                }
-                maze = [[0, 1, 0, 1],
-                [0, 1, 0, 1],
-                [0, 1, 0, 1],
-                [0, 1, 0, 1],
-                [0, 0, 0, 0]];
-                drawMaze(maze);
+                $(document).ready(function () {
+                    maze = [[0, 1, 0, 1],
+                    [0, 1, 0, 1],
+                    [0, 1, 0, 1],
+                    [0, 1, 0, 1],
+                    [0, 0, 0, 0]];
+                    $("#mazeCanvas").drawMaze(maze);
+                });
             </script>
         </div>
     </div>
