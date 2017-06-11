@@ -14,12 +14,12 @@ namespace WebMazeApp.Model
             new User { Username = "laptop3", Password = "123",Email="d3" },
         };
 
-        public void AddProduct(User p)
+        public void AddUser(User p)
         {
             users.Add(p);
         }
 
-        public void DeleteProduct(int id )
+        public void DeleteUser(int id )
         {
             User p = users.Where(x => x.Id == id).FirstOrDefault();
             if (p == null)
@@ -27,11 +27,23 @@ namespace WebMazeApp.Model
             users.Remove(p);
         }
 
-        public IEnumerable<User> GetAllProducts()
+        public IEnumerable<User> GetAllUsers()
         {
             return users;
         }
+        public User GetUserById(int id)
+        {
+            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            return p;
+        }
 
-        
+        public void UpdateUser(User p)
+        {
+            User user1 = users.Where(x => x.Id == p.Id).FirstOrDefault();
+            user1.Username = p.Username;
+            user1.Password = p.Password;
+            user1.Email = p.Email;
+        }
+
     }
 }
