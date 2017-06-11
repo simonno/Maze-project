@@ -9,7 +9,7 @@ namespace WebMazeApp.Model
     {
         IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
-        void AddProduct(User p);
+        void AddUser(User p);
         void UpdateUser(User p);
         void DeleteUser(int id);
     }
