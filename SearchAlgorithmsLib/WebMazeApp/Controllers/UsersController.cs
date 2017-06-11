@@ -7,6 +7,7 @@ using WebMazeApp.Model;
 
 namespace WebMazeApp.Controllers
 {
+
     public class UsersController : ApiController
     {
 
