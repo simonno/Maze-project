@@ -13,25 +13,5 @@ namespace WebMazeApp.Model
             new User { Username = "laptop2", Password = "12",Email="d2" },
             new User { Username = "laptop3", Password = "123",Email="d3" },
         };
-
-        public void AddProduct(User p)
-        {
-            users.Add(p);
-        }
-
-        public void DeleteProduct(int id )
-        {
-            User p = users.Where(x => x.Id == id).FirstOrDefault();
-            if (p == null)
-                throw new Exception("user not found");
-            users.Remove(p);
-        }
-
-        public IEnumerable<User> GetAllProducts()
-        {
-            return users;
-        }
-
-        
     }
 }
