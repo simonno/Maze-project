@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Register Page</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <header id="site-header">
+        <script>
+            $("#site-header").load("Header.html");
+        </script>
+    </header>
+    <div class="container body-content">
+        <h2>Register Page</h2><hr />
+        <div class="col-sm-4 form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-sm-3 control-label">Username</label>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Enter Name " class="form-control input-lg text-capitalize text-justify" id="username" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-3 control-label text-capitalize">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" placeholder="Enter Password" class="form-control input-lg" id="password" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="verifiedPassword" class="col-sm-3 control-label text-capitalize">Verified Password</label>
+                <div class="col-sm-6">
+                    <input type="password" placeholder="Verified Password" class="form-control input-lg" id="verifiedPassword" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label text-capitalize">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" placeholder="Enter Email" class="form-control input-lg" id="email" />
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <input type="submit" class="form-control btn-success" value="register" id="register">
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var password, passwordAgain, userName, email, text;
+
+            // Get the value of the input field with id="numb"
+            password = document.getElementById("password").value;
+            passwordAgain = document.getElementById("passwordAgain").value;
+            userName = document.getElementById("userName").value;
+            email = document.getElementById("email").value;
+            // If x is Not a Number or less than one or greater than 10
+
+            if ((password == "") || (passwordAgain == "")
+                || (userName == "") || (email == "")) {
+                text = "there is a field not valid";
+            } else if (password != passwordAgain) {
+                text = "the password is not the same as passwordAgain";
+            } else {
+                document.getElementById("myButton").onclick = function () {
+                    location.href = "HomePage.html";
+                }
+
+                document.getElementById("demo").innerHTML = text;
+            }
+    </script>
+</body>
+</html>

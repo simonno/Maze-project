@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{5AA36579-E931-47D7-B7F3-60F59E9917A2}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGUI", "MazeGUI\MazeGUI.csproj", "{E021EA11-6B3C-4044-BF38-B4B8CF1C0EFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMazeApp", "WebMazeApp\WebMazeApp.csproj", "{4ADC1BB6-5B96-43AB-B28B-4CBE078CA821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMaze", "WebMaze\WebMaze.csproj", "{12266932-9E3B-4290-B840-E9ECBA09C5C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{4ADC1BB6-5B96-43AB-B28B-4CBE078CA821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ADC1BB6-5B96-43AB-B28B-4CBE078CA821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ADC1BB6-5B96-43AB-B28B-4CBE078CA821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12266932-9E3B-4290-B840-E9ECBA09C5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12266932-9E3B-4290-B840-E9ECBA09C5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12266932-9E3B-4290-B840-E9ECBA09C5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12266932-9E3B-4290-B840-E9ECBA09C5C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Multi Player</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <header id="site-header">
+        <script>
+            $("#site-header").load("Header.html");
+        </script>
+    </header>
+    <div class="container body-content">
+        <h2>Multi Player Game</h2><hr />
+        <div class="col-sm-4 form-horizontal">
+            <div class="form-group">
+                <label for="mazeName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mazeName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeRows" class="col-sm-2 control-label">Rows</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" id="mazeRows" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mazeCols" class="col-sm-2 control-label">Cols</label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" id="mazeCols" />
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-sm-offset-3">
+                <input type="submit" class="form-control" value="Start New Game" id="newGame">
+            </div>
+        </div>
+
+        <div class="col-sm-offset-2 text-center">
+            <canvas id="myMazeCanvas" tabindex="1" class="maze-board" width="500"
+                    height="500"></canvas>
+            <script>
+                function drawMaze(maze) {
+                    var myCanvas = document.getElementById("myMazeCanvas");
+                    var context = myMazeCanvas.getContext("2d");
+                    var rows = maze.length;
+                    var cols = maze[0].length;
+                    var cellWidth = myMazeCanvas.width / cols;
+                    var cellHeight = myMazeCanvas.height / rows;
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            if (maze[i][j] == 1) {
+                                context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+                            }
+                        }
+                    }
+                }
+                maze = [[0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 0, 0, 0]];
+                drawMaze(maze);
+            </script>
+        </div>
+        <div class="col-sm-4 text-center">
+            <canvas id="otherMazeCanvas" tabindex="1" class="maze-board" width="500"
+                    height="500"></canvas>
+            <script>
+                function drawMaze(maze) {
+                    var myCanvas = document.getElementById("otherMazeCanvas");
+                    var context = otherMazeCanvas.getContext("2d");
+                    var rows = maze.length;
+                    var cols = maze[0].length;
+                    var cellWidth = otherMazeCanvas.width / cols;
+                    var cellHeight = otherMazeCanvas.height / rows;
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            if (maze[i][j] == 1) {
+                                context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+                            }
+                        }
+                    }
+                }
+                maze = [[0, 1, 0, 1],
+                [0, 1, 0, 1],
+                [0, 1, 1, 1],
+                [0, 0, 0, 1],
+                [0, 0, 0, 0]];
+                drawMaze(maze);
+            </script>
+        </div>
+    </div>
+</body>
+</html>
