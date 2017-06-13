@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Login</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body class="bg-info">
@@ -12,29 +13,24 @@
             $("#site-header").load("Header.html");
         </script>
     </header>
-    <div class="container body-content">
-        <h2>Setting Page</h2><hr />
-        <div class="col-sm-4 form-horizontal">
-            <div class="form-group">
-                <label for="username" class="col-sm-3 control-label">Username</label>
-                <div class="col-sm-6">
-                    <input type="text" placeholder="Enter Name " class="form-control input-lg text-capitalize text-justify" id="username" />
-                </div>
+    <div class="container">
+        <h2 class="form-signin-heading">Please log in</h2>
+        <h3 class="form-signin-heading">Use a local account to log in.</h3><hr />
+        <form class="form-signin col-lg-3">
+            <label for="inputUsername" class="sr-only">Enter your username</label>
+            <input type="text" id="inputUsername" class="form-control" placeholder="Enter your username" required autofocus>
+            <label for="inputPassword" class="sr-only">Enter your password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Enter your password" required>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
             </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-3 control-label text-capitalize">Password</label>
-                <div class="col-sm-6">
-                    <input type="password" placeholder="Enter Password" class="form-control input-lg" id="password" />
-                </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <input type="submit" class="form-control btn-success" value="Login" id="login">
-            </div>
-        </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+        </form>
     </div>
-
-    <footer class="panel-footer">
-        <button class="btn-success right">Register as a new user</button>
+    <footer class="container">
+        <a>Register as a new user</a>
     </footer>
 </body>
 </html>
