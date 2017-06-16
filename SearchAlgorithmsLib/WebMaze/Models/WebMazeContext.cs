@@ -14,10 +14,8 @@ namespace WebMaze.Models
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
-        public WebMazeContext() : base("name=WebMazeContext")
-        {
-        }
+
+        public WebMazeContext() : base("name=WebMazeContext") { }
 
         public DbSet<User> Users { get; set; }
     }

@@ -100,6 +100,7 @@
     <Resource Include="Images\monster.jpg" />
     <Resource Include="Images\player.png" />
     <Resource Include="Images\simpson.png" />
+    <Content Include="js\app.js" />
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\RegisterValidation.js" />
@@ -128,6 +129,7 @@
     <Content Include="SettingsPage.html" />
     <Content Include="SingleGamePage.html" />
     <Content Include="UserRanking.html" />
+    <Content Include="Views\index.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
@@ -137,9 +139,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706151703084_Initial.cs" />
-    <Compile Include="Migrations\201706151703084_Initial.Designer.cs">
-      <DependentUpon>201706151703084_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706161311410_init.cs" />
+    <Compile Include="Migrations\201706161311410_init.Designer.cs">
+      <DependentUpon>201706161311410_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
@@ -159,8 +161,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706151703084_Initial.resx">
-      <DependentUpon>201706151703084_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706161311410_init.resx">
+      <DependentUpon>201706161311410_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
