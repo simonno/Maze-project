@@ -19,6 +19,6 @@ namespace WebMaze.Models
         {
         }
 
-        public System.Data.Entity.DbSet<WebMaze.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

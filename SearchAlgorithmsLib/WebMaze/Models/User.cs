@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebMaze
+namespace WebMaze.Models
 {
     public class User
     {
@@ -14,15 +14,17 @@ namespace WebMaze
             get;
             set;
         }
+
         public int Id { get; set; }
+
         [Required]
         public string Password
         {
             get;
             set;
         }
-        [Required]
 
+        [Required]
         public string Email
         {
             get;

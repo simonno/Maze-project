@@ -13,7 +13,7 @@ namespace WebMaze.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706121748058_Initial"; }
+            get { return "201706151703084_Initial"; }
         }
         
         string IMigrationMetadata.Source
