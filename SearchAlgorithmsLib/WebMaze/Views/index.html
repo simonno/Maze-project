@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>Books Service</h1>
+            <h1>Users Service</h1>
         </div>
         <div class="row">
             <div class="col-sm-4">
@@ -28,5 +28,18 @@
             </div>
         </div>
     </div>
+
+    <script src="../Scripts/jquery-3.1.1.js"></script>
+    <script>
+        var usersUrl = "../api/users";
+        $.getJSON(usersUrl, function (data) {
+
+            data.forEach(function (user) {
+                $("#tblUsers").append("<tr><td>" + user.Id + "</td>" +
+                    "<td>" + user.Name + "</td>" +
+                    "<td>" + user.Email + "</td></tr>");
+            });
+        });
+    </script>
 </body>
 </html>
