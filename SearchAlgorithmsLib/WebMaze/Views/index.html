@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../Scripts/knockout-3.4.2.debug.js"></script>
+    <!--<script src="../Scripts/knockout-3.4.2.debug.js"></script>-->
     <script src="../js/app.js"></script>
 </head>
 <body>
-    <div class="container">
+    <!--<div class="container">
         <div class="page-header">
             <h1>Users Service</h1>
         </div>
@@ -30,19 +30,27 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
+    <h2>Products Table</h2>
+    <table id="tblUsers">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </table>
 
-    <script src="../Scripts/jquery-3.1.1.js"></script>
-    <script>
-        var usersUrl = "../api/users";
-        $.getJSON(usersUrl, function (data) {
+    <script src="../Scripts/jquery-3.1.1.js">
+       var productsUrl = "../api/users";
+       $.getJSON(productsUrl, function (data) {
 
-            data.forEach(function (user) {
-                $("#tblUsers").append("<tr><td>" + user.Id + "</td>" +
-                    "<td>" + user.Name + "</td>" +
-                    "<td>" + user.Email + "</td></tr>");
-            });
-        });
+           data.forEach(function (user) {
+               $("#tblUsers").append("<tr><td>" + user.Username + "</td>" +
+                   "<td>" + user.Username + "</td>" +
+                   "<td>" + user.Email + "</td></tr>");
+           });
+       });
     </script>
+
 </body>
 </html>
