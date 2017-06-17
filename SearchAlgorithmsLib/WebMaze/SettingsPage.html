@@ -16,19 +16,19 @@
         <h2>Setting Page</h2><hr />
         <div class="col-sm-4 form-horizontal">
             <div class="form-group">
-                <label for="defaultRows" class="col-sm-4 control-label">Default Rows</label>
+                <label for="defaultRows" id="defaultRows" class="col-sm-4 control-label">Default Rows</label>
                 <div class="col-sm-7">
                     <input type="number" min="4" max="1000" placeholder="Insert rows number" class="form-control" id="defaultRows" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="defaultCols" class="col-sm-4 control-label">Default Cols</label>
+                <label for="defaultCols" id="defaultCols" class="col-sm-4 control-label">Default Cols</label>
                 <div class="col-sm-7">
                     <input type="number" min="4" max="1000" placeholder="Insert columns number" class="form-control" id="defaultCols" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="SearchAlgo" class="col-sm-4 control-label">Search Algorithm</label>
+                <label for="SearchAlgo" id="SearchAlgo" class="col-sm-4 control-label">Search Algorithm</label>
                 <div class="col-sm-4">
                     <select class="form-control" id="SearchAlgo">
                         <option value="DFS">DFS</option>
@@ -38,6 +38,16 @@
             </div>
             <div class="form-group col-sm-8">
                 <input type="submit" class="form-control" value="Save" id="save">
+                <script>
+
+                    $("#save").click(function () {                        var mazeRows = $("#defaultRows").val();
+                        var mazeCols = $("#defaultCols").val();
+                        var SearchAlgo = $("#SearchAlgo").val();
+                        //TODO connection to server
+                        // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
+                    });
+                </script>
+
             </div>
         </div>
     </div>

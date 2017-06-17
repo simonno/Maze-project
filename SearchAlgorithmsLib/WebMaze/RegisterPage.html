@@ -44,6 +44,18 @@
             <div class="form-group row">
                 <div class="col-lg-offset-3 col-lg-4">
                     <input type="submit" class="form-control btn-success" value="register" name="singup" id="registersubmit">
+                    <script>
+
+                        $("#registersubmit").click(function () {
+                            var mazeName = $("#username").val();
+                            var mazeRows = $("#password").val();
+                            var mazeCols = $("#verifiedPassword").val();
+                            var SearchAlgo = $("#email").val();
+                            //TODO connection to server
+                            // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
+                        });
+                    </script>
+
                 </div>
             </div>
         </form>

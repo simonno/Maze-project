@@ -26,7 +26,17 @@
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Log in</button>
+            <script>
+
+                $("#login").click(function () {
+                    var inputUsername = $("#inputUsername").val();
+                    var inputPassword = $("#inputPassword").val();
+                                 //TODO connection to server
+                                 // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
+                             });
+            </script>
+
         </form>
     </div>
     <footer class="container">
