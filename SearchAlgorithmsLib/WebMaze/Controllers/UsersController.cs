@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebMaze.Controllers
 {
+    [Route("api/Users")]
     public class UsersController : ApiController
     {
+        private IUserManager usersManager = new UsersModel();
+
         private WebMazeContext db = new WebMazeContext();
 
         // GET: api/Users
@@ -110,6 +114,22 @@ namespace WebMaze.Controllers
         private bool UserExists(int id)
         {
             return db.Users.Count(e => e.Id == id) > 0;
+        }
+        
+        // POST api/values
+        [Microsoft.AspNetCore.Mvc.HttpPost("Register")]
+        public IActionResult Register(User user)
+        {
+            int results = usersManager.Register(user);
+
+            Console.WriteLine("results :" + results);
+
+            if (results == -1)
+            {
+                return Ok(new { error = "true", msg = "User exists" });
+            }
+
+            return Ok(new { error = "false", msg = "User is now registerd" });
         }
     }
 }
