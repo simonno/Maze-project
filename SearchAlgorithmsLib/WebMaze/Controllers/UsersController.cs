@@ -12,6 +12,7 @@ using System;
 
 namespace WebMaze.Controllers
 {
+
     [Microsoft.AspNetCore.Mvc.Route("api/Users")]
     public class UsersController : ApiController
     {
