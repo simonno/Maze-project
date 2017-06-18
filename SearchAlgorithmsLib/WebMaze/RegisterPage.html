@@ -18,13 +18,13 @@
         <h2>Register Page</h2><hr />
         <form id="registerForm" class="col-lg-6 form-horizontal">
             <div class="form-group row">
-                <label for="username" class="col-lg-3 control-label">Username</label>
+                <label for="username" id="username"class="col-lg-3 control-label">Username</label>
                 <div class="col-lg-6">
                     <input name="username" type="text" placeholder="Enter Name " class="form-control input-lg text-capitalize text-justify" id="username" />
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-lg-3 control-label text-capitalize">Password</label>
+                <label for="password" id="password"class="col-lg-3 control-label text-capitalize">Password</label>
                 <div class="col-lg-6">
                     <input name="password" type="password" placeholder="Enter Password" class="form-control input-lg" id="password" />
                 </div>
@@ -36,14 +36,27 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-lg-3 control-label text-capitalize">Email</label>
+                <label for="email" id="email" class="col-lg-3 control-label text-capitalize">Email</label>
                 <div class="col-lg-6">
                     <input type="email" name="email" placeholder="Enter Email" class="form-control input-lg" id="email" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-lg-offset-3 col-lg-4">
-                    <input type="submit" class="form-control btn-success" value="register" name="singup" id="registersubmit">
+                    <input type="submit" class="form-control btn-success" value="register" name="singup" id="registerSubmit">
+                    <script>
+                        $("#registerSubmit").click(function () {
+                            var username = $("#username").val();
+                            var inputPassword = $("#password").val();
+                            var inputEmail = $("#email").val();
+
+                            var url = "http://localhost:50570/api/Users/register" + "/" + inputUsername + "/" + inputPassword + "/" + inputEmail;
+                         //TODO connection to server
+                         $.get(url).done;
+
+                     });
+                    </script>
+                
                 </div>
             </div>
         </form>
