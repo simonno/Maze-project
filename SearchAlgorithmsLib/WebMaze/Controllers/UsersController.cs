@@ -131,7 +131,7 @@ namespace WebMaze.Controllers
         {
             int results = usersManager.Register(user);
 
-            Console.WriteLine("results :" + results);
+            //Console.WriteLine("results :" + results);
 
             if (results == -1)
             {
@@ -158,6 +158,13 @@ namespace WebMaze.Controllers
             }
             //return new ObjectResult(login);
             return true;
+
+            //if (results == -1)
+            //{
+            //    return Ok(new { error = "true", msg = "User exists" });
+            //}
+
+            //return Ok(new { error = "false", msg = "User is now registerd" });
 
         }
     }
