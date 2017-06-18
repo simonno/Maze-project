@@ -89,7 +89,7 @@ namespace WebMaze.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(string userName)
         {
-            User user = db.Users.Find(id);
+            User user = db.Users.Find(userName);
             if (user == null)
             {
                 return NotFound();
