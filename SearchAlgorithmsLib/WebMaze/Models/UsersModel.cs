@@ -33,24 +33,20 @@ namespace WebMaze.Models
             return users;
         }
 
-        public User GetProductById(int id)
+        public User GetUserById(int id)
         {
             User p = users.Where(x => x.Id == id).FirstOrDefault();
             return p;
         }
 
-        public void UpdateProduct(User p)
+        public void UpdateUser(User p)
         {
             User prod = users.Where(x => x.Id == p.Id).FirstOrDefault();
             prod.Username = p.Username;
             prod.Password = p.Password;
             prod.Email = p.Email;
         }
-        public User GetUserById(int id)
-        {
-            User prod = users.Where(x => x.Id ==id).FirstOrDefault();
-            return prod;
-        }
+        
         public int Login(LoginData login)
         {
             User user = users.FirstOrDefault(u => u.Username == login.Username);

@@ -28,13 +28,14 @@
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Log in</button>
             <script>
-
                 $("#login").click(function () {
                     var inputUsername = $("#inputUsername").val();
                     var inputPassword = $("#inputPassword").val();
-                                 //TODO connection to server
-                                 // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                             });
+                    var url = "http://localhost:50570/api/Users/login" + "/" + inputUsername + "/" + inputPassword;
+                    //TODO connection to server
+                    $.get(url).done;
+                    
+                });
             </script>
 
         </form>

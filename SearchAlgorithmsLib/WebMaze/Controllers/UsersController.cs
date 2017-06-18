@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -6,16 +7,22 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
-using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+
 
 namespace WebMaze.Controllers
 {
-    [Route("api/Users")]
+    [Microsoft.AspNetCore.Mvc.Route("api/Users")]
     public class UsersController : ApiController
     {
         private IUserManager usersManager = new UsersModel();
 
         private WebMazeContext db = new WebMazeContext();
+      
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
@@ -115,10 +122,12 @@ namespace WebMaze.Controllers
         {
             return db.Users.Count(e => e.Id == id) > 0;
         }
-        
-        // POST api/values
-        [Microsoft.AspNetCore.Mvc.HttpPost("Register")]
-        public IActionResult Register(User user)
+
+        // Get api/Users/register
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+      //  [Microsoft.AspNetCore.Mvc.Route("api/Users/register")]
+       // public IActionResult Register(User user)
+        public bool Register(User user)
         {
             int results = usersManager.Register(user);
 
@@ -126,10 +135,30 @@ namespace WebMaze.Controllers
 
             if (results == -1)
             {
-                return Ok(new { error = "true", msg = "User exists" });
+                return false;
             }
 
-            return Ok(new { error = "false", msg = "User is now registerd" });
+            return true;
+        }
+        // Get api/Users/login
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        // [Route("api/Users/login")]
+        // public IActionResult Login(LoginData login)
+        public bool Login(LoginData login)
+        {
+            string username = login.Username;
+            Console.WriteLine("name " + username);
+            int results = usersManager.Login(login);
+
+            Console.WriteLine("results :" + results);
+
+            if (results == 1)
+            {
+                return false;
+            }
+            //return new ObjectResult(login);
+            return true;
+
         }
     }
 }
