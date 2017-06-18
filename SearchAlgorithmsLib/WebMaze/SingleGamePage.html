@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Scripts/jquery.validate.js"></script>
     <script src="js/NewGameValidation.js"></script>
+
 </head>
 <body>
     <header id="site-header">
@@ -16,67 +17,65 @@
     </header>
     <div class="container">
         <h2>Single Player Game</h2><hr />
-        <div class="row">
-            <form class="col-lg-3 form-horizontal">
-                <div class="form-group row">
-                    <label for="mazeName" class="col-lg-4 control-label">Name</label>
-                    <div class="col-lg-8">
-                        <input name="mazeName" class="form-control" type="text" id="mazeName" />
-                    </div>
+        <form id="newGameForm" class="col-lg-3 form-horizontal">
+            <div class="form-group row">
+                <label for="mazeName" class="col-lg-4 control-label">Name</label>
+                <div class="col-lg-8">
+                    <input name="mazeName" class="form-control" type="text" id="mazeName" />
                 </div>
-                <div class="form-group row">
-                    <label for="mazeRows" class="col-lg-4 control-label">Rows</label>
-                    <div class="col-lg-8">
-                        <input name="mazeRows" type="number" class="form-control" id="mazeRows" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="mazeCols" class="col-lg-4 control-label">Cols</label>
-                    <div class="col-lg-8">
-                        <input name="mazeCols" type="number" class="form-control" id="mazeCols" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-lg-offset-4 col-lg-7">
-                        <input type="submit" class=" form-control" value="Start New Game" id="btnStartGame">
-                        <script src="../Scripts/jquery-1.6.4.js"></script>
-                        <!--<script src="../Scripts/jquery.signalR-2.2.2.js"></script>
-                        <script src="../signalr/hubs"></script>-->
-                        <script>
-
-                            //$("#btnStartGame").click(function () {
-                            //    var mazeName = $("#mazeName").val();
-                            //    var mazeRows = $("#mazeRows").val();
-                            //    var mazeCols = $("#mazeCols").val();
-                            //    var SearchAlgo = $("#SearchAlgo").val();
-                            //    //TODO connection to server
-                            //    // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                            //});
-                        </script>
-
-                    </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="SearchAlgo" class="col-lg-4 control-label">Search Algorithm</label>
-                    <div class="col-lg-8">
-                        <select class="form-control" id="SearchAlgo">
-                            <option value="DFS">DFS</option>
-                            <option value="BFS">BFS</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-lg-offset-4 col-lg-6">
-                        <input type="submit" class="form-control" value="solve Game" id="btnSolveGame">
-                    </div>
-                </div>
-            </form>
-            <div class="col-lg-9 text-center">
-                <canvas id="mazeCanvas" tabindex="1" class="col-lg-12"></canvas>
-                <script src="js/DrawMaze.js"></script>
-                <script src="js/SinglePlayerMaze.js"></script>
             </div>
+            <div class="form-group row">
+                <label for="mazeRows" class="col-lg-4 control-label">Rows</label>
+                <div class="col-lg-8">
+                    <input name="mazeRows" type="number" class="form-control" id="mazeRows" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mazeCols" class="col-lg-4 control-label">Cols</label>
+                <div class="col-lg-8">
+                    <input name="mazeCols" type="number" class="form-control" id="mazeCols" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-offset-4 col-lg-7">
+                    <input type="submit" name="singup" class="form-control btn-success" value="Start New Game" id="btnStartGame">
+                    <!--<script src="../Scripts/jquery.signalR-2.2.2.js"></script>
+                    <script src="../signalr/hubs"></script>-->
+                    <!--  <script>
+
+                          //$("#btnStartGame").click(function () {
+                          //    var mazeName = $("#mazeName").val();
+                          //    var mazeRows = $("#mazeRows").val();
+                          //    var mazeCols = $("#mazeCols").val();
+                          //    var SearchAlgo = $("#SearchAlgo").val();
+                          //    //TODO connection to server
+                          //    // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
+                          //});
+                      </script>-->
+
+                </div>
+            </div>
+        </form>
+        <form class="col-lg-3 form-horizontal">
+            <div class="form-group row">
+                <label for="SearchAlgo" class="col-lg-4 control-label">Search Algorithm</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="SearchAlgo">
+                        <option value="DFS">DFS</option>
+                        <option value="BFS">BFS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-offset-4 col-lg-6">
+                    <input type="submit" class="form-control" value="solve Game" id="btnSolveGame">
+                </div>
+            </div>
+        </form>
+        <div class="col-lg-9 text-center">
+            <canvas id="mazeCanvas" tabindex="1" class="col-lg-12"></canvas>
+            <script src="js/DrawMaze.js"></script>
+            <script src="js/SinglePlayerMaze.js"></script>
         </div>
     </div>
 </body>

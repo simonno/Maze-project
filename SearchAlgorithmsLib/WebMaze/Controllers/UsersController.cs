@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebMaze.Controllers
 {
-    [Route("api/Users")]
+    [Microsoft.AspNetCore.Mvc.Route("api/Users")]
     public class UsersController : ApiController
     {
         private IUserManager usersManager = new UsersModel();
@@ -122,14 +122,15 @@ namespace WebMaze.Controllers
         {
             int results = usersManager.Register(user);
 
-            Console.WriteLine("results :" + results);
+            //Console.WriteLine("results :" + results);
 
-            if (results == -1)
-            {
-                return Ok(new { error = "true", msg = "User exists" });
-            }
+            //if (results == -1)
+            //{
+            //    return Ok(new { error = "true", msg = "User exists" });
+            //}
 
-            return Ok(new { error = "false", msg = "User is now registerd" });
+            //return Ok(new { error = "false", msg = "User is now registerd" });
+            return null;
         }
     }
 }

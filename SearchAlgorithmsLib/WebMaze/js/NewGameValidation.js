@@ -10,7 +10,7 @@ $(document).ready(function () {
     });
 
     // validate signup form on keyup and submit
-    $("#registerForm").validate({
+    $("#newGameForm").validate({
         rules: {
             mazeName: {
                 required: true,
