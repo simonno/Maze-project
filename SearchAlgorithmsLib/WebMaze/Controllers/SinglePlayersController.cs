@@ -13,44 +13,44 @@ using WebMaze.Models;
 
 namespace WebMaze.Controllers
 {
-    public class DefaultArgsController : ApiController
+    public class SinglePlayersController : ApiController
     {
         private WebMazeContext db = new WebMazeContext();
 
-        // GET: api/DefaultArgs
-        public IQueryable<DefaultArgs> GetDefaultArgs()
+        // GET: api/SinglePlayers
+        public IQueryable<SinglePlayer> GetSinglePlayers()
         {
-            return db.DefaultArgs;
+            return db.SinglePlayers;
         }
 
-        // GET: api/DefaultArgs/5
-        [ResponseType(typeof(DefaultArgs))]
-        public async Task<IHttpActionResult> GetDefaultArgs(int id)
+        // GET: api/SinglePlayers/5
+        [ResponseType(typeof(SinglePlayer))]
+        public async Task<IHttpActionResult> GetSinglePlayer(int id)
         {
-            DefaultArgs defaultArgs = await db.DefaultArgs.FindAsync(id);
-            if (defaultArgs == null)
+            SinglePlayer singlePlayer = await db.SinglePlayers.FindAsync(id);
+            if (singlePlayer == null)
             {
                 return NotFound();
             }
 
-            return Ok(defaultArgs);
+            return Ok(singlePlayer);
         }
 
-        // PUT: api/DefaultArgs/5
+        // PUT: api/SinglePlayers/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutDefaultArgs(int id, DefaultArgs defaultArgs)
+        public async Task<IHttpActionResult> PutSinglePlayer(int id, SinglePlayer singlePlayer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != defaultArgs.Id)
+            if (id != singlePlayer.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(defaultArgs).State = EntityState.Modified;
+            db.Entry(singlePlayer).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace WebMaze.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DefaultArgsExists(id))
+                if (!SinglePlayerExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace WebMaze.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DefaultArgs
-        [ResponseType(typeof(DefaultArgs))]
-        public async Task<IHttpActionResult> PostDefaultArgs(DefaultArgs defaultArgs)
+        // POST: api/SinglePlayers
+        [ResponseType(typeof(SinglePlayer))]
+        public async Task<IHttpActionResult> PostSinglePlayer(SinglePlayer singlePlayer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.DefaultArgs.Add(defaultArgs);
+            db.SinglePlayers.Add(singlePlayer);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = defaultArgs.Id }, defaultArgs);
+            return CreatedAtRoute("DefaultApi", new { id = singlePlayer.Id }, singlePlayer);
         }
 
-        // DELETE: api/DefaultArgs/5
-        [ResponseType(typeof(DefaultArgs))]
-        public async Task<IHttpActionResult> DeleteDefaultArgs(int id)
+        // DELETE: api/SinglePlayers/5
+        [ResponseType(typeof(SinglePlayer))]
+        public async Task<IHttpActionResult> DeleteSinglePlayer(int id)
         {
-            DefaultArgs defaultArgs = await db.DefaultArgs.FindAsync(id);
-            if (defaultArgs == null)
+            SinglePlayer singlePlayer = await db.SinglePlayers.FindAsync(id);
+            if (singlePlayer == null)
             {
                 return NotFound();
             }
 
-            db.DefaultArgs.Remove(defaultArgs);
+            db.SinglePlayers.Remove(singlePlayer);
             await db.SaveChangesAsync();
 
-            return Ok(defaultArgs);
+            return Ok(singlePlayer);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace WebMaze.Controllers
             base.Dispose(disposing);
         }
 
-        private bool DefaultArgsExists(int id)
+        private bool SinglePlayerExists(int id)
         {
-            return db.DefaultArgs.Count(e => e.Id == id) > 0;
+            return db.SinglePlayers.Count(e => e.Id == id) > 0;
         }
     }
 }

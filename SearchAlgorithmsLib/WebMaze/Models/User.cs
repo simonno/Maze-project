@@ -30,5 +30,22 @@ namespace WebMaze.Models
             get;
             set;
         }
+        public int defaultRows
+        {
+            get;
+            set;
+        }
+
+        public int defaultCols
+        {
+            get;
+            set;
+        }
+        public int defaultAlgo
+        {
+            get;
+            set;
+        }
+
     }
 }

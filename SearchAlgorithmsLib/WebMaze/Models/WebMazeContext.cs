@@ -19,6 +19,6 @@ namespace WebMaze.Models
 
         public DbSet<User> Users { get; set; }
 
-        public System.Data.Entity.DbSet<WebMaze.Models.DefaultArgs> DefaultArgs { get; set; }
+        public System.Data.Entity.DbSet<WebMaze.Models.SinglePlayer> SinglePlayers { get; set; }
     }
 }
