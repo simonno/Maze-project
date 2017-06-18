@@ -32,15 +32,9 @@ namespace WebMaze.Controllers
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public IQueryable<User> GetUser(string userName)
         {
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
+            return db.Users.Where(u => u.Username == userName);
         }
 
         // PUT: api/Users/5
