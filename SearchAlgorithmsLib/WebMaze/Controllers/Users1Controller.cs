@@ -1,37 +1,43 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebMaze.Controllers
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/Users")]
-    public class UsersController : ApiController
+    public class Users1Controller : ApiController
     {
         private WebMazeContext db = new WebMazeContext();
 
-        // GET: api/Users
+        // GET: api/Users1
         public IQueryable<User> GetUsers()
         {
-           return db.Users;
+            return db.Users;
         }
 
-        // GET: api/Users/5
+        // GET: api/Users1/5
         [ResponseType(typeof(User))]
-        public IQueryable<User> GetUser(string userName)
+        public IHttpActionResult GetUser(int id)
         {
-            return db.Users.Where(u => u.Username == userName);
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users1/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        public IHttpActionResult PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
             {
@@ -47,7 +53,7 @@ namespace WebMaze.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -64,9 +70,9 @@ namespace WebMaze.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
+        // POST: api/Users1
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(User user)
+        public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
@@ -74,23 +80,23 @@ namespace WebMaze.Controllers
             }
 
             db.Users.Add(user);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Users1/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
+        public IHttpActionResult DeleteUser(string userName)
         {
-            User user = await db.Users.FindAsync(id);
+            User user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
 
             db.Users.Remove(user);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return Ok(user);
         }
@@ -107,23 +113,6 @@ namespace WebMaze.Controllers
         private bool UserExists(int id)
         {
             return db.Users.Count(e => e.Id == id) > 0;
-        }
-        
-        // POST api/values
-        [Microsoft.AspNetCore.Mvc.HttpPost("Register")]
-        public IActionResult Register(User user)
-        {
-            int results = usersManager.Register(user);
-
-            //Console.WriteLine("results :" + results);
-
-            //if (results == -1)
-            //{
-            //    return Ok(new { error = "true", msg = "User exists" });
-            //}
-
-            //return Ok(new { error = "false", msg = "User is now registerd" });
-            return null;
         }
     }
 }

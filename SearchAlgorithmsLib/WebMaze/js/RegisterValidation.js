@@ -57,5 +57,29 @@ $(document).ready(function () {
         submitHandler: function () {
             alert("submitted!");
         },
+
+        success: function () {
+            $.ajax({
+                type: "POST",
+                url: "/api/Users/register",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    var data = {
+                        Username: $("#name").val(),
+                        Password: $("#password").val(),
+                        Email: $("#email").val()
+                    };
+
+                    $("#results").html("<li>thank you for signing up !</li>");
+                    $("form").fadeOut("fast");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //console.log(xhr);
+                    $("#results").html("<li>error</li>");
+                }
+           
+            });
+        },
     });
 });
