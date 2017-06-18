@@ -5,25 +5,31 @@ using System.Web;
 
 namespace WebMaze.Models
 {
-    public class DefaultArgs
+    public class SinglePlayer
     {
-        public int defaultRows
+       
+        public string Mazename
+        {
+            get;
+            set;
+        }
+        public int mazeRows
         {
             get;
             set;
         }
 
-        public int defaultCols
+        public int mazeCols
         {
             get;
             set;
         }
-        public int defaultAlgo
+        public string mazeString
         {
             get;
             set;
         }
-
         public int Id { get; set; }
+
     }
 }

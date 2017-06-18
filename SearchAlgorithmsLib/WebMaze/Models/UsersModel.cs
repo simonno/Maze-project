@@ -72,5 +72,27 @@ namespace WebMaze.Models
             users.Add(user);
             return 1;
         }
+        public int GetDefaultAlgo(int id)
+        {
+            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            return p.defaultAlgo;
+        }
+        public int GetDefaultCols(int id)
+        {
+            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            return p.defaultCols;
+        }
+        public int GetDefaultRows(int id)
+        {
+            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            return p.defaultRows;
+        }
+        public void UpdateDefaultArgs(int id,int rows,int cols,int defaultAlgo)
+        {
+            User prod = users.Where(x => x.Id == id).FirstOrDefault();
+            prod.defaultRows = rows;
+            prod.defaultCols = cols;
+            prod.defaultAlgo =defaultAlgo;
+        }
     }
 }

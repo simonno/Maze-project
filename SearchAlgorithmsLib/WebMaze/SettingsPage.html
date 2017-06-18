@@ -45,10 +45,13 @@
                     $("#save").click(function () {
                         var mazeRows = $("#defaultRows").val();
                         var mazeCols = $("#defaultCols").val();
+                        var mazeRows = $("#defaultRows").val();
                         var SearchAlgo = $("#SearchAlgo").val();
-                        //TODO connection to server
-                        // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                    });
+                        //TODO add userName from session
+                        var url = "http://localhost:50570/api/Users/5" + "/" + mazeCols + "/" + mazeRows+"/"+ SearchAlgo;
+          
+                        $.get(url).done;
+                  });
                 </script>
             </div>
         </form>
