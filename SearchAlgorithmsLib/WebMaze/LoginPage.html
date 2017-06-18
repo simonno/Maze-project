@@ -31,7 +31,8 @@
                 $("#login").click(function () {
                     var inputUsername = $("#inputUsername").val();
                     var inputPassword = $("#inputPassword").val();
-                    var url = "http://localhost:50570/api/Users/login" + "/" + inputUsername + "/" + inputPassword;
+                    var loginData = new WebMaze.loginData(inputUsername, inputUsername)
+                    var url = "http://localhost:50570/api/Users/login" + "/" + loginData;
                     //TODO connection to server
                     $.get(url).done;
                     

@@ -265,13 +265,14 @@
     <Content Include="SettingsPage.html" />
     <Content Include="SingleGamePage.html" />
     <Content Include="UserRanking.html" />
-    <Content Include="Views\index.html" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\UserHub.cs" />
+        <Compile Include="Controllers\DefaultArgsController.cs" />
+<Compile Include="Controllers\UserHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,6 +283,9 @@
       <DependentUpon>201706182043469_InitialDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DefaultArgs.cs" />
+    <Compile Include="Models\DetaultArgsModel.cs" />
+    <Compile Include="Models\IDefaultArgs.cs" />
     <Compile Include="Models\IUserManager.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsersModel.cs" />
@@ -299,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706182043469_InitialDb.resx">

@@ -39,19 +39,34 @@
             <div class="form-group row">
                 <div class="col-lg-offset-4 col-lg-7">
                     <input type="submit" name="singup" class="form-control btn-success" value="Start New Game" id="btnStartGame">
-                    <!--<script src="../Scripts/jquery.signalR-2.2.2.js"></script>
-                    <script src="../signalr/hubs"></script>-->
-                    <!--  <script>
+                   
+                    <script>
 
-                          //$("#btnStartGame").click(function () {
-                          //    var mazeName = $("#mazeName").val();
-                          //    var mazeRows = $("#mazeRows").val();
-                          //    var mazeCols = $("#mazeCols").val();
-                          //    var SearchAlgo = $("#SearchAlgo").val();
-                          //    //TODO connection to server
-                          //    // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                          //});
-                      </script>-->
+                          $("#btnStartGame").click(function () {
+                             var mazeName = $("#mazeName").val();
+                              var mazeRows = $("#mazeRows").val();
+                              var mazeCols = $("#mazeCols").val();
+                              var SearchAlgo = $("#SearchAlgo").val();
+                              var algoNum= 0;
+                              if (SearchAlgo == "DFS") {
+                                  algoNum = 1;
+                              }
+                              var url = "http://localhost:50570/api/SinglePlayer/" +
+                                  mazeName + "/" + mazeRows + "/" + mazeCols + "/" + algoNum;
+                              //TODO connection to server
+                              $.get(url).done(function (solutionJson) {
+                                  var solutionString = solutionJson.Solution;
+                                  var solutionArray = new Array(solutionString.length);
+                                //TODO send to draw maze
+                                  //for (var i = 0; i < solutionString.length; i++) {
+                                  //    solutionArray[i] = solutionString[i];
+                                  //}
+                                  //var board = $("#myCanvas").solve(solutionArray);
+                              });
+                          
+
+                          });
+                      </script>
 
                 </div>
             </div>
