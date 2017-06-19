@@ -35,7 +35,11 @@
                     //TODO connection to server
 
 
-                    $.post(url).done(alert("hii"));
+
+                    $.post(url).done(function (data) {
+                 
+                        alert(data);
+                    });
 
                     
                 });
