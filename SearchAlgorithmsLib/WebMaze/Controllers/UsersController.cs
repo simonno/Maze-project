@@ -41,7 +41,7 @@ namespace WebMaze.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            
 
             if (id != user.Id)
             {
