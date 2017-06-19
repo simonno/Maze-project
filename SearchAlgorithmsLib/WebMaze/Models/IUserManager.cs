@@ -8,11 +8,9 @@ namespace WebMaze.Models
 {
     interface IUserManager
     {
-        IEnumerable<User> GetAllUsers();
-        User GetUserById(int id);
-        void AddUser(User p);
+        IQueryable<User> GetAllUsers();
+        User GetUser(string userName);
         void UpdateUser(User p);
-        void DeleteUser(int id);
         int Register(User user);
         int Login(string username, string password);
         int GetDefaultAlgo(int id);

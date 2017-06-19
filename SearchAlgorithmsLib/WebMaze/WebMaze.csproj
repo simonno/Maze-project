@@ -259,8 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\MazesController.cs" />
-    <Compile Include="Controllers\SinglePlayersController.cs" />
+    <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UserHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">

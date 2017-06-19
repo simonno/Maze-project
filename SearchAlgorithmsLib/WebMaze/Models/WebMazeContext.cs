@@ -18,7 +18,5 @@ namespace WebMaze.Models
         public WebMazeContext() : base("name=WebMazeContext") { }
 
         public DbSet<User> Users { get; set; }
-
-        public System.Data.Entity.DbSet<WebMaze.Models.SinglePlayer> SinglePlayers { get; set; }
     }
 }

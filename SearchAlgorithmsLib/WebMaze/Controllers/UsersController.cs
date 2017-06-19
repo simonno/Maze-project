@@ -11,8 +11,7 @@ using System;
 
 
 namespace WebMaze.Controllers
-{
-
+{ 
     [Microsoft.AspNetCore.Mvc.Route("api/Users")]
     public class UsersController : ApiController
     {
@@ -29,9 +28,9 @@ namespace WebMaze.Controllers
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        public IQueryable<User> GetUser(string userName)
+        public User GetUser(string userName)
         {
-            return db.Users.Where(u => u.Username == userName);
+            return usersManager.GetUser(userName);
         }
 
         // PUT: api/Users/5
