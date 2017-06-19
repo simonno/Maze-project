@@ -14,7 +14,7 @@ namespace WebMaze.Models
         void UpdateUser(User p);
         void DeleteUser(int id);
         int Register(User user);
-        int Login(LoginData login);
+        int Login(string username, string password);
         int GetDefaultAlgo(int id);
         int GetDefaultCols(int id);
         int GetDefaultRows(int id);

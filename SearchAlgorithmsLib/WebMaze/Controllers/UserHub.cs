@@ -20,10 +20,10 @@ namespace WebMaze.Controllers
         public void Move(string userName, int direction)
         {
             string opponnentUsername = opponnents[userName];
-            string recipientId = connectedPlayers[recipientPhoneNum];
-            if (recipientId == null)
+            //string recipientId = connectedPlayers[recipientPhoneNum];
+           // if (recipientId == null)
                 return;
-            Clients.Client(recipientId).gotMessage(senderPhoneNum, text);
+          //  Clients.Client(recipientId).gotMessage(senderPhoneNum, text);
         }
 
     }
