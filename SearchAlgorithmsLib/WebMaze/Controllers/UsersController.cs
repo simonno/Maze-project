@@ -23,7 +23,7 @@ namespace WebMaze.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return usersManager.GetAllUsers();
         }
 
         // GET: api/Users/5
@@ -33,131 +33,102 @@ namespace WebMaze.Controllers
             return usersManager.GetUser(userName);
         }
 
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            
+        //// PUT: api/Users/5
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutUser(int id, User user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
 
-            db.Entry(user).State = EntityState.Modified;
+        //        if (id != user.Id)
+        //        {
+        //            return BadRequest();
+        //        }
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //        db.Entry(user).State = EntityState.Modified;
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //        try
+        //        {
+        //            await db.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!UserExists(id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //    }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> PostUser(User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-            db.Users.Add(user);
-            await db.SaveChangesAsync();
+    
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        }
+        //// DELETE: api/Users/5
+        //[ResponseType(typeof(User))]
+        //public async Task<IHttpActionResult> DeleteUser(int id)
+        //{
+        //    User user = await db.Users.FindAsync(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
-        {
-            User user = await db.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    db.Users.Remove(user);
+        //    await db.SaveChangesAsync();
 
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
+        //    return Ok(user);
+        //}
 
-            return Ok(user);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool UserExists(int id)
-        {
-            return db.Users.Count(e => e.Id == id) > 0;
-        }
 
         // Get api/Users/register
         [HttpPost]
-        //[Route("api/Users/register/{username}/{password}")]
         [Route("api/Users/register/{username}/{inputPassword}/{inputEmail}")]
          public IHttpActionResult Register(string username,string inputPassword,string inputEmail)
-      //  public IHttpActionResult Register(string username, string password)
         {
             User user = new User { Username = username, Password= inputPassword, Email=inputEmail };
             int results = usersManager.Register(user);
 
-            //Console.WriteLine("results :" + results);
             return Ok(user);
-            //if (results == -1)
-            //{
-            //    return false;
-            //}
-
-            //return true;
+            
         }
-        // Get api/Users/login
+        // Post api/Users/login
         [HttpPost]
         [Route("api/Users/login/{username}/{inputPassword}")]
-        // public IActionResult Login(LoginData login)
         public IHttpActionResult Login(string username, string inputPassword)
         {
             Console.WriteLine("name " + username);
             int results = usersManager.Login(username,inputPassword);
 
-            Console.WriteLine("results :" + results);
-            return Ok(results);
+            //Console.WriteLine("results :" + results);
+            //return Ok(results);
 
-            //if (results == 1)
-            //{  
-            //    return true;
-            //}
-            ////return new ObjectResult(login);
-            //return false;
 
-            //if (results == -1)
-            //{
-            //    return Ok(new { error = "true", msg = "User exists" });
-            //}
+            if (results == -1)
+            {
+                return Ok(new { error = "true", msg = "User exists" });
+            }
 
-            //return Ok(new { error = "false", msg = "User is now registerd" });
+            return Ok(new { error = "false", msg = "User is now registerd" });
 
         }
+
+        // Post api/Users/update
+        [HttpPost]
+        [Route("api/Users/update/{username}/{mazeRows}/{mazeCols}/{SearchAlgo}")]
+        public void Update(string username, int mazeRows, int mazeCols, int SearchAlgo)
+        {
+            usersManager.UpdateDefaultArgs(username, mazeRows, mazeCols, SearchAlgo);
+
+        }
+        
+
     }
 }

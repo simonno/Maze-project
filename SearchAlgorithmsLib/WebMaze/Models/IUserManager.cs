@@ -16,7 +16,7 @@ namespace WebMaze.Models
         int GetDefaultAlgo(int id);
         int GetDefaultCols(int id);
         int GetDefaultRows(int id);
-        void UpdateDefaultArgs(int id, int rows, int cols, int defaultAlgo);
+        void UpdateDefaultArgs(string username, int rows, int cols, int defaultAlgo);
 
     }
 

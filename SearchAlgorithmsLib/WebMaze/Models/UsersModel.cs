@@ -49,37 +49,40 @@ namespace WebMaze.Models
             return -1;
         }
 
+
         public int Register(User user)
         {
-            if (users.Contains(user))
+            User user2 = db.Users.FirstOrDefault(u => u.Username == user.Username);
+
+            if (user != null)
             {
                 return -1;
             }
-
-            users.Add(user);
+           // users.Add(user);
             db.Users.Add(user);
             db.SaveChanges();
 
             return 1;
         }
+     
         public int GetDefaultAlgo(int id)
         {
-            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
             return p.DefaultAlgo;
         }
         public int GetDefaultCols(int id)
         {
-            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
             return p.DefaultCols;
         }
         public int GetDefaultRows(int id)
         {
-            User p = users.Where(x => x.Id == id).FirstOrDefault();
+            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
             return p.DefaultRows;
         }
-        public void UpdateDefaultArgs(int id,int rows,int cols,int defaultAlgo)
+        public void UpdateDefaultArgs(string username,int rows,int cols,int defaultAlgo)
         {
-            User prod = users.Where(x => x.Id == id).FirstOrDefault();
+            User prod = db.Users.Where(x => x.Username == username).FirstOrDefault();
             prod.DefaultRows = rows;
             prod.DefaultCols = cols;
             prod.DefaultAlgo =defaultAlgo;
