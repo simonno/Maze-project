@@ -27,8 +27,13 @@
             }
         }
 
-        context.drawImage(playerImage, cellWidth * startCol, cellHeight * startRow, cellWidth, cellHeight);
-        context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
+        playerImage.onload = function () {
+            context.drawImage(playerImage, cellWidth * startCol, cellHeight * startRow, cellWidth, cellHeight);
+        }
+
+        exitImage.onload = function () {
+            context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
+        }
         return this;
     };
 }(jQuery));

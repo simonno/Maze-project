@@ -14,8 +14,8 @@
     var startCol = 0;
     var exitRow = 8;
     var exitCol = 6;
-    var playerImage = new Image();
-    var exitImage = new Image();
+    var playerImage = new Image(500, 500);
+    var exitImage = new Image(500, 500);
     playerImage.src = "Images/simpson.png";
     exitImage.src = "Images/exit1.png";
 
