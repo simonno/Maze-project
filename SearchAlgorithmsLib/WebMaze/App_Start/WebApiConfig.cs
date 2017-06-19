@@ -20,6 +20,7 @@ namespace WebMaze
                defaults: new { controller = "Users" }
            );
 
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

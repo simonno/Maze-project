@@ -43,6 +43,25 @@ $(document).ready(function () {
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
             alert("submitted!");
+            var mazeName = $("#mazeName").val();
+            var rows = $("#mazeRows").val();
+            var cols = $("#mazeCols").val();
+
+            var singlePlayerUrl = "/api/SinglePlayer/" + mazeName + "/" + rows + "/" + cols;
+            $.getJSON(singlePlayerUrl, function (data) {
+
+                maze = data.Maze;
+                var startRow = data.Start.Row;
+                var startCol = data.Start.Col;
+                var exitRow = data.End.Row;
+                var exitCol = data.End.Col;
+                var playerImage = new Image(500, 500);
+                var exitImage = new Image(500, 500);
+                playerImage.src = "Images/simpson.png";
+                exitImage.src = "Images/exit1.png";
+
+                $("#mazeCanvas").drawMaze(maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
+            })
         },
     });
 });

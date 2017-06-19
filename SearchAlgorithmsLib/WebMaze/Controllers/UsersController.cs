@@ -17,18 +17,17 @@ namespace WebMaze.Controllers
     {
         private IUserManager usersManager = new UsersModel();
 
-        private WebMazeContext db = new WebMazeContext();
       
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            //return usersManager.GetAllUsers();
-            return db.Users;
+            return usersManager.GetAllUsers();
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
+        [Route("GetUser/{user}")]
         public User GetUser(string userName)
         {
             return usersManager.GetUser(userName);
