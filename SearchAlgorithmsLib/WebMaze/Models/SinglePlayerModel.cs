@@ -1,37 +1,104 @@
-﻿using System;
+﻿using MazeGeneratorLib;
+using MazeLib;
+using SearchAlgorithmsLib;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace WebMaze.Models
 {
-    public class SinglePlayerModel:ISinglePlayer
+    public class SinglePlayerModel: ISinglePlayerModel
     {
-        private static List<SinglePlayer> singlePlayers = new List<SinglePlayer>()
+        private static ConcurrentDictionary<string, Maze> mazes = new ConcurrentDictionary<string, Maze>();
+
+        /// <summary>
+        /// Generates the maze.
+        /// </summary>
+        /// <param name="name">The name of maze.</param>
+        /// <param name="rows">The rows of maze.</param>
+        /// <param name="cols">The cols of maze.</param>
+        /// <returns>new maze as requserted</returns>
+        public Maze GenerateMaze(string name, int rows, int cols)
         {
-            new SinglePlayer { Mazename = "1", mazeRows = 5, mazeCols = 5,mazeString="hh" },
-            new SinglePlayer {Mazename = "2", mazeRows = 5, mazeCols = 35,mazeString="h3h" },
-            new SinglePlayer { Mazename = "22", mazeRows = 5, mazeCols = 35,mazeString="hxdv3h"  }
-        };
-        public string GetName(int id)
-        {
-            SinglePlayer p = singlePlayers.Where(x => x.Id == id).FirstOrDefault();
-            return p.Mazename;
+            if (mazes.ContainsKey(name))
+                return mazes[name];
+            Maze maze = Generate(name, rows, cols);
+            mazes[name] =  maze;
+            return maze;
         }
-        public int GetCols(int id)
+
+        /// <summary>
+        /// Solves the specified maze.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="typeOfSolve">The type of solve.</param>
+        /// <returns>the solve of the maze</returns>
+        /// <exception cref="System.Exception">This maze does not exist - " + name</exception>
+        public MazeSolution Solve(string name, int typeOfSolve)
         {
-            SinglePlayer p = singlePlayers.Where(x => x.Id == id).FirstOrDefault();
-            return p.mazeCols;
+            if (mazes.ContainsKey(name))
+            {
+                Maze maze = mazes[name];
+
+                ObjectAdapter adapter = new ObjectAdapter(maze);
+
+                BFS<Position, int> bfs = new BFS<Position, int>();
+                DFS<Position, int> dfs = new DFS<Position, int>();
+                switch (typeOfSolve)
+                {
+                    case 0:
+                        return ConvertSolution(bfs.Search(adapter), maze.Name);
+                    case 1:
+                        return ConvertSolution(dfs.Search(adapter), maze.Name);
+                    default:
+                        throw new Exception("This search type does not exist - " + typeOfSolve);
+                }
+            }
+
+
+
+            throw new Exception("This maze does not exist - " + name);
         }
-        public int GetRows(int id)
+
+        /// <summary>
+        /// Converts the solution of maze.
+        /// </summary>
+        /// <param name="s">The solution of the maze.</param>
+        /// <param name="name">The name of the maze.</param>
+        /// <returns>the maze solution</returns>
+        private MazeSolution ConvertSolution(Solution<Position, int> s, string name)
         {
-            SinglePlayer p = singlePlayers.Where(x => x.Id == id).FirstOrDefault();
-            return p.mazeRows;
+            List<Position> positionList = new List<Position>();
+            foreach (State<Position, int> state in s.GetSolution())
+            {
+                positionList.Add(state.StateValue);
+            }
+
+            MazeSolution ms = new MazeSolution()
+            {
+                EvaluatedNodes = s.GetEvaluatedNodes(),
+                Solution = positionList,
+                GameName = name
+            };
+            return ms;
         }
-        public string GetStringMaze(int id)
+
+
+        /// <summary>
+        /// Generates the specified maze.
+        /// </summary>
+        /// <param name="name">The name of maze.</param>
+        /// <param name="rows">The rows of maze.</param>
+        /// <param name="cols">The cols of maze.</param>
+        /// <returns></returns>
+        private Maze Generate(string name, int rows, int cols)
         {
-            SinglePlayer p = singlePlayers.Where(x => x.Id == id).FirstOrDefault();
-            return p.mazeString;
+            IMazeGenerator g = new DFSMazeGenerator();
+            Maze maze = g.Generate(rows, cols);
+            maze.Name = name;
+            return maze;
         }
     }
 }

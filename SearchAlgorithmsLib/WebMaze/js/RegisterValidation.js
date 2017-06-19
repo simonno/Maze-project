@@ -26,8 +26,7 @@ $(document).ready(function () {
             },
             verifiedPassword: {
                 required: true,
-                minlength: 6,
-                equalTo: "#password"
+                equalTo: "#id_password"
             },
             email: {
                 required: true,
@@ -46,7 +45,6 @@ $(document).ready(function () {
             },
             verifiedPassword: {
                 required: "Repeat your password",
-                minlength: jQuery.validator.format("Enter at least {0} characters"),
                 equalTo: "Enter the same password as above"
             },
             email: {
@@ -55,13 +53,9 @@ $(document).ready(function () {
         },
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
-            alert("submitted!");
-        },
-
-        success: function () {
             $.ajax({
                 type: "POST",
-                url: "/api/Users/register",
+                url: "/api/Users/register/{user}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function () {
@@ -74,11 +68,6 @@ $(document).ready(function () {
                     $("#results").html("<li>thank you for signing up !</li>");
                     $("form").fadeOut("fast");
                 },
-                error: function (xhr, textStatus, errorThrown) {
-                    //console.log(xhr);
-                    $("#results").html("<li>error</li>");
-                }
-           
             });
         },
     });
