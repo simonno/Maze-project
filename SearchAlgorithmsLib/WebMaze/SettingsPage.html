@@ -46,8 +46,14 @@
                         var mazeRows = $("#defaultRows").val();
                         var mazeCols = $("#defaultCols").val();
                         var SearchAlgo = $("#SearchAlgo").val();
+                        if (SearchAlgo == "DFS") {
+                            numSearchAlgo = 1;
+                        } else {
+                            numSearchAlgo = 0;
+
+                        }
                         //TODO add ****userName**** from session
-                        var url = "http://localhost:50570/api/Users/5" + "/" + mazeRows + "/" + mazeCols+"/"+ SearchAlgo;
+                        var url = "http://localhost:50570/api/Users/5" + "/" + mazeRows + "/" + mazeCols + "/" + numSearchAlgo;
           
                         $.post(url).done;
                   });

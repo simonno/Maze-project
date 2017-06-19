@@ -26,13 +26,13 @@ namespace WebMaze.Models
             return db.Users.FirstOrDefault(u => u.Username == userName);
         }
 
-        public void UpdateUser(User p)
-        {
-            User prod = db.Users.Where(x => x.Id == p.Id).FirstOrDefault();
-            prod.Username = p.Username;
-            prod.Password = p.Password;
-            prod.Email = p.Email;
-        }
+        //public void UpdateUser(User p)
+        //{
+        //    User prod = db.Users.Where(x => x.Id == p.Id).FirstOrDefault();
+        //    prod.Username = p.Username;
+        //    prod.Password = p.Password;
+        //    prod.Email = p.Email;
+        //}
         
         public int Login(string username, string password)
         {
@@ -58,7 +58,6 @@ namespace WebMaze.Models
             {
                 return -1;
             }
-           // users.Add(user);
             db.Users.Add(user);
             db.SaveChanges();
 
@@ -85,7 +84,7 @@ namespace WebMaze.Models
             User prod = db.Users.Where(x => x.Username == username).FirstOrDefault();
             prod.DefaultRows = rows;
             prod.DefaultCols = cols;
-            prod.DefaultAlgo =defaultAlgo;
+            prod.DefaultAlgo = defaultAlgo;
         }
     }
 }

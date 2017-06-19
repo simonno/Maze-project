@@ -23,7 +23,8 @@ namespace WebMaze.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return usersManager.GetAllUsers();
+            //return usersManager.GetAllUsers();
+            return db.Users;
         }
 
         // GET: api/Users/5

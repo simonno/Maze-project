@@ -10,7 +10,6 @@ namespace WebMaze.Models
     {
         IQueryable<User> GetAllUsers();
         User GetUser(string userName);
-        void UpdateUser(User p);
         int Register(User user);
         int Login(string username, string password);
         int GetDefaultAlgo(int id);

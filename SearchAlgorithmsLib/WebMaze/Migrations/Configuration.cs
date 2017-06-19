@@ -1,16 +1,18 @@
 namespace WebMaze.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using WebMaze.Models;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Models.WebMazeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WebMaze.Models.WebMazeContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Models.WebMazeContext context)
+        protected override void Seed(WebMaze.Models.WebMazeContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -24,12 +26,6 @@ namespace WebMaze.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.Users.AddOrUpdate(
-                u => u.Username,
-                new User { Username = "Noam", Email = "simon@gmail.com",  Password = "1234353" },
-                new User { Username = "David", Email = "dd3@gmail.com", Password = "1452555" },
-                new User { Username = "Moshe", Email = "ms@gmail.com", Password = "344444" }
-            );
         }
     }
 }

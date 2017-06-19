@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201706182218558_Initial.Designer.cs">
       <DependentUpon>201706182218558_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706191715529_Initial1.cs" />
+    <Compile Include="Migrations\201706191715529_Initial1.Designer.cs">
+      <DependentUpon>201706191715529_Initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IMultiPlayerModel.cs" />
     <Compile Include="Models\ISinglePlayerModel.cs" />
@@ -299,6 +303,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706182218558_Initial.resx">
       <DependentUpon>201706182218558_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706191715529_Initial1.resx">
+      <DependentUpon>201706191715529_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
