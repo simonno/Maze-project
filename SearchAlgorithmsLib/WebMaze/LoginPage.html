@@ -33,14 +33,28 @@
                     var inputPassword = $("#inputPassword").val();
                     var url = "http://localhost:50570/api/Users/login" + "/" + inputUsername + "/" + inputPassword;
                     //TODO connection to server
-
+                    var data;
                     $.post(url).done(function (data) {
-                 
                         alert(data);
+                        if (data == "1") {
+                            sessionStorage.setItem(inputUsername, inputPassword);
+                            alert("login");
+                            //window.location = 'HomePage.html';
+                        } else if (data == "-1") {
+                            alert("try again");
+                        }
+                        //}
+                    })
+
+                        //function (data) {
+                        //if (data == 1) {
+                        //    sessionStorage.setItem(inputUsername, inputPassword);
+                        //    alert(data);
+                        //}
                     });
 
-                    
-                });
+
+               // });
             </script>
 
         </form>

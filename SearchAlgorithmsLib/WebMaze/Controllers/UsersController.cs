@@ -100,9 +100,10 @@ namespace WebMaze.Controllers
             
         }
         // Post api/Users/login
+        
         [HttpPost]
         [Route("api/Users/login/{username}/{inputPassword}")]
-        public IHttpActionResult Login(string username, string inputPassword)
+        public string Login(string username, string inputPassword)
         {
             Console.WriteLine("name " + username);
             int results = usersManager.Login(username,inputPassword);
@@ -113,10 +114,12 @@ namespace WebMaze.Controllers
 
             if (results == -1)
             {
-                return Ok(new { error = "true", msg = "User exists" });
-            }
+                return "-1";
 
-            return Ok(new { error = "false", msg = "User is now registerd" });
+                //return Ok(new { error = "true", msg = "User exists" });
+            }
+            return "1";
+            //return Ok(new { error = "false", msg = "User is now registerd" });
 
         }
 
