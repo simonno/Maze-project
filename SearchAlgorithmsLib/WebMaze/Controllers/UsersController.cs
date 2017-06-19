@@ -115,40 +115,42 @@ namespace WebMaze.Controllers
         }
 
         // Get api/Users/register
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-      //  [Microsoft.AspNetCore.Mvc.Route("api/Users/register")]
-       // public IActionResult Register(User user)
-        public bool Register(User user)
+        [HttpPost]
+        //[Route("api/Users/register/{username}/{password}")]
+        [Route("api/Users/register/{username}/{inputPassword}/{inputEmail}")]
+         public IHttpActionResult Register(string username,string inputPassword,string inputEmail)
+      //  public IHttpActionResult Register(string username, string password)
         {
+            User user = new User { Username = username, Password= inputPassword, Email=inputEmail };
             int results = usersManager.Register(user);
 
             //Console.WriteLine("results :" + results);
+            return Ok(user);
+            //if (results == -1)
+            //{
+            //    return false;
+            //}
 
-            if (results == -1)
-            {
-                return false;
-            }
-
-            return true;
+            //return true;
         }
         // Get api/Users/login
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-        // [Route("api/Users/login")]
+        [HttpPost]
+        [Route("api/Users/login/{username}/{inputPassword}")]
         // public IActionResult Login(LoginData login)
-        public bool Login(LoginData login)
+        public IHttpActionResult Login(string username, string inputPassword)
         {
-            string username = login.Username;
             Console.WriteLine("name " + username);
-            int results = usersManager.Login(login);
+            int results = usersManager.Login(username,inputPassword);
 
             Console.WriteLine("results :" + results);
+            return Ok(results);
 
-            if (results == 1)
-            {
-                return false;
-            }
-            //return new ObjectResult(login);
-            return true;
+            //if (results == 1)
+            //{  
+            //    return true;
+            //}
+            ////return new ObjectResult(login);
+            //return false;
 
             //if (results == -1)
             //{

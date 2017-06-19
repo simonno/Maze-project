@@ -7,6 +7,8 @@ namespace WebMaze.Models
 {
     public class UsersModel : IUserManager
     {
+        private WebMazeContext db = new WebMazeContext();
+
         private static List<User> users = new List<User>()
         {
             new User { Password = "1", Username = "laptop", Email = "1000" },
@@ -18,6 +20,9 @@ namespace WebMaze.Models
         public void AddUser(User p)
         {
             users.Add(p);
+            db.Users.Add(p);
+            db.SaveChanges();
+
         }
 
         public void DeleteUser(int id)
@@ -47,13 +52,13 @@ namespace WebMaze.Models
             prod.Email = p.Email;
         }
         
-        public int Login(LoginData login)
+        public int Login(string username, string password)
         {
-            User user = users.FirstOrDefault(u => u.Username == login.Username);
+            User user = users.FirstOrDefault(u => u.Username == username);
 
             if (user != null)
             {
-                if (user.Password == login.Password)
+                if (user.Password == password)
                 {
                     return 1;
                 }
@@ -70,6 +75,9 @@ namespace WebMaze.Models
             }
 
             users.Add(user);
+            db.Users.Add(user);
+            db.SaveChanges();
+
             return 1;
         }
         public int GetDefaultAlgo(int id)

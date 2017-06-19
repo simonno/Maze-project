@@ -45,14 +45,25 @@
                 <div class="col-lg-offset-3 col-lg-4">
                     <input type="submit" class="form-control btn-success" value="register" name="singup" id="registerSubmit">
                     <script>
-                        $("#registerSubmit").click(function () {
-                            var username = $("#username").val();
-                            var inputPassword = $("#password").val();
-                            var inputEmail = $("#email").val();
+                        var username = "bb12";
+                        var inputPassword = 12;
+                        var inputEmail = "s2@ws";
+                       // var u = new User{Username = username, Password = inputPassword, Email = inputEmail };
+                        var url = "http://localhost:50570/api/Users/register" + "/" + username + "/" + inputPassword + "/" + inputEmail;
+                        //TODO connection to server
+                        $.post(url).done(alert("hi"));
 
-                            var url = "http://localhost:50570/api/Users/register" + "/" + inputUsername + "/" + inputPassword + "/" + inputEmail;
-                         //TODO connection to server
-                         $.get(url).done;
+                        $("#registerSubmit").click(function () {
+                            //var username = $("#username").val();
+                            //var inputPassword = $("#password").val();
+                            //var inputEmail = $("#email").val();
+                            var username = "a";
+                            var inputPassword = 12;
+                            var inputEmail = "s2@ws";
+                            //var u = new User ( Username = username, Password = inputPassword, Email = inputEmail );
+                            var url = "http://localhost:50570/api/Users/register" + "/" + username + "/" + inputPassword + "/" + inputEmail;
+                            //TODO connection to server
+                            $.post(url).done(alert("hi"));
 
                      });
                     </script>
