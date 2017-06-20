@@ -226,6 +226,7 @@
     <Content Include="js\app.js" />
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
+    <Content Include="js\Login.js" />
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
@@ -258,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\MultiPlayerController.cs" />
     <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UserHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
