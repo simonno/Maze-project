@@ -28,6 +28,8 @@
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="login">Log in</button>
             <script>
+              
+
                 $("#login").click(function () {
                     var inputUsername = $("#inputUsername").val();
                     var inputPassword = $("#inputPassword").val();
@@ -35,24 +37,21 @@
                     //TODO connection to server
                     var data;
                     $.post(url).done(function (data) {
-                        alert(data);
+                       // alert(data);
                         if (data == "1") {
-                            sessionStorage.setItem(inputUsername, inputPassword);
-                            alert("login");
-                            //window.location = 'HomePage.html';
+                            sessionStorage.setItem('user', inputUsername);
+                           // alert("login");
                         } else if (data == "-1") {
                             alert("try again");
                         }
-                        //}
+
                     })
 
-                        //function (data) {
-                        //if (data == 1) {
-                        //    sessionStorage.setItem(inputUsername, inputPassword);
-                        //    alert(data);
-                        //}
-                    });
-
+                });
+                if (sessionStorage.getItem('user')) {
+                   
+                    $(location).prop('href', 'http://localhost:50570/HomePage.html')
+                }
 
                // });
             </script>

@@ -10,7 +10,12 @@
 <body>
     <header id="site-header">
         <script>
-            $("#site-header").load("Header.html");
+            if (sessionStorage.getItem('user')) {
+                $("#site-header").load("AfterLogin.html");
+
+            } else {
+                $("#site-header").load("Header.html");
+            }
         </script>
     </header>
     
