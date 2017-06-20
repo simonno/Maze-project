@@ -226,10 +226,9 @@
     <Content Include="js\app.js" />
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
-    <Content Include="js\NewGameValidation.js" />
+    <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
-    <Content Include="js\SinglePlayerMaze.js" />
     <Content Include="LoginPage.html" />
     <Content Include="MultiGamePage.html" />
     <Content Include="RegisterPage.html" />

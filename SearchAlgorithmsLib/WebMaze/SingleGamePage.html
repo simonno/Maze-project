@@ -6,7 +6,8 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Scripts/jquery.validate.js"></script>
-    <script src="js/NewGameValidation.js"></script>
+    <script src="js/DrawMaze.js"></script>
+    <script src="js/SinglePlayer.js"></script>
 
 </head>
 <body>
@@ -39,36 +40,10 @@
             <div class="form-group row">
                 <div class="col-lg-offset-4 col-lg-7">
                     <input type="submit" name="singup" class="form-control btn-success" value="Start New Game" id="btnStartGame">
-                   
-                   <!--<script>
-
-                          $("#btnStartGame").click(function () {
-                             var mazeName = $("#mazeName").val();
-                              var mazeRows = $("#mazeRows").val();
-                              var mazeCols = $("#mazeCols").val();
-                              var SearchAlgo = $("#SearchAlgo").val();
-                              var algoNum= 0;
-                              if (SearchAlgo == "DFS") {
-                                  algoNum = 1;
-                              }
-                              var url = "http://localhost:50570/api/SinglePlayer/" +
-                                  mazeName + "/" + mazeRows + "/" + mazeCols;
-                              //TODO connection to server
-                              $.get(url).done(function (solutionJson) {
-                                  var solutionString = solutionJson.Solution;
-                                  var solutionArray = new Array(solutionString.length);
-                                //TODO send to draw maze
-                                  //for (var i = 0; i < solutionString.length; i++) {
-                                  //    solutionArray[i] = solutionString[i];
-                                  //}
-                                  //var board = $("#myCanvas").solve(solutionArray);
-                              });
-                          
-
-                          });
-                      </script>--> 
                 </div>
             </div>
+        </form>
+        <form class="row" id="solveGameForm">
             <div class="form-group row">
                 <label for="SearchAlgo" class="col-lg-4 control-label">Search Algorithm</label>
                 <div class="col-lg-8">
@@ -78,16 +53,14 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group col-lg-push-8 col-lg-3">
                 <div class="col-lg-offset-4 col-lg-6">
-                    <input type="submit" class="form-control" value="solve Game" id="btnSolveGame">
+                    <input type="submit" class="form-control btn-primary" value="solve Game" id="btnSolveGame">
                 </div>
             </div>
         </form>
         <div class="col-lg-9 text-center">
-            <canvas id="mazeCanvas" height="350" width="500" tabindex="1" ></canvas>
-           <!--<script src="js/DrawMaze.js"></script>
-            <script src="js/SinglePlayerMaze.js"></script>--> 
+            <canvas id="mazeCanvas" height="350" width="500"></canvas>
         </div>
     </div>
 </body>

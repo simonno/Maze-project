@@ -1,4 +1,5 @@
 ﻿using MazeLib;
+using Newtonsoft.Json.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
@@ -10,17 +11,19 @@ namespace WebMaze.Controllers
         ISinglePlayerModel model = new SinglePlayerModel();
 
         [HttpGet]
-        [ResponseType(typeof(Maze))]
-        public Maze Generate(string mazeName, int rows, int cols)
+        public JObject GenerateMaze(string name, int rows, int cols)
         {
-            return model.GenerateMaze(mazeName, rows, cols);
+            Maze maze = model.GenerateMaze(name, rows, cols);
+            JObject obj = JObject.Parse(maze.ToJSON());
+            return obj;
         }
 
-        [Route("Solve/{name}/{type}")]
-        [ResponseType(typeof(MazeSolution))]
-        public MazeSolution Solve(string mazeName, int typeOfSearch)
+        [HttpGet]
+        public JObject Solve(string mazeName, int typeOfSearch)
         {
-            return model.Solve(mazeName, typeOfSearch);
+            MazeSolution sol =  model.Solve(mazeName, typeOfSearch);
+            JObject obj = JObject.Parse(sol.ToJSON());
+            return obj;
         }
     }
 }

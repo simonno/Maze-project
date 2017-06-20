@@ -47,21 +47,45 @@ $(document).ready(function () {
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
 
-            var singlePlayerUrl = "/api/SinglePlayer/" + mazeName + "/" + rows + "/" + cols;
-            $.getJSON(singlePlayerUrl, function (data) {
+            $.ajax({
+                url: "api/SinglePlayer",
+                type: 'GET',
+                data: { name: mazeName, rows: rows, cols: cols },
+                dataType: 'json',
+                success: function (data) {
+                    var rowsMaze = rows
+                    var colsMaze = cols
+                    var maze = data.Maze;
+                    var startRow = data.Start.Row;
+                    var startCol = data.Start.Col;
+                    var exitRow = data.End.Row;
+                    var exitCol = data.End.Col;
+                    var playerImage = new Image(500, 500);
+                    var exitImage = new Image(500, 500);
+                    playerImage.src = "Images/simpson.png";
+                    exitImage.src = "Images/exit1.png";
 
-                maze = data.Maze;
-                var startRow = data.Start.Row;
-                var startCol = data.Start.Col;
-                var exitRow = data.End.Row;
-                var exitCol = data.End.Col;
-                var playerImage = new Image(500, 500);
-                var exitImage = new Image(500, 500);
-                playerImage.src = "Images/simpson.png";
-                exitImage.src = "Images/exit1.png";
-
-                $("#mazeCanvas").drawMaze(maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
-            })
+                    $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
+                }
+            });
         },
+    });
+});
+
+$("#btnSolveGame").click(function () {
+    var sreachAlgo = $("#SearchAlgo").val();
+    var type = 0;
+    if (sreachAlgo == "DFS") {
+        type = 1
+    }
+
+    $.ajax({
+        url: "api/SinglePlayer",
+        type: 'GET',
+        data: { name: mazeName, type: type },
+        dataType: 'json',
+        success: function (data) {
+            // TODO SOLVE 
+        }
     });
 });

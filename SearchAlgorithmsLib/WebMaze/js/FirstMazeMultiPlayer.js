@@ -19,5 +19,5 @@
     playerImage.src = "Images/simpson.png";
     exitImage.src = "Images/exit1.png";
 
-    $("#myMazeCanvas").drawMaze(maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
+    $("#myMazeCanvas").drawMaze( maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
 });
