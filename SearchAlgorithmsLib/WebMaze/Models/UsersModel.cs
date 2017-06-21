@@ -8,7 +8,7 @@ namespace WebMaze.Models
     public class UsersModel : IUserManager
     {
         private WebMazeContext db = new WebMazeContext();
-        
+
 
         public void AddUser(User p)
         {
@@ -19,6 +19,21 @@ namespace WebMaze.Models
         public IQueryable<User> GetAllUsers()
         {
             return db.Users;
+        }
+
+        public int GetDefaultAlgo(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetDefaultCols(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetDefaultRows(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public User GetUser(string userName)
@@ -33,7 +48,7 @@ namespace WebMaze.Models
         //    prod.Password = p.Password;
         //    prod.Email = p.Email;
         //}
-        
+
         public int Login(string username, string password)
         {
             User user = db.Users.FirstOrDefault(u => u.Username == username);
@@ -45,7 +60,6 @@ namespace WebMaze.Models
                     return 1;
                 }
             }
-
             return -1;
         }
 
@@ -63,28 +77,33 @@ namespace WebMaze.Models
 
             return 1;
         }
-     
-        public int GetDefaultAlgo(int id)
+
+        public void UpdateDefaultArgs(string username, int rows, int cols, int defaultAlgo)
         {
-            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
-            return p.DefaultAlgo;
+            throw new NotImplementedException();
         }
-        public int GetDefaultCols(int id)
-        {
-            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
-            return p.DefaultCols;
-        }
-        public int GetDefaultRows(int id)
-        {
-            User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
-            return p.DefaultRows;
-        }
-        public void UpdateDefaultArgs(string username,int rows,int cols,int defaultAlgo)
-        {
-            User prod = db.Users.Where(x => x.Username == username).FirstOrDefault();
-            prod.DefaultRows = rows;
-            prod.DefaultCols = cols;
-            prod.DefaultAlgo = defaultAlgo;
-        }
+
+        //    public int GetDefaultAlgo(int id)
+        //    {
+        //        User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
+        //        return p.DefaultAlgo;
+        //    }
+        //    public int GetDefaultCols(int id)
+        //    {
+        //        User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
+        //        return p.DefaultCols;
+        //    }
+        //    public int GetDefaultRows(int id)
+        //    {
+        //        User p = db.Users.Where(x => x.Id == id).FirstOrDefault();
+        //        return p.DefaultRows;
+        //    }
+        //    public void UpdateDefaultArgs(string username,int rows,int cols,int defaultAlgo)
+        //    {
+        //        User prod = db.Users.Where(x => x.Username == username).FirstOrDefault();
+        //        prod.DefaultRows = rows;
+        //        prod.DefaultCols = cols;
+        //        prod.DefaultAlgo = defaultAlgo;
+        //    }
     }
 }

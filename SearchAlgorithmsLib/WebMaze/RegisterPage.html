@@ -16,11 +16,14 @@
     </header>
     <div class="container body-content">
         <h2>Register Page</h2><hr />
+        <div>
+            <span id="massage" hidden="hidden" class="label label-default"></span>
+        </div>
         <form id="registerForm" class="col-lg-6 form-horizontal">
             <div class="form-group row">
                 <label for="username" id="username"class="col-lg-3 control-label">Username</label>
                 <div class="col-lg-6">
-                    <input name="username" type="text" placeholder="Enter Name " class="form-control input-lg text-capitalize text-justify" id="username" />
+                    <input name="username" type="text" placeholder="Enter Name " class="form-control input-lg text-capitalize text-justify" id="id_username" />
                 </div>
             </div>
             <div class="form-group row">
@@ -38,36 +41,12 @@
             <div class="form-group row">
                 <label for="email" id="email" class="col-lg-3 control-label text-capitalize">Email</label>
                 <div class="col-lg-6">
-                    <input type="email" name="email" placeholder="Enter Email" class="form-control input-lg" id="email" />
+                    <input type="email" name="email" placeholder="Enter Email" class="form-control input-lg" id="id_email" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-lg-offset-3 col-lg-4">
                     <input type="submit" class="form-control btn-success" value="register" name="singup" id="registerSubmit">
-                    <script>
-                        var username = "bb12";
-                        var inputPassword = 12;
-                        var inputEmail = "s2@ws";
-                       // var u = new User{Username = username, Password = inputPassword, Email = inputEmail };
-                        var url = "http://localhost:50570/api/Users/register" + "/" + username + "/" + inputPassword + "/" + inputEmail;
-                        //TODO connection to server
-                        $.post(url).done(alert("hi"));
-
-                        $("#registerSubmit").click(function () {
-                            //var username = $("#username").val();
-                            //var inputPassword = $("#password").val();
-                            //var inputEmail = $("#email").val();
-                            var username = "a";
-                            var inputPassword = 12;
-                            var inputEmail = "s2@ws";
-                            //var u = new User ( Username = username, Password = inputPassword, Email = inputEmail );
-                            var url = "http://localhost:50570/api/Users/register" + "/" + username + "/" + inputPassword + "/" + inputEmail;
-                            //TODO connection to server
-                            $.post(url).done(alert("hi"));
-
-                     });
-                    </script>
-                
                 </div>
             </div>
         </form>

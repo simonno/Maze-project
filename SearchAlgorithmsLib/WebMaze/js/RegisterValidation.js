@@ -51,23 +51,25 @@ $(document).ready(function () {
                 required: "Please enter a valid email address",
             },
         },
-        // specifying a submitHandler prevents the default submit, good for the demo
-        submitHandler: function () {
-            $.ajax({
-                type: "POST",
-                url: "/api/Users/register/{user}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function () {
-                    var data = {
-                        Username: $("#name").val(),
-                        Password: $("#password").val(),
-                        Email: $("#email").val()
-                    };
 
-                    $("#results").html("<li>thank you for signing up !</li>");
-                    $("form").fadeOut("fast");
-                },
+        submitHandler: function () {
+            var username = $("#id_username").val();
+            var password = $("#id_password").val();
+            var email = $("#id_email").val();
+
+            var user = {
+                Username: username,
+                Password: password,
+                Email: email,
+                Losses: 0,
+                Wins: 0
+            }
+
+
+            $.post("api/Users", user).done(function () {
+                $("#registerForm").fadeOut("slow", function () {
+                    $("#massage").text("Thank you for registering");
+                })
             });
         },
     });

@@ -17,15 +17,17 @@ namespace WebMaze.Models
         /// <exception cref="Exception">This maze does not exist - " + name</exception>
         public Maze Join(string name)
         {
-            if (!multiPlayerWaiting.ContainsKey(name))
-            {
-                throw new Exception("This maze does not exist - " + name);
-            }
-            MultiPlayerInfo mp = multiPlayerWaiting[name];
-            mp.Guest = guest;
-            multiPlayerOnline[name] = mp;
-            multiPlayerWaiting.Remove(name);
-            return mp.Maze;
+            //if (!multiPlayerWaiting.ContainsKey(name))
+            //{
+            //    throw new Exception("This maze does not exist - " + name);
+            //}
+            //MultiPlayerInfo mp = multiPlayerWaiting[name];
+            //mp.Guest = guest;
+            //multiPlayerOnline[name] = mp;
+            //multiPlayerWaiting.Remove(name);
+            //return mp.Maze;
+            throw new Exception();
+
         }
 
         /// <summary>
@@ -34,10 +36,11 @@ namespace WebMaze.Models
         /// <returns>list of all the online maze now client can join</returns>
         public List<string> List()
         {
-            Dictionary<string, MultiPlayerInfo>.KeyCollection namesCollaction = multiPlayerWaiting.Keys;
-            string[] temp = new string[namesCollaction.Count];
-            namesCollaction.CopyTo(temp, 0);
-            return new List<string>(temp);
+            //Dictionary<string, MultiPlayerInfo>.KeyCollection namesCollaction = multiPlayerWaiting.Keys;
+            //string[] temp = new string[namesCollaction.Count];
+            //namesCollaction.CopyTo(temp, 0);
+            //return new List<string>(temp);
+            throw new Exception();
         }
 
 
@@ -50,13 +53,13 @@ namespace WebMaze.Models
         /// <param name="host">The host of maze.</param>
         public void Start(string name, int rows, int cols)
         {
-            Maze maze = Generate(name, rows, cols);
-            MultiPlayerInfo mp = new MultiPlayerInfo()
-            {
-                Host = host,
-                Maze = maze
-            };
-            multiPlayerWaiting.Add(name, mp);
+            //Maze maze = Generate(name, rows, cols);
+            //MultiPlayerInfo mp = new MultiPlayerInfo()
+            //{
+            //    Host = host,
+            //    Maze = maze
+            //};
+            //multiPlayerWaiting.Add(name, mp);
         }
 
 

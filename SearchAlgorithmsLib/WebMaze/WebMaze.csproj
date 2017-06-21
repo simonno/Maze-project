@@ -230,6 +230,7 @@
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
+    <Content Include="js\UserRanking.js" />
     <Content Include="LoginPage.html" />
     <Content Include="MultiGamePage.html" />
     <Content Include="RegisterPage.html" />
@@ -254,7 +255,6 @@
     <Content Include="SettingsPage.html" />
     <Content Include="SingleGamePage.html" />
     <Content Include="UserRanking.html" />
-    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -263,17 +263,13 @@
     <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UserHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UsersControllerTemp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LoginData.cs" />
-    <Compile Include="Migrations\201706182218558_Initial.cs" />
-    <Compile Include="Migrations\201706182218558_Initial.Designer.cs">
-      <DependentUpon>201706182218558_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706191715529_Initial1.cs" />
-    <Compile Include="Migrations\201706191715529_Initial1.Designer.cs">
-      <DependentUpon>201706191715529_Initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201706211746389_Initial.cs" />
+    <Compile Include="Migrations\201706211746389_Initial.Designer.cs">
+      <DependentUpon>201706211746389_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IMultiPlayerModel.cs" />
@@ -302,18 +298,15 @@
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706182218558_Initial.resx">
-      <DependentUpon>201706182218558_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706191715529_Initial1.resx">
-      <DependentUpon>201706191715529_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
       <Project>{5aa36579-e931-47d7-b7f3-60f59e9917a2}</Project>
       <Name>SearchAlgorithmsLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706211746389_Initial.resx">
+      <DependentUpon>201706211746389_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

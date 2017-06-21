@@ -17,9 +17,11 @@ namespace WebMaze.Controllers
         [HttpGet]
         public JObject Start(string name, int rows, int cols)
         {
-            Maze maze = model.GenerateMaze(name, rows, cols);
-            JObject obj = JObject.Parse(maze.ToJSON());
-            return obj;
+            //Maze maze = model.GenerateMaze(name, rows, cols);
+            //JObject obj = JObject.Parse(maze.ToJSON());
+            //return obj;
+            throw new Exception();
+
         }
     }
 }

@@ -1,137 +1,119 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
-using System;
-
-
 
 namespace WebMaze.Controllers
-{ 
-    [Microsoft.AspNetCore.Mvc.Route("api/Users")]
+{
     public class UsersController : ApiController
     {
-        private IUserManager usersManager = new UsersModel();
-
-      
+        private WebMazeContext db = new WebMazeContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return usersManager.GetAllUsers();
+            return db.Users;
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
-        [Route("GetUser/{user}")]
-        public User GetUser(string userName)
+        public IHttpActionResult GetUser(string username)
         {
-            return usersManager.GetUser(userName);
-        }
-
-        //// PUT: api/Users/5
-        //[ResponseType(typeof(void))]
-        //public async Task<IHttpActionResult> PutUser(int id, User user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-
-
-        //        if (id != user.Id)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        db.Entry(user).State = EntityState.Modified;
-
-        //        try
-        //        {
-        //            await db.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!UserExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-    
-
-        //// DELETE: api/Users/5
-        //[ResponseType(typeof(User))]
-        //public async Task<IHttpActionResult> DeleteUser(int id)
-        //{
-        //    User user = await db.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Users.Remove(user);
-        //    await db.SaveChangesAsync();
-
-        //    return Ok(user);
-        //}
-
-
-        // Get api/Users/register
-        [HttpPost]
-        [Route("api/Users/register/{username}/{inputPassword}/{inputEmail}")]
-         public IHttpActionResult Register(string username,string inputPassword,string inputEmail)
-        {
-            User user = new User { Username = username, Password= inputPassword, Email=inputEmail };
-            int results = usersManager.Register(user);
+            User user = db.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             return Ok(user);
-            
         }
-        // Post api/Users/login
-        
-        [HttpPost]
-        [Route("api/Users/login/{username}/{inputPassword}")]
-        public string Login(string username, string inputPassword)
+
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
-            Console.WriteLine("name " + username);
-            int results = usersManager.Login(username,inputPassword);
-
-            //Console.WriteLine("results :" + results);
-            //return Ok(results);
-
-
-            if (results == -1)
+            if (!ModelState.IsValid)
             {
-                return "-1";
-
-                //return Ok(new { error = "true", msg = "User exists" });
+                return BadRequest(ModelState);
             }
-            return "1";
-            //return Ok(new { error = "false", msg = "User is now registerd" });
 
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { username = user.Username }, user);
         }
 
-        // Post api/Users/update
-        [HttpPost]
-        [Route("api/Users/update/{username}/{mazeRows}/{mazeCols}/{SearchAlgo}")]
-        public void Update(string username, int mazeRows, int mazeCols, int SearchAlgo)
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int id)
         {
-            usersManager.UpdateDefaultArgs(username, mazeRows, mazeCols, SearchAlgo);
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            return Ok(user);
         }
-        
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool UserExists(string username)
+        {
+            return db.Users.Count(e => e.Username == username) > 0;
+        }
     }
 }
+
+
+//// PUT: api/Users/5
+//[ResponseType(typeof(void))]
+//public IHttpActionResult PutUser(int id, User user)
+//{
+//    if (!ModelState.IsValid)
+//    {
+//        return BadRequest(ModelState);
+//    }
+
+//    if (id != user.Id)
+//    {
+//        return BadRequest();
+//    }
+
+//    db.Entry(user).State = EntityState.Modified;
+
+//    try
+//    {
+//        db.SaveChanges();
+//    }
+//    catch (DbUpdateConcurrencyException)
+//    {
+//        if (!UserExists(id))
+//        {
+//            return NotFound();
+//        }
+//        else
+//        {
+//            throw;
+//        }
+//    }
+
+//    return StatusCode(HttpStatusCode.NoContent);
+//}

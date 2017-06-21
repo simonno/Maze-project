@@ -52,14 +52,14 @@ $(document).ready(function () {
                 type: 'GET',
                 data: { name: mazeName, rows: rows, cols: cols },
                 dataType: 'json',
-                success: function (data) {
+                success: function (responseData) {
                     var rowsMaze = rows
                     var colsMaze = cols
-                    var maze = data.Maze;
-                    var startRow = data.Start.Row;
-                    var startCol = data.Start.Col;
-                    var exitRow = data.End.Row;
-                    var exitCol = data.End.Col;
+                    var maze = responseData.Maze;
+                    var startRow = responseData.Start.Row;
+                    var startCol = responseData.Start.Col;
+                    var exitRow = responseData.End.Row;
+                    var exitCol = responseData.End.Col;
                     var playerImage = new Image(500, 500);
                     var exitImage = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";

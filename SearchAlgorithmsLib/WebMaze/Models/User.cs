@@ -30,22 +30,19 @@ namespace WebMaze.Models
             get;
             set;
         }
-        public int DefaultRows
+
+        [Required]
+        public int Losses
         {
             get;
             set;
         }
 
-        public int DefaultCols
+        [Required]
+        public int Wins
         {
             get;
             set;
         }
-        public int DefaultAlgo
-        {
-            get;
-            set;
-        }
-
     }
 }
