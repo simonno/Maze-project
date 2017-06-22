@@ -503,9 +503,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706211746389_Initial.cs" />
-    <Compile Include="Migrations\201706211746389_Initial.Designer.cs">
-      <DependentUpon>201706211746389_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706221626385_Initial.cs" />
+    <Compile Include="Migrations\201706221626385_Initial.Designer.cs">
+      <DependentUpon>201706221626385_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IMultiPlayerModel.cs" />
@@ -540,8 +540,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706211746389_Initial.resx">
-      <DependentUpon>201706211746389_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706221626385_Initial.resx">
+      <DependentUpon>201706221626385_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
