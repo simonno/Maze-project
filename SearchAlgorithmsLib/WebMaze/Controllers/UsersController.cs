@@ -6,6 +6,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMaze.Models;
@@ -43,6 +45,12 @@ namespace WebMaze.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            // encrypting the password.
+            SHA1 s = SHA1.Create();
+            byte[] buffer = Encoding.ASCII.GetBytes(user.Password);
+            byte[] hashCode = s.ComputeHash(buffer);
+            user.Password = Convert.ToBase64String(hashCode);
 
             db.Users.Add(user);
             db.SaveChanges();
