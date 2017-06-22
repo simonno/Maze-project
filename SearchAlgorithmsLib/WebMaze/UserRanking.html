@@ -4,13 +4,15 @@
     <meta charset="utf-8" />
     <title>Ranking Page</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link href="Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- <link href="Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="Scripts/DataTables/jquery.dataTables.min.js"></script> -->
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
     <script src="js/UserRanking.js"></script>
-    <script src="Scripts/DataTables/jquery.dataTables.min.js"></script>
-    <script src="Scripts/DataTables/dataTables.bootstrap.min.js"></script>
-    
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+
 </head>
 <body>
     <header id="site-header">
@@ -24,14 +26,11 @@
             <table id="rankTable" class="table table-hover display">
                 <thead class="thead-inverse">
                     <tr>
-                        <th>Rank</th>
                         <th>Username</th>
                         <th>Wins</th>
                         <th>Losses</th>
                     </tr>
                 </thead>
-                <tbody id="rankTableBody">
-                </tbody>
             </table>
         </div>
     </div>
