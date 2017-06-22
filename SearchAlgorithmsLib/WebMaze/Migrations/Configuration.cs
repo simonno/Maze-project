@@ -1,24 +1,31 @@
 namespace WebMaze.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using WebMaze.Models;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebMazeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WebMaze.Models.WebMazeContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebMazeContext context)
+        protected override void Seed(WebMaze.Models.WebMazeContext context)
         {
-            context.Users.AddOrUpdate(
-              u => u.Username,
-              new User { Username = "Noam", Password = "123123", Email = "simo@mm", Losses = 1, Wins = 13 },
-              new User { Username = "BBB", Password = "BBBrt", Email = "23@GMAIL.com", Losses = 3, Wins = 3 },
-              new User { Username = "222", Password = "12ddd12", Email = "123nnn@gm.co.il", Losses = 0, Wins = 0 }
-            );
+            //  This method will be called after migrating to the latest version.
 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }
