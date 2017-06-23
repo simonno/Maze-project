@@ -70,23 +70,26 @@ $(document).ready(function () {
                         alert("Handler for .keydown() called.");
                         var keycode =  eve.which;
                         alert(keycode);
-                        switch (keycode) {
-                           
-                            case 38: // Up
-                                alert("Up");
-                                break;
-                            case 37: // Left
-                                alert("Left");
-                                break;
-                            case 39: // Right
-                                alert("Right");
-                                break;
-                            case 40: // Down
-                                alert("Down");
-                                break;
-                            default:
-                                break;
-                        }
+                        //switch (keycode) {
+                        //    case 38: // Up
+                        //        alert("Up");
+                        //        break;
+                        //    case 37: // Left
+                        //        alert("Left");
+                        //        break;
+                        //    case 39: // Right
+                        //        alert("Right");
+                        //        break;
+                        //    case 40: // Down
+                        //        alert("Down");
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}
+                        eve.preventDefault();
+
+                        $("#mazeCanvas").moveSingle(eve);
+
                     });
                 }
             });

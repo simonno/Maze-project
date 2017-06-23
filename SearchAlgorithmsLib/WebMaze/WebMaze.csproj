@@ -384,6 +384,7 @@
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\Login.js" />
+    <Content Include="js\moveSingle.js" />
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
