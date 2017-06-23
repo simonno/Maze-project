@@ -384,6 +384,7 @@
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\Login.js" />
+    <Content Include="js\moveSingle.js" />
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
@@ -503,9 +504,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706221626385_Initial.cs" />
-    <Compile Include="Migrations\201706221626385_Initial.Designer.cs">
-      <DependentUpon>201706221626385_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706221838047_Initial.cs" />
+    <Compile Include="Migrations\201706221838047_Initial.Designer.cs">
+      <DependentUpon>201706221838047_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IMultiPlayerModel.cs" />
@@ -540,8 +541,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706221626385_Initial.resx">
-      <DependentUpon>201706221626385_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706221838047_Initial.resx">
+      <DependentUpon>201706221838047_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
