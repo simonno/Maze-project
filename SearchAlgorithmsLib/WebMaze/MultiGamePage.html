@@ -17,7 +17,7 @@
         <h2>Multi Player Game</h2><hr />
         <div class="row">
 
-            <div class="col-lg-4 form-horizontal">
+            <from id="newGameForm" class="col-lg-4 form-horizontal">
                 <div class="form-group row">
                     <label for="gamesList" class="col-lg-2 control-label">Games</label>
                     <div class="col-lg-6">
@@ -60,19 +60,9 @@
                 <div class="form-group row">
                     <div class="col-lg-offset-2 col-lg-5">
                         <input type="submit" class="form-control" value="Start New Game" id="newGame">
-                        <script>
-
-                            $("#newGame").click(function () {
-                                var mazeName = $("#mazeName").val();
-                                var mazeRows = $("#mazeRows").val();
-                                var mazeCols = $("#mazeCols").val();
-                                    //TODO connection to server
-                                    // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                                });
-                        </script>
                     </div>
                 </div>
-            </div>
+            </from>
             <div class="col-lg-4">
                 <canvas id="myMazeCanvas"  tabindex="1" width="270" height="350"></canvas>
                 <script src="js/FirstMazeMultiPlayer.js"></script>
