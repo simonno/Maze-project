@@ -107,6 +107,7 @@ $(document).ready(function () {
                             $("#mazeCanvas").drawSingleMove(playerImage, whiteRec, rowsMaze,
                                 colsMaze, currentRow, currentCol, prevRow, prevCol);
 
+
                             if ((currentRow == exitRow) && (currentCol == exitCol)) {
                                 alert("you win");
                             }
