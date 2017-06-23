@@ -66,6 +66,28 @@ $(document).ready(function () {
                     exitImage.src = "Images/exit1.png";
 
                     $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
+                    $(document).keydown(function (eve) {
+                        alert("Handler for .keydown() called.");
+                        var keycode =  eve.which;
+                        alert(keycode);
+                        switch (keycode) {
+                           
+                            case 38: // Up
+                                alert("Up");
+                                break;
+                            case 37: // Left
+                                alert("Left");
+                                break;
+                            case 39: // Right
+                                alert("Right");
+                                break;
+                            case 40: // Down
+                                alert("Down");
+                                break;
+                            default:
+                                break;
+                        }
+                    });
                 }
             });
         },
@@ -90,7 +112,7 @@ $("#btnSolveGame").click(function () {
     });
 });
 
-$(document).keypress(function (event) {
+$("#mazeCanvas").keypress(function (event) {
 
     var keycode = (event.keyCode ? event.keyCode : event.which);
     switch (keycode) {
