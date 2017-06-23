@@ -26,7 +26,7 @@
             }
         }
 
-        playerImage.onload = function () {
+        playerImage.onload = function drawPlayer() {
             context.drawImage(playerImage, cellWidth * startCol, cellHeight * startRow, cellWidth, cellHeight);
         }
 

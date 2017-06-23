@@ -380,8 +380,10 @@
     <Resource Include="Images\monster.jpg" />
     <Resource Include="Images\player.png" />
     <Resource Include="Images\simpson.png" />
+    <Content Include="Images\whiteRec.png" />
     <Content Include="js\app.js" />
     <Content Include="js\DrawMaze.js" />
+    <Content Include="js\drawSingleMove.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\moveSingle.js" />
