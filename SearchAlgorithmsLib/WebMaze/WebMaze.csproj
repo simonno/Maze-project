@@ -394,7 +394,6 @@
     <Resource Include="Images\player.png" />
     <Resource Include="Images\simpson.png" />
     <Content Include="Images\whiteRec.png" />
-    <Content Include="js\app.js" />
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\drawSingleMove.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
@@ -520,7 +519,6 @@
     <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UserHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\UsersControllerTemp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

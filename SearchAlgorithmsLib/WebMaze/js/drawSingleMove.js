@@ -4,7 +4,6 @@
         currentRow, currentCol,
         prevRow, prevCol,// initial position of the player
          // player's icon (of type Image)
-      
     ) {
         var canvas = this.get(0);
         var context = canvas.getContext("2d");
