@@ -87,18 +87,22 @@ $(document).ready(function () {
 
 
     $(document).keydown(function (event) {
-        event.preventDefault();
-        if (validMove) {
-            var newPos = isValidMove(event, currentRow, currentCol, rowsMaze, colsMaze, maze);
-            if (newPos != "-1") {
-                var prevRow = currentRow;
-                var prevCol = currentCol;
-                currentRow = newPos.backRow;
-                currentCol = newPos.backCol;
+        var key = event.which;
+        if (key == 37 || key ==38 || key == 39 || key == 40) {
+            event.preventDefault();
+            if (validMove) {
+                var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
+                alert(newPos.backRow);
+                if (newPos != "-1") {
+                    var prevRow = currentRow;
+                    var prevCol = currentCol;
+                    currentRow = newPos.backRow;
+                    currentCol = newPos.backCol;
 
-                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze, currentRow, currentCol, prevRow, prevCol);
-                if ((currentRow == exitRow) && (currentCol == exitCol)) {
-                    alert("you win");
+                    $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze, currentRow, currentCol, prevRow, prevCol);
+                    if ((currentRow == exitRow) && (currentCol == exitCol)) {
+                        alert("you win");
+                    }
                 }
             }
         }
