@@ -135,50 +135,51 @@ $(document).ready(function () {
 
                 stringSol = responseData.Solution;
                 alert(stringSol);
+                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
+                    startRow, startCol, currentRow, currentCol);
+                //var node_loop;
+                var prevRow = currentRow;
+                var prevCol = currentCol;
+                var lengthStringSol = (stringSol.String.length + '').length;
+
+                alert(lengthStringSol);
+                for (var i = 0; i < lengthStringSol; i++) {
+                    var ele = stringSol.charAt(i);
+                    alert(ele);
+                    switch (ele) {
+                        case 'U': // Up
+                            newRow = currentRow - 1;
+                            break;
+                        case 'L': // Left
+                            newCol = currentCol - 1;
+                            break;
+                        case 'R': // Right
+                            newCol = currentCol + 1;
+                            break;
+                        case 'D': // Down
+                            newRow = currentRow + 1;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    currentRow = newRow;
+                    currentCol = newCol;
+                    //node_loop = setInterval(function () {
+                    // Draw a node
+
+                    $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
+                        currentRow, currentCol, prevRow, prevCol);
+                    //}, 2000);
+                    prevRow = currentRow;
+                    prevCol = currentCol;
+                    alert("hi");
+                }
 
             }
 
         });
 
-        $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
-            startRow, startCol, currentRow, currentCol);
-        //var node_loop;
-        var prevRow = currentRow;
-        var prevCol = currentCol;
-        var lengthStringSol = (stringSol.String.length + '').length;
-
-        alert(lengthStringSol);
-        for (var i = 0; i < lengthStringSol; i++) {
-            var ele = stringSol.charAt(i);
-            alert(ele);
-            switch (ele) {
-                case 'U': // Up
-                    newRow = currentRow - 1;
-                    break;
-                case 'L': // Left
-                    newCol = currentCol - 1;
-                    break;
-                case 'R': // Right
-                    newCol = currentCol + 1;
-                    break;
-                case 'D': // Down
-                    newRow = currentRow + 1;
-                    break;
-                default:
-                    break;
-            }
-
-            currentRow = newRow;
-            currentCol = newCol;
-            //node_loop = setInterval(function () {
-                // Draw a node
-
-                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
-                    currentRow, currentCol, prevRow, prevCol);
-            //}, 2000);
-            prevRow = currentRow;
-            prevCol = currentCol;
-            alert("hi");
-        }
+       
     });
 });
