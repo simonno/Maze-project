@@ -41,6 +41,6 @@
 
         var canvas = this.get(0);
         var context = canvas.getContext("2d");
-        if ()
+        
     }
 }(jQuery));
