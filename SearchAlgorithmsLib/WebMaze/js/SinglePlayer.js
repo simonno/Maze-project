@@ -118,22 +118,35 @@ $(document).ready(function () {
             });
         },
     });
-});
 
-$("#btnSolveGame").click(function () {
-    var sreachAlgo = $("#SearchAlgo").val();
-    var type = 0;
-    if (sreachAlgo == "DFS") {
-        type = 1
-    }
 
-    $.ajax({
-        url: "api/SinglePlayer",
-        type: 'GET',
-        data: { name: mazeName, type: type },
-        dataType: 'json',
-        success: function (data) {
-            // TODO SOLVE 
-        }
+    $("#btnSolveGame").click(function () {
+    //alert("solve");
+       
+            alert("solve");
+            var sreachAlgo = $("#SearchAlgo").val();
+            var type = 0;
+            if (sreachAlgo == "DFS") {
+                type = 1
+            }
+            alert("solve2");
+            $.ajax({
+                url: "api/SinglePlayer",
+                type: 'GET',
+                data: { name: mazeName, type: type },
+                dataType: 'json',
+                success: function ( e,responseData) {
+                    
+                    var Elem = e.target;
+                    if (Elem.nodeName == "INPUT") {
+                        var maze = responseData.mazeName;
+
+                        alert("k");
+
+                    } 
+                }
+
+            });alert("solve2");
+        
     });
 });
