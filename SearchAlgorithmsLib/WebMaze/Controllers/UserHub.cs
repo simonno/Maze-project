@@ -26,10 +26,10 @@ namespace WebMaze.Controllers
                 Maze = maze,
                 Host = Context.ConnectionId,
             };
-            waitingGames[name]= mpInfo;
+            waitingGames[name] = mpInfo;
         }
 
-     
+
         public void Join(string name)
         {
             if (waitingGames.ContainsKey(name))
@@ -38,8 +38,8 @@ namespace WebMaze.Controllers
                 mp.Guest = Context.ConnectionId;
                 runningGames[name] = mp;
                 string jsonMaze = mp.Maze.ToJSON();
-                Clients.Client(mp.Host).notify(jsonMaze);
-                Clients.Client(mp.Guest).notify(jsonMaze);
+                Clients.Client(mp.Host).gotMaze(jsonMaze);
+                Clients.Client(mp.Guest).gotMaze(jsonMaze);
             }
         }
 
@@ -49,17 +49,20 @@ namespace WebMaze.Controllers
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             string list = JsonConvert.SerializeObject(temp);
-            Clients.Client(Context.ConnectionId).notify(list);
+            Clients.Client(Context.ConnectionId).gotList(list);
         }
 
         public void Move(string userName, int direction)
         {
-            // string opponnentUsername = opponnents[userName];
-            //string recipientId = connectedPlayers[recipientPhoneNum];
-            // if (recipientId == null)
-            return;
-            //  Clients.Client(recipientId).gotMessage(senderPhoneNum, text);
+            ICollection<MultiPlayerInfo> infoCollaction = runningGames.Values;
+            foreach (MultiPlayerInfo mpInfo in infoCollaction)
+            {
+                if (mpInfo.ContainPlayer(Context.ConnectionId))
+                {
+                    string opponnentConnectionId = mpInfo.GetTheOtherPlayer(Context.ConnectionId);
+                    Clients.Client(opponnentConnectionId).gotDirection(userName, direction);
+                }
+            }
         }
-
     }
 }

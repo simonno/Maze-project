@@ -5,7 +5,10 @@
     <title>Multi Player</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="signalr/hubs"></script>
     <script src="js/DrawMaze.js"></script>
+    <script src="js/MultiPlayer.js"></script>
 </head>
 <body>
     <header id="site-header">
@@ -21,55 +24,44 @@
                 <div class="form-group row">
                     <label for="gamesList" class="col-lg-2 control-label">Games</label>
                     <div class="col-lg-6">
-                        <select class="form-control" id="gamesList" />
+                        <select class="form-control" id="gamesSelect" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-offset-2 col-lg-5">
                         <input type="submit" class="form-control" value="Join Game" id="joinGame">
-                        
-                        <script>
-
-                            $("#joinGame").click(function () {
-                                var mazeName = $("#gamesList").val();
-                            //TODO connection to server
-                            // messagesHub.server.sendMessage(mazeName, mazeRows, mazeCols, SearchAlgo);
-                        });
-                        </script>
 
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="mazeName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="mazeName" />
+                        <input type="text" name="mazeName" class="form-control" id="mazeName" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="mazeRows" class="col-sm-2 control-label">Rows</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" id="mazeRows" />
+                        <input type="number" name="mazeRows" class="form-control" id="mazeRows" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="mazeCols" class="col-lg-2 control-label">Cols</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" id="mazeCols" />
+                        <input type="number" name="mazeCols" class="form-control" id="mazeCols" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-offset-2 col-lg-5">
-                        <input type="submit" class="form-control" value="Start New Game" id="newGame">
+                        <input type="submit" name="singup" class="form-control" value="Start New Game" id="newGame">
                     </div>
                 </div>
             </from>
             <div class="col-lg-4">
                 <canvas id="myMazeCanvas"  tabindex="1" width="270" height="350"></canvas>
-                <script src="js/FirstMazeMultiPlayer.js"></script>
             </div>
             <div class="col-lg-4">
                 <canvas id="opponentMazeCanvas" tabindex="1" width="270" height="350"></canvas>
-                <script src="js/SecondMazeMultiPlayer.js"></script>
             </div>
         </div>
     </div>

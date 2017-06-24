@@ -94,8 +94,7 @@ $(document).ready(function () {
                         //}
                         eve.preventDefault();
 
-                        var newPos = $("#mazeCanvas").moveSingle(eve,
-                            currentRow, currentCol, rowsMaze, colsMaze, maze);
+                        var newPos = $("#mazeCanvas").moveSingle(eve, currentRow, currentCol, rowsMaze, colsMaze, maze);
                         if (newPos != "-999") {
                             var prevRow = currentRow;
                             var prevCol = currentCol;

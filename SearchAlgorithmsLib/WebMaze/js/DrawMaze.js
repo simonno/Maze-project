@@ -36,11 +36,4 @@
 
         return this;
     };
-
-    $.fn.playerMove = function (direction, playerRow, playerCol, maze) {
-
-        var canvas = this.get(0);
-        var context = canvas.getContext("2d");
-        if ()
-    }
 }(jQuery));
