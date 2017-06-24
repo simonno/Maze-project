@@ -42,7 +42,7 @@ $(document).ready(function () {
         },
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
-           // alert("submitted!");
+            alert("submitted!");
             var mazeName = $("#mazeName").val();
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
@@ -62,20 +62,14 @@ $(document).ready(function () {
                     var exitCol = responseData.End.Col;
                     var playerImage = new Image(500, 500);
                     var exitImage = new Image(500, 500);
-                    var whiteRec = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";
                     exitImage.src = "Images/exit1.png";
-                    whiteRec.src ="Images/whiteRec.png"
-
-                    var currentRow = responseData.Start.Row;
-                    var currentCol = responseData.Start.Col;
 
                     $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
                     $(document).keydown(function (eve) {
-                        //  alert("Handler for .keydown() called.");
+                        alert("Handler for .keydown() called.");
                         var keycode = eve.which;
-                        // alert(keycode);
-
+                        alert(keycode);
                         //switch (keycode) {
                         //    case 38: // Up
                         //        alert("Up");
@@ -94,47 +88,11 @@ $(document).ready(function () {
                         //}
                         eve.preventDefault();
 
-                        var newPos = $("#mazeCanvas").moveSingle(eve,
-                            currentRow, currentCol, rowsMaze, colsMaze, maze);
-                        if (newPos != "-999") {
-                            var prevRow = currentRow;
-                            var prevCol = currentCol;
-                            currentRow = newPos.backRow;
-                            currentCol = newPos.backCol;
-                            alert(currentRow + "row");
-                            alert(currentCol + "col");
+                        $("#mazeCanvas").moveSingle(eve);
 
-                            $("#mazeCanvas").drawSingleMove(playerImage, whiteRec, rowsMaze,
-                                colsMaze, currentRow, currentCol, prevRow, prevCol);
-
-
-                            if ((currentRow == exitRow) && (currentCol == exitCol)) {
-                                alert("you win");
-                            }
-                        } else {
-                            alert("the step is wrong");
-                        }
                     });
                 }
             });
         },
-    });
-});
-
-$("#btnSolveGame").click(function () {
-    var sreachAlgo = $("#SearchAlgo").val();
-    var type = 0;
-    if (sreachAlgo == "DFS") {
-        type = 1
-    }
-
-    $.ajax({
-        url: "api/SinglePlayer",
-        type: 'GET',
-        data: { name: mazeName, type: type },
-        dataType: 'json',
-        success: function (data) {
-            // TODO SOLVE 
-        }
     });
 });

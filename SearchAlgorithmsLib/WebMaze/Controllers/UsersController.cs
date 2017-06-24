@@ -87,6 +87,28 @@ namespace WebMaze.Controllers
         {
             return db.Users.Count(e => e.Username == username) > 0;
         }
+
+        // POST: api/Users
+        [HttpPost]
+        public IHttpActionResult Login(string username, string password)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Username == username);
+     
+
+            if (user != null)
+            {
+                // encrypting the password.
+                SHA1 s = SHA1.Create();
+                byte[] buffer = Encoding.ASCII.GetBytes(password);
+                byte[] hashCode = s.ComputeHash(buffer);
+                string encryptedPassword = Convert.ToBase64String(hashCode);
+                if (user.Password == encryptedPassword)
+                {
+                   return BadRequest("username or password incorrect.");
+                }
+            }
+            return NotFound();
+        }
     }
 }
 

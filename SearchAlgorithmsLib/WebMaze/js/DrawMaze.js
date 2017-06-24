@@ -6,7 +6,7 @@
         startRow, startCol, // initial position of the player
         exitRow, exitCol, // the exit position
         playerImage, // player's icon (of type Image)
-        exitImage, // exit's icon (of type Image)
+        exitImage // exit's icon (of type Image)
     ) {
         var canvas = this.get(0);
         var context = canvas.getContext("2d");
@@ -33,6 +33,14 @@
         exitImage.onload = function () {
             context.drawImage(exitImage, cellWidth * exitCol, cellHeight * exitRow, cellWidth, cellHeight);
         }
+
         return this;
     };
+
+    $.fn.playerMove = function (direction, playerRow, playerCol, maze) {
+
+        var canvas = this.get(0);
+        var context = canvas.getContext("2d");
+        if ()
+    }
 }(jQuery));
