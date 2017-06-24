@@ -129,7 +129,10 @@ $(document).ready(function () {
             if (sreachAlgo == "DFS") {
                 type = 1
             }
-            alert("solve2");
+
+
+
+
             $.ajax({
                 url: "api/SinglePlayer",
                 type: 'GET',
