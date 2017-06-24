@@ -1,5 +1,15 @@
-﻿
+﻿var validMove = 0;
+var currentRow;
+var currentCol;
+var playerImage;
+var maze;
+var rowsMaze;
+var colsMaze;
+var exitRow;
+var exitCol;
+
 $(document).ready(function () {
+
     $.validator.setDefaults({
         highlight: function (element) {
             $(element).closest('.form-group').addClass('has-error');
@@ -42,7 +52,7 @@ $(document).ready(function () {
         },
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
-           // alert("submitted!");
+            // alert("submitted!");
             var mazeName = $("#mazeName").val();
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
@@ -53,103 +63,66 @@ $(document).ready(function () {
                 data: { name: mazeName, rows: rows, cols: cols },
                 dataType: 'json',
                 success: function (responseData) {
-                    var rowsMaze = rows
-                    var colsMaze = cols
-                    var maze = responseData.Maze;
-                    var startRow = responseData.Start.Row;
-                    var startCol = responseData.Start.Col;
-                    var exitRow = responseData.End.Row;
-                    var exitCol = responseData.End.Col;
-                    var playerImage = new Image(500, 500);
+                    rowsMaze = rows;
+                    colsMaze = cols;
+                    maze = responseData.Maze;
+                    currentRow = responseData.Start.Row;
+                    currentCol = responseData.Start.Col;
+                    exitRow = responseData.End.Row;
+                    exitCol = responseData.End.Col;
+                    playerImage = new Image(500, 500);
                     var exitImage = new Image(500, 500);
-                    var whiteRec = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";
                     exitImage.src = "Images/exit1.png";
-                    whiteRec.src ="Images/whiteRec.png"
 
-                    var currentRow = responseData.Start.Row;
-                    var currentCol = responseData.Start.Col;
+                    currentRow = responseData.Start.Row;
+                    currentCol = responseData.Start.Col;
 
-                    $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
-                    $(document).keydown(function (eve) {
-                        //  alert("Handler for .keydown() called.");
-                        var keycode = eve.which;
-                        // alert(keycode);
-
-                        //switch (keycode) {
-                        //    case 38: // Up
-                        //        alert("Up");
-                        //        break;
-                        //    case 37: // Left
-                        //        alert("Left");
-                        //        break;
-                        //    case 39: // Right
-                        //        alert("Right");
-                        //        break;
-                        //    case 40: // Down
-                        //        alert("Down");
-                        //        break;
-                        //    default:
-                        //        break;
-                        //}
-                        eve.preventDefault();
-
-                        var newPos = $("#mazeCanvas").moveSingle(eve, currentRow, currentCol, rowsMaze, colsMaze, maze);
-                        if (newPos != "-999") {
-                            var prevRow = currentRow;
-                            var prevCol = currentCol;
-                            currentRow = newPos.backRow;
-                            currentCol = newPos.backCol;
-                            alert(currentRow + "row");
-                            alert(currentCol + "col");
-
-                            $("#mazeCanvas").drawSingleMove(playerImage, whiteRec, rowsMaze,
-                                colsMaze, currentRow, currentCol, prevRow, prevCol);
-
-
-                            if ((currentRow == exitRow) && (currentCol == exitCol)) {
-                                alert("you win");
-                            }
-                        } else {
-                            alert("the step is wrong");
-                        }
-                    });
+                    $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, currentRow, currentCol, exitRow, exitCol, playerImage, exitImage);
+                    validMove = 1;
                 }
             });
         },
     });
 
+    $(document).keydown(function (event) {
+        event.preventDefault();
+        if (validMove) {
+            var newPos = isValidMove(event, currentRow, currentCol, rowsMaze, colsMaze, maze);
+            if (newPos != "-1") {
+                var prevRow = currentRow;
+                var prevCol = currentCol;
+                currentRow = newPos.backRow;
+                currentCol = newPos.backCol;
+
+                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze, currentRow, currentCol, prevRow, prevCol);
+                if ((currentRow == exitRow) && (currentCol == exitCol)) {
+                    alert("you win");
+                }
+            }
+        }
+    });
 
     $("#btnSolveGame").click(function () {
-    //alert("solve");
-       
-            alert("solve");
-            var sreachAlgo = $("#SearchAlgo").val();
-            var type = 0;
-            if (sreachAlgo == "DFS") {
-                type = 1
+        //alert("solve");
+
+        alert("solve");
+        var sreachAlgo = $("#SearchAlgo").val();
+        var type = 0;
+        if (sreachAlgo == "DFS") {
+            type = 1
+        }
+
+        $.ajax({
+            url: "api/SinglePlayer",
+            type: 'GET',
+            data: { name: mazeName, type: type },
+            dataType: 'json',
+            success: function (responseData) {
+                alert(responseData);
             }
 
+        }); alert("solve2");
 
-
-
-            $.ajax({
-                url: "api/SinglePlayer",
-                type: 'GET',
-                data: { name: mazeName, type: type },
-                dataType: 'json',
-                success: function ( e,responseData) {
-                    
-                    var Elem = e.target;
-                    if (Elem.nodeName == "INPUT") {
-                        var maze = responseData.mazeName;
-
-                        alert("k");
-
-                    } 
-                }
-
-            });alert("solve2");
-        
     });
 });

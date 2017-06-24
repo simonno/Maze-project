@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <title>Single Game</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="Scripts/jquery.validate.js"></script>
     <script src="js/drawSingleMove.js"></script>
 
     <script src="js/moveSingle.js"></script>
     <script src="js/DrawMaze.js"></script>
     <script src="js/SinglePlayer.js"></script>
-   
+
 
 </head>
 <body>
@@ -47,23 +47,24 @@
                     <input type="submit" name="singup" class="form-control btn-success" value="Start New Game" id="btnStartGame">
                 </div>
             </div>
-            <div class="row" id="solveGameForm">
-                <div class="form-group row">
-                    <label for="SearchAlgo" class="col-lg-4 control-label">Search Algorithm</label>
-                    <div class="col-lg-8">
-                        <select class="form-control" id="SearchAlgo">
-                            <option value="DFS">DFS</option>
-                            <option value="BFS">BFS</option>
-                        </select>
-                    </div>
+        </form>
+        <form class="row" id="solveGameForm">
+            <div class="form-group row">
+                <label for="SearchAlgo" class="col-lg-4 control-label">Search Algorithm</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="SearchAlgo">
+                        <option value="DFS">DFS</option>
+                        <option value="BFS">BFS</option>
+                    </select>
                 </div>
-                <div class="form-group col-lg-push-8 col-lg-3">
-                    <div class="col-lg-offset-4 col-lg-6">
-                        <input type="submit" class="form-control btn-primary" value="solve Game" id="btnSolveGame">
-                    </div>
+            </div>
+            <div class="form-group col-lg-push-8 col-lg-3">
+                <div class="col-lg-offset-4 col-lg-6">
+                    <input type="submit" class="form-control btn-primary" value="solve Game" id="btnSolveGame">
                 </div>
             </div>
         </form>
+
         <div class="col-lg-9 text-center">
             <canvas id="mazeCanvas" height="350" width="500"></canvas>
         </div>

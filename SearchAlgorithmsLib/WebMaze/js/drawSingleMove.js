@@ -1,6 +1,6 @@
 ﻿(function ($) {
     $.fn.drawSingleMove = function (
-        playerImage, whiteRec,rows, cols,
+        playerImage,rows, cols,
         currentRow, currentCol,
         prevRow, prevCol,// initial position of the player
          // player's icon (of type Image)
@@ -14,11 +14,9 @@
         var cellHeight = canvas.height / rows;
        
        
-        context.drawImage(playerImage, cellWidth * currentCol,
-            cellHeight * currentRow, cellWidth, cellHeight);
-        context.drawImage(whiteRec, cellWidth * prevCol,
-            cellHeight * prevRow, cellWidth, cellHeight);
-        
+        context.drawImage(playerImage, cellWidth * currentCol, cellHeight * currentRow, cellWidth, cellHeight);
+        context.fillStyle = "white";
+        context.fillRect(cellWidth * prevCol, cellHeight * prevRow, cellWidth, cellHeight);
         return this;
     };
 }(jQuery));
