@@ -1,12 +1,17 @@
 ﻿var validMove = 0;
 var currentRow;
 var currentCol;
+var startRow;
+var startCol;
 var playerImage;
+var exitImage;
 var maze;
 var rowsMaze;
 var colsMaze;
 var exitRow;
 var exitCol;
+var type;
+var theNameMaze;
 
 $(document).ready(function () {
 
@@ -54,6 +59,7 @@ $(document).ready(function () {
         submitHandler: function () {
             // alert("submitted!");
             var mazeName = $("#mazeName").val();
+            theNameMaze = mazeName;
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
 
@@ -67,11 +73,13 @@ $(document).ready(function () {
                     colsMaze = cols;
                     maze = responseData.Maze;
                     currentRow = responseData.Start.Row;
+                    startRow = responseData.Start.Row;
                     currentCol = responseData.Start.Col;
+                    startCol= responseData.Start.Col;
                     exitRow = responseData.End.Row;
                     exitCol = responseData.End.Col;
                     playerImage = new Image(500, 500);
-                    var exitImage = new Image(500, 500);
+                     exitImage = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";
                     exitImage.src = "Images/exit1.png";
 
@@ -88,9 +96,11 @@ $(document).ready(function () {
 
     $(document).keydown(function (event) {
         var key = event.which;
-        if (key == 37 || key == 38 || key == 39 || key == 40) {
+        if (key == 37 || key ==38 || key == 39 || key == 40) {
+            event.preventDefault();
             if (validMove) {
                 var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
+              //  alert(newPos.backRow);
                 if (newPos != "-1") {
                     var prevRow = currentRow;
                     var prevCol = currentCol;
@@ -106,10 +116,10 @@ $(document).ready(function () {
         }
     });
 
-    $("#btnSolveGame").click(function () {
+    $("#btnSolveGame").click( function () {
         //alert("solve");
 
-        alert("solve");
+        var stringSol;
         var sreachAlgo = $("#SearchAlgo").val();
         var type = 0;
         if (sreachAlgo == "DFS") {
@@ -119,13 +129,56 @@ $(document).ready(function () {
         $.ajax({
             url: "api/SinglePlayer",
             type: 'GET',
-            data: { name: mazeName, type: type },
+            data: { mazeName: theNameMaze, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                alert(responseData);
+
+                stringSol = responseData.Solution;
+                alert(stringSol);
+
             }
 
-        }); alert("solve2");
+        });
 
+        $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
+            startRow, startCol, currentRow, currentCol);
+        //var node_loop;
+        var prevRow = currentRow;
+        var prevCol = currentCol;
+        var lengthStringSol = (stringSol.String.length + '').length;
+
+        alert(lengthStringSol);
+        for (var i = 0; i < lengthStringSol; i++) {
+            var ele = stringSol.charAt(i);
+            alert(ele);
+            switch (ele) {
+                case 'U': // Up
+                    newRow = currentRow - 1;
+                    break;
+                case 'L': // Left
+                    newCol = currentCol - 1;
+                    break;
+                case 'R': // Right
+                    newCol = currentCol + 1;
+                    break;
+                case 'D': // Down
+                    newRow = currentRow + 1;
+                    break;
+                default:
+                    break;
+            }
+
+            currentRow = newRow;
+            currentCol = newCol;
+            //node_loop = setInterval(function () {
+                // Draw a node
+
+                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
+                    currentRow, currentCol, prevRow, prevCol);
+            //}, 2000);
+            prevRow = currentRow;
+            prevCol = currentCol;
+            alert("hi");
+        }
     });
 });
