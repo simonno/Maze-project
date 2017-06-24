@@ -85,6 +85,7 @@ $(document).ready(function () {
         },
     });
 
+
     $(document).keydown(function (event) {
         event.preventDefault();
         if (validMove) {
