@@ -1,7 +1,6 @@
 ﻿var messagesHub = $.connection.messagesHub;
 
-$(document).ready(function () {
-
+$.connection.hub.start().done(function () {
     messagesHub.server.list();
     messagesHub.client.gotList = function (list) {
         $.each(list, function (key, value) {
@@ -32,9 +31,6 @@ $(document).ready(function () {
         $("#opponentMazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
 
     };
-});
-
-$.connection.hub.start().done(function () {
     $.validator.setDefaults({
         highlight: function (element) {
             $(element).closest('.form-group').addClass('has-error');

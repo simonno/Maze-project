@@ -88,11 +88,9 @@ $(document).ready(function () {
 
     $(document).keydown(function (event) {
         var key = event.which;
-        if (key == 37 || key ==38 || key == 39 || key == 40) {
-            event.preventDefault();
+        if (key == 37 || key == 38 || key == 39 || key == 40) {
             if (validMove) {
                 var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
-                alert(newPos.backRow);
                 if (newPos != "-1") {
                     var prevRow = currentRow;
                     var prevCol = currentCol;

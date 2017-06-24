@@ -21,7 +21,7 @@ var isValidMove = function (keycode, currentRow, currentCol, rowsMaze, colsMaze,
     }
     var newPos;
     var backRow, backCol;
-    if ((newRow < 0) || (newRow > rowsMaze) || (newCol < 0) || (newCol > colsMaze) || (mazeData[newCol + newRow * colsMaze] == 1)) {
+    if ((newRow < 0) || (newRow >= rowsMaze) || (newCol < 0) || (newCol >= colsMaze) || (mazeData[newCol + newRow * colsMaze] == 1)) {
         return -1;
     } else {
         backRow = newRow;
