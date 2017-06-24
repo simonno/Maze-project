@@ -10,6 +10,7 @@ namespace WebMaze.Models
     /// <seealso cref="SearchAlgorithmsLib.ISearchable{MazeLib.Position, System.Int32}" />
     public class ObjectAdapter : ISearchable<Position, int>
     {
+
         /// <summary>
         /// The maze object adapter
         /// </summary>
