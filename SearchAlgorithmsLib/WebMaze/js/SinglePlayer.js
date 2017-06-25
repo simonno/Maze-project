@@ -10,7 +10,9 @@ var rowsMaze;
 var colsMaze;
 var exitRow;
 var exitCol;
+var type;
 var mazeName;
+var themazeName;
 
 $(document).ready(function () {
 
@@ -57,7 +59,8 @@ $(document).ready(function () {
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
             // alert("submitted!");
-            mazeName = $("#mazeName").val();
+            var mazeName = $("#mazeName").val();
+            mazeName = mazeName;
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
 
@@ -80,7 +83,7 @@ $(document).ready(function () {
                     exitImage = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";
                     exitImage.src = "Images/exit1.png";
-
+                    themazeName = mazeName;
                     currentRow = responseData.Start.Row;
                     currentCol = responseData.Start.Col;
 
@@ -117,28 +120,24 @@ $(document).ready(function () {
     $("#btnSolveGame").click(function () {
         //alert("solve");
 
-
-        var sreachAlgo = $("#SearchAlgo").val();
         var type = 0;
-        if (sreachAlgo == "DFS") {
+        if ($("#SearchAlgo").val() == "DFS") {
             type = 1
         }
 
         $.ajax({
             url: "api/SinglePlayer",
             type: 'GET',
-            data: { mazeName: mazeName, typeOfSearch: type },
+            data: { mazeName: themazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                alert("solve !!");
-                $("#mazeCanvas").solve(responseData, playerImage, rowsMaze, colsMaze, startRow, startCol, currentRow, currentCol);
-            },
-            error: function (responseData) {
-                alert("fail!!");
-            }
+                alert("in");
+                alert(responseData.Solution);
+                $("#mazeCanvas").solveSingle(playerImage, rowsMaze, colsMaze,
+                    startRow, startRow, currentRow, currentCol);
 
-
+                }
+            
         });
     });
-
 });
