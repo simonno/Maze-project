@@ -403,6 +403,7 @@
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
     <Content Include="js\SecondMazeMultiPlayer.js" />
+    <Content Include="js\SolveSinglet.js" />
     <Content Include="js\UserRanking.js" />
     <Content Include="LoginPage.html" />
     <Content Include="MultiGamePage.html" />

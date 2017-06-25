@@ -12,6 +12,7 @@ var exitRow;
 var exitCol;
 var type;
 var mazeName;
+var themazeName;
 
 $(document).ready(function () {
 
@@ -82,7 +83,7 @@ $(document).ready(function () {
                     exitImage = new Image(500, 500);
                     playerImage.src = "Images/simpson.png";
                     exitImage.src = "Images/exit1.png";
-
+                    themazeName = mazeName;
                     currentRow = responseData.Start.Row;
                     currentCol = responseData.Start.Col;
 
@@ -127,50 +128,16 @@ $(document).ready(function () {
         $.ajax({
             url: "api/SinglePlayer",
             type: 'GET',
-            data: { mazeName: mazeName, typeOfSearch: type },
+            data: { mazeName: themazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
                 alert("in");
-                var stringSol = responseData.Solution;
-                alert(stringSol);
-                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
-                    startRow, startCol, currentRow, currentCol);
-                //var node_loop;
-                var prevRow = currentRow;
-                var prevCol = currentCol;
-                var lengthStringSol = (stringSol.String.length + '').length;
+                alert(responseData.Solution);
+                $("#mazeCanvas").solveSingle(playerImage, rowsMaze, colsMaze,
+                    startRow, startRow, currentRow, currentCol);
 
-                alert(lengthStringSol);
-                for (var i = 0; i < lengthStringSol; i++) {
-                    var ele = stringSol.charAt(i);
-                    alert(ele);
-                    switch (ele) {
-                        case 'U': // Up
-                            newRow = currentRow - 1;
-                            break;
-                        case 'L': // Left
-                            newCol = currentCol - 1;
-                            break;
-                        case 'R': // Right
-                            newCol = currentCol + 1;
-                            break;
-                        case 'D': // Down
-                            newRow = currentRow + 1;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    currentRow = newRow;
-                    currentCol = newCol;
-
-                    $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
-                        currentRow, currentCol, prevRow, prevCol);
-                    prevRow = currentRow;
-                    prevCol = currentCol;
-                    alert("hi");
                 }
-            }
+            
         });
     });
 });
