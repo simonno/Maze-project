@@ -395,10 +395,10 @@
     <Resource Include="Images\simpson.png" />
     <Content Include="Images\whiteRec.png" />
     <Content Include="js\DrawMaze.js" />
-    <Content Include="js\drawSingleMove.js" />
+    <Content Include="js\DrawMove.js" />
     <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\Login.js" />
-    <Content Include="js\moveSingle.js" />
+    <Content Include="js\IsValidMove.js" />
     <Content Include="js\MultiPlayer.js" />
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
@@ -517,7 +517,7 @@
     <Compile Include="Controllers\MultiPlayerController.cs" />
     <Compile Include="Controllers\MultiPlayerInfo.cs" />
     <Compile Include="Controllers\SinglePlayerController.cs" />
-    <Compile Include="Controllers\UserHub.cs" />
+    <Compile Include="Controllers\MultiPlayerHub.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

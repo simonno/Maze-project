@@ -1,6 +1,5 @@
 ﻿
 var isValidMove = function (keycode, currentRow, currentCol, rowsMaze, colsMaze, mazeData) {
-    canvasElement = this[0];
     var newRow = currentRow;
     var newCol = currentCol;
     switch (keycode) {

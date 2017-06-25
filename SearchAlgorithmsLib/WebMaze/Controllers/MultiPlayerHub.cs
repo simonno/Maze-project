@@ -1,5 +1,6 @@
 ﻿using MazeLib;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ using WebMaze.Models;
 
 namespace WebMaze.Controllers
 {
-    public class UserHub : Hub
+    [HubName("MultiPlayerHub")]
+    public class MultiPlayerHub : Hub
     {
         private static ConcurrentDictionary<string, MultiPlayerInfo> waitingGames =
             new ConcurrentDictionary<string, MultiPlayerInfo>();
