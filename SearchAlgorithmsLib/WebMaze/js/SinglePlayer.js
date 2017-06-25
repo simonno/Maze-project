@@ -136,7 +136,10 @@ $(document).ready(function () {
                 $("#mazeCanvas").solveSingle(playerImage, rowsMaze, colsMaze,
                     startRow, startRow, currentRow, currentCol);
 
-                }
+            },
+            error: function () {
+                alert("error");
+            }
             
         });
     });

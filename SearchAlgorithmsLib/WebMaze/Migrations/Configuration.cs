@@ -12,7 +12,7 @@ namespace WebMaze.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WebMaze.Models.WebMazeContext context)
+        protected override void Seed(Models.WebMazeContext context)
         {
             //  This method will be called after migrating to the latest version.
 
