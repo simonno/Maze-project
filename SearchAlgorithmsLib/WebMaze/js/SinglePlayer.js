@@ -119,8 +119,10 @@ $(document).ready(function () {
     $("#btnSolveGame").click(function () {
         //alert("solve");
 
+
+        var sreachAlgo = $("#SearchAlgo").val();
         var type = 0;
-        if ($("#SearchAlgo").val() == "DFS") {
+        if (sreachAlgo == "DFS") {
             type = 1
         }
 
@@ -130,47 +132,11 @@ $(document).ready(function () {
             data: { mazeName: mazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                alert("in");
-                var stringSol = responseData.Solution;
-                alert(stringSol);
-                $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
+                $("#mazeCanvas").solve(responseData, playerImage, rowsMaze, colsMaze,
                     startRow, startCol, currentRow, currentCol);
-                //var node_loop;
-                var prevRow = currentRow;
-                var prevCol = currentCol;
-                var lengthStringSol = (stringSol.String.length + '').length;
-
-                alert(lengthStringSol);
-                for (var i = 0; i < lengthStringSol; i++) {
-                    var ele = stringSol.charAt(i);
-                    alert(ele);
-                    switch (ele) {
-                        case 'U': // Up
-                            newRow = currentRow - 1;
-                            break;
-                        case 'L': // Left
-                            newCol = currentCol - 1;
-                            break;
-                        case 'R': // Right
-                            newCol = currentCol + 1;
-                            break;
-                        case 'D': // Down
-                            newRow = currentRow + 1;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    currentRow = newRow;
-                    currentCol = newCol;
-
-                    $("#mazeCanvas").drawSingleMove(playerImage, rowsMaze, colsMaze,
-                        currentRow, currentCol, prevRow, prevCol);
-                    prevRow = currentRow;
-                    prevCol = currentCol;
-                    alert("hi");
-                }
             }
+
         });
     });
+
 });
