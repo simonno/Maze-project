@@ -10,7 +10,6 @@ var rowsMaze;
 var colsMaze;
 var exitRow;
 var exitCol;
-var type;
 var mazeName;
 
 $(document).ready(function () {
@@ -58,8 +57,7 @@ $(document).ready(function () {
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
             // alert("submitted!");
-            var mazeName = $("#mazeName").val();
-            mazeName = mazeName;
+            mazeName = $("#mazeName").val();
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
 
@@ -132,8 +130,9 @@ $(document).ready(function () {
             data: { mazeName: mazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                $("#mazeCanvas").solve(responseData, playerImage, rowsMaze, colsMaze,
-                    startRow, startCol, currentRow, currentCol);
+                Console.Log("solve !!");
+                alert("solve !!");
+                $("#mazeCanvas").solve(responseData, playerImage, rowsMaze, colsMaze, startRow, startCol, currentRow, currentCol);
             }
 
         });
