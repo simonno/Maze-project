@@ -13,6 +13,10 @@ var exitCol;
 var type;
 var mazeName;
 var themazeName;
+var i;
+var k;
+
+
 
 $(document).ready(function () {
 
@@ -133,6 +137,9 @@ $(document).ready(function () {
             success: function (responseData) {
                 alert("in");
                 alert(responseData.Solution);
+                i = responseData.Solution;
+                k = 1;
+                alert(responseData.Solution.charAt(1));
                 $("#mazeCanvas").solveSingle(playerImage, rowsMaze, colsMaze,
                     startRow, startRow, currentRow, currentCol);
 
