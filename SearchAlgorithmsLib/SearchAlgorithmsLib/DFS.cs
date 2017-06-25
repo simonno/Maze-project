@@ -56,7 +56,7 @@ namespace SearchAlgorithmsLib
             {
                 s = stack.Pop();
 
-                if (s == searchable.GetGoalState())
+                if (s.Equals(searchable.GetGoalState()))
                     return BackTrace(s);
 
                 foreach (State<S, C> i in searchable.GetAllPossibleStates(s))
@@ -69,7 +69,7 @@ namespace SearchAlgorithmsLib
                     }
                 }
             }
-            return null;
+            throw new Exception("Goal state didn't found!");
         }
 
 

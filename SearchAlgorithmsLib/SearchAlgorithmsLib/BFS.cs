@@ -31,7 +31,7 @@ namespace SearchAlgorithmsLib
             {
                 State<S, C> n = popOpenList(); // inherited from Searcher, removes the best StateValue
                 closed.Add(n);
-                if (n == searchable.GetGoalState())
+                if (n.Equals(searchable.GetGoalState()))
                     return BackTrace(n); // private method, back traces through the parents
                                         // calling the delegated method, returns a list of states with n as a parent
                 List<State<S, C>> succerssors = searchable.GetAllPossibleStates(n);
@@ -48,7 +48,7 @@ namespace SearchAlgorithmsLib
                     }
                 }
             }
-            return null;
+            throw new Exception("Goal state didn't found!");
         }
 
         /// <summary>

@@ -130,10 +130,13 @@ $(document).ready(function () {
             data: { mazeName: mazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                Console.Log("solve !!");
                 alert("solve !!");
                 $("#mazeCanvas").solve(responseData, playerImage, rowsMaze, colsMaze, startRow, startCol, currentRow, currentCol);
+            },
+            error: function (responseData) {
+                alert("fail!!");
             }
+
 
         });
     });

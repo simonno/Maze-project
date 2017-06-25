@@ -56,9 +56,6 @@ namespace WebMaze.Models
                         throw new Exception("This search type does not exist - " + typeOfSolve);
                 }
             }
-
-
-
             throw new Exception("This maze does not exist - " + name);
         }
 
