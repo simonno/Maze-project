@@ -5,4 +5,4 @@
         alert("hi");
         return this;
     };
-}(jQuery));
+}(jQuery)); 
