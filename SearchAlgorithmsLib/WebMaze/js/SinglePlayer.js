@@ -1,10 +1,10 @@
 ﻿var validMove = 0;
-var currentRow;
-var currentCol;
+var myCurrentRow;
+var myCurrentCol;
 var startRow;
 var startCol;
-var playerImage;
-var exitImage;
+var myPlayerImage;
+var myExitImage;
 var maze;
 var rowsMaze;
 var colsMaze;
@@ -77,21 +77,21 @@ $(document).ready(function () {
                     rowsMaze = rows;
                     colsMaze = cols;
                     maze = responseData.Maze;
-                    currentRow = responseData.Start.Row;
+                    myCurrentRow = responseData.Start.Row;
                     startRow = responseData.Start.Row;
-                    currentCol = responseData.Start.Col;
+                    myCurrentCol = responseData.Start.Col;
                     startCol = responseData.Start.Col;
                     exitRow = responseData.End.Row;
                     exitCol = responseData.End.Col;
-                    playerImage = new Image(500, 500);
-                    exitImage = new Image(500, 500);
-                    playerImage.src = "Images/simpson.png";
-                    exitImage.src = "Images/exit1.png";
+                    myPlayerImage = new Image(500, 500);
+                    myExitImage = new Image(500, 500);
+                    myPlayerImage.src = "Images/simpson.png";
+                    myExitImage.src = "Images/exit1.png";
                     themazeName = mazeName;
-                    currentRow = responseData.Start.Row;
-                    currentCol = responseData.Start.Col;
+                    myCurrentRow = responseData.Start.Row;
+                    myCurrentCol = responseData.Start.Col;
 
-                    $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, currentRow, currentCol, exitRow, exitCol, playerImage, exitImage);
+                    $("#mazeCanvas").drawMaze(rowsMaze, colsMaze, maze, myCurrentRow, myCurrentCol, exitRow, exitCol, myPlayerImage, myExitImage);
                     validMove = 1;
                 }
             });
@@ -104,16 +104,16 @@ $(document).ready(function () {
         if (key == 37 || key == 38 || key == 39 || key == 40) {
             event.preventDefault();
             if (validMove) {
-                var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
+                var newPos = isValidMove(key, myCurrentRow, myCurrentCol, rowsMaze, colsMaze, maze);
                 //  alert(newPos.backRow);
                 if (newPos != "-1") {
-                    var prevRow = currentRow;
-                    var prevCol = currentCol;
-                    currentRow = newPos.backRow;
-                    currentCol = newPos.backCol;
+                    var prevRow = myCurrentRow;
+                    var prevCol = myCurrentCol;
+                    myCurrentRow = newPos.backRow;
+                    myCurrentCol = newPos.backCol;
 
-                    $("#mazeCanvas").drawMove(playerImage, rowsMaze, colsMaze, currentRow, currentCol, prevRow, prevCol);
-                    if ((currentRow == exitRow) && (currentCol == exitCol)) {
+                    $("#mazeCanvas").drawMove(myPlayerImage, rowsMaze, colsMaze, myCurrentRow, myCurrentCol, prevRow, prevCol);
+                    if ((myCurrentRow == exitRow) && (myCurrentCol == exitCol)) {
                         alert("you win");
                     }
                 }
@@ -140,8 +140,8 @@ $(document).ready(function () {
                 i = responseData.Solution;
                 k = 1;
                 alert(responseData.Solution.charAt(1));
-                $("#mazeCanvas").solveSingle(playerImage, rowsMaze, colsMaze,
-                    startRow, startRow, currentRow, currentCol);
+                $("#mazeCanvas").solveSingle(myPlayerImage, rowsMaze, colsMaze,
+                    startRow, startRow, myCurrentRow, myCurrentCol);
 
             },
             error: function () {
