@@ -51,7 +51,7 @@ namespace WebMaze.Controllers
             string[] temp = new string[namesCollaction.Count];
             namesCollaction.CopyTo(temp, 0);
             string list = JsonConvert.SerializeObject(temp);
-            Clients.Client(Context.ConnectionId).gotList(list);
+            Clients.Client(Context.ConnectionId).gotlist(list);
         }
 
         public void Move(string userName, int direction)

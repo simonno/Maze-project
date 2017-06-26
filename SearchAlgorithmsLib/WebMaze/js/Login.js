@@ -35,28 +35,35 @@ $(document).ready(function () {
         submitHandler: function () {
             var inputUsername = $("#inputUsername").val();
             var inputPassword = $("#inputPassword").val();
-
+            //var user =
             $.ajax({
                 url: "api/Users",
-                type: 'POST',
-                data: { username: inputUsername, inputPassword: inputPassword },
-                dataType: 'json',
+                type: "GET",
+                contentType: "application/json",
+                data: { username: inputUsername, password: inputPassword },
                 success: function (data) {
-                    if (data.error == false) {
-                        var defaultNum = 5;
-                        var defaultAlgo = 0;//0 
-                        sessionStorage.setItem('user', inputUsername);
-
-                        sessionStorage.setItem('defaultRows', defaultNum);
-                        sessionStorage.setItem('defaultCols', defalutNum);
-                        sessionStorage.setItem('defaultAlgo', defaultAlgo);
-
-                        alert(data.msg);
-                    } else {
-                        alert(data.msg);
-                    }
+                    alert("funnnnn");
+                },
+                error: function () {
+                    alert("error");
                 }
-            });
+            })
+
+            //$.post("api/Users", inputUsername, inputPassword).done(function (data) {
+            //    if (data.error == false) {
+            //        var defaultNum = 5;
+            //        var defaultAlgo = 0;//0 
+            //        sessionStorage.setItem('user', inputUsername);
+
+            //        sessionStorage.setItem('defaultRows', defaultNum);
+            //        sessionStorage.setItem('defaultCols', defalutNum);
+            //        sessionStorage.setItem('defaultAlgo', defaultAlgo);
+
+            //        alert(data.msg);
+            //    } else {
+            //        alert(data.msg);
+            //    }
+            //});
         },
     });
 });

@@ -47,10 +47,10 @@ namespace WebMaze.Controllers
             }
 
             // encrypting the password.
-            SHA1 s = SHA1.Create();
-            byte[] buffer = Encoding.ASCII.GetBytes(user.Password);
-            byte[] hashCode = s.ComputeHash(buffer);
-            user.Password = Convert.ToBase64String(hashCode);
+            //SHA1 s = SHA1.Create();
+            //byte[] buffer = Encoding.ASCII.GetBytes(user.Password);
+            //byte[] hashCode = s.ComputeHash(buffer);
+            //user.Password = Convert.ToBase64String(hashCode);
 
             db.Users.Add(user);
             db.SaveChanges();
@@ -89,7 +89,7 @@ namespace WebMaze.Controllers
         }
 
         // POST: api/Users
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult Login(string username, string password)
         {
             User user = db.Users.FirstOrDefault(u => u.Username == username);
@@ -98,11 +98,11 @@ namespace WebMaze.Controllers
             if (user != null)
             {
                 // encrypting the password.
-                SHA1 s = SHA1.Create();
-                byte[] buffer = Encoding.ASCII.GetBytes(password);
-                byte[] hashCode = s.ComputeHash(buffer);
-                string encryptedPassword = Convert.ToBase64String(hashCode);
-                if (user.Password == encryptedPassword)
+                //SHA1 s = SHA1.Create();
+                //byte[] buffer = Encoding.ASCII.GetBytes(password);
+                //byte[] hashCode = s.ComputeHash(buffer);
+                //string encryptedPassword = Convert.ToBase64String(hashCode);
+                if (user.Password == password)
                 {
                    return BadRequest("username or password incorrect.");
                 }
@@ -110,6 +110,8 @@ namespace WebMaze.Controllers
             return NotFound();
         }
     }
+
+
 }
 
 
