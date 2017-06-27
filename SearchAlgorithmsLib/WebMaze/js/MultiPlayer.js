@@ -1,4 +1,15 @@
 ﻿var MultiPlayerHub = $.connection.MultiPlayerHub;
+
+var currentRow;
+var currentCol;
+var startRow;
+var startCol;
+var rowsMaze;
+var colsMaze;
+var prevRow;
+var prevCol;
+var playerImage;
+var maze;
 MultiPlayerHub.client.gotlist = function (list) {
     var array = JSON.parse(list); 
     if (array && array.length) {
@@ -13,14 +24,18 @@ MultiPlayerHub.client.gotlist = function (list) {
 
 MultiPlayerHub.client.gotMaze = function (jsonMaze) {
     var Maze = JSON.parse(jsonMaze);
-    var maze = Maze.Maze;
-    var rowsMaze = Maze.Rows;
-    var colsMaze = Maze.Cols;
-    var startRow = Maze.Start.Row;
-    var startCol = Maze.Start.Col;
+     maze = Maze.Maze;
+     rowsMaze = Maze.Rows;
+     colsMaze = Maze.Cols;
+     startRow = Maze.Start.Row;
+     startCol = Maze.Start.Col;
+     currentCol = startCol;
+     currentRow = startRow;
+
+
     var exitRow = Maze.End.Row;
     var exitCol = Maze.End.Col;
-    var playerImage = new Image(500, 500);
+     playerImage = new Image(500, 500);
     var exitImage = new Image(500, 500);
     playerImage.src = "Images/simpson.png";
     exitImage.src = "Images/exit1.png";
@@ -59,11 +74,11 @@ $.connection.hub.start().done(function () {
         var key = event.which;
         if (key == 37 || key == 38 || key == 39 || key == 40) {
             event.preventDefault();
-            if (validMove) {
+            //if (validMove) {
                 var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
                 if (newPos != "-1") {
-                    var prevRow = currentRow;
-                    var prevCol = currentCol;
+                     prevRow = currentRow;
+                     prevCol = currentCol;
                     currentRow = newPos.backRow;
                     currentCol = newPos.backCol;
 
@@ -73,7 +88,7 @@ $.connection.hub.start().done(function () {
                     }
 
                 }
-            }
+            //}
         }
     });
 });
