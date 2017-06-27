@@ -1,15 +1,21 @@
-﻿var MultiPlayerHub = $.connection.MultiPlayerHub;
-
-var currentRow;
-var currentCol;
+﻿var validMove = 0;
+var myCurrentRow;
+var myCurrentCol;
+var opponentCurrentRow;
+var opponentCurrentCol;
 var startRow;
 var startCol;
+var myPlayerImage;
+var myExitImage;
+var maze;
 var rowsMaze;
 var colsMaze;
-var prevRow;
-var prevCol;
-var playerImage;
-var maze;
+var exitRow;
+var exitCol;
+var opponentExitImage;
+var opponentPlayerImage;
+
+var MultiPlayerHub = $.connection.MultiPlayerHub;
 MultiPlayerHub.client.gotlist = function (list) {
     var array = JSON.parse(list); 
     if (array && array.length) {
@@ -24,31 +30,49 @@ MultiPlayerHub.client.gotlist = function (list) {
 
 MultiPlayerHub.client.gotMaze = function (jsonMaze) {
     var Maze = JSON.parse(jsonMaze);
-     maze = Maze.Maze;
-     rowsMaze = Maze.Rows;
-     colsMaze = Maze.Cols;
-     startRow = Maze.Start.Row;
-     startCol = Maze.Start.Col;
-     currentCol = startCol;
-     currentRow = startRow;
+    maze = Maze.Maze;
+    rowsMaze = Maze.Rows;
+    colsMaze = Maze.Cols;
+    startRow = Maze.Start.Row;
+    startCol = Maze.Start.Col;
+    exitRow = Maze.End.Row;
+    exitCol = Maze.End.Col;
+    myPlayerImage = new Image(500, 500);
+    myExitImage = new Image(500, 500);
+    myPlayerImage.src = "Images/simpson.png";
+    myExitImage.src = "Images/exit1.png";
+    myCurrentRow = startRow;
+    myCurrentCol = startCol;
 
 
-    var exitRow = Maze.End.Row;
-    var exitCol = Maze.End.Col;
-     playerImage = new Image(500, 500);
-    var exitImage = new Image(500, 500);
-    playerImage.src = "Images/simpson.png";
-    exitImage.src = "Images/exit1.png";
-
-    $("#myMazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage, exitImage);
+    $("#myMazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, myPlayerImage, myExitImage);
     
-    var exitImage2 = new Image(500, 500);
-    var playerImage2 = new Image(500, 500);
-    exitImage2.src = "Images/exit1.png";
-    playerImage2.src = "Images/monster.jpg";
-    $("#opponentMazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, playerImage2, exitImage2);
+    opponentExitImage = new Image(500, 500);
+    opponentPlayerImage = new Image(500, 500);
+    opponentExitImage.src = "Images/exit1.png";
+    opponentPlayerImage.src = "Images/monster.jpg";
+    opponentCurrentRow = startRow;
+    opponentCurrentCol = startCol;
+    $("#opponentMazeCanvas").drawMaze(rowsMaze, colsMaze, maze, startRow, startCol, exitRow, exitCol, opponentPlayerImage, opponentExitImage);
 
+    validMove = 1;
 };
+
+MultiPlayerHub.client.gotDirection = function (userName, direction) {
+    var newPos = isValidMove(direction, myCurrentRow, myCurrentCol, rowsMaze, colsMaze, maze);
+    if (newPos != "-1") {
+        var prevRow = opponentCurrentRow;
+        var prevCol = opponentCurrentCol;
+        opponentCurrentRow = newPos.backRow;
+        opponentCurrentCol = newPos.backCol;
+
+        $("#opponentMazeCanvas").drawMove(opponentPlayerImage, rowsMaze, colsMaze, opponentCurrentRow, opponentCurrentCol, prevRow, prevCol);
+        if ((opponentCurrentRow == exitRow) && (opponentCurrentCol == exitCol)) {
+            alert("opponent win");
+        }
+
+    }
+}
 
 
 
@@ -69,30 +93,31 @@ $.connection.hub.start().done(function () {
             MultiPlayerHub.server.join(mazeName);
         }
     });
-
-    $(document).keydown(function (event) {
-        var key = event.which;
-        if (key == 37 || key == 38 || key == 39 || key == 40) {
-            event.preventDefault();
-            //if (validMove) {
-                var newPos = isValidMove(key, currentRow, currentCol, rowsMaze, colsMaze, maze);
-                if (newPos != "-1") {
-                     prevRow = currentRow;
-                     prevCol = currentCol;
-                    currentRow = newPos.backRow;
-                    currentCol = newPos.backCol;
-
-                    $("#myMazeCanvas").drawMove(playerImage, rowsMaze, colsMaze, currentRow, currentCol, prevRow, prevCol);
-                    if ((currentRow == exitRow) && (currentCol == exitCol)) {
-                        alert("you win");
-                    }
-
-                }
-            //}
-        }
-    });
 });
 
+$(document).keydown(function (event) {
+    var key = event.which;
+    if (key == 37 || key == 38 || key == 39 || key == 40) {
+        event.preventDefault();
+        if (validMove) {
+            var newPos = isValidMove(key, myCurrentRow, myCurrentCol, rowsMaze, colsMaze, maze);
+            if (newPos != "-1") {
+                var prevRow = myCurrentRow;
+                var prevCol = myCurrentCol;
+                myCurrentRow = newPos.backRow;
+                myCurrentCol = newPos.backCol;
+
+                MultiPlayerHub.server.move("Noam", key);
+
+                $("#myMazeCanvas").drawMove(myPlayerImage, rowsMaze, colsMaze, myCurrentRow, myCurrentCol, prevRow, prevCol);
+                if ((myCurrentRow == exitRow) && (myCurrentCol == exitCol)) {
+                    alert("you win");
+                }
+
+            }
+        }
+    }
+});
 
 
     //$(document).ready(function () {
