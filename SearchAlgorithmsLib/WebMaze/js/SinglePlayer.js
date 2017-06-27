@@ -12,9 +12,6 @@ var exitRow;
 var exitCol;
 var type;
 var mazeName;
-var themazeName;
-var i;
-var k;
 
 
 
@@ -63,8 +60,7 @@ $(document).ready(function () {
         // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
             // alert("submitted!");
-            var mazeName = $("#mazeName").val();
-            mazeName = mazeName;
+            mazeName = $("#mazeName").val();
             var rows = $("#mazeRows").val();
             var cols = $("#mazeCols").val();
 
@@ -74,8 +70,8 @@ $(document).ready(function () {
                 data: { name: mazeName, rows: rows, cols: cols },
                 dataType: 'json',
                 success: function (responseData) {
-                    rowsMaze = rows;
-                    colsMaze = cols;
+                    rowsMaze = responseData.Rows;
+                    colsMaze = responseData.Cols;
                     maze = responseData.Maze;
                     myCurrentRow = responseData.Start.Row;
                     startRow = responseData.Start.Row;
@@ -87,7 +83,6 @@ $(document).ready(function () {
                     myExitImage = new Image(500, 500);
                     myPlayerImage.src = "Images/simpson.png";
                     myExitImage.src = "Images/exit1.png";
-                    themazeName = mazeName;
                     myCurrentRow = responseData.Start.Row;
                     myCurrentCol = responseData.Start.Col;
 
@@ -101,11 +96,13 @@ $(document).ready(function () {
 
     $(document).keydown(function (event) {
         var key = event.which;
+        movePlayer(key)
+    });
+
+    var movePlayer = function (key) {
         if (key == 37 || key == 38 || key == 39 || key == 40) {
-            event.preventDefault();
             if (validMove) {
                 var newPos = isValidMove(key, myCurrentRow, myCurrentCol, rowsMaze, colsMaze, maze);
-                //  alert(newPos.backRow);
                 if (newPos != "-1") {
                     var prevRow = myCurrentRow;
                     var prevCol = myCurrentCol;
@@ -119,7 +116,7 @@ $(document).ready(function () {
                 }
             }
         }
-    });
+    }
 
     $("#btnSolveGame").click(function () {
 
@@ -131,16 +128,31 @@ $(document).ready(function () {
         $.ajax({
             url: "api/SinglePlayer",
             type: 'GET',
-            data: { mazeName: themazeName, typeOfSearch: type },
+            data: { mazeName: mazeName, typeOfSearch: type },
             dataType: 'json',
             success: function (responseData) {
-                alert("in");
+                var i;
+                var solution = responseData.Solution;
                 alert(responseData.Solution);
-                i = responseData.Solution;
-                k = 1;
-                alert(responseData.Solution.charAt(1));
-                $("#mazeCanvas").solveSingle(myPlayerImage, rowsMaze, colsMaze,
-                    startRow, startRow, myCurrentRow, myCurrentCol);
+                var len = solution.length;
+                for (i = 0; i < len; i++) {
+                    switch (keycode) {
+                        case 'U': // Up
+                            movePlayer(38)
+                            break;
+                        case 'L': // Left
+                            movePlayer(37)
+                            break;
+                        case 'R': // Right
+                            movePlayer(39)
+                            break;
+                        case 'D': // Down
+                            movePlayer(40)
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
             },
             error: function () {
