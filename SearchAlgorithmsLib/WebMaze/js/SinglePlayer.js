@@ -122,7 +122,6 @@ $(document).ready(function () {
     });
 
     $("#btnSolveGame").click(function () {
-        //alert("solve");
 
         var type = 0;
         if ($("#SearchAlgo").val() == "DFS") {
