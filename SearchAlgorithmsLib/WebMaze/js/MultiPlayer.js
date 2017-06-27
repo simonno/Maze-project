@@ -59,7 +59,7 @@ MultiPlayerHub.client.gotMaze = function (jsonMaze) {
 };
 
 MultiPlayerHub.client.gotDirection = function (userName, direction) {
-    var newPos = isValidMove(direction, myCurrentRow, myCurrentCol, rowsMaze, colsMaze, maze);
+    var newPos = isValidMove(direction, opponentCurrentRow, opponentCurrentCol, rowsMaze, colsMaze, maze);
     if (newPos != "-1") {
         var prevRow = opponentCurrentRow;
         var prevCol = opponentCurrentCol;

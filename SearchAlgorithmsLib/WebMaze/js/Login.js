@@ -42,28 +42,10 @@ $(document).ready(function () {
                 contentType: "application/json",
                 data: { username: inputUsername, password: inputPassword },
                 success: function (data) {
-                    alert("funnnnn");
-                },
-                error: function () {
-                    alert("error");
+                    sessionStorage.setItem('user', inputUsername);
+                    window.location.assign("HomePage.html")
                 }
             })
-
-            //$.post("api/Users", inputUsername, inputPassword).done(function (data) {
-            //    if (data.error == false) {
-            //        var defaultNum = 5;
-            //        var defaultAlgo = 0;//0 
-            //        sessionStorage.setItem('user', inputUsername);
-
-            //        sessionStorage.setItem('defaultRows', defaultNum);
-            //        sessionStorage.setItem('defaultCols', defalutNum);
-            //        sessionStorage.setItem('defaultAlgo', defaultAlgo);
-
-            //        alert(data.msg);
-            //    } else {
-            //        alert(data.msg);
-            //    }
-            //});
         },
     });
 });
