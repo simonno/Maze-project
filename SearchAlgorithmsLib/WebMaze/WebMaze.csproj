@@ -396,14 +396,13 @@
     <Content Include="Images\whiteRec.png" />
     <Content Include="js\DrawMaze.js" />
     <Content Include="js\DrawMove.js" />
-    <Content Include="js\FirstMazeMultiPlayer.js" />
     <Content Include="js\Header.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\IsValidMove.js" />
     <Content Include="js\MultiPlayer.js" />
+    <Content Include="js\Settings.js" />
     <Content Include="js\SinglePlayer.js" />
     <Content Include="js\RegisterValidation.js" />
-    <Content Include="js\SecondMazeMultiPlayer.js" />
     <Content Include="js\UserRanking.js" />
     <Content Include="LoginPage.html" />
     <Content Include="MultiGamePage.html" />
