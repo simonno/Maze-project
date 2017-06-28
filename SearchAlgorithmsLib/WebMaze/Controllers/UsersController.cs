@@ -46,6 +46,7 @@ namespace WebMaze.Controllers
                 return BadRequest(ModelState);
             }
 
+
             //encrypting the password.
             SHA1 s = SHA1.Create();
             byte[] buffer = Encoding.ASCII.GetBytes(user.Password);
