@@ -31,11 +31,9 @@ $(document).ready(function () {
                 minlength: jQuery.validator.format("Enter at least {0} characters"),
             },
         },
-        // specifying a submitHandler prevents the default submit, good for the demo
         submitHandler: function () {
             var inputUsername = $("#inputUsername").val();
             var inputPassword = $("#inputPassword").val();
-            //var user =
             $.ajax({
                 url: "api/Users",
                 type: "GET",
@@ -49,8 +47,3 @@ $(document).ready(function () {
         },
     });
 });
-
-//if (sessionStorage.getItem('user')) {
-
-//    $(location).prop('href', 'http://localhost:50570/HomePage.html')
-//}

@@ -5,6 +5,7 @@
     <title>Setting Page</title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/Settings.js"></script>
 </head>
 <body>
     <header id="site-header">
@@ -41,37 +42,6 @@
                 <div class="col-lg-offset-4 col-lg-3">
                     <input type="submit" class=" btn-success form-control" value="Save" id="save">
                 </div>
-                <script>
-
-                    $("#save").click(function () {
-                        var mazeRows = $("#defaultRows").val();
-                        var mazeCols = $("#defaultCols").val();
-                        var SearchAlgo = $("#SearchAlgo").val();
-                        if (SearchAlgo == "DFS") {
-                            numSearchAlgo = 1;
-                        } else {
-                            numSearchAlgo = 0;
-
-                        }
-                        if (sessionStorage.getItem('user')) {
-                            if (mazeRows == '') {
-                                sessionStorage.setItem('defaultRows', mazeRows);
-                            }
-                            if (mazeCols == '') {
-                                sessionStorage.setItem('defaultCols', mazeCols);
-                            }
-                            if (numSearchAlgo == '') {
-                                sessionStorage.setItem('defaultAlgo', numSearchAlgo);
-                            }
-                        }
-                        alert(data.msg);
-
-                        //TODO add ****userName**** from session
-                      //  var url = "http://localhost:50570/api/Users/5" + "/" + mazeRows + "/" + mazeCols + "/" + numSearchAlgo;
-          
-                        $.post(url).done;
-                  });
-                </script>
             </div>
         </form>
     </div>

@@ -10,6 +10,4 @@
     } else {
         $("#rightNavBar").append('<li id="register"><a href= "RegisterPage.html" title= "Register" >Register</a ></li ><li id="login"><a href="LoginPage.html" title="Log In">Log In</a></li>');
     }
-
-
 });
